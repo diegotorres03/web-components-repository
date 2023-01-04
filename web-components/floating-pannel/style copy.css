@@ -1,0 +1,182 @@
+:root{
+    --white-tone:#feffc8;
+    --light-tone:#ecff7d;
+    --main-tone: #addd53;
+    --dark-tone: #477a2a;
+    --black-tone:#274416;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Silkscreen:wght@400;700&display=swap');
+@font-face {
+    font-family:"Minecraft" ;
+    src: url(./Minecraft.ttf);
+}
+@font-face {
+    font-family:"up" ;
+    src: url(./upheavtt.ttf);
+}
+
+
+
+.bttn{
+        
+    border: 2px solid var(--dark-tone);
+    box-shadow: 0px 6px 0px var(--dark-tone);
+    border-radius: 4.5px;
+    padding: 4px 8px;
+
+    background-color: var(--white-tone);
+    color: var(--black-tone);
+
+    font-family: 'Up';
+}
+.bttn:hover{
+    background-color: var(--light-tone);
+    box-shadow: 0px 6px 0px var(--black-tone);
+    border: 2px solid var(--black-tone);
+    cursor: pointer;
+    transform:translateY(-1px);
+}
+.bttn:active{
+    transform:translateY(1px);
+}
+
+
+.container {
+    font-family: "Open sans";
+    
+    display: flex;
+    flex-direction: column;
+
+    height: auto;
+    width: 50% ;
+
+    padding: 12px;
+    border-radius: 6px;
+
+    background-color: var(--main-tone) ;
+    transition: all 0.2s linear;
+}
+
+.container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    user-select: none;
+}
+
+.closed-container{
+    width: 5%;
+    height: 20px;
+    
+}
+
+    .title{
+        display: flex;
+        width: 80px;
+        align-items: center;
+
+        border-radius: 3px;
+        margin: 0 0 8px 0;
+        
+        background-color: none;
+    }
+        .title button{
+            font-family: 'Up';
+            font-weight: 400;
+            font-size: small;
+            color: var(--white-tone);
+
+            border: none;
+            border-radius: 4px;
+            padding: 4px 8px;
+            margin: 0;
+
+            background-color: var(--black-tone);
+            width: auto;
+        }
+        .title-button:hover{
+            background-color: var(--light-tone);
+            color: #274416;
+            cursor: pointer;
+        }
+        .title-button:active{
+            transform: translateY(2px);
+        }
+
+.house-areas-container{
+    display: grid;
+    grid-template-rows: auto auto;
+    width: 100%;
+   
+}
+    .up{
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows:auto;
+        width: 100%;
+    
+    }
+    .down{
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows:auto;
+    }
+   
+    .up .house-areas{
+        box-shadow: 0px 2px 0px var(--black-tone);
+    }
+
+    .house-areas:hover{
+        background-color: var(--light-tone);
+        box-shadow: 0px 6px 0px var(--black-tone);
+        border: 2px solid var(--black-tone);
+        cursor: pointer;
+        transform:translateY(-1px);
+    }
+    .up .house-areas:hover{
+        box-shadow: 0px 1px 0px var(--black-tone);
+        cursor: pointer;
+    }
+    .house-areas:active{
+        transform:translateY(1px);
+    }
+    .up .house-areas:active{
+        transform:translateY(1px);
+        box-shadow: 0px 2px 0px var(--black-tone);
+    }
+    
+    
+    .panel-container{
+        display: flex;
+        width: 100%;
+        height: 45px;
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 12px 0 4px;
+    }
+    .previous,.next{
+        padding: 0 12px;
+        height: 40px;
+    }
+
+    .ubication{
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+    }
+        .ubications {
+            list-style: none;
+            margin: 0 8px;
+        }
+
+.powerbar{
+    transition:0.2s ease all;
+}
+.hidden{
+    display: none;   
+}
+
+

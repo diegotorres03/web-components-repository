@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css_1.0.2.zip">
+  <script src="./web-components/green-screen/index.js"></script>
+</head>
+
+<body>
+
+
+  <green-screen></green-screen>
+
+  <!-- <div>
+    <video id="video" width="648" src="green.mp4" autoplay muted loop></video>
+    <canvas id="output-canvas" width="648" height="380"></canvas>
+  </div>
+  <script>
+    let video, video2, c_out, c_tmp, ctx_tmp;
+    function init() {
+      video = document.getElementById('video');
+      c_out = document.getElementById('output-canvas');
+      ctx_out = c_out.getContext('2d');
+      video2 = document.createElement('video');
+      video2.src = "fire.mp4"
+      video2.muted = true;
+      video2.autoplay = true;
+      c_tmp = document.createElement('canvas');
+      c_tmp.setAttribute('width', 800);
+      c_tmp.setAttribute('height', 450);
+      ctx_tmp = c_tmp.getContext('2d');
+      video.addEventListener('play', computeFrame);
+    }
+
+    function compareRGB(baseRed, baseGreen, baseBlue) {
+      return function (red, green, blue, tolerance = 10) {
+        return (
+          (red >= baseRed - tolerance && red <= baseRed + tolerance) &&
+          (green >= baseGreen - tolerance && green <= baseGreen + tolerance) &&
+          (blue >= baseBlue - tolerance && blue <= baseBlue + tolerance)
+        )
+      }
+    }
+
+    function computeFrame() {
+      ctx_tmp.drawImage(video, 0, 0, video.videoWidth, video.videoHeight)
+      let frame = ctx_tmp.getImageData(0, 0, video.videoWidth, video.videoHeight)
+      ctx_tmp.drawImage(video2, 0, 0, video2.videoWidth, video2.videoHeight)
+      // let frame2 = ctx_tmp.getImageData(0, 0, video2.videoWidth, video2.videoHeight)
+
+      for (let i = 0; i < frame.data.length / 4; i++) {
+        let r = frame.data[i * 4 + 0]
+        let g = frame.data[i * 4 + 1]
+        let b = frame.data[i * 4 + 2]
+        if (compareRGB(93, 222, 72)(r, g, b)) { // 
+          frame.data[i * 4 + 0] = 0
+          frame.data[i * 4 + 1] = 0
+          frame.data[i * 4 + 2] = 0
+
+        }
+      }
+      ctx_out.putImageData(frame, 0, 0);
+      setTimeout(computeFrame, 0);
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      init();
+    });
+  </script> -->
+</body>
+
+</html>
