@@ -9,6 +9,7 @@
     <script src="../web-tools.js"></script>
     <script src="./index.js"></script>
     <script src="./powerbar.component.js"></script>
+
 </head>
 <body>
     
@@ -26,9 +27,10 @@
 
  
     </style>
+    <script></script>
 
     <power-bar></power-bar>
-    <!-- <floating-pannel class="">
+    <floating-pannel class="">
         <h1 slot="main" >main slot content</h1>
         <div slot="up" class="up">
 
@@ -46,7 +48,7 @@
 
         </div>
     </floating-pannel>
-     -->
+    
    
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, blanditiis distinctio beatae magni ipsam eaque aliquid, totam fuga perspiciatis corrupti quasi dolor excepturi, itaque explicabo ipsa rem praesentium sunt? Ea.</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium eveniet quo possimus quam aliquid deserunt voluptas temporibus obcaecati accusantium aspernatur quasi ea quos laudantium, quidem aliquam at delectus doloremque labore iure nihil voluptatum dignissimos! Et commodi consequatur nesciunt dolores doloribus libero saepe non, reiciendis magnam debitis aut eveniet culpa, dicta adipisci ad sapiente? Natus tempore praesentium sapiente sit eveniet nesciunt sint. Architecto veritatis numquam sit ratione id sint officia blanditiis ipsa officiis, sunt minus illo excepturi earum et cumque porro laborum quos laudantium ipsam. Dolor modi exercitationem magni commodi omnis deserunt quisquam eius veritatis asperiores neque? Voluptas nam veritatis voluptate id. Rem nemo praesentium, quos quia eligendi modi atque aspernatur commodi voluptate hic molestias vero voluptatum! Magnam facere itaque unde consequatur voluptatibus sed, pariatur doloribus quis, provident id laudantium. Beatae ex aut nobis mollitia sint iure ad vero cupiditate natus qui. Doloribus est optio molestiae laborum, culpa iste aliquam quae eligendi nesciunt numquam consectetur quaerat maiores aliquid velit assumenda laudantium officiis non eos, nisi a temporibus exercitationem tenetur ipsam! Laboriosam ab tempora quaerat libero reiciendis possimus fuga consequuntur quasi totam maxime nisi distinctio excepturi aliquam dignissimos necessitatibus nihil numquam, error at, aperiam sit laborum inventore pariatur. Ipsam culpa doloribus delectus?</p>
@@ -59,17 +61,17 @@
    
    <script>
 
-        // function closeTool () {
-        //     document.getElementById("powerbar").classList.toggle ("hidden");
-        // }
-        // function closeContainer () {
-        //     document.getElementById("container").classList.toggle ("closed-container");
-        // }
+        function closeTool () {
+            document.getElementById("powerbar").classList.toggle ("hidden");
+        }
+        function closeContainer () {
+            document.getElementById("container").classList.toggle ("closed-container");
+        }
 
-        // document.getElementById("title-button").onclick = function (){
-        //     closeContainer ();
-        //     closeTool ();
-        // }
+        document.getElementById("title-button").onclick = function (){
+            closeContainer ();
+            closeTool ();
+        }
 
 
 
