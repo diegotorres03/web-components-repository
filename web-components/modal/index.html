@@ -11,7 +11,16 @@
 <body>
 
     <button id="open-modal">open</button>
-    <app-modal open="true"></app-modal>
+ 
+    <app-modal open="true">
+        <h1 slot="header">this is the header</h1>
+        <ul slot="main">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ul>
+        <footer slot="footer"><i>this is the last thing</i></footer>
+    </app-modal>
 
     <script>
         document.querySelector('#open-modal').addEventListener('click', ev => {
