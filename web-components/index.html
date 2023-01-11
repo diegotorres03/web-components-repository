@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css-tools.css">
+
+    <script src="./web-tools.js"></script>
+    <script src="./accordion/accordion.component.js"></script>
+    <script src="./floating-pannel/floating-pannel.js"></script>
+    <script src="./modal/modal.component.js"></script>
+    <script src="./router/route.component.js"></script>
+    <script src="./router/router.component.js"></script>
+    <script src="./scripts/web-worker.component.js"></script>
+    <script src="./scripts/service-worker.component.js"></script>
+    <!-- <script src=""></script> -->
+
+
+</head>
+
+<body>
+
+    <div class="flex-row">
+
+
+        <app-accordion>
+            <section class="accordion-tab">
+                <h1>title 1</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis
+                    aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
+                    non
+                    cum repudiandae incidunt?</p>
+                <button id="open-modal">open</button>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis
+                    aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
+                    non
+                    cum repudiandae incidunt?</p>
+
+            </section>
+            <section class="accordion-tab">
+                <h4>some links</h4>
+                <ul>
+                    <li><a href="#route1">route1</a></li>
+                    <li><a href="#route2">route2</a></li>
+                    <li><a href="#route3">route3</a></li>
+                </ul>
+            </section>
+            <section class="accordion-tab">
+                <h6>title 3</h6>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis
+                    aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
+                    non
+                    cum repudiandae incidunt?</p>
+            </section>
+        </app-accordion>
+
+        <b>hasd</b>
+
+        <app-router>
+            <!-- <app-route class="route" >
+                <h1>test</h1>
+            </app-route> -->
+            <!-- <app-route class="route" src="./test.html"></app-route> -->
+                
+            <app-route class="route" hash="route1" >
+                <h1>groups path</h1>
+            </app-route>
+    
+            <app-route class="route" hash="route2">
+                <h1>items path</h1>
+            </app-route>
+    
+            <app-route class="route" hash="route3">
+                <h1>orders path</h1>
+            </app-route>
+        </app-router>
+
+    </div>
+
+    <app-modal>
+        <h1 slot="header">this is the header</h1>
+        <ul slot="main">
+            <li>item 1</li>
+            <li>item 2</li>
+            <li>item 3</li>
+        </ul>
+        <footer slot="footer"><i>this is the last thing</i></footer>
+    </app-modal>
+
+    <script>
+        document.querySelector('#open-modal').addEventListener('click', ev => {
+            document.querySelector('app-modal').open()
+        })
+
+        
+    </script>
+
+
+
+    <!-- 
+    <floating-pannel class="">
+        <h1 slot="main" >main slot content</h1>
+        <div slot="up" class="up">
+
+            <button class="house-areas bttn" draggable="true">Frontyard</button>
+            <button class="house-areas bttn" draggable="true">backyard</button>
+            <button class="house-areas bttn" draggable="true">Diningroom</button>
+            <button class="house-areas bttn" draggable="true">Kitchen</button>
+            
+        </div>
+        <div slot="down" class="down">
+                
+            <button class="house-areas bttn" draggable="true">Master bedroom</button>
+            <button class="house-areas bttn" draggable="true">Master bathroom</button>
+            <button class="house-areas bttn" draggable="true">Livingroom</button>
+
+        </div>
+    </floating-pannel> -->
+
+</body>
+
+</html>
