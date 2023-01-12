@@ -17,6 +17,7 @@
     <script src="./router/router.component.js"></script>
     <script src="./scripts/web-worker.component.js"></script>
     <script src="./scripts/service-worker.component.js"></script>
+    <script src="./layout/layout.component.js"></script>
     <!-- <script src=""></script> -->
 
 
@@ -24,10 +25,14 @@
 
 <body>
 
-    <div class="flex-row">
 
-
-        <app-accordion>
+    <app-layout>
+        <nav slot="top-menu">
+            <a href="#route1">route1</a>
+            <a href="#route2">route2</a>
+            <a href="#route3">route3</a>
+        </nav>
+        <app-accordion slot="left-menu" >
             <section class="accordion-tab">
                 <h1>title 1</h1>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
@@ -35,7 +40,6 @@
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
                     non
                     cum repudiandae incidunt?</p>
-                <button id="open-modal">open</button>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
                     veritatis
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
@@ -61,9 +65,8 @@
             </section>
         </app-accordion>
 
-        <b>hasd</b>
 
-        <app-router>
+        <app-router slot="main-content" >
             <!-- <app-route class="route" >
                 <h1>test</h1>
             </app-route> -->
@@ -71,16 +74,35 @@
                 
             <app-route class="route" hash="route1" >
                 <h1>groups path</h1>
+                <ul>
+                    <li>item1</li>
+                    <li>item2</li>
+                    <li>item3</li>
+                    <li>item4</li>
+                    <li>item5</li>
+                </ul>
             </app-route>
     
             <app-route class="route" hash="route2">
                 <h1>items path</h1>
+                <button id="open-modal">open</button>
+
             </app-route>
     
             <app-route class="route" hash="route3">
                 <h1>orders path</h1>
             </app-route>
         </app-router>
+
+    </app-layout>
+
+
+    <hr>
+
+
+    <div class="flex-row">
+
+     
 
     </div>
 

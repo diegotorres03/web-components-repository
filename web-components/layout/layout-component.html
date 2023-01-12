@@ -1,0 +1,67 @@
+<style>
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .space-around {
+        justify-content: space-around;
+    }
+
+    .space-between {
+        justify-content: space-between;
+    }
+
+    .grid {
+        display: grid;
+    }
+
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+<main class="flex-column">
+
+
+
+    <div class="top-menu flex-row space-around" style="background-color: aqua;">
+        <slot name="top-menu">
+            <span>top</span>
+            <span>top</span>
+            <span>top</span>
+            <span>top</span>
+        </slot>
+    </div>
+
+    <div class="flex-row space-between">
+
+
+        <div class="left-menu" style="background-color: bisque; width: 25%;">
+            <slot name="left-menu" class="flex-column">
+                <span>left</span>
+                <span>left</span>
+                <span>left</span>
+                <span>left</span>
+            </slot>
+        </div>
+
+        <div class="main-content" style="background-color: blueviolet; width: 70%;">
+            <slot name="main-content">main</slot>
+        </div>
+
+    </div>
+
+    <div class="footer" style="background-color: cornflowerblue;">
+        <slot name="footer">footer</slot>
+    </div>
+
+
+
+</main>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Component</title>
+    <script src="../web-tools.js"></script>
+    <script src="./layout.component.js"></script>
+</head>
+
+<body>
+
+    <!-- <app-layout></app-layout> -->
+
+    <app-layout>
+        <nav slot="top-menu">
+            <a href="#item1">menu item 1</a>
+            <a href="#item2">menu item 2</a>
+            <a href="#item3">menu item 3</a>
+            <a href="#item4">menu item 4</a>
+        </nav>
+
+        <div slot="left-menu">
+            <section class="accordion-tab">
+                <h1>title 1</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis</p>
+                <button id="open-modal">open</button>
+            </section>
+
+            <section class="accordion-tab">
+                <h4>some links</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis</p>
+            </section>
+
+            <section class="accordion-tab">
+                <h6>title 3</h6>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis</p>
+            </section>
+
+        </div>
+
+        <div slot="main-content">
+            <h1>this is the main content panel</h1>
+        </div>
+
+        <footer slot="footer">
+            <span>some links and stuff here</span>
+        </footer>
+
+
+
+    </app-layout>
+
+</body>
+
+</html>
