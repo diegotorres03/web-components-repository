@@ -45,7 +45,7 @@ export class WebComponentsPipelineStack extends Stack {
                 'ls',
                 'pwd',
                 'echo bulding',
-                'echo hahaha',
+                'echo hehe',
                 // 'git status',
             ]
         })
