@@ -35,8 +35,8 @@ export class WebComponentsPipelineStack extends Stack {
                     // '',
                     // '',
                 ],
-                // primaryOutputDirectory: 'cdk.out',
-                
+                primaryOutputDirectory: './src/cdk.out',
+
             })
         })
 
