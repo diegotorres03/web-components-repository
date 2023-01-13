@@ -68,6 +68,10 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
 
       const res = await dynamo.scan({
         TableName: process.env.TABLE_NAME,
+        FilterExpression: '',
+        ExpressionAttributeValues: {},
+        ExpressionAttributeNames: {},
+
       }).promise()
 
       console.log(JSON.stringify(res, undefined, 2))
