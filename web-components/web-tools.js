@@ -81,3 +81,9 @@ function renderForLoops(component) {
     console.log(templates)
     templates.forEach(template => console.log(template.dataset))
 }
+
+
+
+function require(packageName) {
+    return window.modules[packageName]
+}

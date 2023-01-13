@@ -9,6 +9,7 @@ import {
 
 import { Stack, StackProps } from 'aws-cdk-lib'
 import * as CodeCommit from 'aws-cdk-lib/aws-codecommit'
+import * as IAM from 'aws-cdk-lib/aws-iam'
 import { Construct } from 'constructs';
 import { AppStage } from './pipeline-app-stage'
 
@@ -31,12 +32,12 @@ export class WebComponentsPipelineStack extends Stack {
                 commands: [
                     'ls',
                     'pwd',
+                    'cdk syth',
                     // 'git status',
                     // '',
                     // '',
                 ],
-                primaryOutputDirectory: './src/cdk.out',
-
+                primaryOutputDirectory: 'cdk.out',
             })
         })
 
@@ -50,6 +51,12 @@ export class WebComponentsPipelineStack extends Stack {
                 // 'git status',
             ]
         })
+
+        const codebuildRole = new IAM.Role(this, 'appStep-buildRole', {
+            assumedBy: new IAM.ServicePrincipal('codebuild.amazonaws.com')
+        })
+
+        // codebuildRole.addToPolicy()
 
         this.pipeline.addStage(
             new AppStage(this, 'appStage', {...props}),

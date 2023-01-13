@@ -7,7 +7,7 @@
     ],
     "declaration": true,
     "strict": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "noImplicitThis": false,
     "alwaysStrict": true,

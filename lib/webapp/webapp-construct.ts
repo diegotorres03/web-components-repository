@@ -13,6 +13,7 @@ import {
     RemovalPolicy,
 } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
+import { exec, execSync } from 'child_process'
 
 
 
@@ -100,6 +101,21 @@ export class WebAppConstruct extends Construct {
             destinationKeyPrefix: destinationPath ? destinationPath : undefined,
         })
 
+        return this
+    }
+    run(path:string, commands: string | string[]) {
+        const cmds = Array.isArray(commands) ? commands : [commands]
+        console.log('111111111111111111111111111111111111111111111111111111111')
+        console.log('111111111111111111111111111111111111111111111111111111111')
+        for (let cmd of cmds) {
+            const res = execSync(cmd, {
+                cwd: path,
+                stdio: [0, 1, 2]
+              })
+            console.log(res)
+        }
+        console.log('111111111111111111111111111111111111111111111111111111111')
+        console.log('111111111111111111111111111111111111111111111111111111111')
         return this
     }
 

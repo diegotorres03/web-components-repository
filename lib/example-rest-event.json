@@ -1,0 +1,164 @@
+{
+    "resource": "/items",
+    "path": "/items",
+    "httpMethod": "GET",
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.5",
+        "cache-control": "no-cache",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-ASN": "7018",
+        "CloudFront-Viewer-Country": "US",
+        "content-type": "application/json",
+        "Host": "rgk332omyk.execute-api.us-east-2.amazonaws.com",
+        "origin": "http://127.0.0.1:5500",
+        "pragma": "no-cache",
+        "Referer": "http://127.0.0.1:5500/",
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "cross-site",
+        "sec-gpc": "1",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0",
+        "Via": "2.0 68d6b51e2f012be26da705a1e408a548.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "JHrVXdNAx38HEhCA82WL1P1kOcd6TQpHhCws_zWPwcmNqOPHZUjvWg==",
+        "X-Amzn-Trace-Id": "Root=1-63c1c7e7-27525afc14c494b070721f5d",
+        "X-Forwarded-For": "172.11.78.176, 15.158.2.118",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip, deflate, br"
+        ],
+        "Accept-Language": [
+            "en-US,en;q=0.5"
+        ],
+        "cache-control": [
+            "no-cache"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-ASN": [
+            "7018"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "content-type": [
+            "application/json"
+        ],
+        "Host": [
+            "rgk332omyk.execute-api.us-east-2.amazonaws.com"
+        ],
+        "origin": [
+            "http://127.0.0.1:5500"
+        ],
+        "pragma": [
+            "no-cache"
+        ],
+        "Referer": [
+            "http://127.0.0.1:5500/"
+        ],
+        "sec-fetch-dest": [
+            "empty"
+        ],
+        "sec-fetch-mode": [
+            "cors"
+        ],
+        "sec-fetch-site": [
+            "cross-site"
+        ],
+        "sec-gpc": [
+            "1"
+        ],
+        "User-Agent": [
+            "Mozilla/5.0 (X11; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0"
+        ],
+        "Via": [
+            "2.0 68d6b51e2f012be26da705a1e408a548.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "JHrVXdNAx38HEhCA82WL1P1kOcd6TQpHhCws_zWPwcmNqOPHZUjvWg=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-63c1c7e7-27525afc14c494b070721f5d"
+        ],
+        "X-Forwarded-For": [
+            "172.11.78.176, 15.158.2.118"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": {
+        "id": "hahaha",
+        "name": "hahaha"
+    },
+    "multiValueQueryStringParameters": {
+        "id": [
+            "test",
+            "hahaha"
+        ],
+        "name": [
+            "hahaha"
+        ]
+    },
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "hqrbmj",
+        "resourcePath": "/items",
+        "httpMethod": "GET",
+        "extendedRequestId": "eswsQF77iYcF9Gg=",
+        "requestTime": "13/Jan/2023:21:06:47 +0000",
+        "path": "/dev/items",
+        "accountId": "177624785149",
+        "protocol": "HTTP/1.1",
+        "stage": "dev",
+        "domainPrefix": "rgk332omyk",
+        "requestTimeEpoch": 1673644007832,
+        "requestId": "ce4f248c-905a-45bb-8fae-c2ac5c694bbb",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "172.11.78.176",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0",
+            "user": null
+        },
+        "domainName": "rgk332omyk.execute-api.us-east-2.amazonaws.com",
+        "apiId": "rgk332omyk"
+    },
+    "body": null,
+    "isBase64Encoded": false
+}

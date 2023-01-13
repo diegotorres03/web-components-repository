@@ -1,0 +1,22 @@
+{
+  "name": "web-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "package-index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": ". ./build.sh"
+  },
+  "author": "Diego Torres",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.245.0",
+    "aws-amplify": "^5.0.9",
+    "aws-crt": "^1.15.5"
+  },
+  "devDependencies": {
+    "path-browserify": "^1.0.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

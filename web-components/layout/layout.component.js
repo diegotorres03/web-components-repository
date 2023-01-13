@@ -7,6 +7,7 @@ class AppLayout extends HTMLElement {
 
     async _render() {
         const inner = await html.import('./layout/layout-component.html')
+        // const inner = html``
         const shadow = this.attachShadow({mode: 'open'})
         shadow.appendChild(inner)
 

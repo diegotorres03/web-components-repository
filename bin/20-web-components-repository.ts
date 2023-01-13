@@ -13,3 +13,6 @@ const env = {
 
 
 new WebComponentsPipelineStack(app, 'webComponentsRepoPilepine', { env })
+
+
+new WebComponentsRepositoryStack(app, 'wcdemo', { env })
