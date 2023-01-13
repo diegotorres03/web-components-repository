@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flip-card-wc</title>
+
+    <link rel="stylesheet" href="../../global/standar-wc-style.css">
+
+    <script src="../../global/web-tools.js"></script>
+    <script src="./components/wc-flip-card.component.js"></script>
+
+</head>
+
+<body>
+    
+    <main>
+        <div class="container">
+            <h1 class="t1">flip-card <span class="sub-text">web-component</span></h1>
+
+            <!-- Flip-card -->
+            <flip-card>
+                <!-- Slot front content -->
+                <div slot="front">
+                    <h1>This is the front</h1>
+                </div>
+                <!-- Slot back content -->
+                <div slot="back">
+                    <h1>This is the back</h1>
+                </div>
+            </flip-card>
+
+        </div>
+    </main>
+
+</body>
+</html>

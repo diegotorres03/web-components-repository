@@ -19,23 +19,26 @@
     <script src="./scripts/service-worker.component.js"></script>
     <!-- <script src=""></script> -->
 
-
 </head>
 
 <body>
 
-    <div class="flex-row">
+    <div class="flex-column">
 
 
         <app-accordion>
             <section class="accordion-tab">
+                <h1>Pestaña bien bacana</h1>
+            </section>
+            <section class="accordion-tab">
                 <h1>title 1</h1>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
                     veritatis
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
                     non
-                    cum repudiandae incidunt?</p>
+                    cum repudiandae incidunt?</p> -->
                 <button id="open-modal">open</button>
+
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
                     veritatis
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
@@ -61,7 +64,6 @@
             </section>
         </app-accordion>
 
-        <b>hasd</b>
 
         <app-router>
             <!-- <app-route class="route" >
@@ -69,16 +71,16 @@
             </app-route> -->
             <!-- <app-route class="route" src="./test.html"></app-route> -->
                 
-            <app-route class="route" hash="route1" >
-                <h1>groups path</h1>
+            <app-route id="" class="route" hash="route1" >
+                <h1>BRANCHES</h1>
             </app-route>
     
             <app-route class="route" hash="route2">
-                <h1>items path</h1>
+                <h1>REPOSROTY</h1>
             </app-route>
     
             <app-route class="route" hash="route3">
-                <h1>orders path</h1>
+                <h1>FILES</h1>
             </app-route>
         </app-router>
 
@@ -98,11 +100,8 @@
         document.querySelector('#open-modal').addEventListener('click', ev => {
             document.querySelector('app-modal').open()
         })
-
-        
     </script>
-
-
+    
 
     <!-- 
     <floating-pannel class="">
