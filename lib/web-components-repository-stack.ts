@@ -11,5 +11,8 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
     webapp.addAssets('./web-components')
       
 
+    // [ ] pipeline to deploy this web components
+    
+
   }
 }

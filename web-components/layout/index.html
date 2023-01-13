@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Component</title>
+
+    <link rel="stylesheet" href="../flip-card/components/standar-wc-style.css">
+    <link rel="stylesheet" href="layout-base-style.css">
+
+    <script src="../web-tools.js"></script>
+    <script src="./components/layout.component.js"></script>
+    <script src="../flip-card/components/wc-flip-card.component.js"></script>
+
+
+ 
+</head>
+
+<body>
+
+    <app-layout>
+        <!-- Top menú -->
+
+        <nav class="top-menu" slot="top-menu">
+
+            <h4 class="link-tag clickable">item-5</h4>
+            <h4 class="link-tag clickable">item-6</h4>
+            <h4 class="link-tag clickable">item-3</h4>
+
+        </nav>
+
+        <div slot="left-menu">
+
+            <section class="left-menu-tab">
+                <h1>title 1</h1>
+                <p>Lorem ipsum</p>
+                <button class="dft-btn clickable darker" id="open-modal">open</button>
+            </section>
+            <section class="left-menu-tab">
+                <h1>title 1</h1>
+                <p>Lorem ipsum</p>
+                <button class="dft-btn clickable brighter" id="open-modal">open</button>
+            </section>
+            <section class="left-menu-tab">
+                <h1>title 1</h1>
+                <p>Lorem ipsum</p>
+                <button class="dft-btn clickable" id="open-modal">open</button>
+            </section>
+
+
+
+        </div>
+
+        <div class="main-content pattern-1" slot="main-content">
+
+            <div class="container">
+                <h1 class="t1">flip-card <span class="sub-text">web-component</span></h1>
+    
+                <!-- Flip-card -->
+                <flip-card>
+                    <!-- Slot front content -->
+                    <div slot="front">
+                        <h1>This is the front</h1>
+                    </div>
+                    <!-- Slot back content -->
+                    <div slot="back">
+                        <h1>This is the back 🧙</h1>
+                    </div>
+                </flip-card>
+    
+            </div>
+
+        </div>
+
+        <footer slot="footer">
+            <span>some links and stuff here</span>
+        </footer>
+
+
+
+    </app-layout>
+
+
+
+
+
+
+    <!-- <app-layout>
+
+        <nav slot="top-menu">
+            <a href="#item1">menu item 1</a>
+            <a href="#item2">menu item 2</a>
+            <a href="#item3">menu item 3</a>
+            <a href="#item4">menu item 4</a>
+        </nav>
+
+        <div slot="left-menu">
+            <section class="accordion-tab">
+                <h1>title 1</h1>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis</p>
+                <button id="open-modal">open</button>
+            </section>
+
+            <section class="accordion-tab">
+                <h4>some links</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis</p>
+            </section>
+
+            <section class="accordion-tab">
+                <h6>title 3</h6>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis</p>
+            </section>
+
+        </div>
+
+        <div slot="main-content">
+            <h1>this is the main content panel</h1>
+        </div>
+
+        <footer slot="footer">
+            <span>some links and stuff here</span>
+        </footer>
+
+
+
+    </app-layout> -->
+</body>
+
+</html>
