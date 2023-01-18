@@ -10,7 +10,7 @@ class AppModal extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import('./modal.component.html')
+        const inner = await html.import('./modal/modal.component.html')
         const shadow = this.attachShadow({ mode: 'open' })
         shadow.appendChild(inner)
 

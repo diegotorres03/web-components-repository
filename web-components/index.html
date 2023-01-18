@@ -19,7 +19,7 @@
     <script src="./router/router.component.js"></script>
     <script src="./scripts/web-worker.component.js"></script>
     <script src="./scripts/service-worker.component.js"></script>
-    <script src="./layout/layout.component.js"></script>
+    <script src="./layout/components/layout.component.js"></script>
     <script src="./accordion/accordion.component.js"></script>
     <script src="./live-table/live-table.component.js"></script>
     <script src="./live-form/live-form.component.js"></script>
@@ -62,7 +62,7 @@
             </section>
             <section class="accordion-tab">
                 <h1>title 1</h1>
-                <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
                     veritatis
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
                     non
@@ -99,10 +99,10 @@
             <li><a href="#asdasd">asdasd</a></li>
         </ul>
 
-        <app-router slot="main-content" >
-           <app-route class="route" >
+        <app-router slot="main-content">
+            <app-route class="route">
                 <h1>test</h1>
-            </app-route> -->
+            </app-route>
             <!-- <app-route class="route" src="./test.html"></app-route> -->
 
             <app-route class="route" hash="todo">
@@ -138,7 +138,7 @@
                 </app-todo>
 
             </app-route>
-    
+
             <app-route class="route" hash="route3">
                 <h1>FILES</h1>
             </app-route>
@@ -150,6 +150,10 @@
             </app-route>
 
         </app-router>
+
+        <footer slot="footer">
+            <h2>done</h2>
+        </footer>
 
     </app-layout>
 
@@ -181,7 +185,7 @@
             document.querySelector('app-modal').open()
         })
     </script>
-    
+
 
     <!-- 
     <floating-pannel class="">
