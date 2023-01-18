@@ -1,54 +1,55 @@
+<style>
+    .modal-overlay {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+        position: fixed;
+        text-align: center;
+        text-shadow: none;
+        z-index: 600;
+        
+        background-color: #252525;
+    }
+
+    .modal-wrap {
+        background: whitesmoke;
+        padding: 1em 0;
+        position: relative;
+        margin: 0 auto;
+        max-width: 500px;
+        width: 90%;
+    }
+
+    #checker {
+        position: absolute;
+        top: -1000px;
+    }
+
+    .modal-overlay {
+        opacity: 0;
+        z-index: -100;
+        transform: scale(.5);
+        transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+    #checker:checked ~ .modal-overlay {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 800;
+    }
+
+
+    /* ::slotted(footer)  {
+        background: red;
+    } */
+
+</style>
 <div>
-    <style>
-
-        .modal-overlay {
-            background: #222;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            top: 0;
-            position: fixed;
-            text-align: center;
-            text-shadow: none;
-            z-index: 600;
-        }
-
-        .modal-wrap {
-            background: whitesmoke;
-            padding: 1em 0;
-            position: relative;
-            margin: 0 auto;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        #checker {
-            position: absolute;
-            top: -1000px;
-        }
-
-        .modal-overlay {
-            opacity: 0;
-            z-index: -100;
-            transform: scale(.5);
-            transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55)
-        }
-
-        #checker:checked ~ .modal-overlay {
-            opacity: 1;
-            transform: scale(1);
-            z-index: 800;
-        }
-
-
-        /* ::slotted(footer)  {
-            background: red;
-        } */
-
-    </style>
-    
     <!-- <label for="checker">open modal</label> -->
+
     <input id="checker" type="checkbox" >
+    
     <div class="modal-overlay">
         <section class="modal-wrap">
             <label for="checker">x</label>

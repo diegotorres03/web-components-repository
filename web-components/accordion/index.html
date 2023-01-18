@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <script src="../web-tools.js"></script>
     <script src="./accordion.component.js"></script>
 </head>
@@ -14,38 +15,9 @@
 
     <app-accordion>
         <section class="accordion-tab">
-            <h1>title 1</h1>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi veritatis
-                aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi non
-                cum repudiandae incidunt?</p>
+            <h1 slot="title">title 3</h1>
+            <p slot="content">Contenido</p>
         </section>
-        <section class="accordion-tab">
-            <h4>title 2</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi veritatis
-                aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi non
-                cum repudiandae incidunt?</p>
-        </section>
-        <section class="accordion-tab">
-            <h6>title 3</h6>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi veritatis
-                aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi non
-                cum repudiandae incidunt?</p>
-        </section>
-    </app-accordion>
-
-    <hr>
-
-    <app-accordion id="acc2">
-        <section class="accordion-tab">
-            <h1>acc 2 item 1</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae aspernatur, dolorem autem, error delectus
-                aut provident rem recusandae nam doloremque nesciunt at impedit quo voluptate dolore totam dicta
-                voluptates asperiores!</p>
-        </section>
-        <div class="accordion-tab">
-            <h3>asdasd</h3>
-            <p>asdjhasdkjhasdkjsh aljks dhlakjs dhasljk haslkd h</p>
-        </div>
     </app-accordion>
 
 </body>

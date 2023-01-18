@@ -1,0 +1,205 @@
+<style>
+            *{
+                /* Tonos grises */
+                --black-1:#252525;
+                --black-2:#323437;
+                --black-3:#474b4e;
+                
+                /* Tonos claros */
+                --white-1:#e2e7ed;
+                --white-2:#c4c7cc;
+                --white-3:#95989d;
+
+                /* Tonos de color */
+                --main-1:#52c9e0; /* hsl(190, 70%, 60%) */
+                --main-2:#82d3e3; /* hsl(190, 65%, 70%) */
+                --main-3:#addfeb; /* hsl(190, 60%, 80%) */
+                box-sizing: border-box;
+            }
+            
+            .flex-row {
+                display: flex;
+                flex-direction: row;
+            }
+            .flex-column {
+                display: flex;
+                flex-direction: column;
+            }
+            .space-around {
+                justify-content: space-around;
+            }
+            .space-evenly {
+                justify-content: space-evenly;
+            }
+            .space-between {
+                justify-content: space-between;
+            }
+            .space-center{
+                justify-content: center
+            }
+            .grid {
+                display: grid;
+            }
+            .hidden {
+                display: none;
+            }
+
+            /* ⚠️ Estilos básicos ⚠️ */
+
+            .super-container{
+                /* Tamaño */
+                height:100%;
+                
+                /* Fuente */
+                font-family: monospace;
+            }
+            
+
+            .top-menu{
+                /* Display & position */
+                display: flex;
+                justify-content: center;
+
+                /* Fondo */
+                background-color: var(--black-2);
+
+                /* Tamaño */
+                height: 10%;
+                padding: 12px;
+            }
+         
+            
+            .lt-container{
+                max-width: 90%;
+
+                background-color: var(--black-1);
+                padding: 12px 18px;
+                border-radius: 6px;
+                color: var(--main-1);
+
+                 /* Otros */
+                 overflow-y: auto;
+              
+            }
+            .lt-container::-webkit-scrollbar {
+                -webkit-appearance: none;
+            }
+
+            .lt-container::-webkit-scrollbar:horizontal {
+                height: 14px;
+            }
+
+            .lt-container::-webkit-scrollbar-thumb {
+                background-color: #82d3e365;
+                border: 5px solid var(--black-1);
+                border-radius: 8px;
+                
+            }
+
+            .lt-container::-webkit-scrollbar-track {
+                border-radius:0 0 4px 4px;  
+                background-color: transparent;
+            }
+    
+            .mid-container{
+                height: 86%;
+            }
+
+            .left-menu{
+                display: flex;
+                flex-direction: column;
+
+                /* Tamaño */
+                padding: 12px;
+                width: 25%;
+                
+
+                /* Fondo */
+                background-color: var(--black-1);
+
+                /* Otros */
+                overflow-x: auto;
+
+            }
+       
+            .main-content{
+                /* Display & Position */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+
+                /* Bordes & Tamaño*/
+                width: 76%;
+               
+
+
+                /* Fondo */
+                background-color: var(--white-1);
+            }
+
+    
+            .footer{
+                /* Display & position */
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                /* Fondo */
+                background-color: var(--black-2);
+                color: var(--main-1);
+
+                /* Tamaño */
+                height: 4%;
+                padding: 12px;
+            }
+    
+
+           
+        </style>
+
+        <section class="super-container">
+
+            <div class="top-menu">
+
+                <div class="lt-container flex-row space-evenly">
+
+                    <slot  name="top-menu">
+
+                        <span class="link-tag clickable">tag-4</span>
+                        <span class="link-tag clickable">tag-2</span>
+                        <span class="link-tag clickable">tag-3</span>
+                        <span class="link-tag clickable">tag-4</span>
+                       
+                    </slot>
+
+                </div>
+
+            </div>
+
+            <div class="mid-container flex-row ">
+
+                <div class="left-menu">
+
+                    <slot name="left-menu">
+
+                    
+
+                    </slot>
+
+                </div>
+                <div class="main-content">
+
+                    <slot name="main-content"></slot>
+
+                </div>
+
+            </div>
+            <div class="footer">
+
+                <slot name="footer">footer</slot>
+
+            </div>
+
+        </section>        
+        
