@@ -65,9 +65,7 @@ function updateVars(component) {
             .filter(item => item !== 'variable')
             .forEach(varName => {
                 const property = varName.replace('-var', '')
-                console.log(property, varName, component[property])
                 variable.textContent = component[property]
-                console.log('component[' + property + ']', component[property])
             }))
 }
 
@@ -78,7 +76,6 @@ function updateVars(component) {
  */
 function renderForLoops(component) {
     const templates = toArray(component.shadowRoot.querySelectorAll('template'))
-    console.log(templates)
     templates.forEach(template => console.log(template.dataset))
 }
 
@@ -87,3 +84,15 @@ function renderForLoops(component) {
 function require(packageName) {
     return window.modules[packageName]
 }
+
+
+///// GraphQL
+const gql = function (templates, ...values) {
+    let str = ''
+    templates.forEach((template, index) => {
+        str += template
+        str = values[index] ? str + values[index] : str
+    })
+    return str.trim()
+}
+

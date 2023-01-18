@@ -12,7 +12,7 @@
     <script src="./package-bundle.js"></script>
 
     <script src="./web-tools.js"></script>
-    <script src="./accordion/accordion.component.js"></script>
+
     <script src="./floating-pannel/floating-pannel.js"></script>
     <script src="./modal/modal.component.js"></script>
     <script src="./router/route.component.js"></script>
@@ -20,6 +20,13 @@
     <script src="./scripts/web-worker.component.js"></script>
     <script src="./scripts/service-worker.component.js"></script>
     <script src="./layout/layout.component.js"></script>
+    <script src="./accordion/accordion.component.js"></script>
+    <script src="./live-table/live-table.component.js"></script>
+    <script src="./live-form/live-form.component.js"></script>
+    <script src="./todo/todo.component.js"></script>
+    <script src="./todo/task.component.js"></script>
+    <script src="./auth/login.component.js"></script>
+    <script src="./appsync/appsync.component.js"></script>
     <!-- <script src=""></script> -->
 
 
@@ -29,15 +36,38 @@
 <body>
 
 
+    <app-sync gql-endpoint="https://etqor7oilndspncbfezvjt27he.appsync-api.us-west-2.amazonaws.com/graphql">
+        <!-- <app-sync-subscription onmessage="messageHanlder" ></app-sync-subscription> -->
+    </app-sync>
+
+
     <app-layout>
         <nav slot="top-menu">
             <a href="#route1">route1</a>
             <a href="#route2">route2</a>
-            <a href="#route3">route3</a>
+            <a href="#live-table">live-table</a>
+            <button id="save-page-btn">save</button>
+
+            <script>
+                function savePage() {
+                    console.log('savePage')
+                    console.log(document.body.innerHTML)
+                }
+                document.querySelector('#save-page-btn')
+                    .addEventListener('click', savePage)
+            </script>
+
         </nav>
-        <app-accordion >
+        <app-accordion slot="left-menu">
             <section class="accordion-tab">
-                <h1>title 1</h1>
+                <h4>Components</h4>
+                <p></p>
+                <a href="#live-table">LiveTable</a>
+                <a href="#todo">TODO</a>
+
+            </section>
+            <section class="accordion-tab">
+                <h1></h1>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
                     veritatis
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
@@ -53,9 +83,9 @@
             <section class="accordion-tab">
                 <h4>some links</h4>
                 <ul>
-                    <li><a href="#route1">route1</a></li>
+                    <li><a href="#live-table">live-table</a></li>
+                    <li><a href="#todo">todo</a></li>
                     <li><a href="#route2">route2</a></li>
-                    <li><a href="#route3">route3</a></li>
                 </ul>
             </section>
             <section class="accordion-tab">
@@ -68,7 +98,7 @@
             </section>
         </app-accordion>
 
-        <ul >
+        <ul>
             <li><a href="#asdasd">asdasd</a></li>
             <li><a href="#asdasd">asdasd</a></li>
             <li><a href="#asdasd">asdasd</a></li>
@@ -81,33 +111,73 @@
             </app-route> -->
             <!-- <app-route class="route" src="./test.html"></app-route> -->
 
-            <app-route class="route" hash="route1">
-                <h1>groups path</h1>
-                <ul>
-                    <li>item1</li>
-                    <li>item2</li>
-                    <li>item3</li>
-                    <li>item4</li>
-                    <li>item5</li>
-                </ul>
+            <app-route class="route" hash="todo">
+
+                <app-todo id="main-todo">
+                    <app-todo-task done="true" status="backlog" done="false" owner="diego"
+                        tags="dev appsync todo other-tags">
+                        <h3>Layout component</h3>
+                        <p>app-layot create a fullscreen layout and uses slots to organize content</p>
+
+                        <app-todo id="layout-todo">
+                            <app-todo-task status="in progress" done="" due="2023/01/22">
+                                <h3>Check status with Marco and merge</h3>
+                            </app-todo-task>
+                            <app-todo-task status="backlog" done="" due="2023/01/22" id="mock-task">
+                                <h3>integrate with existing example</h3>
+                            </app-todo-task>
+                            <app-todo-task status="backlog" done="" due="2023/01/22" depends-on="mock-task">
+                                <h3>document component</h3>
+                            </app-todo-task>
+                            <app-todo-task status="backlog" done="">
+                                <h3>publish</h3>
+                            </app-todo-task>
+                        </app-todo>
+
+                    </app-todo-task>
+
+                    <app-todo-task status="backlog" done="">
+                        <h3>Create Auth component</h3>
+                        <p>create reusable web-components to handle all auth flow </p>
+                    </app-todo-task>
+
+                </app-todo>
+
             </app-route>
 
             <app-route class="route" hash="route2">
                 <h1>items path</h1>
-                <button id="open-modal">open</button>
+
+                <!-- <button id="open-modal">open</button> -->
 
             </app-route>
 
-            <app-route class="route" hash="route3">
+            <app-route class="route" hash="live-table">
                 <h1>orders path</h1>
+                <live-table src="https://rgk332omyk.execute-api.us-east-2.amazonaws.com/dev/items"></live-table>
+                <button id="open-modal">add item</button>
             </app-route>
+
         </app-router>
 
     </app-layout>
 
     <app-modal>
-        <h1 slot="header">this is the header</h1>
-        <ul slot="main">
+        <h1 slot="header">Add a new item</h1>
+
+        <live-form src="https://rgk332omyk.execute-api.us-east-2.amazonaws.com/dev/items" slot="main">
+            <label for="partition-key">partitionKey</label>
+            <input type="text" name="partitionKey" id="partition-key" autocomplete="on">
+            <br>
+            <label for="sort-key">sortKey</label>
+            <input type="text" name="sortKey" id="sort-key" autocomplete="on">
+            <br>
+            <label for="protocol">protocol</label>
+            <input type="text" name="protocol" id="protocol">
+            <textarea name="currentState" id="" cols="30" rows="10" autocomplete="on"></textarea>
+        </live-form>
+
+        <ul>
             <li>item 1</li>
             <li>item 2</li>
             <li>item 3</li>
@@ -128,11 +198,12 @@
 
         // const dynamoClient = window.modules['@aws-sdk/client-dynamodb']
         const dynamoClient = require('@aws-sdk/client-dynamodb')
-        console.log('dynamoClient', dynamoClient)
-
-        console.log(require('aws-amplfy'))
+        // console.log('dynamoClient', dynamoClient)
+        // const { Amplify, API, graphqlOperation } = require('aws-amplify')
+        // console.log(Amplify, API, graphqlOperation)
 
     </script>
+
 
 
     <!-- 
@@ -158,3 +229,11 @@
 </body>
 
 </html>
+
+
+<app-slider>
+    <app-slide>slide 1</app-slide>
+    <app-slide>slide 2</app-slide>
+    <app-slide>slide 3</app-slide>
+    <app-slide>slide </app-slide>
+</app-slider>

@@ -4,6 +4,7 @@ import { Construct } from 'constructs';
 import { WebAppConstruct } from '../lib/webapp/webapp-construct'
 import { ApiBuilderConstruct } from '../lib/rest-api/api-builder-construct'
 import { DynamoCostruct } from '../lib/dynamodb/dynamodb-construct'
+import { GraphQLConstruct } from './graphql/graphql-builder-construct'
 // import {} from ''
 
 export class WebComponentsRepositoryStack extends cdk.Stack {
@@ -21,58 +22,57 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
 
     const demoTable = new DynamoCostruct(this, 'demo-table')
     demoTable.addKeys('partitionKey', 'sortKey')
-    
+
 
     const demoApi = apiBuilder.createApi('WCDemoApi')
 
 
     demoApi.get('/items', async function (event) {
       console.log(JSON.stringify(event, undefined, 2))
-      const queryObject = event.multiValueQueryStringParameters
-      console.log(queryObject)
-      const exampleItems = [
-        { id: '1', name: 'user1', other: 'other field' },
-        { id: '2', name: 'user2', other: 'other field' },
-        { id: '3', name: 'user3', other: 'other field' },
-        { id: '4', name: 'user4', other: 'other field' },
-        { id: '5', name: 'user5', other: 'other field' },
-        { id: '6', name: 'user6', other: 'other field' },
-        { id: '7', name: 'user7', other: 'other field' },
-        { id: '8', name: 'user8', other: 'other field' },
-        { id: '9', name: 'user9', other: 'other field' },
-        { id: '1', name: 'user1', moreItems: ['1', '2', '3'] },
-        { id: '2', name: 'user2', moreItems: ['1', '2', '3'] },
-        { id: '3', name: 'user3', moreItems: ['1', '2', '3'] },
-        { id: '4', name: 'user4', moreItems: ['1', '2', '3'] },
-        { id: '5', name: 'user5', moreItems: ['1', '2', '3'] },
-        { id: '6', name: 'user6', moreItems: ['1', '2', '3'] },
-        { id: '7', name: 'user7', moreItems: ['1', '2', '3'] },
-        { id: '8', name: 'user8', moreItems: ['1', '2', '3'] },
-        { id: '9', name: 'user9', moreItems: ['1', '2', '3'] },
 
-      ]
+      const { multiValueQueryStringParameters } = event
 
       const aws = require('aws-sdk')
       const dynamo = new aws.DynamoDB.DocumentClient()
 
-      const multiValueQueryStringParameters = {
-        partitionKey: [
-            "test",
-            "hahaha"
-        ],
-        sortKey: [
-            "hahaha"
-        ],
-        protocols: [],
-    }
 
-      const res = await dynamo.scan({
-        TableName: process.env.TABLE_NAME,
-        FilterExpression: '',
-        ExpressionAttributeValues: {},
-        ExpressionAttributeNames: {},
 
-      }).promise()
+      let params
+
+      const filterExpressions = []
+
+      if (!multiValueQueryStringParameters) {
+        params = {
+          TableName: process.env.TABLE_NAME,
+        }
+      } else {
+
+        params = {
+          TableName: process.env.TABLE_NAME,
+          FilterExpression: '#partitionKey = :partitionKey_1 or #partitionKey = :partitionKey_2',
+          ExpressionAttributeNames: {},
+          ExpressionAttributeValues: {},
+        }
+
+        Object.keys(multiValueQueryStringParameters)
+          .map(key => {
+            let filters = []
+            params.ExpressionAttributeNames[`#${key}`] = key
+
+            multiValueQueryStringParameters[key].forEach((value, index) => {
+              params.ExpressionAttributeValues[`:${key}_${index}`] = value
+              // @ts-ignore
+              filters.push(` #${key} = :${key}_${index} `)
+            })
+            // @ts-ignore
+            filterExpressions.push('(' + filters.join(' or ') + ')')
+          })
+
+        params.FilterExpression = filterExpressions.join(' and ')
+      }
+
+      console.log(JSON.stringify(params, undefined, 2))
+      const res = await dynamo.scan(params).promise()
 
       console.log(JSON.stringify(res, undefined, 2))
       return {
@@ -95,7 +95,7 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
       access: [(fn) => demoTable.table.grantReadData(fn)],
     })
 
-    demoApi.post('/items', async function(event) {
+    demoApi.post('/items', async function (event) {
       const aws = require('aws-sdk')
       const dynamo = new aws.DynamoDB.DocumentClient()
 

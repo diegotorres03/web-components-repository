@@ -37,7 +37,7 @@ class LiveTable extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import('./live-table.component.html')
+        const inner = await html.import('./live-table/live-table.component.html')
         const shadow = this.attachShadow({ mode: 'open' })
         shadow.appendChild(inner)
 
@@ -76,7 +76,7 @@ class LiveTable extends HTMLElement {
         if (!this.shadowRoot) return
         if (this.hasAttribute('src')) {
             this.items = await (await fetch(this.getAttribute('src'), { headers: { 'Content-type': 'application/json' } })).json()
-            console.table(this.items)
+            // console.table(this.items)
             // console.error(error)
         } else if (this.hasAttribute('dynamo-table')) {
             this.items = [] // TODO use sdk to read from dynamo

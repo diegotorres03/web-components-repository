@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="../package-bundle.js"></script>
+
+    <script src="../web-tools.js"></script>
+    <script src="./todo/todo.component.js"></script>
+    <script src="./todo/task.component.js"></script>
+</head>
+<body>
+    
+    <app-todo>
+        <app-todo-task status="backlog" done="false" owner="diego" tags="dev appsync todo other-tags">
+            <h1>Create Auth component</h1>
+            <p>create reusable web-components to handle all auth flow </p>
+
+            <app-todo>
+                <app-todo-task status="backlog" done="">
+                    <h3>scafold component</h3>
+                </app-todo-task>
+                <app-todo-task status="backlog" done="" id="mock-task">
+                    <h3>create mock html example usage</h3>
+                </app-todo-task>
+                <app-todo-task status="backlog" done="" depends-on="mock-task">
+                    <h3>implement based on mock</h3>
+                </app-todo-task>
+                <app-todo-task status="backlog" done="">
+                    <h3>scafold component</h3>
+                </app-todo-task>
+                <app-todo-task status="backlog" done="">
+                    <h3>scafold component</h3>
+                </app-todo-task>
+            </app-todo>
+
+        </app-todo-task>
+
+        <app-todo-task status="backlog" done="">
+            <h1>test</h1>
+        </app-todo-task>
+
+    </app-todo>
+
+</body>
+</html>
