@@ -51,13 +51,16 @@ body {
     padding: 4px;
 
     /* Position */
-    margin-bottom: 12px;
+    margin-bottom: 0px;
 
     /* Border */
     border-radius: 4px;
 
     /* Back */
     background-color: var(--white-1);
+}
+.left-menu-tab:not(:last-of-type){
+    margin-bottom: 12px;
 }
 
 
@@ -144,4 +147,50 @@ nav {
 
     color: var(--black-1);
     margin: 0 4px;
+}
+
+
+/*  */
+
+.container{
+    min-width: 400px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: monospace;
+    color: #232323;
+
+    padding: 12px;
+    border-radius: 4px;
+
+    
+    background-color: #d5d5d5;
+    box-shadow: 0 0px 20px 4px rgba(0, 0, 0, 0.334);
+}
+
+.t1{
+    width: 100%;
+    padding: 4px;
+    margin-bottom: 12px;
+    border-radius: 4px;
+
+    font-size: 24px;
+    color: #d5d5d5;
+    text-align: center;
+
+    background-color: #232323;
+}
+.sub-text{
+    font-size: 12px;
+    color: #6bc0dc;
+}
+flip-card{
+    width: 100%;
+}
+accordion-tab:not(:last-of-type){
+    display: block;
+    margin: 0 0 12px;
+
 }

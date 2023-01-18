@@ -1,24 +1,67 @@
 <style>
-    .modal-overlay {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        position: fixed;
-        text-align: center;
-        text-shadow: none;
-        z-index: 600;
-        
-        background-color: #252525;
+    * {
+        /* Tonos grises */
+        --black-1: #252525;
+        --black-2: #323437;
+        --black-3: #474b4e;
+
+        /* Tonos claros */
+        --white-1: #e2e7ed;
+        --white-2: #c4c7cc;
+        --white-3: #95989d;
+
+        /* Tonos de color */
+        --main-1: #52c9e0;
+        /* hsl(190, 70%, 60%) */
+        --main-2: #82d3e3;
+        /* hsl(190, 65%, 70%) */
+        --main-3: #addfeb;
+        /* hsl(190, 60%, 80%) */
+
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
     }
 
+
+    .modal-overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100vh;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 600;
+
+        font-family: monospace;
+
+        /* background-color: #000000ab; */
+
+        
+
+        opacity: 0;
+        z-index: -100;
+        transform: scale(.5);
+        
+        transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    }
+
+
     .modal-wrap {
-        background: whitesmoke;
-        padding: 1em 0;
-        position: relative;
-        margin: 0 auto;
-        max-width: 500px;
-        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 60%;
+        max-width: 400px;
+
+        border-radius: 4px;
+        filter: drop-shadow(0 12px 42px rgba(0, 0, 0, 0.705));
+        overflow: hidden;
     }
 
     #checker {
@@ -26,42 +69,181 @@
         top: -1000px;
     }
 
-    .modal-overlay {
-        opacity: 0;
-        z-index: -100;
-        transform: scale(.5);
-        transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55)
-    }
+    #checker:checked~.modal-overlay {
+        /* animation: appear 2s .75s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s 1 normal forwards; */
+        animation: 1s 1 normal appear;
+   
+        animation-delay: 0.3s;
+        animation-fill-mode: forwards;
 
-    #checker:checked ~ .modal-overlay {
         opacity: 1;
         transform: scale(1);
         z-index: 800;
     }
 
+    @keyframes appear {
+        
+        from{
+            background: transparent;  
+        }
+        to{
+            background: #161616e8;
+        }
+    }
 
-    /* ::slotted(footer)  {
-        background: red;
-    } */
+    /*  */
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        padding: 12px;
+
+        border-bottom: 1px solid var(--black-3);
+
+        background-color: var(--white-3);
+
+    }
+
+    .close {
+        position: relative;
+
+        width: 20px;
+        height: 20px;
+        padding-bottom: 1px;
+
+        border-radius: 2px;
+
+        background-color: var(--black-2);
+        color: var(--white-3);
+
+    }
+
+    .close span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+        padding: 0;
+    }
+
+    .close:hover {
+        background-color: rgb(206, 68, 68);
+        color: var(--white-1);
+        cursor: pointer;
+    }
+
+    .close:active {
+        transform: scale(0.95);
+        font-size: 13px;
+    }
+
+    .main-content {
+        width: 100%;
+        padding: 12px 12px 0;
+        background-color: var(--white-1);
+    }
+    .footer-content{
+        width: 100%;
+        padding: 12px;
+
+        display: flex;
+        justify-content: space-between;
+
+        background-color: var(--white-1);
+    }
+
+    .dft-btn {
+        /* Tamaño */
+        width: calc(50% - 6px);
+        padding: 6px 12px;
+
+        /* Fuente */
+        text-transform: uppercase;
+        font-family: monospace;
+        color: #232323;
+
+        /* Bordes */
+        border-radius: 4px;
+        border: 1px solid #232323;
+
+        /* Fondo */
+        background-color: #e2e2e9;
+
+        /* Otros */
+        cursor: pointer;
+    }
+
+    .darker {
+        /* Fuente */
+        color: var(--main-2);
+
+        /* Bordes */
+        border-color: var(--black-1);
+
+        /* Fondo */
+        background-color: var(--black-2);
+    }
+
+    .brighter {
+        /* Fuente */
+        color: var(--black-1);
+
+        /* Bordes */
+        border-color: var(--black-3);
+
+        /* Fondo */
+        background-color: var(--main-1);
+    }
+    .clickable {
+    transition: all 0.2 ease;
+    user-select: none;
+    }
+
+    .clickable:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+    }
+
+    .clickable:active {
+        transform: scale(0.95);
+    }
+
+
+
 
 </style>
+
 <div>
     <!-- <label for="checker">open modal</label> -->
 
-    <input id="checker" type="checkbox" >
-    
+    <input id="checker" type="checkbox">
+
     <div class="modal-overlay">
+
         <section class="modal-wrap">
-            <label for="checker">x</label>
-            <!-- <button onclick="close" >close</button> -->
-            <header>
-                <slot name="header"></slot>
+            <header class="modal-header">
+
+                <slot name="title" class="title">This is a title</slot>
+                <label class="close darker" for="checker"><span>&#10006;</span></label>
+
             </header>
-            <section>
+            <section class="main-content">
+
                 <slot name="main"></slot>
+
             </section>
-            <footer>
-                <slot name="footer"></slot>
+            <footer class="footer-content">
+
+                <slot name="footer">
+                    <button class="dft-btn brighter clickable">Adopt!</button>
+                    <button class="dft-btn darker clickable">Ugh..</button>
+                </slot>
+
             </footer>
         </section>
     </div>

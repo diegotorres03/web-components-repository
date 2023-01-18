@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>accordion-wc</title>
+
+    <link rel="stylesheet" href="../../global/standar-wc-style.css">
+
+    <link href="https://dev.iconly.io/public/gZ9X2NucmsiK/iconly.css" rel="stylesheet"/>
+    
+    <script src="../web-tools.js"></script>
+    <script src="./components/accordion.component.js"></script>
+
+
+    <style>
+        accordion-tab:not(:last-of-type){
+            margin-bottom: 4px;
+        }
+        flip-card:not(:last-of-type){
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div class="container">
+
+            <h1 class="t1">Accordion 
+
+                <span class="sub-text">web-component</span>
+
+            </h1>
+
+            <accordion-tab>
+
+                <h2 slot="title">Cats</h2>
+
+                <div class="content" slot="content">
+
+                    <h2>Catas</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt animi veritatis quaerat.</p>
+                    <button class="dft-btn">Adopt!</button>
+                   
+                </div>
+
+            </accordion-tab>
+
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
