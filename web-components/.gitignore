@@ -1,6 +1,7 @@
 *.js
 !webpack.config.js
 !jest.config.js
+!package-bundle.js
 *.d.ts
 node_modules
 
