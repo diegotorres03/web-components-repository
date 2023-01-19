@@ -32,12 +32,12 @@ class AppAccordion extends HTMLElement {
 
             const title = titleElement.textContent
             const itemTemplate = html`<div class="tab">
-    <input id="tab-${index}" type="radio" name="tabs" 
-    ${index === 0 && 'checked ="true"'} >
-    <label for="tab-${index}">${title}</label>
-    <div class="tab-content">
-    </div>
-</div>`
+                <input id="tab-${index}" type="radio" name="tabs" 
+                ${index === 0 && 'checked ="true"'} >
+                <label for="tab-${index}">${title}</label>
+                <div class="tab-content">
+                </div>
+            </div>`
             itemTemplate.querySelector('.tab-content').append(item)
 
             this.shadowRoot.querySelector('#content').append(itemTemplate)
