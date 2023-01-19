@@ -1,4 +1,20 @@
+@font-face {
+    font-family: 'amazon-ember';
+    src: url('../global-assets/amazon-ember/Amazon-ember.ttf');
+}
 :root {
+    /* Amazon pallete */
+    --amz-blck-1:#16191F;
+    --amz-blck-2:#232F3E;
+    --amz-gray-1 :#545B64;
+    --amz-gray-2 :#687078;
+
+    --amz-blue-1 :#306DA3;
+    --amz-blue-2 :#0073BB;
+    --amz-turq-1 :#44B9C6;
+
+    --amz-orang-1:#EC7211;
+
     /* Tonos grises */
     --black-1: #252525;
     --black-2: #323437;
@@ -29,11 +45,6 @@ body {
     height: 100%;
 }
 
-.top-container {
-    display: flex;
-    align-items: center;
-}
-
 .main-content{
     display: flex;
     flex-direction: column;
@@ -45,39 +56,40 @@ body {
     padding: 12px;
 }
 
-
 .left-menu-tab {
-    /* Size */
-    padding: 4px;
-
-    /* Position */
-    margin-bottom: 0px;
-
-    /* Border */
+    padding: 12px;
     border-radius: 4px;
 
-    /* Back */
+    color:var(--amz-blck-1);
     background-color: var(--white-1);
 }
 .left-menu-tab:not(:last-of-type){
     margin-bottom: 12px;
 }
+.left-menu-tab h4{
+    margin-bottom: 12px;
+}
+.left-menu-tab button{
+    margin-top: 12px;
+}
 
 
 /* Buttons */
+
 .dft-btn {
-    /* Tamaño */
     width: 100%;
-    padding: 6px 12px;
+    padding: 8px 12px;
 
     /* Fuente */
-    text-transform: uppercase;
-    font-family: monospace;
-    color: #232323;
+    text-transform: capitalize;
+    font-family: 'amazon-ember';
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--amz-blck-1);
 
     /* Bordes */
+    border: none;
     border-radius: 4px;
-    border: 1px solid #232323;
 
     /* Fondo */
     background-color: #e2e2e9;
@@ -86,31 +98,23 @@ body {
     cursor: pointer;
 }
 .darker {
-    /* Fuente */
     color: var(--main-2);
- 
-    /* Bordes */
-    border-color: var(--black-1);
- 
-    /* Fondo */
     background-color: var(--black-2);
 }
+
 .brighter {
-    /* Fuente */
-    color: var(--black-1);
- 
-    /* Bordes */
-    border-color: var(--black-3);
- 
-    /* Fondo */
-    background-color: var(--main-1);
+    color: var(--white-1);
+    background-color: var(--amz-orang-1);   
 }
 
+
 /* Backgrounds */
+
 .pattern-1{
-    background-color: var(--main-2);
-    background-image: url("https://www.transparenttextures.com/patterns/batthern.png");
+    background-color: var(--white-3);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
 }
+
 
 /* Click */
 .clickable {
@@ -127,6 +131,7 @@ body {
     transform: scale(0.95);
 }
 
+
 nav {
     display: flex;
     align-items: center;
@@ -137,60 +142,52 @@ nav {
     padding: 4px 12px;
 
     /* Fondo */
-    background-color: var(--main-3);
+    background-color: var(--white-2);
 
     /* Fuente */
     font-size: 12px;
     text-transform: capitalize;
-    border-radius: 4px;
+
+    /* Bordes */
+    border-radius: 2px;
     text-decoration: none;
 
     color: var(--black-1);
     margin: 0 4px;
 }
 
+/* TEST */
 
-/*  */
-
-.container{
-    min-width: 400px;
-
+.test-container{
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    font-family: monospace;
-    color: #232323;
+    max-width: 400px;
+   
 
     padding: 12px;
     border-radius: 4px;
 
-    
-    background-color: #d5d5d5;
-    box-shadow: 0 0px 20px 4px rgba(0, 0, 0, 0.334);
+    background-color: var(--white-1);
+    color: var(--amz-blck-1);
 }
-
-.t1{
-    width: 100%;
-    padding: 4px;
-    margin-bottom: 12px;
-    border-radius: 4px;
-
+.test-container h2{
     font-size: 24px;
-    color: #d5d5d5;
-    text-align: center;
-
-    background-color: #232323;
+    font-family: 'amazon-ember';
+    margin-bottom: 24px;
 }
-.sub-text{
-    font-size: 12px;
-    color: #6bc0dc;
+.test-container button{
+    margin-top: auto;
+    border-radius: 4px;
 }
-flip-card{
-    width: 100%;
+.test-container ul{
+    margin:24px 0;
+    padding: 0 0 0 24px;
 }
-accordion-tab:not(:last-of-type){
-    display: block;
-    margin: 0 0 12px;
-
+.test-container ul li{
+    margin-bottom: 8px;
+    color: var(--amz-blck-1);
+}
+li p{
+    color: var(--amz-blue-2);
 }

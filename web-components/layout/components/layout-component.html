@@ -1,5 +1,19 @@
 <style>
+            
             *{
+                /* Amazon pallete */
+
+                --amz-blck-1:#16191F;
+                --amz-blck-2:#232F3E;
+                --amz-gray-1 :#545B64;
+                --amz-gray-2 :#687078;
+
+                --amz-blue-1 :#306DA3;
+                --amz-blue-2 :#0073BB;
+                --amz-turq-1 :#44B9C6;
+
+                --amz-orang-1:#EC7211;
+
                 /* Tonos grises */
                 --black-1:#252525;
                 --black-2:#323437;
@@ -15,6 +29,8 @@
                 --main-2:#82d3e3; /* hsl(190, 65%, 70%) */
                 --main-3:#addfeb; /* hsl(190, 60%, 80%) */
                 box-sizing: border-box;
+                
+                
             }
             
             .flex-row {
@@ -34,8 +50,11 @@
             .space-between {
                 justify-content: space-between;
             }
-            .space-center{
+            .justify-center{
                 justify-content: center
+            }
+            .align-center{
+                align-items: center;
             }
             .grid {
                 display: grid;
@@ -47,39 +66,31 @@
             /* ⚠️ Estilos básicos ⚠️ */
 
             .super-container{
-                /* Tamaño */
                 height:100%;
                 
-                /* Fuente */
-                font-family: monospace;
+                font-family: 'amazon-ember';
             }
             
 
             .top-menu{
-                /* Display & position */
-                display: flex;
-                justify-content: center;
-
-                /* Fondo */
-                background-color: var(--black-2);
-
-                /* Tamaño */
                 height: 10%;
                 padding: 12px;
+
+                background-color: var(--amz-blck-1);
             }
          
             
             .lt-container{
                 max-width: 90%;
-
-                background-color: var(--black-1);
                 padding: 12px 18px;
-                border-radius: 6px;
-                color: var(--main-1);
 
-                 /* Otros */
-                 overflow-y: auto;
-              
+                border-radius: 6px;
+                
+                color: var(--amz-turq-1);
+                
+                overflow-y: auto;
+
+                background-color: var(--amz-blck-2);
             }
             .lt-container::-webkit-scrollbar {
                 -webkit-appearance: none;
@@ -93,7 +104,6 @@
                 background-color: #82d3e365;
                 border: 5px solid var(--black-1);
                 border-radius: 8px;
-                
             }
 
             .lt-container::-webkit-scrollbar-track {
@@ -106,48 +116,24 @@
             }
 
             .left-menu{
-                display: flex;
-                flex-direction: column;
-
-                /* Tamaño */
-                padding: 12px;
                 width: 25%;
+                padding: 12px;
                 
-
-                /* Fondo */
-                background-color: var(--black-1);
-
-                /* Otros */
-                overflow-x: auto;
-
+                color: var(--white-1);
+                
+                background-color: var(--amz-blck-2);
             }
        
             .main-content{
-                /* Display & Position */
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                
-
-                /* Bordes & Tamaño*/
                 width: 76%;
-               
-
-
-                /* Fondo */
                 background-color: var(--white-1);
             }
 
     
             .footer{
-                /* Display & position */
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-
                 /* Fondo */
-                background-color: var(--black-2);
-                color: var(--main-1);
+                background-color: var(--amz-blck-1);
+                color: var(--amz-turq-1);
 
                 /* Tamaño */
                 height: 4%;
@@ -160,16 +146,12 @@
 
         <section class="super-container">
 
-            <div class="top-menu">
+            <div class="top-menu flex-row justify-center">
 
                 <div class="lt-container flex-row space-evenly">
 
                     <slot  name="top-menu">
 
-                        <span class="link-tag clickable">tag-4</span>
-                        <span class="link-tag clickable">tag-2</span>
-                        <span class="link-tag clickable">tag-3</span>
-                        <span class="link-tag clickable">tag-4</span>
                        
                     </slot>
 
@@ -179,23 +161,22 @@
 
             <div class="mid-container flex-row ">
 
-                <div class="left-menu">
+                <div class="left-menu flex-column">
 
                     <slot name="left-menu">
 
-                    
 
                     </slot>
 
                 </div>
-                <div class="main-content">
+                <div class="main-content flex-column align-center">
 
                     <slot name="main-content"></slot>
 
                 </div>
 
             </div>
-            <div class="footer">
+            <div class="footer flex-row space-around align-center">
 
                 <slot name="footer">footer</slot>
 
