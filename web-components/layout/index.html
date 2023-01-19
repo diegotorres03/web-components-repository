@@ -7,73 +7,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout Component</title>
 
-    <link rel="stylesheet" href="../flip-card/components/standar-wc-style.css">
     <link rel="stylesheet" href="layout-base-style.css">
 
     <script src="../web-tools.js"></script>
-    <script src="./components/layout.component.js"></script>
-    <script src="../flip-card/components/wc-flip-card.component.js"></script>
+    <script src="./components/layout.component copy.js"></script>
+    <script src="../accordion-tab/components/accordion.component.js"></script>
 
 
- 
 </head>
+
+<style>
+
+    
+</style>
 
 <body>
 
     <app-layout>
         <!-- Top menú -->
-
+        
         <nav class="top-menu" slot="top-menu">
 
-            <h4 class="link-tag clickable">item-5</h4>
-            <h4 class="link-tag clickable">item-6</h4>
-            <h4 class="link-tag clickable">item-3</h4>
+            <a href="#" class="link-tag clickable">item#7</a>
+            <a href="#" class="link-tag clickable">item#8</a>
+            <a href="#" class="link-tag clickable">item#9</a>
+            <a href="#" class="link-tag clickable">item#10</a>
 
         </nav>
+        <!-- Left-menu -->
 
-        <div slot="left-menu">
+        <div class="left-menu-tab" slot="left-menu">
+            <h4>Title</h4>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, aspernatur!</p>
+            <button class="dft-btn brighter"> AUUS</button>
+        </div> 
+        <div class="left-menu-tab" slot="left-menu">
+            <h4>Title</h4>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, aspernatur!</p>
+            <button class="dft-btn brighter"> AUUS</button>
+        </div> 
+        <div class="left-menu-tab" slot="left-menu">
+            <h4>Title</h4>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, aspernatur!</p>
+            <button class="dft-btn brighter"> AUUS</button>
+        </div> 
 
-            <section class="left-menu-tab">
-                <h1>title 1</h1>
-                <p>Lorem ipsum</p>
-                <button class="dft-btn clickable darker" id="open-modal">open</button>
-            </section>
-            <section class="left-menu-tab">
-                <h1>title 1</h1>
-                <p>Lorem ipsum</p>
-                <button class="dft-btn clickable brighter" id="open-modal">open</button>
-            </section>
-            <section class="left-menu-tab">
-                <h1>title 1</h1>
-                <p>Lorem ipsum</p>
-                <button class="dft-btn clickable" id="open-modal">open</button>
-            </section>
-
-
-
-        </div>
-
+        <!-- Main-content -->
         <div class="main-content pattern-1" slot="main-content">
 
-            <div class="container">
-                <h1 class="t1">flip-card <span class="sub-text">web-component</span></h1>
-    
-                <!-- Flip-card -->
-                <flip-card>
-                    <!-- Slot front content -->
-                    <div slot="front">
-                        <h1>This is the front</h1>
-                    </div>
-                    <!-- Slot back content -->
-                    <div slot="back">
-                        <h1>This is the back 🧙</h1>
-                    </div>
-                </flip-card>
-    
+            <div class="test-container">
+                <h2>This is the future.</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab distinctio perferendis dolore.</p>
+                <ul>
+                    <li><p>Elit. Quis fuga beatae expedita.</p></li>
+                    <li><p>Lorem ipsum dolor sit amet consectetur adipisicing.</p></li>
+                </ul>
+                <button class="dft-btn brighter clickable">Create an AUUS Account</button>
             </div>
+          
 
         </div>
 
+        <!-- Footer -->
         <footer slot="footer">
             <span>some links and stuff here</span>
         </footer>

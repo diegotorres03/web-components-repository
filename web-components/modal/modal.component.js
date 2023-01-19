@@ -52,7 +52,8 @@ class AppModal extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         // console.log(name, oldValue, typeof newValue)
         if (!this.shadowRoot) return
-        if (name === 'open') {
+        console.log(this.shadowRoot.querySelector('#checker'))
+        if (name === 'open' && this.shadowRoot.querySelector('#checker')) {
             this.shadowRoot.querySelector('#checker').checked = newValue === 'true'
         }
     }

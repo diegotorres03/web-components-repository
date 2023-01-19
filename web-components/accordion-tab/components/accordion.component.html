@@ -1,0 +1,115 @@
+    <link href="https://dev.iconly.io/public/gZ9X2NucmsiK/iconly.css" rel="stylesheet"/>
+
+    <style>
+        .accordion:not(:last-of-type){
+            margin-bottom: 12px;
+        }
+
+        .accordion{
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .accordion .header{
+            display: flex;
+            justify-content: space-between;
+            
+            padding: 12px;
+            border-radius: 4px 4px 0 0;
+
+            color: #6bc0dc;
+            background-color: #343434;
+        }
+
+        .accordion-sign{
+            display: grid;
+            place-items: center;
+            
+            font-size: 24px;
+        }
+
+        .accordion .body{
+            
+            background-color: #bdbdbd;
+            border-radius: 0 0 4px 4px;
+
+            transition: all 0.25s ease ;
+
+            overflow: hidden;
+            overflow-y: auto;
+            max-height:0;
+
+        }
+        .accordion.active .body{
+            max-height: 300px;
+        }
+        
+        .content{
+            display: block;
+            width: auto;
+            max-height: 100%;
+            padding: 12px;
+        }
+        .accordion.active .body::-webkit-scrollbar {
+        -webkit-appearance: none;
+        display: none;
+        }
+
+        .accordion.active .body::-webkit-scrollbar:vertical {
+            width:12px;
+        }
+
+        .accordion.active .body::-webkit-scrollbar-button:increment,.accordion.active .body::-webkit-scrollbar-button {
+            display: none;
+        } 
+
+        .accordion.active .body::-webkit-scrollbar-thumb {
+
+            background-color: #25252556;
+            border-radius: 6px;
+            border: 4px solid #bdbdbd;
+        }
+
+        .accordion.active .body::-webkit-scrollbar-track {
+            border-radius: 10px;  
+        }
+    </style>
+
+    <div class="accordion">
+
+            <div class="header" >
+
+                <slot name="title"><h2>Titulo por defecto</h2></slot>
+                <i class="accordion-sign icon-menu-down"></i>
+
+            </div>
+            <div class="body active">
+
+                <slot class="content" name="content">
+
+                    <p>Texto por defecto</p>
+
+                </slot>
+
+            </div>
+                  
+    </div>
+
+    <!-- <div class="accordion">
+
+            <div class="header">
+
+                <h2>Title #1</h2>
+                <i class="accordion-sign icon-menu-down"></i>
+
+            </div>
+            <div class="body">
+
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, praesentium.</p>
+
+            </div>
+        
+    </div> -->
+            
