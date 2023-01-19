@@ -8,7 +8,7 @@ class AppAccordion extends HTMLElement {
     async _render() {
         console.log(window.location.href)
         const inner = await html.import('./accordion/accordion.component.html')
-        const shadow = this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: 'open' })
         this.shadowRoot.appendChild(inner)
 
         // const inner = await html.import('test.component.html')

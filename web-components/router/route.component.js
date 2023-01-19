@@ -6,6 +6,7 @@ class AppRoute extends HTMLElement {
     }
 
     async _render() {
+        // const inner = await Promise.resolve(html`<slot></slot>`)
         const inner = html`<slot></slot>`
         const shadow = this.attachShadow({mode: 'open'})
         shadow.appendChild(inner)

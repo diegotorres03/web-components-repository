@@ -6,7 +6,7 @@ class AppTodo extends HTMLElement {
     }
 
     async _render() {
-        const inner = html`<section>
+        const inner = await Promise.resolve(html`<section>
             <slot></slot>
             <!-- <h3>TODO:</h3>
             <ol>
@@ -20,7 +20,7 @@ class AppTodo extends HTMLElement {
                 </li>
             </ol> -->
             <hr>
-        </section>`
+        </section>`)
         const shadow = this.attachShadow({mode: 'open'})
         shadow.appendChild(inner)
 
