@@ -12,7 +12,7 @@
     <script src="./web-tools.js"></script>
     <script src="./accordion/accordion.component.js"></script>
     <script src="./floating-pannel/floating-pannel.js"></script>
-    <script src="./modal/modal.component.js"></script>
+    <script src="./modal/components/modal.component.js"></script>
     <script src="./router/route.component.js"></script>
     <script src="./router/router.component.js"></script>
     <script src="./scripts/web-worker.component.js"></script>
@@ -23,7 +23,27 @@
 
 </head>
 
-<style> </style>
+<style>
+    app-modal h1{
+        font-size: 14px;
+        font-weight: lighter;
+    }
+    app-modal h2{
+        color: #306DA3;
+        font-weight: lighter;
+        margin-bottom: 12px;
+    }
+    .blue{
+        color: #306DA3;
+    }
+    app-modal p{
+        margin-bottom: 12px;
+    }
+    .accordion-tab{
+        background-color: red;
+        margin-bottom: 12px;
+    }
+</style>
 
 <body>
 
@@ -40,7 +60,7 @@
             <!-- <h2 slot="tab-title">Tab-title</h2> -->
 
             <section class="accordion-tab">
-                <h6 style="display: none;">HAHAHAHA</h6>
+                <h6 style="display: none;">Title one</h6>
                 <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
                 <button id="open-modal" class="dft-btn">Press here</button>
             </section>
@@ -56,12 +76,12 @@
     </app-layout>
 
     <app-modal>
-        <h1 slot="header">this is the header</h1>
-        <ul slot="main">
-            <li>item 1</li>
-            <li>item 2</li>
-            <li>item 3</li>
-        </ul>
+        <h1 slot="title">Yes, i'm similar to Amazon ;)</h1>
+        <div slot="main">
+            <h2 class="blue"> What is Amazon DynamoDB?</h2>
+            <p>Welcome to the <span class="blue">Amazon DynamoDB</span> Developer Guide. <br><br>
+            Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability.</p>
+        </div>
         <footer slot="footer"><i>this is the last thing</i></footer>
     </app-modal>
 

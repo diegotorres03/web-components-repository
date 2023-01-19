@@ -8,6 +8,17 @@ class FlipCard  extends HTMLElement {
     async _render() {
         const inner = await html`
         <style>
+            *{
+                --amz-blck-1:#16191F;
+                --amz-blck-2:#232F3E;
+                --amz-gray-1 :#545B64;
+                --amz-gray-2 :#687078;
+
+                --amz-blue-1 :#306DA3;
+                --amz-blue-2 :#0073BB;
+                --amz-turq-1 :#44B9C6;
+                --amz-orang-1:#EC7211;
+            }
             .flip-card-box {
                
                 width: 100%;
@@ -42,14 +53,14 @@ class FlipCard  extends HTMLElement {
                 align-items: center;
                 justify-content: center;
 
-                background-color: #232323;
-                color: #41afd3;
+                background-color: var(--amz-blck-1);
+                color: var(--amz-orang-1);
             }
 
             .back{
                 transform: rotateY(180deg);
-                color: #232323;
-                background-color: #41afd3;
+                background-color: var(--amz-orang-1);
+                color: ghostwhite;
             }
          
 

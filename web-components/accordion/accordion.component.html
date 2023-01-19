@@ -29,7 +29,9 @@
                 .tab-group {
                     margin: 0 auto;
                     max-width: 40em;
-                    width: 100%
+                    width: 100%;
+                    border-radius:4px;
+                    overflow: hidden;
                 }
 
                 .tab {
@@ -49,10 +51,10 @@
                     align-items: center;
 
                     padding: 6px;
-                    border-radius: 4px;
+                    
 
-                    background: var(--white-2);
-                    color: var(--amz-blck-1 );
+                    background: var(--amz-blck-1);
+                    color: var(--amz-blue-2 );
                     font-size: 12px;
                 }
 
@@ -63,13 +65,17 @@
                 }
 
                 .tab-content {
-                    height: 0;
+                    max-height: 0;
+                    
                     overflow: hidden;
                     transition: all .35s;
+                    background-color: var(--white-1);   
                 }
 
                 .tab input:checked ~ .tab-content {
-                    height: 300px;
+                    max-height: 300px;
+                    padding: 8px;
+                    color: var(--amz-blck-1);
                     /* max-height: fit-content; */
                 }
 

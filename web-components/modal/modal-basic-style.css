@@ -1,0 +1,211 @@
+    @font-face {
+        font-family: 'amazon-ember';
+        src: url('../global-assets/amazon-ember/amazon-ember-V2.ttf');
+    }
+
+    @font-face {
+        font-family: 'amazon-ember-bold';
+        src: url('../global-assets/amazon-ember/amazon-ember-bold.ttf');
+    }
+
+    @font-face {
+        font-family: 'amazon-ember-thin';
+        src: url('../global-assets/amazon-ember/amazon-ember-light.ttf');
+    }
+
+
+    * {
+        /* Amazon pallete */
+        --amz-blck-1: #16191F;
+        --amz-blck-2: #232F3E;
+        --amz-gray-1: #545B64;
+        --amz-gray-2: #687078;
+        --amz-blue-1: #306DA3;
+        --amz-blue-2: #0073BB;
+        --amz-turq-1: #44B9C6;
+        --amz-orang-1: #EC7211;
+
+        /* Tonos grises */
+        --black-1: #252525;
+        --black-2: #323437;
+        --black-3: #474b4e;
+
+        /* Tonos claros */
+        --white-1: #e2e7ed;
+        --white-2: #c4c7cc;
+        --white-3: #95989d;
+
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+
+        font-family: 'amazon-ember', monospace;
+    }
+
+    /* flex */
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .space-around {
+        justify-content: space-around;
+    }
+
+    .space-evenly {
+        justify-content: space-evenly;
+    }
+
+    .space-between {
+        justify-content: space-between;
+    }
+
+    .justify-center {
+        justify-content: center
+    }
+
+    .align-center {
+        align-items: center;
+    }
+
+    /* grid */
+    .grid {
+        display: grid;
+    }
+
+    /* positions */
+
+    .relative {
+        position: relative;
+    }
+
+    .absolute {
+        position: absolute;
+    }
+
+    .fixed {
+        position: fixed;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .dft-btn {
+        /* Tamaño */
+        width: calc(50% - 6px);
+        padding: 6px 12px;
+
+        /* Fuente */
+        font-family: 'amazon-ember', monospace;
+        color: #232323;
+
+        /* Bordes */
+        border-radius: 4px;
+        border: 1px solid #232323;
+
+        /* Fondo */
+        background-color: #e2e2e9;
+
+        /* Otros */
+        cursor: pointer;
+    }
+
+    .darker {
+        /* Fuente */
+        color: var(--amz-blue-2);
+
+        /* Bordes */
+        border-color: transparent;
+
+        /* Fondo */
+        background-color: var(--amz-blck-1);
+    }
+
+    .brighter {
+        /* Fuente */
+        color: var(--white-1);
+
+        /* Bordes */
+        border-color: transparent;
+
+        /* Fondo */
+        background-color: var(--amz-orang-1);
+    }
+
+    .clickable {
+        transition: all 0.2 ease;
+        user-select: none;
+    }
+
+    .clickable:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+    }
+
+    .clickable:active {
+        transform: scale(0.95);
+    }
+
+    /* CSS */
+
+    img {
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid #252525;
+        margin-top: 12px;
+    }
+
+    .dft-btn {
+        /* Tamaño */
+        padding: 6px 12px;
+
+        /* Fuente */
+        font-family: 'amazon-ember', monospace;
+        color: #232323;
+
+        /* Bordes */
+        border-radius: 4px;
+        border: 1px solid #232323;
+
+        /* Fondo */
+        background-color: #e2e2e9;
+
+        /* Otros */
+        cursor: pointer;
+    }
+
+    /* Clase clickeable */
+
+    .clickable {
+        transition: all 0.2 ease;
+        user-select: none;
+    }
+
+    .clickable:hover {
+        filter: brightness(1.2);
+        cursor: pointer;
+    }
+
+    .clickable:active {
+        transform: scale(0.95);
+    }
+
+    h4 {
+        font-family: 'amazon-ember-bold';
+        font-size: 18px;
+    }
+    div h2{
+        font-family: 'amazon-ember-thin';
+        font-weight: lighter;
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+    div p{
+        font-family: 'amazon-ember';
+    }
