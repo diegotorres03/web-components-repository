@@ -1,5 +1,31 @@
 
             <style>
+
+            :root {
+                /* Amazon pallete */
+                --amz-blck-1:#16191F;
+                --amz-blck-2:#232F3E;
+                --amz-gray-1 :#545B64;
+                --amz-gray-2 :#687078;
+
+                --amz-blue-1 :#306DA3;
+                --amz-blue-2 :#0073BB;
+                --amz-turq-1 :#44B9C6;
+
+                --amz-orang-1:#EC7211;
+
+                /* Tonos grises */
+                --black-1: #252525;
+                --black-2: #323437;
+                --black-3: #474b4e;
+
+                /* Tonos claros */
+                --white-1: #e2e7ed;
+                --white-2: #c4c7cc;
+                --white-3: #95989d;
+
+            }
+
                 .tab-group {
                     margin: 0 auto;
                     max-width: 40em;
@@ -19,20 +45,21 @@
                 }
 
                 .tab label {
-                    background: #72d2c6;
-                    color: #fff;
-                    display: block;
-                    font-weight: bold;
-                    line-height: 3;
-                    padding-left: .5em;
-                    margin-bottom: .5em;
-                    transition: letter-spacing .55s;
+                    display: flex;
+                    align-items: center;
+
+                    padding: 6px;
+                    border-radius: 4px;
+
+                    background: var(--white-2);
+                    color: var(--amz-blck-1 );
+                    font-size: 12px;
                 }
 
                 .tab input:focus + label,
                 .tab label:hover {
-                    background: #85d8ce;
-                    letter-spacing: 1px;
+                    filter: brightness(1.15);
+                    cursor: pointer;
                 }
 
                 .tab-content {
@@ -41,24 +68,29 @@
                     transition: all .35s;
                 }
 
-                .tab-content p {
-                    margin: 1em 0;
-                }
-
                 .tab input:checked ~ .tab-content {
-                    max-height: 10em;
+                    max-height: fit-content;
                 }
 
             </style>
          
 
                 <div class="tab-group">
+
                     <div class="tab" >
+
                         <input id="tab-one" type="radio" name="tabs">
-                        <label for="tab-one">one</label>
-                        <div class="tab-content" slot="content" >
-                            <p>any</p>
+
+                        <label for="tab-one">
+                            <slot name="tab-title">Title</slot>
+                        </label>
+
+                        <div class="tab-content">
+                            <slot name="tab-content">
+
+                            </slot>
                         </div>
+
                     </div>
                     
                 </div>

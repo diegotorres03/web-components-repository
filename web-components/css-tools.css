@@ -1,4 +1,44 @@
+@font-face {
+    font-family: 'amazon-ember';
+    src: url('./global-assets/amazon-ember/Amazon-ember.ttf');
+}
 
+:root {
+    /* Amazon pallete */
+    --amz-blck-1:#16191F;
+    --amz-blck-2:#232F3E;
+    --amz-gray-1 :#545B64;
+    --amz-gray-2 :#687078;
+
+    --amz-blue-1 :#306DA3;
+    --amz-blue-2 :#0073BB;
+    --amz-turq-1 :#44B9C6;
+
+    --amz-orang-1:#EC7211;
+
+    /* Tonos grises */
+    --black-1: #252525;
+    --black-2: #323437;
+    --black-3: #474b4e;
+
+    /* Tonos claros */
+    --white-1: #e2e7ed;
+    --white-2: #c4c7cc;
+    --white-3: #95989d;
+
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    font-family: 'amazon-ember';
+}
+
+body, html{
+    height: 100%;
+}
 
 .flex-row {
     display: flex;
@@ -22,10 +62,48 @@
     display: grid;
 }
 
-
 .hidden {
     display: none;
 }
 
+/* Marco was here 😂*/
+
+.link-tag {
+    /* Tamaño */
+    padding: 4px 12px;
+
+    /* Fondo */
+    background-color: var(--white-2);
+
+    /* Fuente */
+    font-size: 12px;
+    text-transform: capitalize;
+
+    /* Bordes */
+    border-radius: 2px;
+    text-decoration: none;
+
+    color: var(--black-1);
+    margin: 0 4px;
+}
 
 
+
+
+
+/* Click */
+.clickable {
+    transition: all 0.2 ease;
+    user-select: none;
+}
+
+.clickable:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+.clickable:active {
+    transform: scale(0.95);
+    filter: brightness(0.95);
+    
+}
