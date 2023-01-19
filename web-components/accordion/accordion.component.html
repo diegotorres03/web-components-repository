@@ -63,21 +63,22 @@
                 }
 
                 .tab-content {
-                    max-height: 0;
+                    height: 0;
                     overflow: hidden;
                     transition: all .35s;
                 }
 
                 .tab input:checked ~ .tab-content {
-                    max-height: fit-content;
+                    height: 300px;
+                    /* max-height: fit-content; */
                 }
 
             </style>
          
 
-                <div class="tab-group">
+                <div id="content" class="tab-group">
 
-                    <div class="tab" >
+                    <!-- <div class="tab" >
 
                         <input id="tab-one" type="radio" name="tabs">
 
@@ -93,9 +94,10 @@
                             </slot>
                         </div>
 
-                    </div>
+                    </div> -->
                     
                 </div>
+                <slot></slot>
         
             
         

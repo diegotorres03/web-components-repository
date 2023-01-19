@@ -21,6 +21,8 @@ class AppAccordion extends HTMLElement {
 
         const items = Array.from(this.querySelectorAll('.accordion-tab'))
 
+        console.log(items)
+
         items.forEach((item, index) => {
             const titleElement = item.querySelector('h1') ||
                 item.querySelector('h2') ||
@@ -30,11 +32,11 @@ class AppAccordion extends HTMLElement {
                 item.querySelector('h6') ||
                 item.querySelector('h7')
 
+            console.log('index', index)
             const title = titleElement.textContent
             const itemTemplate = html`<div class="tab">
-                <input id="tab-${index}" type="radio" name="tabs" 
-                ${index === 0 && 'checked ="true"'} >
-                <label for="tab-${index}">${title}</label>
+                <input id="tab-${index + 1}" type="radio" name="tabs" ${index===0 && 'checked ="true"' }>
+                <label for="tab-${index + 1}">${title}</label>
                 <div class="tab-content">
                 </div>
             </div>`
