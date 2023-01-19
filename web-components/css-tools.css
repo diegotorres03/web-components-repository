@@ -88,7 +88,10 @@ body, html{
 }
 
 
-
+.pattern-1{
+    background-color: var(--white-3);
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+}
 
 
 /* Click */

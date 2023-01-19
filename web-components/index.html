@@ -18,13 +18,12 @@
     <script src="./scripts/web-worker.component.js"></script>
     <script src="./scripts/service-worker.component.js"></script>
     <script src="./layout/components/layout.component.js"></script>
-    <!-- <script src=""></script> -->
+
+    <!-- TO DO: FIX THE ACCORDION ISSUE ⚠️ -->
 
 </head>
 
-<style>
-
-</style>
+<style> </style>
 
 <body>
 
@@ -38,10 +37,12 @@
 
         <app-accordion slot="left-menu">
 
-            <h2 slot="tab-title">Titulo</h2>
+            <h2 slot="tab-title">Tab-title</h2>
+
             <section slot="tab-content" class="accordion-tab">
-                <h6>title 3</h6>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
+                <h6>Lorem Ipsum</h6>
+                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
+                <button class="dft-btn">Press here</button>
             </section>
 
         </app-accordion>
