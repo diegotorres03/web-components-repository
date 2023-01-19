@@ -37,10 +37,16 @@
 
         <app-accordion slot="left-menu">
 
-            <h2 slot="tab-title">Tab-title</h2>
+            <!-- <h2 slot="tab-title">Tab-title</h2> -->
 
-            <section slot="tab-content" class="accordion-tab">
-                <h6>Lorem Ipsum</h6>
+            <section class="accordion-tab">
+                <h6 style="display: none;">HAHAHAHA</h6>
+                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
+                <button id="open-modal" class="dft-btn">Press here</button>
+            </section>
+
+            <section class="accordion-tab">
+                <h6 style="display: none;">otro</h6>
                 <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
                 <button class="dft-btn">Press here</button>
             </section>
@@ -49,7 +55,7 @@
 
     </app-layout>
 
-    <!-- <app-modal>
+    <app-modal>
         <h1 slot="header">this is the header</h1>
         <ul slot="main">
             <li>item 1</li>
@@ -58,10 +64,13 @@
         </ul>
         <footer slot="footer"><i>this is the last thing</i></footer>
     </app-modal>
--->
+
     <script>
         document.querySelector('#open-modal').addEventListener('click', ev => {
-            document.querySelector('app-modal').open()
+            // alert('asd')
+            const modal = document.querySelector('app-modal')
+            console.log(modal)
+            modal.open()
         })
     </script> 
 
