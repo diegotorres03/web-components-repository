@@ -29,20 +29,19 @@
     <script src="./appsync/appsync.component.js"></script>
     <!-- <script src=""></script> -->
 
-</head>
 
-<style> </style>
+
+</head>
 
 <body>
 
 
-    <!-- <app-sync gql-endpoint="https://etqor7oilndspncbfezvjt27he.appsync-api.us-west-2.amazonaws.com/graphql">
-        <app-sync-subscription onmessage="messageHanlder" ></app-sync-subscription>
-    </app-sync> -->
+    <app-sync gql-endpoint="https://etqor7oilndspncbfezvjt27he.appsync-api.us-west-2.amazonaws.com/graphql">
+        <!-- <app-sync-subscription onmessage="messageHanlder" ></app-sync-subscription> -->
+    </app-sync>
 
 
     <app-layout>
-
         <nav slot="top-menu">
             <a href="#route1">route1</a>
             <a href="#route2">route2</a>
@@ -61,10 +60,14 @@
         </nav>
         <app-accordion slot="left-menu">
             <section class="accordion-tab">
-                <h1>Pestaña bien bacana</h1>
+                <h4>Components</h4>
+                <p></p>
+                <a href="#live-table">LiveTable</a>
+                <a href="#todo">TODO</a>
+
             </section>
             <section class="accordion-tab">
-                <h1>title 1</h1>
+                <h1>a</h1>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
                     veritatis
                     aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
@@ -76,10 +79,7 @@
                     non
                     cum repudiandae incidunt?</p>
 
-        <app-accordion slot="left-menu">
-
-            <!-- <h2 slot="tab-title">Tab-title</h2> -->
-
+            </section>
             <section class="accordion-tab">
                 <h4>some links</h4>
                 <ul>
@@ -88,13 +88,14 @@
                     <li><a href="#route2">route2</a></li>
                 </ul>
             </section>
-
             <section class="accordion-tab">
-                <h6 style="display: none;">otro</h6>
-                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
-                <button class="dft-btn">Press here</button>
+                <h6>title 3</h6>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis, modi
+                    veritatis
+                    aliquam mollitia. Itaque, officiis, fuga natus ea perferendis ullam laboriosam, veniam aliquam modi
+                    non
+                    cum repudiandae incidunt?</p>
             </section>
-
         </app-accordion>
 
         <ul>
@@ -105,9 +106,10 @@
         </ul>
 
         <app-router slot="main-content">
-            <app-route class="route">
+            <!-- <app-route class="route" >
                 <h1>test</h1>
-            </app-route>
+            </app-route> -->
+            <!-- <app-route class="route" src="./test.html"></app-route> -->
 
             <app-route class="route" hash="todo">
 
@@ -143,8 +145,11 @@
 
             </app-route>
 
-            <app-route class="route" hash="route3">
-                <h1>FILES</h1>
+            <app-route class="route" hash="route2">
+                <h1>items path</h1>
+
+                <!-- <button id="open-modal">open</button> -->
+
             </app-route>
 
             <app-route class="route" hash="live-table">
@@ -154,10 +159,6 @@
             </app-route>
 
         </app-router>
-
-        <footer slot="footer">
-            <h2>done</h2>
-        </footer>
 
     </app-layout>
 
@@ -186,12 +187,23 @@
 
     <script>
         document.querySelector('#open-modal').addEventListener('click', ev => {
-            // alert('asd')
-            const modal = document.querySelector('app-modal')
-            console.log(modal)
-            modal.open()
+            document.querySelector('app-modal').open()
         })
+
+
     </script>
+
+
+    <script>
+
+        // const dynamoClient = window.modules['@aws-sdk/client-dynamodb']
+        const dynamoClient = require('@aws-sdk/client-dynamodb')
+        // console.log('dynamoClient', dynamoClient)
+        // const { Amplify, API, graphqlOperation } = require('aws-amplify')
+        // console.log(Amplify, API, graphqlOperation)
+
+    </script>
+
 
 
     <!-- 
