@@ -19,7 +19,8 @@ class AppAccordion extends HTMLElement {
         // get variable names
         updateVars(this)
 
-        const items = Array.from(this.querySelectorAll('.accordion-tab'))
+        // const items = Array.from(this.querySelectorAll('.accordion-tab'))
+        const items = Array.from(this.querySelectorAll('section'))
 
         console.log(items)
 

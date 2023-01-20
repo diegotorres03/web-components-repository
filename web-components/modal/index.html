@@ -5,83 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="modal-basic-style.css">
+
+
     <script src="../web-tools.js"></script>
-    <script src="./modal.component.js"></script>
+    <script src="./components/modal.component.js"></script>
     <script src="../"></script>
 
-    <style>
-        *{
-            box-sizing: border-box;
-            padding: 0;
-            margin: 0;
-        }
-        img{
-            width: 100%;
-            border-radius: 4px;
-            border: 1px solid #252525;
-            margin-top: 12px;
-           
-        }
-        .dft-btn {
-        /* Tamaño */
-        width: calc(50% - 6px);
-        padding: 6px 12px;
-
-        /* Fuente */
-        text-transform: uppercase;
-        font-family: monospace;
-        color: #232323;
-
-        /* Bordes */
-        border-radius: 4px;
-        border: 1px solid #232323;
-
-        /* Fondo */
-        background-color: #e2e2e9;
-
-        /* Otros */
-        cursor: pointer;
-    }
-    .clickable {
-    transition: all 0.2 ease;
-    user-select: none;
-    }
-
-    .clickable:hover {
-        filter: brightness(1.2);
-        cursor: pointer;
-    }
-
-    .clickable:active {
-        transform: scale(0.95);
-    }
-    body, html{
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    kbd{
-        padding: 1px;
-        background: linear-gradient(to bottom, var(--black-1), var(--black-3));
-    }
-    </style>
+    
 </head>
 <body>
 
     <button style="width:120px;" class="dft-btn clickable" id="open-modal">open</button>
-    <p>What the world needs is another <abbr title="Three Letter Acronym">TLA</abbr> press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> </p>
-    <samp >FATAL ERROR</samp> 
-    <details>
-        <summary>This is amazing</summary>
-        I didn't know 
-    </details>
+  
    
  
     <app-modal open="true">
 
-        <strong slot="title">This is the header </strong>
+        <h4 slot="title">This is the header</h4>
 
         <div slot="main">
             <h2>Cats are fine</h2>

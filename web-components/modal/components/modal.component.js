@@ -10,7 +10,7 @@ class AppModal extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import('./modal/modal.component.html')
+        const inner = await html.import('./modal/components/modal.component.html')
         const shadow = this.attachShadow({ mode: 'open' })
         shadow.appendChild(inner)
 
@@ -26,6 +26,26 @@ class AppModal extends HTMLElement {
 
     }
 
+    accept() {
+        this.shadowRoot.dispatchEvent(new CustomEvent('accept', {
+            bubbles: true, composed: true,
+            detail: {
+                success: true
+            }
+        }))
+        this.close()
+    }
+
+
+    cancel() {
+        this.shadowRoot.dispatchEvent(new CustomEvent('cancel', {
+            bubbles: true, composed: true,
+            detail: {
+                success: true
+            }
+        }))
+        this.close()
+    }
 
     open() {
         this.setAttribute('open', true)
@@ -52,7 +72,6 @@ class AppModal extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         // console.log(name, oldValue, typeof newValue)
         if (!this.shadowRoot) return
-        console.log(this.shadowRoot.querySelector('#checker'))
         if (name === 'open' && this.shadowRoot.querySelector('#checker')) {
             this.shadowRoot.querySelector('#checker').checked = newValue === 'true'
         }

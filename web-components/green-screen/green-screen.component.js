@@ -1,13 +1,4 @@
-const html = function (templates, ...values) {
-  const template = document.createElement('template')
-  let str = ''
-  templates.forEach((template, index) => {
-    str += template
-    str = values[index] ? str + values[index] : str
-  })
-  template.innerHTML = str.trim()
-  return template.content
-}
+
 
 function compareRGB(baseRed, baseGreen, baseBlue, tolerance = 10) {
   return function (red, green, blue) {
@@ -33,7 +24,7 @@ class GreenScreenComponent extends HTMLElement {
 
   _render() {
     const inner = html`<section>
-  <video id="video" width="648" src="green.mp4" controls autoplay muted loop></video>
+  <video id="video" width="648" src="./green-screen/green.mp4" controls autoplay muted loop></video>
   <canvas id="output-canvas" width="648" height="380"></canvas>
   <div id="inputs">
     <slot></slot>
@@ -52,6 +43,7 @@ class GreenScreenComponent extends HTMLElement {
 
     this.video = this.shadowRoot.getElementById('video');
     if (!this.video) return
+    // this.video.style.display = 'none'
     this.c_out = this.shadowRoot.getElementById('output-canvas');
     this.ctx_out = this.c_out.getContext('2d');
     this.c_tmp = document.createElement('canvas')
@@ -61,7 +53,7 @@ class GreenScreenComponent extends HTMLElement {
     this.video.addEventListener('play', () => this.computeFrame())
 
     this.videoBackground = document.createElement('video')
-    this.videoBackground.src = "fire.mp4"
+    this.videoBackground.src = "./green-screen/fire.mp4"
     this.videoBackground.muted = true
     this.videoBackground.autoplay = true
 
