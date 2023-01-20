@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://d2frjh5xr2nc8a.cloudfront.net/css-tools.css">
+
+
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/package-bundle.js"></script>
+
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/web-tools.js"></script>
+
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/floating-pannel/floating-pannel.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/modal/modal.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/router/route.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/router/router.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/scripts/web-worker.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/scripts/service-worker.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/layout/components/layout.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/accordion/accordion.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/live-table/live-table.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/live-form/live-form.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/todo/todo.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/todo/task.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/auth/login.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/appsync/appsync.component.js"></script>
+    <script src="https://d2frjh5xr2nc8a.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
+    <!-- <script src=""></script> -->
+
+
+    <style>
+        a{
+            color: wheat;
+        }
+    </style>
+
+</head>
+<body>
+    
+
+    
+    <app-layout>
+        <nav slot="top-menu">
+            <a href="#stateless">stateless components</a>
+            <a href="#statful">statful components</a>
+        </nav>
+        <app-accordion slot="left-menu">
+            <section class="accordion-tab">
+                <h1>Accordion</h1>
+                <a href="#accordion">app-accordion</a>
+            </section>
+
+
+            <section class="accordion-tab">
+                <h1>Layout</h1>
+                <a href="#layout">app-layout</a>
+            </section>
+
+
+            <section class="accordion-tab">
+                <h1>Flipcard</h1>
+                <a href="#flipcard">app-flipcard</a>
+            </section>
+            
+
+        </app-accordion>
+
+        <app-router slot="main-content">
+            <app-route class="route" hash="stateless">
+                <h1>Stateless components</h1>
+                <button id="open-modal">open modal</button>
+            </app-route>
+            <app-route class="route" hash="statful">
+                <h1>Stateful components</h1>
+            </app-route>
+
+
+            <app-route class="route" hash="accordion">
+                <h1>accordion components</h1>
+            </app-route>
+
+            <app-route class="route" hash="layout">
+                <h1>layout components</h1>
+            </app-route>
+
+            <app-route class="route" hash="flipcard">
+                <h1>flipcard components</h1>
+
+
+                <app-flipcard>
+                    <div slot="front">front</div>
+                    <div slot="back">back</div>
+                </app-flipcard>
+
+
+                
+            </app-route>
+        </app-router>
+
+        <footer slot="footer">diegotrs@amazon.com</footer>
+    </app-layout>
+
+    <app-modal id="modal-2"></app-modal>
+
+    <app-modal id="sample-modal">
+        <h1 slot="title">this is a modal</h1>
+        <section slot="main">
+            reasons why this is awesome
+            <ol>
+                <li>easy to use</li>
+                <li>easy to read</li>
+                <li>low maintenance</li>
+            </ol>
+        </section>
+    </app-modal>
+
+    <script>
+        document.querySelector('#open-modal').addEventListener('click', ev => {
+            document.querySelector('#sample-modal').open()
+            // document.querySelector('#modal-2').open()
+        })
+
+    </script>
+
+</body>
+</html>
