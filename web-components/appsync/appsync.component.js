@@ -13,6 +13,52 @@ function rungql(query) {
     return API.graphql(graphqlOperation(query))
 }
 
+
+
+async function sendMutation(id, level, recordType) {
+    const query = gql`mutation MyMutation {
+        createSession(id: {id: "${id}", level: "${level}", recordType: "${recordType}"}) {
+          id
+          level
+          recordType
+        }
+      }`
+    console.log(query)
+    const res = await rungql(query)
+}
+
+
+function subscribe(fn) {
+    const query = gql`subscription MySubscription {
+        onCreateSession {
+          id
+          level
+          recordType
+        }
+      }`
+    const subscription = rungql(query)
+    subscription.subscribe({
+        next: event => fn(event)
+    })
+    // return subscription.unsubscribe
+}
+
+
+async function listSessions() {
+    const query = gql`query MyQuery {
+        getUserSessions {
+          id
+          level
+          recordType
+        }
+      }
+      `
+    const sessions = await rungql(query)
+    console.log(sessions)
+    return sessions.data.getUserSessions
+}
+
+
 class AppSync extends HTMLElement {
 
     constructor() {
