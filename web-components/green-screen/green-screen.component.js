@@ -24,7 +24,7 @@ class GreenScreenComponent extends HTMLElement {
 
   _render() {
     const inner = html`<section>
-  <video id="video" width="648" src="./green-screen/green.mp4" controls autoplay muted loop></video>
+  <video id="video" width="648" src="${baseUrl}green-screen/green.mp4" controls autoplay muted loop></video>
   <canvas id="output-canvas" width="648" height="380"></canvas>
   <div id="inputs">
     <slot></slot>
@@ -53,7 +53,7 @@ class GreenScreenComponent extends HTMLElement {
     this.video.addEventListener('play', () => this.computeFrame())
 
     this.videoBackground = document.createElement('video')
-    this.videoBackground.src = "./green-screen/fire.mp4"
+    this.videoBackground.src = baseUrl + "green-screen/fire.mp4"
     this.videoBackground.muted = true
     this.videoBackground.autoplay = true
 

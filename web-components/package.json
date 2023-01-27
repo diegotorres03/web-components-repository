@@ -5,14 +5,16 @@
   "main": "package-index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": ". ./build.sh"
+    "build": ". ./build.sh",
+    "deploy:wc": "aws s3 cp ./ s3://wcdemo-wcrepowebappwebappartifacta0574a6b-wtialcln7vf0 --recursive; aws cloudfront create-invalidation --distribution-id E13BPUKIPGQ3F0 --paths '/*'"
   },
   "author": "Diego Torres",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.245.0",
     "aws-amplify": "^5.0.9",
-    "aws-crt": "^1.15.5"
+    "aws-crt": "^1.15.5",
+    "chart.js": "^4.2.0"
   },
   "devDependencies": {
     "path-browserify": "^1.0.1",

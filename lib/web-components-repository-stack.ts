@@ -13,9 +13,9 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
 
     const webapp = new WebAppConstruct(this, 'wc-repo-webapp')
     webapp
-      .run('./web-components', 'npm i')
-      .run('./web-components', 'npx webpack')
-      .run('./web-components', 'rm -rf ./node_modules')
+      // .run('./web-components', 'npm i')
+      // .run('./web-components', 'npx webpack')
+      // .run('./web-components', 'rm -rf ./node_modules')
       .addAssets('./web-components')
 
     const apiBuilder = new ApiBuilderConstruct(this, 'wc-demo-rest-api')

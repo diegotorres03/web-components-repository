@@ -19,6 +19,9 @@ const eventNames = [
 const toArray = Array.from
 const { log, error, warn } = console
 
+const baseUrl = 'https://d2frjh5xr2nc8a.cloudfront.net/'
+// const baseUrl = './'
+
 // document.createElement('button').
 function html(templates, ...values) {
     const template = document.createElement('template')
@@ -39,7 +42,9 @@ function html(templates, ...values) {
 }
 
 html.import = async (htmlUrl) => {
-    const res = await (await fetch(htmlUrl, { headers: { 'Content-Type': 'text/html' } })).text()
+    const headers = {}
+    console.log('headers', headers)
+    const res = await (await fetch(htmlUrl, { headers })).text()
     return html`${res}`
 }
 
@@ -69,6 +74,7 @@ function updateVars(component) {
             }))
 }
 
+
 /**
  *
  *
@@ -83,6 +89,12 @@ function renderForLoops(component) {
 
 function require(packageName) {
     return window.modules[packageName]
+}
+
+
+
+function wait(time = 1000) {
+    return new Promise(resolve => setTimeout(resolve, time))
 }
 
 

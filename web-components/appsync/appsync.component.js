@@ -30,17 +30,21 @@ async function sendMutation(id, level, recordType) {
 
 function subscribe(fn) {
     const query = gql`subscription MySubscription {
-        onCreateSession {
+        onDeviceUpdated {
           id
-          level
-          recordType
+          state {
+            reported {
+              controllerLightCode
+              controllerState
+            }
+          }
         }
       }`
     const subscription = rungql(query)
     subscription.subscribe({
         next: event => fn(event)
     })
-    // return subscription.unsubscribe
+    return subscription.unsubscribe
 }
 
 
@@ -58,22 +62,24 @@ async function listSessions() {
     return sessions.data.getUserSessions
 }
 
+function rungql(query) {
+    return API.graphql(graphqlOperation(query))
+}
+
 
 class AppSync extends HTMLElement {
 
     constructor() {
         super()
 
-        Amplify.configure(appConfig)
+        // Amplify.configure(appConfig)
 
     }
 
     async _render() {
         const inner = html`<b>Hello There AppSync!</b>`
-        const shadow = this.attachShadow({mode: 'open'})
+        const shadow = this.attachShadow({ mode: 'open' })
         shadow.appendChild(inner)
-
-        // const inner = await html.import('test.component.html')
 
         // replacing inline handler function with own component methods
         mapComponentEvents(this, eventNames)
@@ -81,11 +87,27 @@ class AppSync extends HTMLElement {
         // get variable names
         updateVars(this)
 
+
     }
 
-    connectedCallback() { this._render() }
+    connectToAppSync() {
+        const url = this.getAttribute('url')
+        const key = this.getAttribute('key')
+        console.log('url', url)
+        if (!url) return
+        appConfig.aws_appsync_graphqlEndpoint = url
+        appConfig.aws_appsync_apiKey = key
+        console.log(appConfig)
+        Amplify.configure(appConfig)
 
-    disconnectedCallback() { }
+    }
+
+    async connectedCallback() { 
+        await this._render()
+        this.connectToAppSync() 
+    }
+
+    disconnectedCallback() {     }
 
     attributeChangedCallback(name, oldValue, newValue) { }
 

@@ -3,7 +3,7 @@ import {
     StackProps,
     aws_s3 as S3,
     aws_s3_deployment as S3Deployment,
-    aws_cloudfront as CloudFront,
+    // aws_cloudfront as CloudFront,
     aws_cloudfront_origins as CloudFrontOrigins,
     aws_route53 as Route53,
     aws_lambda as Lambda,
@@ -12,6 +12,7 @@ import {
     CfnOutput,
     RemovalPolicy,
 } from 'aws-cdk-lib'
+import * as CloudFront from 'aws-cdk-lib/aws-cloudfront'
 import { Construct } from 'constructs'
 import { exec, execSync } from 'child_process'
 
@@ -74,7 +75,13 @@ export class WebAppConstruct extends Construct {
             defaultRootObject: 'index.html',
 
             defaultBehavior: {
-                origin: new CloudFrontOrigins.S3Origin(this.webappBucket, { originAccessIdentity })
+                origin: new CloudFrontOrigins.S3Origin(this.webappBucket, {
+                    originAccessIdentity,
+
+                }),
+                originRequestPolicy: CloudFront.OriginRequestPolicy.CORS_S3_ORIGIN,
+
+
             },
 
             // certificate: cert,
@@ -103,7 +110,7 @@ export class WebAppConstruct extends Construct {
 
         return this
     }
-    run(path:string, commands: string | string[]) {
+    run(path: string, commands: string | string[]) {
         const cmds = Array.isArray(commands) ? commands : [commands]
         console.log('111111111111111111111111111111111111111111111111111111111')
         console.log('111111111111111111111111111111111111111111111111111111111')
@@ -111,7 +118,7 @@ export class WebAppConstruct extends Construct {
             const res = execSync(cmd, {
                 cwd: path,
                 stdio: [0, 1, 2]
-              })
+            })
             console.log(res)
         }
         console.log('111111111111111111111111111111111111111111111111111111111')

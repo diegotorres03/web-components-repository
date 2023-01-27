@@ -28,6 +28,8 @@
     <script src="./todo/task.component.js"></script>
     <script src="./auth/login.component.js"></script>
     <script src="./appsync/appsync.component.js"></script>
+    <script src="./appsync/appsync-subscription.component.js"></script>
+    <script src="./green-screen/green-screen.component.js"></script>
     <!-- <script src=""></script> -->
 
 
@@ -62,11 +64,9 @@
 
 <body>
 
-
     <app-sync gql-endpoint="https://etqor7oilndspncbfezvjt27he.appsync-api.us-west-2.amazonaws.com/graphql">
         <!-- <app-sync-subscription onmessage="messageHanlder" ></app-sync-subscription> -->
     </app-sync>
-
 
     <app-layout>
         <nav slot="top-menu">
@@ -253,10 +253,40 @@
 
             <app-route hash="app-sync">
                 <h1>app-sync</h1>
-                
-                <app-sync url="" ></app-sync>
 
+                <app-sync url="https://ma5xnkzc75ezxpyakt3e4cyyce.appsync-api.us-east-2.amazonaws.com/graphql"
+                    key="da2-iv6py4vzirgmzhippi7bfsih2q">
+                    <app-sync-subscription id="on-device-updated">
+                        subscription MySubscription {
+                        onDeviceUpdated {
+                        id
+                        state {
+                        reported {
+                        controllerLightCode
+                        controllerState
+                        }
+                        }
+                        }
+                        }
+                    </app-sync-subscription>
+                </app-sync>
             </app-route>
+
+            <ol id="appsync-event-log">
+
+            </ol>
+
+            <script>
+                document.querySelector('#on-device-updated')
+                    .addEventListener('data', ev => {
+                        const list = document.querySelector('#appsync-event-log')
+                        const item = html`<li><flip-card>
+                <h1 slot="front">${ev.detail.onDeviceUpdated.id}</h1>
+                <section slot="back">${JSON.stringify(event.detail, undefined, 2)}</section>
+            </flip-card></li>`
+                        list.appendChild(item)
+                    })
+            </script>
 
 
         </app-router>

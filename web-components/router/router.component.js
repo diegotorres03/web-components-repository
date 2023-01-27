@@ -6,7 +6,8 @@ class AppRouter extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import('./router/router.component.html')
+        const inner = await html.import(baseUrl + 'router/router.component.html')
+
         this.attachShadow({ mode: 'open' })
         this.shadowRoot.appendChild(inner)
 
@@ -44,7 +45,6 @@ class AppRouter extends HTMLElement {
         routes
             .filter(route => route.getAttribute('hash') && !window.location.hash.includes(route.getAttribute('hash')))
             .forEach(route => {
-                console.log(route.getAttribute('hash'), window.location.hash, `#${route.getAttribute('hash')}` === window.location.hash)
                 route.classList.add('hidden')
             })
     }
