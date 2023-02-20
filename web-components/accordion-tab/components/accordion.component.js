@@ -11,14 +11,15 @@ class AccordionTab extends HTMLElement {
 
 <style>
     .accordion:not(:last-of-type){
-        margin-bottom: 12px;
+        /* margin-bottom: 12px; */
     }
 
     .accordion{
         width: 100%;
         cursor: pointer;
-        border-radius: 5px;
+        /* border-radius: 5px; */
         overflow: hidden;
+        border-bottom:1px solid gray;
     }
 
     .accordion .header{
@@ -27,7 +28,7 @@ class AccordionTab extends HTMLElement {
         align-items:center;
         
         padding: 4px 12px;
-        border-radius: 4px 4px 0 0;
+        /* border-radius: 4px 4px 0 0; */
 
         color: #6bc0dc;
         background-color: #343434;
@@ -43,7 +44,7 @@ class AccordionTab extends HTMLElement {
     .accordion .body{
         
         background-color: #bdbdbd;
-        border-radius: 0 0 4px 4px;
+        /* border-radius: 0 0 4px 4px; */
 
         transition: all 0.25s ease ;
 
