@@ -1,0 +1,622 @@
+:root {
+    --b1: #323232;
+    --b2: #1e1e1e;
+    --g1: #636363;
+    --g2: #7a7979;
+    --g3: #dfdfdf;
+    --w1: #e1ebef;
+}
+
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* HEADER */
+.header-container {
+    width: 100%;
+    height: 100%;
+
+    padding: 24px 10%;
+
+    border-bottom: 1px solid #d5d5dc;
+    background-color: var(--w1);
+}
+
+.header-container {}
+
+.header-box {
+    width: 100%;
+}
+
+.logo-box {
+    width: 40px;
+}
+
+.logo-box img {
+    width: 100%;
+}
+
+.nav-list {}
+
+.nav-list li {
+    margin-left: 8px;
+}
+
+.nav-list li a {
+    color: var(--b1);
+    padding: 4px 12px 7px;
+    border-radius: 4px;
+}
+
+.header-box .nav-list li:nth-child(3) a {
+    color: var(--w1);
+    background-color: var(--b1);
+}
+
+section {
+    padding: 48px 14%;
+}
+
+section h2 {
+    font-size: 32px;
+    margin: 0 0 48px;
+    text-transform: capitalize;
+}
+
+.toggle-btn {
+    display: none;
+    padding: 8px;
+    border-radius: 2px;
+    background-color: var(--b1);
+}
+
+/* HERO */
+
+.hero-section {
+    height: 55vh;
+    background-color: var(--w1);
+    padding: 0;
+
+}
+
+.hero-img {
+    width: 50%;
+    height: 100%;
+    background-color: var(--g3);
+    padding: 0;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-img::after {
+    content: "";
+
+    width: 160%;
+    height: 160%;
+
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+
+    background: url(assets/img/planet.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    filter: blur(6px) opacity(20%);
+}
+
+.hero-img img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%) contrast(100%);
+}
+
+.hero-info {
+    margin-left: auto;
+    width: 50%;
+    height: 100%;
+    padding: 48px 14% 48px 48px;
+}
+
+.hero-info h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    color: var(--b1);
+}
+
+.hero-info p {
+    color: var(--g2);
+    font-size: 16px;
+    line-height: 1.5;
+
+    margin: 12px 0;
+}
+
+.hero-info button {
+    /* width: 200px; */
+    border-radius: 2px;
+    background-color: var(--b1);
+    color: var(--w1);
+}
+
+/* PROFITS */
+
+.profit-section {
+    min-height: 30vh;
+    background-color: ghostwhite;
+}
+
+.profit-container {
+    gap: 12px;
+}
+
+.profit-card {
+    display: flex;
+    flex-direction: column;
+
+    width: 240px;
+    padding: 12px;
+    border-radius: 4px;
+
+    border: 1px solid var(--g3);
+}
+
+.profit-img {
+    padding: 2px;
+    width: 32px;
+    height: 32px;
+
+    margin-bottom: 8px;
+}
+
+.profit-img img {
+    width: 100%;
+}
+
+.profit-info {
+    display: flex;
+    flex: content;
+}
+
+.profit-card h3 {
+    margin-bottom: 8px;
+
+}
+
+.profit-card p {
+    font-size: 16px;
+    color: var(--g2);
+}
+
+/* TESTIMONIALS */
+
+.testimonial-section {
+    background-color: var(--w1);
+
+}
+
+.testimonial-container {
+    gap: 12px;
+}
+
+.testimonial-card {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 3);
+    padding: 24px;
+    border-radius: 4px;
+    background-color: ghostwhite;
+    border: 1px solid var(--g3);
+}
+
+.testimonial-card .user-photo {
+    display: block;
+    font-size: 62px;
+    margin-bottom: 12px;
+}
+
+.testimonial {
+    color: var(--g2);
+    font-size: 16px;
+}
+
+.testimonial-card .user-name {
+    display: block;
+    font-weight: bold;
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+/* CTA */
+
+.cta-section {
+    background-color: var(--b1);
+
+}
+
+.cta-box {
+    width: 80%;
+    padding: 24px;
+    border-radius: 4px;
+
+    background-color: ghostwhite;
+    box-shadow: 0 4px 16px 4px #0000002d;
+}
+
+.cta-box h1 {
+    font-size: 32px;
+    line-height: 32px;
+    /* margin-bottom: 12px; */
+}
+
+.cta-box p {
+    font-size: 16px;
+    margin: 12px 0;
+    line-height: 1.5;
+    color: var(--g2);
+}
+
+.cta-box .input-box input {
+    padding: 4px 12px;
+    border: 1px solid var(--b1);
+    background-color: transparent;
+    border-radius: 4px 0 0 4px;
+    width: 70%;
+}
+
+.cta-box .input-box input:focus {
+    outline: none;
+    background-color: var(--g3);
+}
+
+.cta-box .input-box button {
+    width: 30%;
+}
+
+.cta-btn {
+    padding: 12px;
+    border-radius: 0px 4px 4px 0px;
+    background-color: var(--b1);
+    color: var(--w1);
+}
+
+/* FOOTER */
+
+.footer-container {
+    padding: 24px 10%;
+    background-color: var(--b2);
+    color: var(--w1);
+}
+
+.footer .nav-list li a {
+    text-transform: uppercase;
+    color: var(--w1);
+    padding: 4px 12px 7px;
+}
+
+/* QUERIES */
+
+@media (max-width:992px) {
+
+    section {
+        padding: 32px 14%;
+    }
+
+    section h2 {
+        font-size: 24px;
+        margin: 0 0 32px;
+    }
+
+    .hero-info {
+        margin-left: auto;
+        width: 50%;
+        height: 100%;
+        padding: 24px 14% 24px 24px;
+    }
+
+    .hero-info h1 {
+        font-size: 32px;
+    }
+
+    .hero-info p {
+        font-size: 14px;
+        margin: 12px 0;
+    }
+
+    /* profits */
+
+    .profit-container {
+        flex-wrap: wrap;
+    }
+
+    .profit-card {
+        width: calc(50% - 6px);
+    }
+
+    .profit-card h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .profit-card p {
+        font-size: 14px;
+    }
+
+    /* testimonials */
+
+    .testimonial-section {}
+
+    .testimonial-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .testimonial-card {
+        width: calc(100% / 1);
+        padding: 12px;
+    }
+
+    .testimonial-card .user-photo {
+        font-size: 48px;
+    }
+
+
+    /* CTA */
+
+    .cta-section {
+        /* background-color: var(--b1); */
+    }
+
+    .cta-box {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .cta-box h1 {
+        font-size: 32px;
+        line-height: 30px;
+    }
+
+    .cta-box p {
+        width: 70%;
+        font-size: 14px;
+    }
+
+}
+
+/* ---------------------------- */
+
+@media (max-width:768px) {
+
+    section {
+        padding: 24px 8%;
+    }
+
+    section h2 {
+        font-size: 24px;
+        margin: 0 0 24px;
+    }
+
+
+    /* HERO */
+
+    .hero-section .hero-info {
+        padding: 24px 10% 24px 24px;
+        justify-content: center;
+    }
+
+    .hero-section {
+        height: 60vh;
+    }
+
+    .hero-img::after {
+        bottom: -60%;
+        left: -40%;
+    }
+
+    .hero-info h1 {
+        font-size: 28px;
+        line-height: 1.2;
+        color: var(--b1);
+    }
+
+    .hero-info p {
+        color: var(--g2);
+        font-size: 14px;
+        line-height: 1.5;
+
+        margin: 12px 0 24px;
+    }
+
+    /* PROFIT */
+
+    .profit-card h3 {
+        font-size: 16px;
+        margin-bottom: 6px;
+    }
+
+    /* testimonials */
+
+    .testimonial {
+        font-size: 14px;
+    }
+
+    .testimonial-card .user-photo {
+        font-size: 36px;
+    }
+
+    /* CTA */
+
+    .cta-section {}
+
+    .cta-box {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .cta-box h1 {
+        font-size: 28px;
+        line-height: 26px;
+    }
+
+    .cta-box p {
+        font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer span,
+    footer a {
+        font-size: 14px;
+    }
+}
+
+@media (max-width:576px) {
+
+    /* header */
+
+    .header-container {
+        padding: 0;
+    }
+
+    .left-header {
+        width: 100%;
+        padding: 24px 10%;
+    }
+
+    .header-box {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .toggle-btn {
+        display: block;
+    }
+
+    header .nav-box {
+        display: none;
+        width: 100%;
+        padding: 12px 10% 24px;
+        background-color: #cdd6da;
+    }
+
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .nav-list li {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-list li a {
+        display: block;
+        width: 100%;
+
+        padding: 12px;
+        border-radius: 2px;
+    }
+
+
+    /* HERO */
+
+    .hero-section {
+        flex-direction: column;
+        min-height: calc(100vh - 88px);
+    }
+
+    .hero-img {
+        width: 100%;
+        height: 100%;
+       
+    }
+    .hero-info {
+        margin-left: 0;
+        height: 80%;
+        padding: 48px 10% ;
+        width: 100%;
+        text-align: left !important;
+    }
+
+    .hero-info h1 {
+        font-size: 32px;
+        line-height: 1.2;
+        color: var(--b1);
+    }
+
+    .hero-info p {
+        color: var(--g2);
+        font-size: 16px;
+        line-height: 1.5;
+
+        margin: 12px 0 24px;
+    }
+    .hero-info a {
+        margin-right: auto;
+    }
+    .hero-info button{
+        font-size: 16px;
+    }
+
+    /* PROFIT */
+
+    .profit-card {
+        width: 100%;
+    }
+
+    .profit-card h3 {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .profit-card p {
+        font-size: 16px;
+    }
+
+    /* TESTIMONIAL */
+
+    .testimonial {
+        font-size: 16px;
+    }
+
+    /* CTA */
+
+    .cta-box{
+        width: 100%;
+
+    }
+
+    .cta-box h1{
+        font-size: 24px;
+    }
+    .cta-box p{
+        width: 100%;
+    }
+    .input-box{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .cta-box .input-box .cta-input{
+        padding: 8px 12px ;
+        width: 100% ;
+        border-radius: 2px;
+    }
+    .cta-box .input-box .cta-btn{
+        width: 100% ;
+        padding: 8px 12px ;
+        margin-top: 8px;
+        border-radius: 2px;
+        font-size: 16px;
+    }
+
+
+
+}
+
+.visible {
+    display: block !important;
+}
