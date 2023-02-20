@@ -24,7 +24,7 @@
     --white-1: #e2e7ed;
     --white-2: #c4c7cc;
     --white-3: #95989d;
-
+    font-family: 'amazon-ember';
 }
 
 * {
@@ -38,7 +38,7 @@ body {
     height: 100%;
 }
 
-.main-content{
+ .main-content{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -64,30 +64,25 @@ body {
 }
 .left-menu-tab button{
     margin-top: 12px;
-}
+} 
 
 
-/* Buttons */
 
 .dft-btn {
     width: 100%;
     padding: 8px 12px;
 
-    /* Fuente */
     text-transform: capitalize;
     font-family: 'amazon-ember';
     font-weight: bold;
     letter-spacing: 1px;
     color: var(--amz-blck-1);
 
-    /* Bordes */
     border: none;
     border-radius: 4px;
 
-    /* Fondo */
     background-color: #e2e2e9;
 
-    /* Otros */
     cursor: pointer;
 }
 .darker {
@@ -101,7 +96,6 @@ body {
 }
 
 
-/* Backgrounds */
 
 .pattern-1{
     background-color: var(--white-3);
@@ -109,7 +103,6 @@ body {
 }
 
 
-/* Click */
 .clickable {
     transition: all 0.2 ease;
     user-select: none;
@@ -130,26 +123,8 @@ nav {
     align-items: center;
 }
 
-.link-tag {
-    /* Tamaño */
-    padding: 4px 12px;
 
-    /* Fondo */
-    background-color: var(--white-2);
 
-    /* Fuente */
-    font-size: 12px;
-    text-transform: capitalize;
-
-    /* Bordes */
-    border-radius: 2px;
-    text-decoration: none;
-
-    color: var(--black-1);
-    margin: 0 4px;
-}
-
-/* TEST */
 
 .test-container{
     display: flex;
@@ -183,4 +158,23 @@ nav {
 }
 li p{
     color: var(--amz-blue-2);
+ }  
+
+ .top-menu .link-tag{
+    display: flex;
+    align-items: center;
+
+    min-width: 120px;
+    height: 80%;
+    padding: 4px;
+    margin-right: 2px;
+
+    border:1px solid var(--black-3);
+    border-width: 0px 0px 1px 0px;
+
+    text-decoration: none;
+    font-size: 14px;
+    color: var(--white-3);
+
+    background-color: var(--black-2);
 }

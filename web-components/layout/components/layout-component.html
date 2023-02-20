@@ -1,190 +1,266 @@
+<link rel="stylesheet" href="/web-components-repository/web-components/layout/components/layout-style.css">
+
+
 <style>
-            
-            *{
-                /* Amazon pallete */
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
 
-                --amz-blck-1:#16191F;
-                --amz-blck-2:#232F3E;
-                --amz-gray-1 :#545B64;
-                --amz-gray-2 :#687078;
+    .flex-row {
+        display: flex;
+        flex-direction: row;
+    }
 
-                --amz-blue-1 :#306DA3;
-                --amz-blue-2 :#0073BB;
-                --amz-turq-1 :#44B9C6;
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+    }
 
-                --amz-orang-1:#EC7211;
+    .space-around {
+        justify-content: space-around;
+    }
 
-                /* Tonos grises */
-                --black-1:#252525;
-                --black-2:#323437;
-                --black-3:#474b4e;
-                
-                /* Tonos claros */
-                --white-1:#e2e7ed;
-                --white-2:#c4c7cc;
-                --white-3:#95989d;
+    .space-evenly {
+        justify-content: space-evenly;
+    }
 
-                /* Tonos de color */
-                --main-1:#52c9e0; /* hsl(190, 70%, 60%) */
-                --main-2:#82d3e3; /* hsl(190, 65%, 70%) */
-                --main-3:#addfeb; /* hsl(190, 60%, 80%) */
-                box-sizing: border-box;
-                
-                
-            }
-            
-            .flex-row {
-                display: flex;
-                flex-direction: row;
-            }
-            .flex-column {
-                display: flex;
-                flex-direction: column;
-            }
-            .space-around {
-                justify-content: space-around;
-            }
-            .space-evenly {
-                justify-content: space-evenly;
-            }
-            .space-between {
-                justify-content: space-between;
-            }
-            .justify-center{
-                justify-content: center
-            }
-            .align-center{
-                align-items: center;
-            }
-            .grid {
-                display: grid;
-            }
-            .hidden {
-                display: none;
-            }
+    .space-between {
+        justify-content: space-between;
+    }
 
-            /* ⚠️ Estilos básicos ⚠️ */
+    .justify-center {
+        justify-content: center
+    }
 
-            .super-container{
-                height:100%;
-                
-                font-family: 'amazon-ember';
-            }
-            
+    .align-center {
+        align-items: center;
+    }
 
-            .top-menu{
-                height: 10%;
-                padding: 12px;
+    .grid {
+        display: grid;
+    }
 
-                background-color: var(--amz-blck-1);
-            }
-         
-            
-            .lt-container{
-                max-width: 90%;
-                padding: 12px 18px;
+    .hidden {
+        display: none;
+    }
 
-                border-radius: 6px;
-                
-                color: var(--amz-turq-1);
-                
-                overflow-y: auto;
+    /* ⚠️ DISTRIBUTION ⚠️ */
 
-                background-color: var(--amz-blck-2);
-            }
-            .lt-container::-webkit-scrollbar {
-                -webkit-appearance: none;
-            }
+    .super-container {
+        height: 100vh;
+    }
 
-            .lt-container::-webkit-scrollbar:horizontal {
-                height: 14px;
-            }
+    .header-container {
+        height: 5vh;
+    }
 
-            .lt-container::-webkit-scrollbar-thumb {
-                background-color: #82d3e365;
-                border: 5px solid var(--black-1);
-                border-radius: 8px;
-            }
+    .top-container {
+        height: 5vh;
+    }
 
-            .lt-container::-webkit-scrollbar-track {
-                border-radius:0 0 4px 4px;  
-                background-color: transparent;
-            }
-    
-            .mid-container{
-                height: 86%;
-            }
+    .left-header {
+        width: 25%;
+        height: 100%;
+    }
 
-            .left-menu{
-                width: 25%;
-                padding: 12px;
-                
-                color: var(--white-1);
-                
-                background-color: var(--amz-blck-2);
-            }
-       
-            .main-content{
-                width: 76%;
-                background-color: var(--white-1);
-            }
-            .pattern-1{
-                background-color: var(--white-3);
-                background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
-            }
+    .top-menu {
+        width: 75%;
+        height: 100%;
+    }
 
-    
-            .footer{
-                /* Fondo */
-                background-color: var(--amz-blck-1);
-                color: var(--amz-turq-1);
+    .main-container {
+        height: 90vh;
+    }
 
-                /* Tamaño */
-                height: 4%;
-                padding: 12px;
-            }
-    
+    .right-container {
+        width: 75%;
+        height: 100%;
+    }
 
-           
-        </style>
+    .left-menu {
+        width: 25%;
+        height: 100%;
+    }
 
-        <section class="super-container">
+    .display-container {
+        height: 95vh;
+    }
 
-            <div class="top-menu flex-row justify-center">
+    .footer {
+        height: 5vh;
+    }
 
-                <div class="lt-container flex-row space-evenly align-center">
+    /* style */
 
-                    <slot  name="top-menu">
+    * {
+        /* Tonos grises */
+        --black-0: #191919;
+        --black-1: #262626;
+        --black-2: #3e3e3e;
+        --black-3: #6B6B6B;
 
-                       
-                    </slot>
+        /* Tonos claros */
+        --white-1: #f5f5f5;
+        --white-2: #e2e7ed;
+        --white-3: #c4c7cc;
+        --white-4: #95989d;
+    }
 
-                </div>
+    /* ⚠️ Estilos básicos ⚠️ */
+    .header-container,
+    .left-header,
+    .footer {
+        padding: 8px;
+    }
+
+    .bcb1-cw4 {
+        background-color: var(--black-1);
+        color: var(--white-4);
+    }
+
+    .bcb0-cw4 {
+        background-color: var(--black-0);
+        color: var(--white-4);
+    }
+
+    .top-menu {
+        overflow: hidden;
+        overflow-x: auto;
+        padding: 0;
+    }
+
+    .top-menu .link-tag {
+        display: flex;
+        align-items: center;
+
+        min-width: 120px;
+        height: 80%;
+        padding: 4px;
+        margin-right: 2px;
+
+        border: 1px solid var(--black-3);
+        border-width: 0px 0px 1px 0px;
+
+        text-decoration: none;
+        color: var(--white-3);
+
+        background-color: var(--black-2);
+    }
+
+    .lt-container {
+        width: 100%;
+        background-color: #6B6B6B;
+    }
+
+    .left-header{
+        border: 1px solid var(--black-3);
+        border-width: 0px 0px 1px 0px;
+    }
+
+    .left-menu {
+        padding: 8px 0;
+    }
+
+    .main-content {
+        background-color: var(--white-1);
+    }
+
+    .pattern-1 {
+        background-color: var(--white-3);
+        background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    }
+
+    .footer {
+        padding: 8px;
+        background-color: var(--black-0);
+    }
+
+    /* scroll style */
+
+    .scroll::-webkit-scrollbar {
+        -webkit-appearance: none;
+        cursor: pointer;
+    }
+    .scroll::-webkit-scrollbar:vertical {
+        width: 10px;
+    }
+    .scroll::-webkit-scrollbar-button:increment,
+    .scroll::-webkit-scrollbar-button {
+        display: none;
+    }
+    .scroll::-webkit-scrollbar:horizontal {
+        height: 10px;
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background-color:var(--black-3);
+        border-radius: 0px;
+        border: 3px solid var(--black-1);
+        border-width: 3px 0;
+     
+    }
+
+    .scroll::-webkit-scrollbar-track {
+        border-radius: 10px;
+    }
+</style>
+
+
+
+<div class="super-container flex-column">
+
+    <header class="header-container flex-row align-center justify-center bcb0-cw4">
+
+        <slot name="header">HEADER</slot>
+
+    </header>
+
+    <section class="top-container flex-row">
+
+        <div class="left-header flex-row align-center bcb1-cw4"><slot name="left-header">LEFT</slot></div>
+
+        <div class="top-menu flex-row align-center bcb1-cw4 scroll">
+
+            <slot name="top-menu">
+
+
+            </slot>
+
+        </div>
+
+    </section>
+
+    <section class="main-container flex-row">
+
+        <div class="left-menu flex-column bcb1-cw4">
+
+            <div class="left-content">
+
+                <slot name="left-content">LEFT-CONTENT</slot>
 
             </div>
 
-            <div class="mid-container flex-row ">
+        </div>
 
-                <div class="left-menu flex-column">
+        <div class="right-container flex-column">
 
-                    <slot name="left-menu">
+            <div class="display-container flex-column justify-center align-center pattern-1">
 
-
-                    </slot>
-
-                </div>
-                <div class="main-content flex-column align-center pattern-1">
-
-                    <slot name="main-content"></slot>
-
-                </div>
-
-            </div>
-            <div class="footer flex-row space-around align-center">
-
-                <slot name="footer">footer</slot>
+                <slot name="main-content">MAIN</slot>
 
             </div>
 
-        </section>        
-        
+            <div class="footer flex-row align-center bcb1-cw4">
+
+                <slot name="footer">FOOTER</slot>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+</div>

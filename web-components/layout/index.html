@@ -18,42 +18,48 @@
 
 <style>
 
-    
+
 </style>
 
 <body>
 
     <app-layout>
-        <!-- Top menú -->
-        
+
         <nav class="top-menu" slot="top-menu">
 
-            <a href="#" class="link-tag clickable">item#7</a>
-            <a href="#" class="link-tag clickable">item#8</a>
-            <a href="#" class="link-tag clickable">item#9</a>
-            <a href="#" class="link-tag clickable">item#10</a>
+            <a href="" class="link-tag">LINK#1</a>
+            <a href="" class="link-tag">LINK#2</a>
+            <a href="" class="link-tag">LINK#3</a>
+            <a href="" class="link-tag">LINK#4</a>
+            <a href="" class="link-tag">LINK#5</a>
+            <a href="" class="link-tag">LINK#6</a>
+            <a href="" class="link-tag">LINK#7</a>
+            <a href="" class="link-tag">LINK#8</a>
+            <a href="" class="link-tag">LINK#9</a>
+            <a href="" class="link-tag">LINK#10</a>
 
         </nav>
-        <!-- Left-menu -->
+        <h3 slot="left-header">Files</h3>
+
+        <accordion-tab slot="left-content">
+
+            <p slot="title">One</p>
+
+        </accordion-tap>
 
         <div class="left-menu-tab" slot="left-menu">
             <h4>Title</h4>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, aspernatur!</p>
             <button class="dft-btn brighter"> AUUS</button>
-        </div> 
+        </div>
         <div class="left-menu-tab" slot="left-menu">
             <h4>Title</h4>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, aspernatur!</p>
             <button class="dft-btn brighter"> AUUS</button>
-        </div> 
-        <div class="left-menu-tab" slot="left-menu">
-            <h4>Title</h4>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, aspernatur!</p>
-            <button class="dft-btn brighter"> AUUS</button>
-        </div> 
+        </div>
 
-        <!-- Main-content -->
-        <div class="main-content pattern-1" slot="main-content">
+
+        <!-- <div class="main-content pattern-1" slot="main-content">
 
             <div class="test-container">
                 <h2>This is the future.</h2>
@@ -66,9 +72,8 @@
             </div>
           
 
-        </div>
+        </div> -->
 
-        <!-- Footer -->
         <footer slot="footer">
             <span>some links and stuff here</span>
         </footer>
