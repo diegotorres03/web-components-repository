@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>They Transfer :D</title>
+
+    <link rel="stylesheet" href="../style-tools.css">
+
+
+    <style>
+        :root{
+            --dark-1:#242424;
+            --main-tone:red;
+        }
+        input:focus, textarea:focus{
+            outline: none;
+        }
+
+        .transfer-container{
+            width: 300px;
+            padding: 24px;
+
+            border: 1px solid black;
+            background-color: var(--dark-1);
+            border-radius: 4px
+        }
+
+        .name-div{
+            background-color: ;
+        }
+            .name-div label{
+                display: block;
+                width: 30%;
+                height: 100%;
+                padding: 12px;
+                
+            }
+            .name-div input{
+                width: 100%;
+                padding: 12px;
+
+                border: none;
+            }
+        .message-div{
+            margin: 8px 0 0;
+            border: 1px solid #434343;
+        }
+            .message-div label{
+                width: 30%;
+                padding: 12px;
+            }
+            .message-div textarea{
+                width: 100%;
+                padding: 0 12px;
+                
+                resize: none;
+                border: none;
+            }
+
+        .upload-div{
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 0;
+            border: 1px solid #434343;
+            position: relative;
+        }
+            .upload-div h2{
+                font-size: 24px;
+                margin-bottom: 4px;
+            }
+            .upload-div label{
+                font-size: 14px;
+                display: block;
+                text-decoration: underline;
+                color: gray;
+                cursor: pointer;
+            }
+            .upload-div input{
+                position: absolute;
+            }
+
+        .transfer-btn{
+            padding: 12px;
+            margin-top: 8px;
+        }
+        
+
+
+    </style>
+</head>
+
+<body class="flex-col ai-center jc-center">
+
+        <div class="transfer-container flex-col">
+
+            <div class="name-div flex-row">
+
+                <label for="file-name">Name:</label>
+                <input id="file-name" type="text">
+
+            </div>
+            <div class="message-div flex-col">
+
+                <label for="message">Message</label>
+                <textarea placeholder="Type something nea..." name="message" id="message" rows="6" maxlength="120"></textarea>
+
+            </div>
+            <div class="upload-div">
+
+                <h2>Upload files.</h2>
+                <label for="file">or select a folder</label>
+                <input class="hidden" id="input-file" type="file">
+
+            </div>
+            <button id="transfer-btn" 
+            class="transfer-btn clickable">Transfer!</button>
+
+        </div>
+    
+</body>
+
+</html>
