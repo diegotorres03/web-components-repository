@@ -18,6 +18,7 @@
     <script src="./scripts/web-worker.component.js"></script>
     <script src="./scripts/service-worker.component.js"></script>
     <script src="./layout/components/layout.component.js"></script>
+    <script src="./tube-layout/tube-layout.component.js"></script>
 
     <!-- TO DO: FIX THE ACCORDION ISSUE ⚠️ -->
 
@@ -47,73 +48,54 @@
 
 <body>
 
-    <app-layout>
+    <tube-layout>
+        <source aria-selected="true" data-title="Pay!!!" data-author="Marco" src="tube-layout/assets/patd-enc.mp4" type="video/mp4"/>
+        <source data-title="Pay U!!!" data-author="Marco"  src="tube-layout/assets/patd-enc.mp4" type="video/mp4"/>
+        <source data-title="Pay ME!!!" data-author="Marco"  src="tube-layout/assets/patd-enc.mp4" type="video/mp4"/>
+        <source data-title="Pay us!!!" data-author="Marco"  src="tube-layout/assets/patd-enc.mp4" type="video/mp4"/>
+    </tube-layout>
 
-        <nav slot="top-menu">
-            <a class="link-tag clickable" href="#route1">route1</a>
-            <a class="link-tag clickable" href="#route2">route2</a>
-            <a class="link-tag clickable" href="#route3">route3</a>
-        </nav>
-
-        <app-accordion slot="left-menu">
-
-            <!-- <h2 slot="tab-title">Tab-title</h2> -->
-
-            <section class="accordion-tab">
-                <h6 style="display: none;">Title one</h6>
-                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
-                <button id="open-modal" class="dft-btn">Press here</button>
-            </section>
-
-            <section class="accordion-tab">
-                <h6 style="display: none;">otro</h6>
-                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
-                <button class="dft-btn">Press here</button>
-            </section>
-
-        </app-accordion>
-
-    </app-layout>
-
-    <app-modal>
-        <h1 slot="title">Yes, i'm similar to Amazon ;)</h1>
-        <div slot="main">
-            <h2 class="blue"> What is Amazon DynamoDB?</h2>
-            <p>Welcome to the <span class="blue">Amazon DynamoDB</span> Developer Guide. <br><br>
-            Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability.</p>
-        </div>
-        <footer slot="footer"><i>this is the last thing</i></footer>
-    </app-modal>
-
-    <script>
-        document.querySelector('#open-modal').addEventListener('click', ev => {
-            // alert('asd')
-            const modal = document.querySelector('app-modal')
-            console.log(modal)
-            modal.open()
-        })
-    </script> 
-
-
-    <!-- 
-    <floating-pannel class="">
-        <h1 slot="main" >main slot content</h1>
-        <div slot="up" class="up">
-
-            <button class="house-areas bttn" draggable="true">Frontyard</button>
-            <button class="house-areas bttn" draggable="true">backyard</button>
-            <button class="house-areas bttn" draggable="true">Diningroom</button>
-            <button class="house-areas bttn" draggable="true">Kitchen</button>
+    <!-- <tube-layout>
+        <section class="video-list flex-col" slot="playlist">
             
-        </div>
-        <div slot="down" class="down">
-                
-            <button class="house-areas bttn" draggable="true">Master bedroom</button>
-            <button class="house-areas bttn" draggable="true">Master bathroom</button>
-            <button class="house-areas bttn" draggable="true">Livingroom</button>
+            <div class="video-card flex-row">
+                <div class="video-description flex-col jc-center">
+                    <h3>Panic! At The Disco: This Is Gospel</h3>
+                    <p>Fueled by ramen</p>
 
-        </div>
-    </floating-pannel> -->
+                </div>
+            </div>
+
+            <div class="video-card flex-row">
+                <div class="video-description flex-col jc-center">
+                    <h3>Toy Lokazo - Akel Paztel</h3>
+                    <p>Fueled By Ramen</p>
+                </div>
+            </div>
+
+            <div class="video-card flex-row">
+                <div class="video-description flex-col jc-center">
+                    <h3>Imagine Dragons & JID - Enemy</h3>
+                    <p>League of LEgends</p>
+                </div>
+            </div>
+
+            <div class="video-card flex-row">
+                <div class="video-description flex-col jc-center">
+                    <h3>Shakira & Karol G - TQG</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+
+            <div class="video-card flex-row">
+                <div class="video-description flex-col jc-center">
+                    <h3>Shakira & Karol G - TQG</h3>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+
+        </section> -->
+    </tube-layout>
 
 </body>
 

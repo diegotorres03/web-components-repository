@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css-tools.css">
+
+    <script src="./web-tools.js"></script>
+    <script src="./accordion/accordion.component.js"></script>
+    <script src="./floating-pannel/floating-pannel.js"></script>
+    <script src="./modal/components/modal.component.js"></script>
+    <script src="./router/route.component.js"></script>
+    <script src="./router/router.component.js"></script>
+    <script src="./scripts/web-worker.component.js"></script>
+    <script src="./scripts/service-worker.component.js"></script>
+    <script src="./layout/components/layout.component.js"></script>
+
+    <!-- TO DO: FIX THE ACCORDION ISSUE ⚠️ -->
+
+</head>
+
+<style>
+    app-modal h1{
+        font-size: 14px;
+        font-weight: lighter;
+    }
+    app-modal h2{
+        color: #306DA3;
+        font-weight: lighter;
+        margin-bottom: 12px;
+    }
+    .blue{
+        color: #306DA3;
+    }
+    app-modal p{
+        margin-bottom: 12px;
+    }
+    .accordion-tab{
+        background-color: red;
+        margin-bottom: 12px;
+    }
+</style>
+
+<body>
+
+    <app-layout>
+
+        <nav slot="top-menu">
+            <a class="link-tag clickable" href="#route1">route1</a>
+            <a class="link-tag clickable" href="#route2">route2</a>
+            <a class="link-tag clickable" href="#route3">route3</a>
+        </nav>
+
+        <app-accordion slot="left-menu">
+
+            <!-- <h2 slot="tab-title">Tab-title</h2> -->
+
+            <section class="accordion-tab">
+                <h6 style="display: none;">Title one</h6>
+                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
+                <button id="open-modal" class="dft-btn">Press here</button>
+            </section>
+
+            <section class="accordion-tab">
+                <h6 style="display: none;">otro</h6>
+                <p>dolor sit amet consectetur adipisicing elit. Voluptate accusantium officiis</p>
+                <button class="dft-btn">Press here</button>
+            </section>
+
+        </app-accordion>
+
+    </app-layout>
+
+    <app-modal>
+        <h1 slot="title">Yes, i'm similar to Amazon ;)</h1>
+        <div slot="main">
+            <h2 class="blue"> What is Amazon DynamoDB?</h2>
+            <p>Welcome to the <span class="blue">Amazon DynamoDB</span> Developer Guide. <br><br>
+            Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability.</p>
+        </div>
+        <footer slot="footer"><i>this is the last thing</i></footer>
+    </app-modal>
+
+    <script>
+        document.querySelector('#open-modal').addEventListener('click', ev => {
+            // alert('asd')
+            const modal = document.querySelector('app-modal')
+            console.log(modal)
+            modal.open()
+        })
+    </script> 
+
+
+    <!-- 
+    <floating-pannel class="">
+        <h1 slot="main" >main slot content</h1>
+        <div slot="up" class="up">
+
+            <button class="house-areas bttn" draggable="true">Frontyard</button>
+            <button class="house-areas bttn" draggable="true">backyard</button>
+            <button class="house-areas bttn" draggable="true">Diningroom</button>
+            <button class="house-areas bttn" draggable="true">Kitchen</button>
+            
+        </div>
+        <div slot="down" class="down">
+                
+            <button class="house-areas bttn" draggable="true">Master bedroom</button>
+            <button class="house-areas bttn" draggable="true">Master bathroom</button>
+            <button class="house-areas bttn" draggable="true">Livingroom</button>
+
+        </div>
+    </floating-pannel> -->
+
+</body>
+
+</html>
