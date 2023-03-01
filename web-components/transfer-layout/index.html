@@ -7,89 +7,11 @@
     <title>They Transfer :D</title>
 
     <link rel="stylesheet" href="../style-tools.css">
+    <link rel="stylesheet" href="style.css">
 
-
-    <style>
-        :root{
-            --dark-1:#242424;
-            --main-tone:red;
-        }
-        input:focus, textarea:focus{
-            outline: none;
-        }
-
-        .transfer-container{
-            width: 300px;
-            padding: 24px;
-
-            border: 1px solid black;
-            background-color: var(--dark-1);
-            border-radius: 4px
-        }
-
-        .name-div{
-            background-color: ;
-        }
-            .name-div label{
-                display: block;
-                width: 30%;
-                height: 100%;
-                padding: 12px;
-                
-            }
-            .name-div input{
-                width: 100%;
-                padding: 12px;
-
-                border: none;
-            }
-        .message-div{
-            margin: 8px 0 0;
-            border: 1px solid #434343;
-        }
-            .message-div label{
-                width: 30%;
-                padding: 12px;
-            }
-            .message-div textarea{
-                width: 100%;
-                padding: 0 12px;
-                
-                resize: none;
-                border: none;
-            }
-
-        .upload-div{
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0 0;
-            border: 1px solid #434343;
-            position: relative;
-        }
-            .upload-div h2{
-                font-size: 24px;
-                margin-bottom: 4px;
-            }
-            .upload-div label{
-                font-size: 14px;
-                display: block;
-                text-decoration: underline;
-                color: gray;
-                cursor: pointer;
-            }
-            .upload-div input{
-                position: absolute;
-            }
-
-        .transfer-btn{
-            padding: 12px;
-            margin-top: 8px;
-        }
-        
-
-
-    </style>
 </head>
+
+<!-- Mañana documento todo :D srry  -->
 
 <body class="flex-col ai-center jc-center">
 
@@ -97,7 +19,7 @@
 
             <div class="name-div flex-row">
 
-                <label for="file-name">Name:</label>
+                <label for="file-name">Name</label>
                 <input id="file-name" type="text">
 
             </div>
@@ -109,15 +31,52 @@
             </div>
             <div class="upload-div">
 
-                <h2>Upload files.</h2>
-                <label for="file">or select a folder</label>
-                <input class="hidden" id="input-file" type="file">
+                <h2>Drag files here</h2>
+                <label for="file-input">or select a folder</label>
+                <input class="input-file" id="file-input" type="file" multiple>
 
             </div>
+
+            <div id="file-list">
+        
+            </div>
+
             <button id="transfer-btn" 
             class="transfer-btn clickable">Transfer!</button>
 
         </div>
+
+    <script>
+
+        const fileInput = document.querySelector('#file-input');
+        const fileNamesDiv = document.querySelector('#file-list');
+
+        fileInput.addEventListener('change', () => {
+        // Limpiar los nombres de archivo existentes
+            if(fileNamesDiv.innerHTML === undefined){
+                fileNamesDiv.innerHTML = '';
+            }
+            else {
+                fileNamesDiv.innerHTML += '';
+            }
+        
+        // Obtener una lista de archivos seleccionados
+        const files = fileInput.files;
+
+        // Agregar un párrafo para cada archivo seleccionado
+        for (let i = 0; i < files.length; i++) {
+            const fileName = files[i].name;
+            const fileDiv = document.createElement('div');
+            fileDiv.classList.add('file-element')
+            const para = document.createElement('p');
+            para.textContent = fileName;
+            fileDiv.appendChild(para);
+            fileNamesDiv.appendChild(fileDiv);
+        }});
+
+
+
+    </script>
     
 </body>
 

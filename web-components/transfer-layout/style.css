@@ -1,0 +1,123 @@
+:root{
+    --dark-1:#242424;
+    --dark-2:#464646;
+    --main-tone:#ebe59c;
+    --text-tone1:#efeff5;
+    --text-tone2:#8a8a8f;
+}
+input:focus, textarea:focus{
+    outline: none;
+}
+
+.transfer-container{
+    width: 300px;
+    padding: 18px;
+
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: 4px;
+
+    background-color: var(--dark-1);
+    color: var(--text-tone1);
+}
+
+.transfer-container div{
+    border-radius: 2px;
+    background-color: var(--dark-2);
+}
+
+.transfer-container div:not(#file-list){
+    margin-bottom: 8px;
+}
+
+.name-div{
+   
+
+}
+    .name-div label{
+        display: block;
+        width: 30%;
+        height: 100%;
+        padding: 12px;   
+    }
+    .name-div input{
+        width: 100%;
+        padding: 13px 12px 11px 0;
+
+        border: none;
+        color: var(--text-tone2);
+        background-color: transparent;
+    }
+.message-div{
+
+}
+    .message-div label{
+        width: 30%;
+        padding: 12px 12px 8px;
+    }
+    .message-div textarea{
+        width: 100%;
+        padding: 0 12px;
+        
+        font-family: 'Source Sans Pro', sans-serif;
+        font-size: 14px;
+        
+        resize: none;
+        border: none;
+
+        background-color: transparent;
+    }
+
+.upload-div{
+    width: 100%;
+    padding: 12px;
+    position: relative;
+}
+    .upload-div h2{
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+    .upload-div label{
+        font-size: 14px;
+        display: block;
+        text-decoration: underline;
+        color: var(--main-tone);
+        cursor: pointer;
+    }
+    .upload-div label:hover{
+        filter: brightness(1.40);
+    }
+    .upload-div input{
+        display: none;
+        opacity: 0;
+        height: 0;
+        position: absolute;
+    }
+
+.transfer-btn{
+    padding: 12px;
+    border-radius: 2px;
+    background-color: var(--main-tone);
+}
+
+#file-list{
+    background-color: transparent;
+    border-radius: 2px;
+    overflow: hidden;
+}
+    .file-element{
+        padding: 12px ;
+        margin: 0;
+        overflow: hidden;
+    }
+    
+    .file-element:not(:last-of-type){
+        margin: 0 !important;
+        border-bottom: 1px solid var(--main-tone);
+        border-radius: 0 !important;
+    }
+    .file-element p{
+        font-weight: 100;
+        color: var(--text-tone2);
+        font-size: 14px;
+
+    }
