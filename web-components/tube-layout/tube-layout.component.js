@@ -26,6 +26,7 @@ class TubeLayout extends HTMLElement {
 
         </section>
         <section class="lateral-section">
+            <div id="metalo-aca"></div>
             <button onclick="test" ></button>
             <slot name="playlist"></slot>
 
@@ -35,8 +36,17 @@ class TubeLayout extends HTMLElement {
         const shadow = this.attachShadow({mode: 'open'})
         shadow.appendChild(inner)
 
-        const content = this
-        console.log(content)
+        setTimeout(()=> {
+            const content = [...this.querySelectorAll('source')]
+            console.log(content)
+            const container =this.shadowRoot.querySelector('#metalo-aca')
+                
+            content.forEach(item => {
+                container.appendChild(html`
+                    <h1>${item.dataset.title}</h1>
+                `)
+            })
+        }, 0)
         // const inner = await html.import('test.component.html')
 
         // replacing inline handler function with own component methods
