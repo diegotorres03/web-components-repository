@@ -1,4 +1,7 @@
 
+basePath = 'supre-awesome-library-of.reusable-shit.com'
+
+
 class AppAccordion extends HTMLElement {
 
     constructor() {
@@ -7,7 +10,8 @@ class AppAccordion extends HTMLElement {
 
     async _render() {
         console.log(window.location.href)
-        const inner = await html.import('../accordion/accordion.component.html')
+        const inner = await html.import(basePath + '../accordion/accordion.component.html')
+    
         const shadow = this.attachShadow({ mode: 'open' })
         this.shadowRoot.appendChild(inner)
 
