@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,36 +16,36 @@
 
 <body class="flex-col ai-center jc-center">
 
-        <div class="transfer-container flex-col">
+    <div class="transfer-container flex-col">
 
-            <div class="name-div flex-row">
+        <div class="name-div flex-row">
 
-                <label for="file-name">Name</label>
-                <input id="file-name" type="text">
-
-            </div>
-            <div class="message-div flex-col">
-
-                <label for="message">Message</label>
-                <textarea placeholder="Type something nea..." name="message" id="message" rows="6" maxlength="120"></textarea>
-
-            </div>
-            <div class="upload-div">
-
-                <h2>Drag files here</h2>
-                <label for="file-input">or select a folder</label>
-                <input class="input-file" id="file-input" type="file" multiple>
-
-            </div>
-
-            <div id="file-list">
-        
-            </div>
-
-            <button id="transfer-btn" 
-            class="transfer-btn clickable">Transfer!</button>
+            <label for="file-name">Name</label>
+            <input id="file-name" type="text">
 
         </div>
+        <div class="message-div flex-col">
+
+            <label for="message">Message</label>
+            <textarea placeholder="Type something nea..." name="message" id="message" rows="6"
+                maxlength="120"></textarea>
+
+        </div>
+        <div class="upload-div">
+
+            <h2>Drag files here</h2>
+            <label for="file-input">or select a folder</label>
+            <input class="input-file" id="file-input" type="file" multiple>
+
+        </div>
+
+        <div id="file-list">
+
+        </div>
+
+        <button id="transfer-btn" class="transfer-btn clickable">Transfer!</button>
+
+    </div>
 
     <script>
 
@@ -52,32 +53,33 @@
         const fileNamesDiv = document.querySelector('#file-list');
 
         fileInput.addEventListener('change', () => {
-        // Limpiar los nombres de archivo existentes
-            if(fileNamesDiv.innerHTML === undefined){
+            // Limpiar los nombres de archivo existentes
+            if (fileNamesDiv.innerHTML === undefined) {
                 fileNamesDiv.innerHTML = '';
             }
             else {
                 fileNamesDiv.innerHTML += '';
             }
-        
-        // Obtener una lista de archivos seleccionados
-        const files = fileInput.files;
 
-        // Agregar un párrafo para cada archivo seleccionado
-        for (let i = 0; i < files.length; i++) {
-            const fileName = files[i].name;
-            const fileDiv = document.createElement('div');
-            fileDiv.classList.add('file-element')
-            const para = document.createElement('p');
-            para.textContent = fileName;
-            fileDiv.appendChild(para);
-            fileNamesDiv.appendChild(fileDiv);
-        }});
+            // Obtener una lista de archivos seleccionados
+            const files = fileInput.files;
+
+            // Agregar un párrafo para cada archivo seleccionado
+            for (let i = 0; i < files.length; i++) {
+                const fileName = files[i].name;
+                const fileDiv = document.createElement('div');
+                fileDiv.classList.add('file-element')
+                const para = document.createElement('p');
+                para.textContent = fileName;
+                fileDiv.appendChild(para);
+                fileNamesDiv.appendChild(fileDiv);
+            }
+        });
 
 
 
     </script>
-    
+
 </body>
 
 </html>
