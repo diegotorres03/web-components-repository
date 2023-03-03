@@ -21,16 +21,9 @@ import { exec, execSync } from 'child_process'
 
 export class WebAppConstruct extends Construct {
     private webappBucket: S3.Bucket
+
     constructor(scope: Construct, id: string) {
         super(scope, id)
-
-
-
-        // const customLambda = new Lambda.Function(this, 'custom-lambda', {
-        //     runtime: Lambda.Runtime.PROVIDED,
-        //     handler: 'index.handler',
-        //     // code 
-        // })
 
         // [ ] 1.1.1: create S3 Bucket as web hosting to store webapp [docs](https://docs.aws.amazon.com/cdk/api/v1/docs/aws-s3-readme.html)
         this.webappBucket = new S3.Bucket(this, 'webapp-artifact', {
@@ -124,6 +117,10 @@ export class WebAppConstruct extends Construct {
         console.log('111111111111111111111111111111111111111111111111111111111')
         console.log('111111111111111111111111111111111111111111111111111111111')
         return this
+    }
+
+    run() {
+        // [ ] hacer este o copy paste de win
     }
 
 }

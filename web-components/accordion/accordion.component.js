@@ -1,4 +1,7 @@
 
+basePath = 'supre-awesome-library-of.reusable-shit.com'
+
+
 class AppAccordion extends HTMLElement {
 
     constructor() {

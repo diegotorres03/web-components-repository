@@ -6,6 +6,14 @@ class TubeLayout extends HTMLElement {
         super()
     }
 
+    get selectedVideoSrc() {
+        return this.shadowRoot.querySelector('#player').src
+    }
+    set selectedVideoSrc(src) {
+        log(src)
+        this.shadowRoot.querySelector('#player').src = src
+    }
+
     async _render() {
         const inner = html`
         
@@ -16,7 +24,7 @@ class TubeLayout extends HTMLElement {
         
         <section class="main-section">
 
-            <video controls poster="https://external-preview.redd.it/STwA0sOSKsOWQkaJjqizA60k-CkBqa_8VnKuzK5BpPg.jpg?auto=webp&v=enabled&s=cca9d3ea128e72071cc46fc96a00c0ad98690260">
+            <video id="player" controls poster="https://external-preview.redd.it/STwA0sOSKsOWQkaJjqizA60k-CkBqa_8VnKuzK5BpPg.jpg?auto=webp&v=enabled&s=cca9d3ea128e72071cc46fc96a00c0ad98690260">
                 <source src="assets/patd-enc.mp4" type="video/mp4"/>
             </video>
             <div class="video-description flex-col jc-center ">
@@ -42,24 +50,42 @@ class TubeLayout extends HTMLElement {
             const container =this.shadowRoot.querySelector('#metalo-aca')
                 
             content.forEach(item => {
-                container.appendChild(html`
-                    <h1>${item.dataset.title}</h1>
-                `)
+                const header = html`
+                    <!-- <h1 data-source="${item.getAttribute('src')}" onclick="selectSource" >${item.dataset.title}</h1> -->
+                    <!-- <video poster="assets/63f849e296743.jpeg">
+                        <source src="${item.getAttribute('src')}" type="video/mp4"/>
+                    </video> -->
+                    <div data-source="${item.getAttribute('src')}" onclick="selectSource" class="video-description flex-col jc-center">
+                        <h3>Shakira & Karol G - TQG</h3>
+                        <small>Lorem ipsum dolor sit amet.</small>
+                    </div>
+                    `
+                // header.addEventListener('click', ev =>this.test(ev))
+                container.appendChild(header)
             })
+            mapComponentEvents(this, eventNames)
         }, 0)
         // const inner = await html.import('test.component.html')
 
         // replacing inline handler function with own component methods
-        mapComponentEvents(this, eventNames)
+        // mapComponentEvents(this, eventNames)
 
         // get variable names
         updateVars(this)
 
     }
 
-    // test() {
-    //     alert('soy yo')
-    // }
+    selectSource(ev) {
+        log(ev.target.parentElement.dataset.source)
+        const src = ev.target.parentElement.dataset.source
+        
+        this.selectedVideoSrc = src
+        this.selectedFormat = this.getFormat(src)
+    }
+
+    getFormat(src) {
+        if(src.includes('.mp4')) return 'video/mp4'
+    }
 
     connectedCallback() { this._render() }
 
