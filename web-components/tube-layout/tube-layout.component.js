@@ -34,8 +34,8 @@ class TubeLayout extends HTMLElement {
 
         </section>
         <section class="lateral-section">
-            <div id="metalo-aca"></div>
-            <button onclick="test" ></button>
+        
+            <div id="video-list"></div>
             <slot name="playlist"></slot>
 
         </section>
@@ -47,17 +47,17 @@ class TubeLayout extends HTMLElement {
         setTimeout(()=> {
             const content = [...this.querySelectorAll('source')]
             console.log(content)
-            const container =this.shadowRoot.querySelector('#metalo-aca')
+            const container =this.shadowRoot.querySelector('#video-list')
                 
             content.forEach(item => {
                 const header = html`
-                    <!-- <h1 data-source="${item.getAttribute('src')}" onclick="selectSource" >${item.dataset.title}</h1> -->
-                    <!-- <video poster="assets/63f849e296743.jpeg">
-                        <source src="${item.getAttribute('src')}" type="video/mp4"/>
-                    </video> -->
-                    <div data-source="${item.getAttribute('src')}" onclick="selectSource" class="video-description flex-col jc-center">
-                        <h3>Shakira & Karol G - TQG</h3>
-                        <small>Lorem ipsum dolor sit amet.</small>
+                    <!--<h1 data-source="${item.getAttribute('src')}" onclick="selectSource" >${item.dataset.title}</h1> -->
+                    <!--<video poster="assets/63f849e296743.jpeg">
+                            <source src="${item.getAttribute('src')}" type="video/mp4"/>
+                        </video>-->
+                    <div class="video-card" data-source="${item.getAttribute('src')}" onclick="selectSource" class="video-description flex-col jc-center">
+                        <h3>Author - Videoname</h3>
+                        <small>Video description</small>
                     </div>
                     `
                 // header.addEventListener('click', ev =>this.test(ev))
