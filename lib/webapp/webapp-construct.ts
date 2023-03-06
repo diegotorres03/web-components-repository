@@ -119,8 +119,17 @@ export class WebAppConstruct extends Construct {
         return this
     }
 
-    run() {
+    async run(path: string, commands: string | string[]) {
+        const cmds = Array.isArray(commands) ? commands : [commands]
         // [ ] hacer este o copy paste de win
+        for (let cmd of cmds) {
+            const res = execSync(cmd, {
+                cwd: path,
+                stdio: [0, 1, 2],
+            })
+            console.log(res)
+        }
+        return this
     }
 
 }
