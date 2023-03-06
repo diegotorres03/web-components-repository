@@ -1,13 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
 
+*{
+    --dark-1:#1a1a1a;
+    --dark-2:#292929;
+    --dark-3:#373737;
+    --main-tone:#ebe59c;
+    --text-tone1:#efeff5;
+    --text-tone2:#8a8a8f;
+}
+
 .super-container{
     height: 100vh;
     padding:24px;
 
     gap: 12px;
 
-    color: ghostwhite;
-    background-color: #181818;
+    color: var(--text-tone1);
+    background-color: var(--dark-1);
 
     font-family: 'Source Sans Pro', sans-serif;
 }
@@ -21,12 +30,13 @@
     border-radius: 8px;
     overflow: hidden;
 
-    background-color: #232323;
+    background-color: var(--dark-2);
 }
 .main-section .video-description{
     width: 100%;
     height: auto;
     padding: 12px 0;
+    color: var(--text-tone1);
 }
 
 .video-description h2{
@@ -45,27 +55,26 @@
     width: 30vw;
     padding: 8px;
     border-radius: 4px;
-    background-color: #232323;
+    background-color: var(--dark-2);
 }
-.lateral-section .video-list{
+.lateral-section #video-list{
+    display: flex;
+    flex-direction: column;
     max-height: 100%;
     gap: 8px;
-    overflow: auto;
-    
+    overflow-y:scroll;
 }
-.video-list .video-card{
-    padding: 4px;
+#video-list .video-card{
+    padding: 12px;
     margin-right: 8px;
-
-    gap: 8px;
 
     border-radius: 4px;
     
-    background-color: #f8f8ff12;
+    background-color: #413e3e;
 }
 .video-card:hover{
     filter: brightness(1.25) contrast(80%);
-    background-color: #2c2c2c;
+    background-color: gray;
     cursor: pointer;
 }
 .video-card video{
@@ -74,34 +83,30 @@
 }
 .video-card h3{
     font-size: 18px;
-    margin-bottom: 8px;
 }
-.video-card p{
+.video-card small{
     font-size: 14px;
-}
-.video-card .video-description{
+    color: var(--text-tone2);
 }
 
-/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
-
-.video-list::-webkit-scrollbar {
+#video-list::-webkit-scrollbar {
     -webkit-appearance: none;
 }
 
-.video-list::-webkit-scrollbar:vertical {
+#video-list::-webkit-scrollbar:vertical {
     width:8px;
 }
 
-.video-list::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
+#video-list::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
     display: none;
 } 
 
-.video-list::-webkit-scrollbar-thumb {
-    background-color: #f8f8ff12;
+#video-list::-webkit-scrollbar-thumb {
+    background-color: var(--main-tone);
     border-radius: 3px;
     cursor: pointer;
 }
 
-.video-list::-webkit-scrollbar-track {
+#video-list::-webkit-scrollbar-track {
     border-radius: 10px;  
 }
