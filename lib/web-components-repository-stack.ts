@@ -9,7 +9,7 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
 
     const webapp = new WebAppConstruct(this, 'wc-repo-webapp')
     webapp
-      .run() // build comand
+      // .run() // build comand
       .addAssets('./web-components')
       
 
