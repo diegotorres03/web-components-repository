@@ -24,17 +24,23 @@ class TubeLayout extends HTMLElement {
         
         <section class="main-section">
 
-            <video id="player" controls poster="https://external-preview.redd.it/STwA0sOSKsOWQkaJjqizA60k-CkBqa_8VnKuzK5BpPg.jpg?auto=webp&v=enabled&s=cca9d3ea128e72071cc46fc96a00c0ad98690260">
+            <video id="player" controls>
+
                 <source src="assets/patd-enc.mp4" type="video/mp4"/>
+
             </video>
             <div class="video-description flex-col jc-center ">
-                <h2>Emperor's New Clothes</h2>
+
+                <h2>Emperor's Nedasdw Clothes</h2>
                 <p>Panic! At The Disco</p>
+
             </div>
 
         </section>
         <section class="lateral-section">
-        
+            <div>
+                <input type="text" placeholder="search">
+            </div>
             <div id="video-list"></div>
             <slot name="playlist"></slot>
 
@@ -50,14 +56,24 @@ class TubeLayout extends HTMLElement {
             const container =this.shadowRoot.querySelector('#video-list')
                 
             content.forEach(item => {
+                const src = item.getAttribute('src')
                 const header = html`
-                    <!--<h1 data-source="${item.getAttribute('src')}" onclick="selectSource" >${item.dataset.title}</h1> -->
-                    <!--<video poster="assets/63f849e296743.jpeg">
-                            <source src="${item.getAttribute('src')}" type="video/mp4"/>
-                        </video>-->
-                    <div class="video-card" data-source="${item.getAttribute('src')}" onclick="selectSource" class="video-description flex-col jc-center">
-                        <h3>Author - Videoname</h3>
-                        <small>Video description</small>
+                
+                    <div class="video-card flex-row" data-source="${src}" onclick="selectSource" class="video-description flex-col jc-center">
+                        
+                        <div class="video-poster" data-source="${src}">
+                            <img src="./tube-layout/assets/poster.jpg" alt="">
+                        </div>
+                        <div class="video-description flex-col jc-between" data-source="${src}">
+
+                            <h3>Video-name</h3>
+                            <small>Author</small>
+                            <span id="hash">#1424141</span>
+                            <span class="video-tag">video-tag</span>
+                            <a href="#">Learn more..</a>
+
+                        </div>
+
                     </div>
                     `
                 // header.addEventListener('click', ev =>this.test(ev))
@@ -76,7 +92,7 @@ class TubeLayout extends HTMLElement {
     }
 
     selectSource(ev) {
-        log(ev.target.parentElement.dataset.source)
+        log(ev.target.parentElement)
         const src = ev.target.parentElement.dataset.source
         
         this.selectedVideoSrc = src

@@ -57,17 +57,21 @@
     border-radius: 4px;
     background-color: var(--dark-2);
 }
+
 .lateral-section #video-list{
     display: flex;
     flex-direction: column;
+
     max-height: 100%;
+    
     gap: 8px;
     overflow-y:scroll;
 }
+
 #video-list .video-card{
+    gap: 8px;
     padding: 12px;
     margin-right: 8px;
-
     border-radius: 4px;
     
     background-color: #413e3e;
@@ -77,16 +81,44 @@
     background-color: gray;
     cursor: pointer;
 }
-.video-card video{
+.video-card .video-poster{
     width: 40%;
     border-radius: 4px;
+    overflow: hidden;
+}
+.video-poster img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.video-description{
+    width: 60%;
 }
 .video-card h3{
     font-size: 18px;
+    line-height: 18px;
 }
 .video-card small{
     font-size: 14px;
     color: var(--text-tone2);
+}
+.video-card span{
+    font-size: 14px;
+    color: var(--text-tone2);
+}
+.video-card .video-tag{
+    width: fit-content;
+    padding: 0px 4px 1px;
+    border-radius: 2px;
+
+    font-size: 14px;
+    color: var(--dark-1);
+    background-color: var(--main-tone);
+}
+.video-card a{
+    font-size: 14px;
+    color: ghostwhite;
+    text-decoration: underline;
 }
 
 #video-list::-webkit-scrollbar {
