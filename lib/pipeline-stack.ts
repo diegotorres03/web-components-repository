@@ -32,9 +32,9 @@ export class WebComponentsPipelineStack extends Stack {
                 commands: [
                     'ls',
                     'pwd',
+                    'npm ci',
                     'cdk syth',
                     // 'git status',
-                    // '',
                     // '',
                 ],
                 primaryOutputDirectory: 'cdk.out',
