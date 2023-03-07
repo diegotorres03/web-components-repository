@@ -51,13 +51,13 @@ class TubeLayout extends HTMLElement {
                 
             content.forEach(item => {
                 const header = html`
-                    <!--<h1 data-source="${item.getAttribute('src')}" onclick="selectSource" >${item.dataset.title}</h1> -->
-                    <!--<video poster="assets/63f849e296743.jpeg">
-                            <source src="${item.getAttribute('src')}" type="video/mp4"/>
-                        </video>-->
                     <div class="video-card" data-source="${item.getAttribute('src')}" onclick="selectSource" class="video-description flex-col jc-center">
-                        <h3>Author - Videoname</h3>
-                        <small>Video description</small>
+
+                    </div>
+                        <h3>Videoname</h3>
+                        <small>Author</small>
+                        <span id="hash">#1231231</span>
+                        <span class="tag">Office</span>
                     </div>
                     `
                 // header.addEventListener('click', ev =>this.test(ev))
