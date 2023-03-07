@@ -30,9 +30,10 @@ export class WebComponentsPipelineStack extends Stack {
             synth: new ShellStep('Synth', {
                 input: CodePipelineSource.codeCommit(codeRepo, 'master'),
                 commands: [
+                    'npm ci',
+                    'npm i -g aws-cdk',
                     'ls',
                     'pwd',
-                    'npm ci',
                     'cdk syth',
                     // 'git status',
                     // '',
