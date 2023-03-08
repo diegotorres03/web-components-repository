@@ -15,5 +15,4 @@ const env = {
 new WebComponentsPipelineStack(app, 'webComponentsRepoPilepine', { env })
 
 
-new WebComponentsRepositoryStack(app, 'wcdemo', { env })
-// aws cloudfront create-invalidation --distribution-id ID
+new WebComponentsRepositoryStack(app, 'wc-stage', { env })

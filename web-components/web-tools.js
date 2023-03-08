@@ -19,7 +19,8 @@ const eventNames = [
 const toArray = Array.from
 const { log, error, warn } = console
 
-const baseUrl = 'https://d2frjh5xr2nc8a.cloudfront.net/'
+// const baseUrl = 'https://d2frjh5xr2nc8a.cloudfront.net/'
+const baseUrl = 'https://d1s7mo6ry5mnzt.cloudfront.net'
 // const baseUrl = './'
 
 // document.createElement('button').
@@ -87,12 +88,6 @@ function renderForLoops(component) {
 
 
 
-function require(packageName) {
-    return window.modules[packageName]
-}
-
-
-
 function wait(time = 1000) {
     return new Promise(resolve => setTimeout(resolve, time))
 }
@@ -108,3 +103,49 @@ const gql = function (templates, ...values) {
     return str.trim()
 }
 
+function getMyLocation() {
+    const err = new Error('test error')
+   
+    const traces = err.stack.toString().split(/\r\n|\n/)
+    const currentLocation = traces
+        .filter(trace => trace.charAt(0) === '@')
+        .map(trace => trace.slice(1).replace(/:\d+:\d+/gi, ''))
+        .pop()
+
+    currentUrl = new URL(currentLocation)
+
+    const sourceLocationRaw = traces[0]
+    const [sourceFunction, sourceLocation] = sourceLocationRaw.split('@').map(item => item.replace(/:\d+:\d+/gi, ''))
+    const sourceUrl = new URL(sourceLocation)
+
+    return { sourceUrl, currentUrl, sourceFunction }
+}
+
+const module = {
+    set exports(mod) {
+        console.log('setting module', mod)
+        const { currentUrl } = getMyLocation()
+        console.log('sourceUrl', currentUrl.toString())
+        const pkgName = currentUrl.toString()
+        window.modules[pkgName] = mod
+    }
+}
+
+
+/**
+ *
+ *
+ * @param {string} packageName
+ * @return {*} 
+ */
+function require(packageName) {
+
+    // if package name
+    if(!packageName.includes('./')) return window.modules[packageName]
+
+    // if url 
+    const { currentUrl } = getMyLocation()
+    const relativeUrl = new URL(packageName + '.js', currentUrl.toString())
+    console.log('require', relativeUrl.toString())
+    return window.modules[relativeUrl.toString()]
+}

@@ -37,7 +37,7 @@ class LiveTable extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import('./live-table/live-table.component.html')
+        const inner = await html.import(baseUrl + './live-table/live-table.component.html')
         const shadow = this.attachShadow({ mode: 'open' })
         shadow.appendChild(inner)
 
@@ -146,9 +146,9 @@ class LiveTable extends HTMLElement {
         const src = this.getAttribute('src')
         const [path, queryStr] = src.split('?')
         const filters = queryStr.split('&').filter(str => str !== `${key}=${value}`)
-        
+
         console.log(filters)
-        
+
         console.log('queryStr', queryStr)
         const newSrc = `${path}?${filters.join('&')}`
         console.log('newSrc', newSrc)

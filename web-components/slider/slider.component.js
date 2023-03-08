@@ -6,7 +6,7 @@ class AppSlider extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import('./slider.component.html')
+        const inner = await html.import(baseUrl +'./slider.component.html')
         const shadow = this.attachShadow({mode: 'open'})
         shadow.appendChild(inner)
 

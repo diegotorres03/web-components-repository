@@ -103,23 +103,17 @@ export class WebAppConstruct extends Construct {
 
         return this
     }
-    run(path: string, commands: string | string[]) {
-        const cmds = Array.isArray(commands) ? commands : [commands]
-        console.log('111111111111111111111111111111111111111111111111111111111')
-        console.log('111111111111111111111111111111111111111111111111111111111')
-        for (let cmd of cmds) {
-            const res = execSync(cmd, {
-                cwd: path,
-                stdio: [0, 1, 2]
-            })
-            console.log(res)
-        }
-        console.log('111111111111111111111111111111111111111111111111111111111')
-        console.log('111111111111111111111111111111111111111111111111111111111')
-        return this
-    }
 
-    async run(path: string, commands: string | string[]) {
+    /**
+     * run local commands when CDK is performing a synth or deploy.
+     * usefull to compile fronend libraries, or run lint commands
+     *
+     * @param {string} path
+     * @param {(string | string[])} commands
+     * @return {WebAppConstruct} 
+     * @memberof WebAppConstruct
+     */
+    run(path: string, commands: string | string[]) {
         const cmds = Array.isArray(commands) ? commands : [commands]
         // [ ] hacer este o copy paste de win
         for (let cmd of cmds) {
