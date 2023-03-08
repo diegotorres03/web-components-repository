@@ -129,9 +129,20 @@ const module = {
 }
 
 
+/**
+ *
+ *
+ * @param {string} packageName
+ * @return {*} 
+ */
 function require(packageName) {
-    const { currentUrl, sourceUrl } = getMyLocation()
-    // console.log('packageName', packageName)
+
+    // if package name
+    if(!packageName.includes('./')) return window.modules[packageName]
+
+    // if url 
+
+    const { currentUrl } = getMyLocation()
     const relativeUrl = new URL(packageName + '.js', currentUrl.toString())
     // console.log('relativeUrl', relativeUrl.toString())
     console.log('require', relativeUrl.toString())
