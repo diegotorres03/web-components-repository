@@ -1,6 +1,6 @@
+(function (module) {
 
-const someData =
-{
+const someData = {
     "nodes": [
         {
             "id": 1
@@ -60,3 +60,7 @@ class GraphViewerComponent extends HTMLElement {
 }
 
 window.customElements.define('graph-viewer', GraphViewerComponent)
+
+module.exports = GraphViewerComponent
+
+})(module)

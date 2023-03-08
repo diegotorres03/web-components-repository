@@ -1,5 +1,6 @@
+(function (module) {
 
-class FlipCard  extends HTMLElement {
+class FlipCard extends HTMLElement {
 
     constructor() {
         super()
@@ -75,7 +76,7 @@ class FlipCard  extends HTMLElement {
                     <slot name="front"> 
                         <span class="card-text">This is the front</span>
                     </slot>
-                    
+
                 </div>
                 <div class="back">
                     <slot name="back"> 
@@ -86,10 +87,9 @@ class FlipCard  extends HTMLElement {
             </div>
 
         </div>
-        
-        
+
         `
-        const shadow = this.attachShadow({mode: 'open'})
+        const shadow = this.attachShadow({ mode: 'open' })
         shadow.appendChild(inner)
 
         // const inner = await html.import('test.component.html')
@@ -112,4 +112,8 @@ class FlipCard  extends HTMLElement {
 
 }
 
-window.customElements.define('flip-card', FlipCard )
+window.customElements.define('flip-card', FlipCard)
+
+module.exports = FlipCard
+
+})(module)

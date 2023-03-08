@@ -1,12 +1,13 @@
+(function (module) {
 
-class Powerbar extends HTMLElement {
+    class Powerbar extends HTMLElement {
 
-    constructor() {
-        super()
-    }
+        constructor() {
+            super()
+        }
 
-    async _render() {
-        const inner = html`
+        async _render() {
+            const inner = html`
         <style>
             .bttn {
 
@@ -52,31 +53,35 @@ class Powerbar extends HTMLElement {
     
             </div>
         </floating-pannel>`
-        const shadow = this.attachShadow({mode: 'open'})
-        shadow.appendChild(inner)
+            const shadow = this.attachShadow({ mode: 'open' })
+            shadow.appendChild(inner)
 
-        // const inner = await html.import('test.component.html')
+            // const inner = await html.import('test.component.html')
 
-        // replacing inline handler function with own component methods
-        mapComponentEvents(this, eventNames)
+            // replacing inline handler function with own component methods
+            mapComponentEvents(this, eventNames)
 
-        // get variable names
-        updateVars(this)
+            // get variable names
+            updateVars(this)
+
+        }
+
+        test() {
+            alert('test')
+        }
+
+        connectedCallback() { this._render() }
+
+        disconnectedCallback() { }
+
+        attributeChangedCallback(name, oldValue, newValue) { }
+
+        adoptedCallback() { }
 
     }
 
-    test() {
-        alert('test')
-    }
+    window.customElements.define('power-bar', Powerbar)
 
-    connectedCallback() { this._render() }
+    module.exports = AppSyncMutation
 
-    disconnectedCallback() { }
-
-    attributeChangedCallback(name, oldValue, newValue) { }
-
-    adoptedCallback() { }
-
-}
-
-window.customElements.define('power-bar', Powerbar)
+})(module)

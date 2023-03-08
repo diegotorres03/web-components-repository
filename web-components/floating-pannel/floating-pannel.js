@@ -1,3 +1,4 @@
+(function (module) {
 
 class FloatingPannel extends HTMLElement {
 
@@ -100,3 +101,7 @@ class FloatingPannel extends HTMLElement {
 
 window.customElements.define('floating-pannel', FloatingPannel)
 
+
+module.exports = FloatingPannel
+
+})(module)
