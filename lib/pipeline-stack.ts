@@ -34,7 +34,7 @@ export class WebComponentsPipelineStack extends Stack {
                     'npm i -g aws-cdk',
                     'ls',
                     'pwd',
-                    // 'cdk syth',
+                    'cdk synth',
                     // 'git status',
                     // '',
                 ],
