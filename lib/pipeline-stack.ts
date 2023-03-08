@@ -34,11 +34,11 @@ export class WebComponentsPipelineStack extends Stack {
                     'npm i -g aws-cdk',
                     'ls',
                     'pwd',
-                    'cdk syth',
+                    // 'cdk syth',
                     // 'git status',
                     // '',
                 ],
-                primaryOutputDirectory: 'cdk.out',
+                // primaryOutputDirectory: 'cdk.out',
             })
         })
 
@@ -49,6 +49,7 @@ export class WebComponentsPipelineStack extends Stack {
                 'pwd',
                 'echo bulding',
                 'echo hehe',
+
                 // 'git status',
             ]
         })
