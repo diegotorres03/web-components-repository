@@ -38,9 +38,9 @@ class TubeLayout extends HTMLElement {
 
         </section>
         <section class="lateral-section">
-            <div>
+            <!-- <div>
                 <input type="text" placeholder="search">
-            </div>
+            </div> -->
             <div id="video-list"></div>
             <slot name="playlist"></slot>
 
