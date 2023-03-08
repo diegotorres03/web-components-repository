@@ -141,7 +141,6 @@ function require(packageName) {
     if(!packageName.includes('./')) return window.modules[packageName]
 
     // if url 
-
     const { currentUrl } = getMyLocation()
     const relativeUrl = new URL(packageName + '.js', currentUrl.toString())
     // console.log('relativeUrl', relativeUrl.toString())
