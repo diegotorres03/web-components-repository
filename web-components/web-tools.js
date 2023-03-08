@@ -105,20 +105,31 @@ const gql = function (templates, ...values) {
 
 function getMyLocation() {
     const err = new Error('test error')
-   
-    const traces = err.stack.toString().split(/\r\n|\n/)
-    const currentLocation = traces
-        .filter(trace => trace.charAt(0) === '@')
-        .map(trace => trace.slice(1).replace(/:\d+:\d+/gi, ''))
-        .pop()
 
-    currentUrl = new URL(currentLocation)
+    const urlRegex = /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/gi
+    const traces = err.stack.toString()
+        .split(/\r\n|\n/)
+        .filter(trace => urlRegex.test(trace))
+        .map(trace => trace.match(urlRegex).pop().replace(/:\d+:\d+/gi, '').replace(/[()]/gi, ''))
 
-    const sourceLocationRaw = traces[0]
-    const [sourceFunction, sourceLocation] = sourceLocationRaw.split('@').map(item => item.replace(/:\d+:\d+/gi, ''))
-    const sourceUrl = new URL(sourceLocation)
+    log(traces)
+    const currentLocation = traces.pop()
 
-    return { sourceUrl, currentUrl, sourceFunction }
+    log(currentLocation)
+    try {
+        currentUrl = new URL(currentLocation)
+    } catch (err) { log('pillao 1', err) }
+
+    // const sourceLocationRaw = traces[0]
+    const sourceLocation = traces.unshift()
+
+    let sourceUrl
+    try {
+        log(sourceLocation)
+        sourceUrl = new URL(sourceLocation)
+    } catch (err) { log('pillao 2', err) }
+
+    return { sourceUrl, currentUrl }
 }
 
 const module = {
@@ -127,6 +138,9 @@ const module = {
         const { currentUrl } = getMyLocation()
         console.log('sourceUrl', currentUrl.toString())
         const pkgName = currentUrl.toString()
+        if (!window.modules) {
+            window.modules = {}
+        }
         window.modules[pkgName] = mod
     }
 }
@@ -141,7 +155,7 @@ const module = {
 function require(packageName) {
 
     // if package name
-    if(!packageName.includes('./')) return window.modules[packageName]
+    if (!packageName.includes('./')) return window.modules[packageName]
 
     // if url 
     const { currentUrl } = getMyLocation()
