@@ -31,8 +31,10 @@ class TubeLayout extends HTMLElement {
             </video>
             <div class="video-description flex-col jc-center ">
 
+                <!-- SET HERE <DATA-TITLE> -->
                 <h2>Emperor's Nedasdw Clothes</h2>
-                <p>Panic! At The Disco</p>
+                <!-- SET HERE <DATA-AUTHOR> --> 
+                <small>Panic! At The Disco</small>
 
             </div>
 
@@ -65,8 +67,9 @@ class TubeLayout extends HTMLElement {
                             <img src="./tube-layout/assets/poster.jpg" alt="">
                         </div>
                         <div class="video-description flex-col jc-between" data-source="${src}">
-
+                            <!-- SET HERE <DATA-TITLE> -->
                             <h3>Video-name</h3>
+                            <!-- SET HERE <DATA-AUTHOR> -->
                             <small>Author</small>
                             <span id="hash">#1424141</span>
                             <span class="video-tag">video-tag</span>
