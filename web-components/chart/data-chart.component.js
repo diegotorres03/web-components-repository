@@ -66,7 +66,7 @@
             }
 
             const datasets = dataSets.map(getDataPoints)
-            console.log(JSON.stringify(datasets, undefined, 2))
+            // console.log(JSON.stringify(datasets, undefined, 2))
 
             const chartData = {
                 labels: datasets[0].rawData.map(row => row.year),

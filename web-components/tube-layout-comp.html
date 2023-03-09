@@ -12,19 +12,29 @@
     <script src="./web-tools.js"></script>
     <script src="./tube-layout/tube-layout.component.js"></script>
     <script src="./layout/components/layout.component.js"></script>
+    <script src="./flip-card/components/wc-flip-card.component.js"></script>
 
 </head>
 
 <body>
 
-    <app-layout></app-layout>
-    
-    <!-- <tube-layout>
+
+    <tube-layout slot="back">
         <source data-title="video 1" data-author="Tiago" src="tube-layout/assets/tpzk-slw.mp4" aria-selected />
         <source data-title="video 2" data-author="Maria" src="tube-layout/assets/mabe-gs.mp4" />
         <source data-title="video 3" data-author="Morad" src="tube-layout/assets/mrad-mmd.mp4" />
-    </tube-layout> -->
+    </tube-layout>
+    
+    <!-- <app-layout>
 
+        <div slot="header" ><h1>app title</h1></div>
+
+        <nav slot="left-content">
+            <button>test 1</button>
+        </nav>
+        
+        
+    </app-layout> -->
 </body>
 
 </html>

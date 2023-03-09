@@ -10,7 +10,7 @@
 
         async _render() {
             // const baseUrl = useLocal? './' : 'https://d2frjh5xr2nc8a.cloudfront.net/'
-            const inner = await html.import(baseUrl + 'accordion/accordion.component.html')
+            const inner = await html.import(baseUrl + '/accordion/accordion.component.html')
             // alert(baseUrl)
             // const inner = await html.import('accordion/accordion.component.html')
             //         const inner = await Promise.resolve(html`

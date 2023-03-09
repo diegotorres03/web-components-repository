@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/style-tools.css">
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/css-tools.css">
+
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/package-bundle.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/web-tools.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/tube-layout/tube-layout.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/layout.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/accordion/accordion.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/modal/components/modal.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-set.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-point.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-chart.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
+    <!-- <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script> -->
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script>
+
+    <script>
+        log(require('aws-amplify'))
+        log(require('./tube-layout/tube-layout.component'))
+        
+
+    </script>
+</head>
+
+<body>
+
+
+    <!-- TODO muliple flip cards on a flex-row not working -->
+    <flip-card>
+        <h1 slot="front">front</h1>
+        <div slot="back">
+            <ul>
+                <li>other</li>
+                <li>stuff</li>
+            </ul>
+        </div>
+    </flip-card>
+
+
+    <hr>
+
+    <app-accordion>
+        <section>
+            <h3>section1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad incidunt ab beatae, possimus a magnam
+                cupiditate nulla quod praesentium quo nesciunt, repellendus veritatis. Enim sapiente repudiandae, vitae
+                corrupti obcaecati doloribus!</p>
+        </section>
+        <section>
+            <h3>section2</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad incidunt ab beatae, possimus a magnam
+                cupiditate nulla quod praesentium quo nesciunt, repellendus veritatis. Enim sapiente repudiandae, vitae
+                corrupti obcaecati doloribus!</p>
+        </section>
+    </app-accordion>
+
+    <hr>
+
+    <button id="open-modal-demo">open</button>
+
+    <app-modal id="modal-demo">
+        <h1 slot="header">this is header</h1>
+        <section slot="main">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad incidunt ab beatae, possimus a magnam
+                cupiditate nulla quod praesentium quo nesciunt, repellendus veritatis. Enim sapiente repudiandae, vitae
+                corrupti obcaecati doloribus!</p>
+        </section>
+        <small slot="foother">diegotrs@amazon.com</small>
+    </app-modal>
+    <script>
+        document
+            .querySelector('#open-modal-demo')
+            .addEventListener('click', ev => document.querySelector('#modal-demo').show())
+    </script>
+
+
+    <hr>
+
+
+    <data-chart type="bar">
+
+        <data-set name="cat_1" label="yearly stuff 1">
+            <data-point other="szs" year="2010" count="110" />
+            <data-point year="2011" count="120" />
+            <data-point year="2012" count="115" />
+            <data-point year="2013" count="125" />
+            <data-point year="2014" count="122" />
+            <data-point year="2015" count="130" />
+            <data-point year="2016" count="128" />
+            <data-point year="2017" count="128" />
+            <data-point year="2018" count="115" />
+            <data-point year="2019" count="123" />
+            <data-point year="2020" count="128" />
+            <data-point year="2021" count="128" />
+            <data-point year="2022" count="128" />
+        </data-set>
+
+        <data-set name="cat_2" label="yearly stuff 2">
+            <data-point other="szs" year="2010" count="10" />
+            <data-point year="2011" count="20" />
+            <data-point year="2012" count="15" />
+            <data-point year="2013" count="25" />
+            <data-point year="2014" count="22" />
+            <data-point year="2015" count="30" />
+            <data-point year="2016" count="28" />
+            <data-point year="2017" count="28" />
+            <data-point year="2018" count="15" />
+            <data-point year="2019" count="23" />
+            <data-point year="2020" count="28" />
+            <data-point year="2021" count="28" />
+            <data-point year="2022" count="28" />
+        </data-set>
+
+        <data-set name="cat_3" label="third category">
+            <data-point other="szs" year="2010" count="57" />
+            <data-point year="2011" count="62" />
+            <data-point year="2012" count="68" />
+            <data-point year="2013" count="69" />
+            <data-point year="2014" count="71" />
+            <data-point year="2015" count="75" />
+            <data-point year="2016" count="79" />
+            <data-point year="2017" count="89" />
+            <data-point year="2018" count="101" />
+            <data-point year="2019" count="120" />
+            <data-point year="2020" count="140" />
+            <data-point year="2021" count="145" />
+            <data-point year="2022" count="160" />
+        </data-set>
+
+    </data-chart>
+
+
+    <data-chart type="radar">
+       
+        <data-set name="cat_1" label="yearly stuff 1">
+            <data-point other="szs" year="2010" count="110" />
+            <data-point year="2011" count="120" />
+            <data-point year="2012" count="115" />
+            <data-point year="2013" count="125" />
+            <data-point year="2014" count="122" />
+            <data-point year="2015" count="130" />
+            <data-point year="2016" count="128" />
+            <data-point year="2017" count="128" />
+            <data-point year="2018" count="115" />
+            <data-point year="2019" count="123" />
+            <data-point year="2020" count="128" />
+            <data-point year="2021" count="128" />
+            <data-point year="2022" count="128" />
+        </data-set>
+
+        <data-set name="cat_2" label="yearly stuff 2">
+            <data-point other="szs" year="2010" count="10" />
+            <data-point year="2011" count="20" />
+            <data-point year="2012" count="15" />
+            <data-point year="2013" count="25" />
+            <data-point year="2014" count="22" />
+            <data-point year="2015" count="30" />
+            <data-point year="2016" count="28" />
+            <data-point year="2017" count="28" />
+            <data-point year="2018" count="15" />
+            <data-point year="2019" count="23" />
+            <data-point year="2020" count="28" />
+            <data-point year="2021" count="28" />
+            <data-point year="2022" count="28" />
+        </data-set>
+
+        <data-set name="cat_3" label="third category">
+            <data-point other="szs" year="2010" count="57" />
+            <data-point year="2011" count="62" />
+            <data-point year="2012" count="68" />
+            <data-point year="2013" count="69" />
+            <data-point year="2014" count="71" />
+            <data-point year="2015" count="75" />
+            <data-point year="2016" count="79" />
+            <data-point year="2017" count="89" />
+            <data-point year="2018" count="101" />
+            <data-point year="2019" count="120" />
+            <data-point year="2020" count="140" />
+            <data-point year="2021" count="145" />
+            <data-point year="2022" count="160" />
+        </data-set>
+    </data-chart>
+
+    <hr>
+
+</body>
+
+</html>

@@ -225,6 +225,6 @@
     window.customElements.define('app-layout', AppLayout)
 
 
-    module.exports = AppSyncMutation
+    module.exports = AppLayout
 
 })(module)

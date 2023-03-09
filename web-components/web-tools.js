@@ -20,8 +20,8 @@ const toArray = Array.from
 const { log, error, warn } = console
 
 // const baseUrl = 'https://d2frjh5xr2nc8a.cloudfront.net/'
-// const baseUrl = 'https://d1s7mo6ry5mnzt.cloudfront.net'
-const baseUrl = './'
+const baseUrl = 'https://d1s7mo6ry5mnzt.cloudfront.net'
+// const baseUrl = './'
 
 // document.createElement('button').
 function html(templates, ...values) {
@@ -132,17 +132,16 @@ function getMyLocation() {
 
 const module = {
     set exports(mod) {
-        console.log('setting module', mod)
         const { currentUrl } = getMyLocation()
         console.log('sourceUrl', currentUrl.toString())
         const pkgName = currentUrl.toString()
         if (!window.modules) {
             window.modules = {}
         }
+        console.log('setting module', pkgName, mod)
         window.modules[pkgName] = mod
     }
 }
-
 
 /**
  *
@@ -152,12 +151,14 @@ const module = {
  */
 function require(packageName) {
 
+    // if(packageName.includes('http://') || packageName.includes('https://'))
+
     // if package name
     if (!packageName.includes('./')) return window.modules[packageName]
 
     // if url 
-    const { currentUrl } = getMyLocation()
-    const relativeUrl = new URL(packageName + '.js', currentUrl.toString())
-    console.log('require', relativeUrl.toString())
-    return window.modules[relativeUrl.toString()]
+    const moduleList = Object.keys(window.modules)
+    const pkg = packageName.replace(/^[./]/i, '')
+    const moduleUrl = moduleList.find(modItem => modItem.includes(pkg))
+    return window.modules[moduleUrl]
 }
