@@ -41,6 +41,8 @@
     <script src="./appsync/appsync-mutation.component.js"></script>
     <script src="./green-screen/green-screen.component.js"></script>
 
+    <script src="./cards/plain-card.component.js"></script>
+
 
     <style>
         a {
@@ -73,6 +75,7 @@
                     <li><a href="#accordion">app-accordion</a></li>
                     <li><a href="#flipcard">app-flipcard</a></li>
                     <li><a href="#modal">app-modal</a></li>
+                    <li><a href="#plain-card">plain-card</a></li>
                 </ol>
             </section>
 
@@ -134,13 +137,14 @@
                 <p>Data Chart uses <a href="https://www.chartjs.org/" target="_blank">ChartJS</a> to create interactive
                     charts of your data</p>
                 <!-- TODO data chart is overflowing -->
-                <div class="flex-row">
+                <div class="flex-column">
+                    <plain-card >
                     <pre>
                     <code>
                         &lt;data-chart type="radar"&gt;
 
                             &lt;data-set name="cat_1" label="yearly stuff 1"&gt;
-                                &lt;data-point other="szs" year="2010" count="110" /&gt;
+                            &lt;data-point other="szs" year="2010" count="110" /&gt;
                                 &lt;data-point year="2011" count="120" /&gt;
                                 &lt;data-point year="2012" count="115" /&gt;
                                 &lt;data-point year="2013" count="125" /&gt;
@@ -191,6 +195,7 @@
                     </code>
                     </pre>
 
+</plain-card>
 
                     <data-chart id="data-chart" type="line">
 
@@ -296,7 +301,7 @@
                 <app-modal id="modal-2">
                     <h1 slot="title">Example</h1>
                     <section slot="main">
-
+<plain-card>
                         <pre style="font-size: 0.8em;"><code>
 &lt;app-modal id="my-modal"&gt;
     &lt;h1 slot="title"&gt;My Modal Title&lt;/h1&gt;
@@ -323,6 +328,7 @@ modal.addEventListener('cancel', ev =>
 &lt;/script&gt;
                 
             </code></pre>
+        </plain-card>
                     </section>
                     <!-- <flip-card slot="main">
             <em slot="front">Example use of a modal</em>
@@ -445,6 +451,23 @@ modal.addEventListener('cancel', ev =>
 
 
             </app-route>
+
+            <app-route class="route" hash="plain-card">
+                <plain-card>
+                    <h1>hola</h1>
+                    <p>some content</p>
+                    <h1>Subscribe with us now!</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit orem ipsum dolor sit amet, consectetur
+                        adipisicing elit.</p>
+
+                    <div class="input-box flex-row ">
+                        <input type="text" class="cta-input" placeholder="example@email.com">
+                        <button type="submit" class="btn cta-btn clickable">Get Started</button>
+                    </div>
+                </plain-card>
+            </app-route>
+
+
         </app-router>
 
         <footer slot="footer">diegotrs@amazon.com</footer>
