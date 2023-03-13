@@ -20,8 +20,8 @@ const toArray = Array.from
 const { log, error, warn } = console
 
 // const baseUrl = 'https://d2frjh5xr2nc8a.cloudfront.net/'
-const baseUrl = 'https://d1s7mo6ry5mnzt.cloudfront.net'
-// const baseUrl = './'
+// const baseUrl = 'https://d1s7mo6ry5mnzt.cloudfront.net'
+const baseUrl = './'
 
 // document.createElement('button').
 function html(templates, ...values) {

@@ -14,8 +14,12 @@
 
 
     class DataChartComponent extends HTMLElement {
+        
+        static get observedAttributes() { return ['type']; }
+        
         test = true
         #secret = 'WOW DUDEEE!!!!' // private variables
+
 
         constructor() {
             super()
@@ -112,7 +116,14 @@
 
         disconnectedCallback() { }
 
-        attributeChangedCallback(name, oldValue, newValue) { }
+        attributeChangedCallback(name, oldValue, newValue) { 
+            if(name === 'type') {
+                console.dir(this.chart, null, 2)
+                this.chart.config.type = this.getAttribute('type')
+                this.chart.update()
+                console.log(newValue)
+            }
+        }
 
         adoptedCallback() { }
 

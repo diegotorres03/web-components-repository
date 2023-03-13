@@ -154,7 +154,7 @@
         background-color: #6B6B6B;
     }
 
-    .left-header{
+    .left-header {
         border: 1px solid var(--black-3);
         border-width: 0px 0px 1px 0px;
     }
@@ -183,22 +183,26 @@
         -webkit-appearance: none;
         cursor: pointer;
     }
+
     .scroll::-webkit-scrollbar:vertical {
         width: 10px;
     }
+
     .scroll::-webkit-scrollbar-button:increment,
     .scroll::-webkit-scrollbar-button {
         display: none;
     }
+
     .scroll::-webkit-scrollbar:horizontal {
         height: 10px;
     }
+
     .scroll::-webkit-scrollbar-thumb {
-        background-color:var(--black-3);
+        background-color: var(--black-3);
         border-radius: 0px;
         border: 3px solid var(--black-1);
         border-width: 3px 0;
-     
+
     }
 
     .scroll::-webkit-scrollbar-track {
@@ -218,14 +222,13 @@
 
     <section class="top-container flex-row">
 
-        <div class="left-header flex-row align-center bcb1-cw4"><slot name="left-header">LEFT</slot></div>
+        <div class="left-header flex-row align-center bcb1-cw4">
+            <slot name="left-header">LEFT</slot>
+        </div>
 
         <div class="top-menu flex-row align-center bcb1-cw4 scroll">
 
-            <slot name="top-menu">
-
-
-            </slot>
+            <slot name="top-menu"></slot>
 
         </div>
 

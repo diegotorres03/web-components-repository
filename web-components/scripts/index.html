@@ -24,5 +24,17 @@
         // setInterval(() =>worker.postMessage({test: true}), 5_000)
     </script>
 
+    <service-worker>
+        <sw-cache src="./assets/lasdasd/asdasd.css" />
+        <sw-cache src="./assets/lasdasd/asdasd.css" />
+        <sw-cache src="./assets/lasdasd/asdasd.css" />
+        <sw-cache src="./assets/lasdasd/asdasd.css" />
+    </service-worker>
+
+    <script>
+        const sw = document.querySelector('service-worker')
+        sw.on('new version', ev => console.log(asdasd))
+    </script>
+
 </body>
 </html>
