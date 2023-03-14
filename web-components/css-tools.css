@@ -33,11 +33,12 @@
     padding: 0;
     margin: 0;
 
-    font-family: 'amazon-ember';
 }
 
 body, html{
     height: 100%;
+
+    font-family: 'amazon-ember';
 }
 
 .flex-row {

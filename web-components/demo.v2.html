@@ -46,7 +46,35 @@
 
     <style>
         a {
-            color: wheat;
+            color: #e0b76a;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .top-menu a {
+            min-width: 120px;
+            /* height: 80%; */
+            padding: 4px;
+            margin-right: 2px;
+            border-radius: 2px;
+            border-bottom: 1px solid var(--black-3);
+
+            text-decoration: none;
+            font-size: 14px;
+
+            color: var(--white-3);
+            background-color: var(--black-2);
+        }
+
+        pre {
+            display: block;
+            background-color: var(--black-1);
+            color: ghostwhite;
+            font-family: monospace;
+            margin: 12px 0;
+            border-radius: 4px;
         }
     </style>
 
@@ -60,10 +88,10 @@
 
         <!-- TODO q se puedan poner clases de espaciado, o que el css
         de entrada fuera mas espaciado -->
-        <nav slot="top-menu" class="jc-around">
-            <a href="#">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
+        <nav slot="top-menu" class="top-menu flex-row jc-around">
+            <a href="#">Files</a>
+            <a href="#">Raios</a>
+            <a href="#">Centellas</a>
         </nav>
 
         <h3 slot="left-header">Component list</h3>
@@ -78,8 +106,6 @@
                     <li><a href="#plain-card">plain-card</a></li>
                 </ol>
             </section>
-
-
 
             <section>
                 <h4>Layout</h4>
@@ -123,79 +149,79 @@
 
 
         <app-router slot="main-content">
-            <app-route class="route" hash="video-layout">
-                <h1>Video Layout</h1>
 
+            <app-route class="route" hash="video-layout">
+
+                <h1>Video Layout</h1>
                 <tube-layout></tube-layout>
 
             </app-route>
-
 
             <app-route class="route" hash="data-chart">
 
                 <h1>Data Chart</h1>
                 <p>Data Chart uses <a href="https://www.chartjs.org/" target="_blank">ChartJS</a> to create interactive
                     charts of your data</p>
-                <!-- TODO data chart is overflowing -->
-                <div class="flex-column">
-                    <plain-card >
+                <div class="">
+
+                    <!-- <plain-card> -->
                     <pre>
-                    <code>
-                        &lt;data-chart type="radar"&gt;
+                            <code>
+                &lt;data-chart type="radar"&gt;
 
-                            &lt;data-set name="cat_1" label="yearly stuff 1"&gt;
-                            &lt;data-point other="szs" year="2010" count="110" /&gt;
-                                &lt;data-point year="2011" count="120" /&gt;
-                                &lt;data-point year="2012" count="115" /&gt;
-                                &lt;data-point year="2013" count="125" /&gt;
-                                &lt;data-point year="2014" count="122" /&gt;
-                                &lt;data-point year="2015" count="130" /&gt;
-                                &lt;data-point year="2016" count="128" /&gt;
-                                &lt;data-point year="2017" count="128" /&gt;
-                                &lt;data-point year="2018" count="115" /&gt;
-                                &lt;data-point year="2019" count="123" /&gt;
-                                &lt;data-point year="2020" count="128" /&gt;
-                                &lt;data-point year="2021" count="128" /&gt;
-                                &lt;data-point year="2022" count="128" /&gt;
-                            &lt;/data-set&gt;
-                    
-                            &lt;data-set name="cat_2" label="yearly stuff 2"&gt;
-                                &lt;data-point other="szs" year="2010" count="10" /&gt;
-                                &lt;data-point year="2011" count="20" /&gt;
-                                &lt;data-point year="2012" count="15" /&gt;
-                                &lt;data-point year="2013" count="25" /&gt;
-                                &lt;data-point year="2014" count="22" /&gt;
-                                &lt;data-point year="2015" count="30" /&gt;
-                                &lt;data-point year="2016" count="28" /&gt;
-                                &lt;data-point year="2017" count="28" /&gt;
-                                &lt;data-point year="2018" count="15" /&gt;
-                                &lt;data-point year="2019" count="23" /&gt;
-                                &lt;data-point year="2020" count="28" /&gt;
-                                &lt;data-point year="2021" count="28" /&gt;
-                                &lt;data-point year="2022" count="28" /&gt;
-                            &lt;/data-set&gt;
-                    
-                            &lt;data-set name="cat_3" label="third category"&gt;
-                                &lt;data-point other="szs" year="2010" count="57" /&gt;
-                                &lt;data-point year="2011" count="62" /&gt;
-                                &lt;data-point year="2012" count="68" /&gt;
-                                &lt;data-point year="2013" count="69" /&gt;
-                                &lt;data-point year="2014" count="71" /&gt;
-                                &lt;data-point year="2015" count="75" /&gt;
-                                &lt;data-point year="2016" count="79" /&gt;
-                                &lt;data-point year="2017" count="89" /&gt;
-                                &lt;data-point year="2018" count="101" /&gt;
-                                &lt;data-point year="2019" count="120" /&gt;
-                                &lt;data-point year="2020" count="140" /&gt;
-                                &lt;data-point year="2021" count="145" /&gt;
-                                &lt;data-point year="2022" count="160" /&gt;
-                            &lt;/data-set&gt;
-                    
-                        &lt;/data-chart&gt;
-                    </code>
-                    </pre>
+                    &lt;data-set name="cat_1" label="yearly stuff 1"&gt;
+                    &lt;data-point other="szs" year="2010" count="110" /&gt;
+                        &lt;data-point year="2011" count="120" /&gt;
+                        &lt;data-point year="2012" count="115" /&gt;
+                        &lt;data-point year="2013" count="125" /&gt;
+                        &lt;data-point year="2014" count="122" /&gt;
+                        &lt;data-point year="2015" count="130" /&gt;
+                        &lt;data-point year="2016" count="128" /&gt;
+                        &lt;data-point year="2017" count="128" /&gt;
+                        &lt;data-point year="2018" count="115" /&gt;
+                        &lt;data-point year="2019" count="123" /&gt;
+                        &lt;data-point year="2020" count="128" /&gt;
+                        &lt;data-point year="2021" count="128" /&gt;
+                        &lt;data-point year="2022" count="128" /&gt;
+                    &lt;/data-set&gt;
+                            
+                    &lt;data-set name="cat_2" label="yearly stuff 2"&gt;
+                        &lt;data-point other="szs" year="2010" count="10" /&gt;
+                        &lt;data-point year="2011" count="20" /&gt;
+                        &lt;data-point year="2012" count="15" /&gt;
+                        &lt;data-point year="2013" count="25" /&gt;
+                        &lt;data-point year="2014" count="22" /&gt;
+                        &lt;data-point year="2015" count="30" /&gt;
+                        &lt;data-point year="2016" count="28" /&gt;
+                        &lt;data-point year="2017" count="28" /&gt;
+                        &lt;data-point year="2018" count="15" /&gt;
+                        &lt;data-point year="2019" count="23" /&gt;
+                        &lt;data-point year="2020" count="28" /&gt;
+                        &lt;data-point year="2021" count="28" /&gt;
+                        &lt;data-point year="2022" count="28" /&gt;
+                    &lt;/data-set&gt;
+                            
+                    &lt;data-set name="cat_3" label="third category"&gt;
+                        &lt;data-point other="szs" year="2010" count="57" /&gt;
+                        &lt;data-point year="2011" count="62" /&gt;
+                        &lt;data-point year="2012" count="68" /&gt;
+                        &lt;data-point year="2013" count="69" /&gt;
+                        &lt;data-point year="2014" count="71" /&gt;
+                        &lt;data-point year="2015" count="75" /&gt;
+                        &lt;data-point year="2016" count="79" /&gt;
+                        &lt;data-point year="2017" count="89" /&gt;
+                        &lt;data-point year="2018" count="101" /&gt;
+                        &lt;data-point year="2019" count="120" /&gt;
+                        &lt;data-point year="2020" count="140" /&gt;
+                        &lt;data-point year="2021" count="145" /&gt;
+                        &lt;data-point year="2022" count="160" /&gt;
+                    &lt;/data-set&gt;
+                            
+                &lt;/data-chart&gt;
+                            </code>
+                        </pre>
 
-</plain-card>
+                    <!-- </plain-card> -->
 
                     <data-chart id="data-chart" type="line">
 
@@ -301,8 +327,8 @@
                 <app-modal id="modal-2">
                     <h1 slot="title">Example</h1>
                     <section slot="main">
-<plain-card>
-                        <pre style="font-size: 0.8em;"><code>
+                        <plain-card>
+                            <pre style="font-size: 0.8em;"><code>
 &lt;app-modal id="my-modal"&gt;
     &lt;h1 slot="title"&gt;My Modal Title&lt;/h1&gt;
     &lt;section slot="main"&gt;
@@ -328,7 +354,7 @@ modal.addEventListener('cancel', ev =>
 &lt;/script&gt;
                 
             </code></pre>
-        </plain-card>
+                        </plain-card>
                     </section>
                     <!-- <flip-card slot="main">
             <em slot="front">Example use of a modal</em>
