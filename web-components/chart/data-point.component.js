@@ -33,7 +33,7 @@
 
     window.customElements.define('data-point', DataPointComponent)
 
-    module.exports = AppSyncMutation
+    module.exports = DataPointComponent
 
 
 })(module)

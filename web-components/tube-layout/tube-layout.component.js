@@ -58,6 +58,12 @@
                 console.log(content)
                 const container = this.shadowRoot.querySelector('#video-list')
                 const player = this.shadowRoot.querySelector('#player')
+
+                if(content.length < 1) {
+                    console.warn('there is no content')
+                    return
+                }
+
                 const source = content[0].cloneNode(true)
                 console.log('source', source, content[0])
                 player.appendChild(source)
@@ -98,10 +104,6 @@
             // const inner = await html.import('test.component.html')
             updateVars(this)
 
-            // replacing inline handler function with own component methods
-            // mapComponentEvents(this, eventNames)
-
-            // get variable names
 
         }
 

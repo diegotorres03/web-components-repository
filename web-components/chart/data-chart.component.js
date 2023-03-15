@@ -23,7 +23,7 @@
 
         constructor() {
             super()
-            console.log(this.#secret)
+            // console.log(this.#secret)
         }
 
         async _render() {
@@ -36,14 +36,13 @@
             await wait(10)
 
             const dataSets = Array.from(this.querySelectorAll('data-set'))
-            console.log(dataSets)
+            // console.log(dataSets)
 
             // const dataPoints = Array.from(this.querySelectorAll('data-point'))
 
             function getDataPoints(dataSet) {
                 const dataPoints = Array.from(dataSet.querySelectorAll('data-point'))
-                console.log(dataPoints)
-
+                // console.log(dataPoints)
                 const entries = dataPoints.map(point => {
                     const attributes = [...point.attributes]
                     const keyValuePairs = attributes.map(attr => {
@@ -51,7 +50,7 @@
                     })
                     return keyValuePairs
                 })
-                console.log('entries', entries)
+                // console.log('entries', entries)
 
                 const data = entries.map(entry => {
                     let record = {}
@@ -61,7 +60,7 @@
                     return record
                 })
 
-                console.log(data)
+                // console.log(data)
                 return {
                     label: dataSet.getAttribute('label') || 'no-label',
                     data: data.map(item => Number(item.count)),
@@ -82,7 +81,7 @@
                 //     }
                 // ]
             }
-            console.log(JSON.stringify(chartData, undefined, 2))
+            // console.log(JSON.stringify(chartData, undefined, 2))
 
 
             this.chart = new Chart(
@@ -117,11 +116,11 @@
         disconnectedCallback() { }
 
         attributeChangedCallback(name, oldValue, newValue) { 
+            if(!this.chart) return
             if(name === 'type') {
-                console.dir(this.chart, null, 2)
                 this.chart.config.type = this.getAttribute('type')
                 this.chart.update()
-                console.log(newValue)
+                // console.log(newValue)
             }
         }
 

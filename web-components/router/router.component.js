@@ -6,7 +6,18 @@ class AppRouter extends HTMLElement {
     }
 
     async _render() {
-        const inner = await html.import(baseUrl + 'router/router.component.html')
+        // const inner = await html.import(baseUrl + 'router/router.component.html')
+
+        const inner = html`
+            <style>
+                .hidden {
+                    display: none;
+                }
+            </style>
+            <slot></slot>
+        `
+
+        await sleep(1)
 
         this.attachShadow({ mode: 'open' })
         this.shadowRoot.appendChild(inner)

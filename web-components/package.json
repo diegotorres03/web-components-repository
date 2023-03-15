@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": ". ./build.sh",
-    "deploy:wc": "aws s3 cp ./ s3://wcdemo-wcrepowebappwebappartifacta0574a6b-wtialcln7vf0 --recursive; aws cloudfront create-invalidation --distribution-id E13BPUKIPGQ3F0 --paths '/*'"
+    "deploy:wc": "aws s3 cp ./ s3://wc-stage-wcrepowebappwebappartifacta0574a6b-11bunu8yhs1m --recursive; aws cloudfront create-invalidation --distribution-id E341H20FCF0HJG --paths '/*'"
   },
   "author": "Diego Torres",
   "license": "ISC",
