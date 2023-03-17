@@ -2,10 +2,16 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 // import { WebAppConstruct } from '../lib/webapp/webapp-construct'
-import { WebAppConstruct } from 'dt-cdk-lib'
-import { ApiBuilderConstruct } from '../lib/rest-api/api-builder-construct'
-import { DynamoCostruct } from '../lib/dynamodb/dynamodb-construct'
-import { GraphQLConstruct } from './graphql/graphql-builder-construct'
+import {
+  WebAppConstruct,
+  FunctionConstruct,
+  FunctionOptions,
+  DynamoCostruct,
+} from 'dt-cdk-lib'
+
+// import { ApiBuilderConstruct } from '../lib/rest-api/api-builder-construct'
+// import { DynamoCostruct } from '../lib/dynamodb/dynamodb-construct'
+// import { GraphQLConstruct } from './graphql/graphql-builder-construct'
 // import {} from ''
 
 export class WebComponentsRepositoryStack extends cdk.Stack {
@@ -17,6 +23,35 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
     webapp.run('./web-components', 'npx webpack')
     webapp.run('./web-components', 'rm -rf ./node_modules')
     webapp.addAssets('./web-components')
+
+    const fn = new FunctionConstruct(this, 'test-fn-cdk-lib')
+
+
+    fn.createLayer('js-dax-dependencies', './lambda/layers/dax')
+
+    fn.handler((function (event) {
+      console.log(JSON.stringify(event, null, 2))
+      console.log('this is a test lambda, to log the evnets')
+      const test = require('test')
+
+      console.log(JSON.stringify(test, null, 2))
+    }).toString(), { })
+
+    // fn.useLayer()
+
+
+    // db.createDax({
+    //   securityGroupIds: props.daxSecurityGroupIds,
+    //   subnetIds: props.daxSubnetIds
+    // })
+
+    const table = new DynamoCostruct(this, 'test-table-cdk-lib')
+    table.addKeys('key', 'sort')
+
+
+
+    // const testLambda = new FunctionConstruct(this, 'cdk-fn-test'
+    // )
 
     //   const apiBuilder = new ApiBuilderConstruct(this, 'wc-demo-rest-api')
 
@@ -128,7 +163,6 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
     //     },
     //     access: [(fn) => demoTable.table.grantWriteData(fn)]
     //   })
-
 
 
   }
