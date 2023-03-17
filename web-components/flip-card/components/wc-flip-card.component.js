@@ -8,7 +8,7 @@ class FlipCard extends HTMLElement {
 
     async _render() {
         const inner = await html`
-        <link rel="stylesheet" href="./flip-card/components/standar-wc-style.css">
+        <!-- <link rel="stylesheet" href="./flip-card/components/standar-wc-style.css"> -->
         <style>
             *{
                 --amz-blck-1:#16191F;
@@ -31,6 +31,10 @@ class FlipCard extends HTMLElement {
             .flip-card-box:hover .flip-card{
                 transform:rotateY(180deg);
             }
+
+            /* .active{
+                transform:rotateY(180deg);
+            } */
 
             .flip-card{
                 width: 100%;
@@ -100,7 +104,37 @@ class FlipCard extends HTMLElement {
         // get variable names
         updateVars(this)
 
+        await sleep(1)
+
+        // [ ] I need to enable the flip from 
+        // if(this.hasAttribute('trigger')) {
+        //     const triggerId = '#' + this.getAttribute('trigger')
+        //     const trigger = document.querySelector(triggerId)
+        //     console.log(triggerId, trigger)    
+        //     if(!trigger) return
+        //     const triggerEvent = this.getAttribute('trigger-event') || 'click'
+        //     // alert('trigger:' + this.getAttribute('trigger'))
+        //     trigger.addEventListener(triggerEvent, ev => {
+        //         console.log(ev.target)
+        //         this.flip()
+        //     })
+
+        // } else { log('no trigger')}
+
     }
+
+    // flip() { //
+    //     // const flipcardBox = this.shadowRoot.querySelector('.flip-card-box')
+    //     // log(flipcardBox.classList)
+    //     // flipcardBox.classList.toggle('active')
+    //     // log(flipcardBox.classList)
+
+    //     const flipcard = this.shadowRoot.querySelector('.flip-card')
+    //     log(flipcard.classList)
+    //     flipcard.classList.toggle('active')
+    //     log(flipcard.classList)
+
+    // }
 
     connectedCallback() { this._render() }
 

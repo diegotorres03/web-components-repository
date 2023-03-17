@@ -3,7 +3,6 @@ const dynamodbClient = require('@aws-sdk/client-dynamodb') // web-components/nod
 const Chart = require('chart.js/auto')
 
 
-console.log(amplify)
 
 global.window.modules = {
     'aws-amplify': amplify,

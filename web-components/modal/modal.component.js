@@ -25,6 +25,13 @@
 
             if (this.getAttribute('open')) this.show()
 
+
+
+            if(this.hasAttribute('trigger')) {
+                alert('trigger:' + this.getAttribute('trigger'))
+            }
+
+
         }
 
 
@@ -45,7 +52,6 @@
                 const assignedNodes = slot.assignedNodes();
                 console.log(assignedNodes); // This will log the nodes assigned to the slot
             });
-
         }
 
         disconnectedCallback() { }

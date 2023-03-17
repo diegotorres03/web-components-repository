@@ -296,12 +296,27 @@ class AppModal extends HTMLElement {
         // get variable names
         updateVars(this)
 
+
         if (this.getAttribute('open')) this.show()
+        
+        if(this.hasAttribute('trigger')) {
+            const triggerId = '#' + this.getAttribute('trigger')
+            const trigger = document.querySelector(triggerId)
+            if(!trigger) return
+            const triggerEvent = this.getAttribute('trigger-event') || 'click'
+            // alert('trigger:' + this.getAttribute('trigger'))
+            trigger.addEventListener(triggerEvent, ev => this.show())
+
+        }
+
+        console.log('trigger')
 
     }
 
+    // [ ] document the event names 
+
     accept() {
-        this.shadowRoot.dispatchEvent(new CustomEvent('accept', {
+        this.shadowRoot.dispatchEvent(new CustomEvent('accepted', {
             bubbles: true, composed: true,
             detail: {
                 success: true
@@ -312,7 +327,7 @@ class AppModal extends HTMLElement {
 
 
     cancel() {
-        this.shadowRoot.dispatchEvent(new CustomEvent('cancel', {
+        this.shadowRoot.dispatchEvent(new CustomEvent('declined', {
             bubbles: true, composed: true,
             detail: {
                 success: true
