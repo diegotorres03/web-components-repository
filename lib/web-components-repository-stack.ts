@@ -33,9 +33,9 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
       console.log(JSON.stringify(event, null, 2))
       console.log('this is a test lambda, to log the evnets')
       const test = require('test')
-
       console.log(JSON.stringify(test, null, 2))
-    }).toString(), { })
+
+    }).toString())
 
     // fn.useLayer()
 
