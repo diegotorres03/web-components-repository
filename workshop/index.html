@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/style-tools.css">
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/css-tools.css">
+
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/package-bundle.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/web-tools.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/tube-layout/tube-layout.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/layout.component.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/accordion/accordion.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-set.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-point.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-chart.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/floating-pannel/floating-pannel.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/route.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/router.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/web-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/service-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/todo.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/task.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/auth/login.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-subscription.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-mutation.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/green-screen/green-screen.component.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/cards/plain-card.component.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/modal/components/modal.component.js"></script>
+    <!-- <script src="../web-components/modal/components/modal.component.js"></script> -->
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
+    <!-- <script src="../web-components/flip-card/components/wc-flip-card.component.js"></script> -->
+
+    <style>
+        a {
+            color: #e0b76a;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .top-menu a {
+            min-width: 120px;
+            /* height: 80%; */
+            padding: 4px;
+            margin-right: 2px;
+            border-radius: 2px;
+            border-bottom: 1px solid var(--black-3);
+
+            text-decoration: none;
+            font-size: 14px;
+
+            color: var(--white-3);
+            background-color: var(--black-2);
+        }
+
+        pre {
+            display: block;
+            background-color: var(--black-1);
+            color: ghostwhite;
+            font-family: monospace;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <a href="#step-1?test=true">step 1</a>
+
+    <app-router>
+        <app-route hash="step-1">
+
+            <flip-card>
+                <section slot="front">
+                    <h1>Hover to reveal more options</h1>
+                    <small>nexts steps behind this card</small>
+                </section>
+
+                <div slot="back">
+                    <button id="open-modal-1">open modal 1</button>
+                    <button id="open-modal-2">open modal 2</button>
+                </div>
+            </flip-card>
+
+            <app-modal id="modal-1" trigger="open-modal-1" trigger-event="click">
+                <h1 slot="title">modal 1</h1>
+                <section slot="main">
+                    <h2>this is the main content</h2>
+                    <p>feel free to add your html here</p>
+                </section>
+                <footer slot="footer">
+                    <!-- [ ] this is not replacing the footer -->
+                    <small>this is the foother</small>
+                </footer>
+            </app-modal>
+
+            <app-modal trigger="open-modal-2" trigger-event="click">
+                <h1 slot="title">modal 2</h1>
+                <app-accordion slot="main">
+                    <section>
+                        <h1>definition</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero voluptatibus veritatis iure doloribus laborum? Deserunt nemo reprehenderit provident, similique temporibus quia quae id molestias ad ipsa qui, sint repellendus nostrum.</p>
+                    </section>
+                    
+                    <section>
+                        <h1>example</h1>
+                        <pre><code>example code</code></pre>
+                    </section>
+                </app-accordion>
+    
+            </app-modal>
+
+            <script>
+                const modal1 = document.querySelector('#modal-1')
+                modal1.addEventListener('accept', ev => window.location.hash = 'step-2')
+                modal1.addEventListener('cancel', ev => log('cancelled'))
+            </script>
+
+        </app-route>
+
+        <app-route hash="step-2">
+            <h1>step 2</h1>
+            
+            <app-accordion>
+                <section>
+                    <h1>definition</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero voluptatibus veritatis iure doloribus laborum? Deserunt nemo reprehenderit provident, similique temporibus quia quae id molestias ad ipsa qui, sint repellendus nostrum.</p>
+                </section>
+                
+                <section>
+                    <h1>example</h1>
+                    <pre><code>example code</code></pre>
+                </section>
+            </app-accordion>
+
+        </app-route>
+    </app-router>
+
+
+
+</body>
+
+</html>

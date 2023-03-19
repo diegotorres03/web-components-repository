@@ -1,4 +1,6 @@
-import * as cdk from 'aws-cdk-lib';
+import {
+  Stack, StackProps,
+} from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 // import { WebAppConstruct } from '../lib/webapp/webapp-construct'
@@ -9,33 +11,60 @@ import {
   DynamoCostruct,
 } from 'dt-cdk-lib'
 
-// import { ApiBuilderConstruct } from '../lib/rest-api/api-builder-construct'
+import { ApiBuilderConstruct } from '../lib/rest-api/api-builder-construct'
 // import { DynamoCostruct } from '../lib/dynamodb/dynamodb-construct'
 // import { GraphQLConstruct } from './graphql/graphql-builder-construct'
 // import {} from ''
 
-export class WebComponentsRepositoryStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+export class WebComponentsRepositoryStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
+
+    new ApiBuilderConstruct(this, 'new-api')
+
     const webapp = new WebAppConstruct(this, 'wc-repo-webapp')
-    webapp.run('./web-components', 'npm i')
-    webapp.run('./web-components', 'npx webpack')
-    webapp.run('./web-components', 'rm -rf ./node_modules')
-    webapp.addAssets('./web-components')
+    webapp
+      // .run('./web-components', 'npm i')
+      // .run('./web-components', 'npx webpack')
+      // .run('./web-components', 'rm -rf ./node_modules')
+      .addAssets('./web-components')
+
+    // webapp.onOriginRequest('auth/*', ((ev) => {console.log(ev); return ev.request}).toString())
+    // webapp.onOriginResponse('auth/*', ((ev) => {console.log(ev); return ev.request}).toString())
+    // webapp.onViewerRequest('auth/*', ((ev) => {console.log(ev); return ev.request}).toString())
+    // webapp.onViewerResponse('auth/*', ((ev) => {console.log(ev); return ev.request}).toString())
+
+
+
+  //   const response = {
+  //     body: 'content',
+  //     bodyEncoding: 'text' | 'base64',
+  //     headers: {
+  //         'header name in lowercase': [{
+  //             key: 'header name in standard case',
+  //             value: 'header value'
+  //          }],
+  //          ...
+  //     },
+  //     status: 'HTTP status code (string)',
+  //     statusDescription: 'status description'
+  // };
+
 
     const fn = new FunctionConstruct(this, 'test-fn-cdk-lib')
 
 
     fn.createLayer('js-dax-dependencies', './lambda/layers/dax')
 
-    fn.handler((function (event) {
+    fn.handler(((event) => {
       console.log(JSON.stringify(event, null, 2))
       console.log('this is a test lambda, to log the evnets')
       const test = require('test')
       console.log(JSON.stringify(test, null, 2))
 
     }).toString())
+
 
     // fn.useLayer()
 
@@ -47,6 +76,12 @@ export class WebComponentsRepositoryStack extends cdk.Stack {
 
     const table = new DynamoCostruct(this, 'test-table-cdk-lib')
     table.addKeys('key', 'sort')
+
+    table.on('change', (event => {
+      console.log(JSON.stringify(event, null, 2))
+      return { success: true }
+    }).toString())
+
 
 
 
