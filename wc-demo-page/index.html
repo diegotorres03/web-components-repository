@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!-- https://d1s7mo6ry5mnzt.cloudfront.net -->
+
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/style-tools.css">
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/css-tools.css">
+
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/package-bundle.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/web-tools.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/tube-layout/tube-layout.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/layout.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/accordion/accordion.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/modal/components/modal.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-set.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-point.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-chart.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/floating-pannel/floating-pannel.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/route.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/router.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/web-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/service-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/todo.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/task.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/auth/login.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-subscription.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-mutation.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/green-screen/green-screen.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/cards/plain-card.component.js"></script>
+    
+    
+
+    <style>
+        a {
+            color: #e0b76a;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .top-menu a {
+            min-width: 120px;
+            /* height: 80%; */
+            padding: 4px;
+            margin-right: 2px;
+            border-radius: 2px;
+            border-bottom: 1px solid var(--black-3);
+
+            text-decoration: none;
+            font-size: 14px;
+
+            color: var(--white-3);
+            background-color: var(--black-2);
+        }
+
+        pre {
+            display: block;
+            background-color: var(--black-1);
+            color: ghostwhite;
+            font-family: monospace;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <app-layout>
+        <h1 slot="header">SA Web Components Repository</h1>
+
+
+        <!-- TODO q se puedan poner clases de espaciado, o que el css
+        de entrada fuera mas espaciado -->
+        <nav clas slot="top-menu" class="top-menu">
+            <a href="#">Files</a>
+            <a href="#">Raios</a>
+            <a href="#">Centellas</a>
+        </nav>
+
+        <h3 slot="left-header">Component list</h3>
+        <app-accordion slot="left-content">
+
+            <section>
+                <h4>UI components</h4>
+                <small>Simple to use leaf components, use this as basic building blocks for your application.</small>
+                <ol>
+                    <li><a href="#accordion">app-accordion</a></li>
+                    <li><a href="#flipcard">app-flipcard</a></li>
+                    <li><a href="#modal">app-modal</a></li>
+                    <li><a href="#plain-card">plain-card</a></li>
+                </ol>
+            </section>
+
+            <section>
+                <h4>Layout</h4>
+                <small>Pre created layouts to fit common use cases, use the <em>slot</em> attribute to specify where to
+                    place components on the layout.</small>
+                <ol>
+                    <li><a href="#app-layout">app-layout</a></li>
+                    <li><a href="#landing-layout">landing-layout</a></li>
+                    <li><a href="#video-layout">video-layout</a></li>
+                    <li><a href="#gallery-layout">gallery-layout</a></li>
+                </ol>
+            </section>
+
+            <section>
+                <h4>Data & Charts</h4>
+                <small>Easyly represent data points on beautifull interactive charts, powered by <a
+                        href="https://www.chartjs.org/" target="_blank">ChartJS</a></small>
+                <ol>
+                    <li><a href="#data-chart">data-chart</a></li>
+                </ol>
+            </section>
+
+            <section>
+                <h4>Green Screen</h4>
+                <a href="#green-screen">green-screen</a>
+            </section>
+
+            <section>
+                <h4>Live Table</h4>
+                <a href="#live-table">live-table</a>
+            </section>
+            <section>
+                <h4></h4>
+                <a href="#"></a>
+            </section>
+
+        </app-accordion>
+
+
+        <!-- </div> -->
+
+
+        <app-router slot="main-content">
+
+            <app-route class="route" hash="video-layout">
+
+                <h1>Video Layout</h1>
+                <tube-layout></tube-layout>
+
+            </app-route>
+
+            <app-route class="route" hash="data-chart">
+
+                <h1>Data Chart</h1>
+                <p>Data Chart uses <a href="https://www.chartjs.org/" target="_blank">ChartJS</a> to create interactive
+                    charts of your data</p>
+                <div class="">
+
+                    <!-- <plain-card> -->
+                    <pre>
+                            <code>
+                &lt;data-chart type="radar"&gt;
+
+                    &lt;data-set name="cat_1" label="yearly stuff 1"&gt;
+                    &lt;data-point other="szs" year="2010" count="110" /&gt;
+                        &lt;data-point year="2011" count="120" /&gt;
+                        &lt;data-point year="2012" count="115" /&gt;
+                        &lt;data-point year="2013" count="125" /&gt;
+                        &lt;data-point year="2014" count="122" /&gt;
+                        &lt;data-point year="2015" count="130" /&gt;
+                        &lt;data-point year="2016" count="128" /&gt;
+                        &lt;data-point year="2017" count="128" /&gt;
+                        &lt;data-point year="2018" count="115" /&gt;
+                        &lt;data-point year="2019" count="123" /&gt;
+                        &lt;data-point year="2020" count="128" /&gt;
+                        &lt;data-point year="2021" count="128" /&gt;
+                        &lt;data-point year="2022" count="128" /&gt;
+                    &lt;/data-set&gt;
+                            
+                    &lt;data-set name="cat_2" label="yearly stuff 2"&gt;
+                        &lt;data-point other="szs" year="2010" count="10" /&gt;
+                        &lt;data-point year="2011" count="20" /&gt;
+                        &lt;data-point year="2012" count="15" /&gt;
+                        &lt;data-point year="2013" count="25" /&gt;
+                        &lt;data-point year="2014" count="22" /&gt;
+                        &lt;data-point year="2015" count="30" /&gt;
+                        &lt;data-point year="2016" count="28" /&gt;
+                        &lt;data-point year="2017" count="28" /&gt;
+                        &lt;data-point year="2018" count="15" /&gt;
+                        &lt;data-point year="2019" count="23" /&gt;
+                        &lt;data-point year="2020" count="28" /&gt;
+                        &lt;data-point year="2021" count="28" /&gt;
+                        &lt;data-point year="2022" count="28" /&gt;
+                    &lt;/data-set&gt;
+                            
+                    &lt;data-set name="cat_3" label="third category"&gt;
+                        &lt;data-point other="szs" year="2010" count="57" /&gt;
+                        &lt;data-point year="2011" count="62" /&gt;
+                        &lt;data-point year="2012" count="68" /&gt;
+                        &lt;data-point year="2013" count="69" /&gt;
+                        &lt;data-point year="2014" count="71" /&gt;
+                        &lt;data-point year="2015" count="75" /&gt;
+                        &lt;data-point year="2016" count="79" /&gt;
+                        &lt;data-point year="2017" count="89" /&gt;
+                        &lt;data-point year="2018" count="101" /&gt;
+                        &lt;data-point year="2019" count="120" /&gt;
+                        &lt;data-point year="2020" count="140" /&gt;
+                        &lt;data-point year="2021" count="145" /&gt;
+                        &lt;data-point year="2022" count="160" /&gt;
+                    &lt;/data-set&gt;
+                            
+                &lt;/data-chart&gt;
+                            </code>
+                        </pre>
+
+                    <!-- </plain-card> -->
+
+                    <select id="chart-type">
+                        <option value="bar">bar</option>
+                        <option value="line">line</option>
+                        <option value="radar">radar</option>
+                        <option value="pie">pie</option>
+                        <option value="bubble">bubble</option>
+                        <option value="doughnut">doughnut</option>
+                        <option value="polarArea">polarArea</option>
+                        <option value="scatter">scatter</option>
+                    </select>
+
+                    <data-chart id="data-chart" type="line">
+
+                        <data-set name="cat_1" label="yearly stuff 1">
+                            <data-point other="szs" year="2010" count="110" />
+                            <data-point year="2011" count="120" />
+                            <data-point year="2012" count="115" />
+                            <data-point year="2013" count="125" />
+                            <data-point year="2014" count="122" />
+                            <data-point year="2015" count="130" />
+                            <data-point year="2016" count="128" />
+                            <data-point year="2017" count="128" />
+                            <data-point year="2018" count="115" />
+                            <data-point year="2019" count="123" />
+                            <data-point year="2020" count="128" />
+                            <data-point year="2021" count="128" />
+                            <data-point year="2022" count="128" />
+                        </data-set>
+
+                        <data-set name="cat_2" label="yearly stuff 2">
+                            <data-point other="szs" year="2010" count="10" />
+                            <data-point year="2011" count="20" />
+                            <data-point year="2012" count="15" />
+                            <data-point year="2013" count="25" />
+                            <data-point year="2014" count="22" />
+                            <data-point year="2015" count="30" />
+                            <data-point year="2016" count="28" />
+                            <data-point year="2017" count="28" />
+                            <data-point year="2018" count="15" />
+                            <data-point year="2019" count="23" />
+                            <data-point year="2020" count="28" />
+                            <data-point year="2021" count="28" />
+                            <data-point year="2022" count="28" />
+                        </data-set>
+
+                        <data-set name="cat_3" label="third category">
+                            <data-point other="szs" year="2010" count="57" />
+                            <data-point year="2011" count="62" />
+                            <data-point year="2012" count="68" />
+                            <data-point year="2013" count="69" />
+                            <data-point year="2014" count="71" />
+                            <data-point year="2015" count="75" />
+                            <data-point year="2016" count="79" />
+                            <data-point year="2017" count="89" />
+                            <data-point year="2018" count="101" />
+                            <data-point year="2019" count="120" />
+                            <data-point year="2020" count="140" />
+                            <data-point year="2021" count="145" />
+                            <data-point year="2022" count="160" />
+                        </data-set>
+
+                    </data-chart>
+
+                </div>
+                <script>
+                    document
+                        .querySelector('#chart-type')
+                        .addEventListener('change', event => {
+                            const value = event.target.value
+                            document.querySelector('#data-chart').setAttribute('type', value)
+                        })
+
+                </script>
+
+            </app-route>
+
+
+            <app-route class="route" hash="green-screen">
+                <h1>Green Screen</h1>
+                <green-screen></green-screen>
+            </app-route>
+
+            <app-route hash="live-table">
+                <h1>Live Table</h1>
+                <details>
+                    <summary>Definition</summary>
+                    HTML table that takes an url as argument and execute a get request.
+                    This component include filtering capabilities.
+                </details>
+                <br>
+                <hr>
+                <live-table src="https://rgk332omyk.execute-api.us-east-2.amazonaws.com/dev/items"></live-table>
+            </app-route>
+
+            <app-route hash="modal">
+                <div style="padding: 50px;">
+                    <button id="open-modal-1">definition</button>
+                    <button id="open-modal-2">example</button>
+                </div>
+
+
+                <app-modal id="modal-2">
+                    <h1 slot="title">Example</h1>
+                    <section slot="main">
+                        <plain-card>
+                            <pre style="font-size: 0.8em;"><code>
+&lt;app-modal id="my-modal"&gt;
+    &lt;h1 slot="title"&gt;My Modal Title&lt;/h1&gt;
+    &lt;section slot="main"&gt;
+        &lt;p&gt;any valid html&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/app-modal&gt;
+
+&lt;!-- this is an example of how to open and 
+listen to accpet/cancel events --&gt;
+
+&lt;script&gt;
+const modal = document.querySelector('#modal-1')
+const openBtn = document.querySelector('#open-modal-1')
+
+openBtn.addEventListener('click', ev => {
+    modal.show()
+})
+
+modal.addEventListener('accept', ev => 
+    console.log(ev))
+modal.addEventListener('cancel', ev => 
+    console.log(ev))
+&lt;/script&gt;
+                
+            </code></pre>
+                        </plain-card>
+                    </section>
+                    <!-- <flip-card slot="main">
+            <em slot="front">Example use of a modal</em>
+            <div slot="back">
+            </div>
+        </flip-card> -->
+                </app-modal>
+
+                <app-modal id="modal-1">
+                    <h1 slot="title">Definition</h1>
+                    <section slot="main" style="padding: 50px;">
+                        A modal is a dialog box/popup window that is displayed on top of the current page.
+                    </section>
+                </app-modal>
+
+                <script>
+                    document.querySelector('#open-modal-2').addEventListener('click', ev => {
+                        document.querySelector('#modal-2').show()
+                    })
+
+                    const modal = document.querySelector('#modal-1')
+                    document.querySelector('#open-modal-1').addEventListener('click', ev => {
+                        modal.show()
+                    })
+
+                    modal.addEventListener('accept', ev => console.log(ev))
+                    modal.addEventListener('cancel', ev => console.log(ev))
+
+                </script>
+            </app-route>
+
+
+            <app-route class="route" hash="accordion">
+                <h1>accordion components</h1>
+                <app-accordion>
+                    <section>
+                        <h3>Definition</h3>
+                        <em>As defined by the W3C:</em>
+                        <p>An accordion is a vertically stacked set of interactive headings that each contain a title,
+                            content snippet, or thumbnail representing a section of content. The headings function as
+                            controls that enable users to reveal or hide their associated sections of content.
+                            Accordions are commonly used to reduce the need to scroll when presenting multiple sections
+                            of content on a single page.</p>
+                    </section>
+                    <section>
+                        <h3>example</h3>
+                        <pre><code>
+&lt;app-accordion&gt;
+    &lt;section&gt;
+        &lt;h3&gt;this will be the title of the label&lt;/h3&gt;
+        &lt;p&gt;add any valid html here, this will be the main content of this section&lt;/p&gt;
+    &lt;/section&gt;
+
+    &lt;section&gt;
+        &lt;h4&gt;this will be other tab on the accordion&lt;/h4&gt;
+        &lt;p&gt;add any valid html here, this will be the main content of this section&lt;/p&gt;
+    &lt;/section&gt;
+&lt;/app-accordion&gt;
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h3>notes</h3>
+                        <ul>
+                            <li>use a &lt;section&gt; tag to specify a new entry</li>
+                            <li>use an &lt;h*&gt; tag to take its text context and use it on the lable</li>
+                            <li></li>
+                        </ul>
+                    </section>
+
+                </app-accordion>
+            </app-route>
+
+            <app-route class="route" hash="app-layout">
+                <h1>layout component</h1>
+                <!-- <flip-card>
+                    <div slot="front">front</div>
+                    <div slot="back">
+                        <app-layout><span slot="top-menu">=)</span></app-layout>
+                    </div>
+                </flip-card> -->
+                <app-layout><span slot="top-menu">=)</span></app-layout>
+                <img width="500px" src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/assets/layout-ui.png"
+                    alt="">
+
+            </app-route>
+
+            <app-route class="route" hash="flipcard">
+                <h1>flipcard component</h1>
+
+
+                <flip-card>
+                    <div slot="front">
+                        <h1>Definition</h1>
+                    </div>
+                    <div slot="back">
+                        <p>Flip cards are the cards in your website that will flip when you hover your mouse over them.
+                            There will be information, links or images in the back face of the card which will be
+                            visible when you hover over the cards.</p>
+                    </div>
+                </flip-card>
+
+                <flip-card>
+                    <div slot="front">
+                        <h1>Example</h1>
+                    </div>
+                    <div slot="back">
+                        <pre><code>
+        &lt;flip-card&gt;
+            &lt;div slot="front"&gt;
+                &lt;h1&gt;this is the front&lt;/h1&gt;
+            &lt;/div&gt;
+            &lt;div slot="back"&gt;
+                &lt;p&gt;this is the back&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/flip-card&gt;
+                        </code></pre>
+                    </div>
+                </flip-card>
+
+
+            </app-route>
+
+            <app-route class="route" hash="plain-card">
+                <plain-card>
+                    <h1>hola</h1>
+                    <p>some content</p>
+                    <h1>Subscribe with us now!</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit orem ipsum dolor sit amet, consectetur
+                        adipisicing elit.</p>
+
+                    <div class="input-box flex-row ">
+                        <input type="text" class="cta-input" placeholder="example@email.com">
+                        <button type="submit" class="btn cta-btn clickable">Get Started</button>
+                    </div>
+                </plain-card>
+            </app-route>
+
+
+        </app-router>
+
+        <footer slot="footer">diegotrs@amazon.com</footer>
+    </app-layout>
+
+
+</body>
+
+</html>

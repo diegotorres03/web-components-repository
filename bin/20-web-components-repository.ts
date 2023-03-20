@@ -24,3 +24,8 @@ new WebComponentsRepositoryStack(app, 'wc-stage', { env })
 new PlaygroundStack(app, 'playground', {
   env: {region: 'us-east-1'}
 })
+
+
+new PlaygroundStack(app, 'playground2', {
+  env: {region: 'us-east-1'}
+})
