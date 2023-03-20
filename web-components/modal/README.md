@@ -1,5 +1,10 @@
 
 
+## slots
+- **title** modal title
+- **main** main content, add here all the html you need as the body of the modal
+- **footer** default to accept and cancel buttons, send html as required
+
 ## steps
 
 

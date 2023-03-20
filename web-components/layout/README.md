@@ -1,4 +1,10 @@
 
+
+## slots
+- **title** 
+- **main** 
+- **footer** 
+
 # Layouts web components
 
 this will be a collection of web components that contain pre-defined layouts so users don't need to deal with this.
