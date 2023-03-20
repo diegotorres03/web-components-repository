@@ -300,6 +300,7 @@ class AppModal extends HTMLElement {
         if (this.getAttribute('open')) this.show()
         
         if(this.hasAttribute('trigger')) {
+            // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
             const triggerId = '#' + this.getAttribute('trigger')
             const trigger = document.querySelector(triggerId)
             if(!trigger) return
@@ -309,7 +310,6 @@ class AppModal extends HTMLElement {
 
         }
 
-        console.log('trigger')
 
     }
 
