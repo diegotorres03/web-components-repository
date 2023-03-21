@@ -1,36 +1,47 @@
+const { Module } = require("module")
 
-class ServiceWorkerScript extends HTMLElement {
+
+(function (module) {
+
+  function emitEvent(eventName, eventDetail) {
+
+  }
+
+  class ServiceWorkerScript extends HTMLElement {
 
     constructor() {
-        super()
+      super()
     }
 
     async _render() {
-        const inner = html`<b>Hello There!</b>`
-        const shadow = this.attachShadow({mode: 'open'})
-        shadow.appendChild(inner)
+      const inner = html`<b>Hello There!</b>`
+      const shadow = this.attachShadow({ mode: 'open' })
+      shadow.appendChild(inner)
 
-        // const inner = await html.import('test.component.html')
+      // const inner = await html.import('test.component.html')
 
-        // replacing inline handler function with own component methods
-        mapComponentEvents(this, eventNames)
+      // replacing inline handler function with own component methods
+      mapComponentEvents(this, eventNames)
 
-        // get variable names
-        updateVars(this)
+      // get variable names
+      updateVars(this)
 
     }
 
-    connectedCallback() { 
-        this._render()
-        const workerUrl = this.getAttribute('src')
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register(workerUrl).then(function(registration) {
-              console.log('Service Worker registered:', registration);
-            }).catch(function(error) {
-              console.log('Service Worker registration failed:', error);
-            });
-          }
-          
+
+    connectedCallback() {
+      alert('is working')
+      this._render()
+      const workerUrl = this.getAttribute('src')
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(workerUrl)
+          .then(function (registration) {
+            console.log('Service Worker registered:', registration);
+          }).catch(function (error) {
+            console.log('Service Worker registration failed:', error);
+          });
+      }
+
     }
 
     disconnectedCallback() { }
@@ -39,6 +50,11 @@ class ServiceWorkerScript extends HTMLElement {
 
     adoptedCallback() { }
 
-}
+  }
 
-window.customElements.define('service-worker-script', ServiceWorkerScript)
+  window.customElements.define('service-worker-script', ServiceWorkerScript)
+
+
+  module.export = ServiceWorkerScript
+
+})(module)

@@ -143,7 +143,7 @@ function getMyLocation() {
 
     let sourceUrl
     try {
-        log(sourceLocation)
+        // log(sourceLocation)
         sourceUrl = new URL(sourceLocation)
     } catch (err) { log('pillao 2', err) }
 

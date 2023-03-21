@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <!-- https://d1s7mo6ry5mnzt.cloudfront.net -->
+
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/style-tools.css">
+    <link rel="stylesheet" href="https://d1s7mo6ry5mnzt.cloudfront.net/css-tools.css">
+
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/package-bundle.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/web-tools.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/tube-layout/tube-layout.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/layout.component.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/accordion/accordion.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/modal/components/modal.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-set.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-point.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-chart.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script>
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/floating-pannel/floating-pannel.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/route.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/router.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/todo.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/task.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/auth/login.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-subscription.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-mutation.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/green-screen/green-screen.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/cards/plain-card.component.js"></script>
+    
+    <script src="./scripts/web-worker.component.js"></script>
+    <script src="./scripts/service-worker.component.js"></script>
+
+    <!-- <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/web-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/service-worker.component.js"></script> -->
+
+    <!-- <style>
+        a {
+            color: #e0b76a;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .top-menu a {
+            min-width: 120px;
+            /* height: 80%; */
+            padding: 4px;
+            margin-right: 2px;
+            border-radius: 2px;
+            border-bottom: 1px solid var(--black-3);
+
+            text-decoration: none;
+            font-size: 14px;
+
+            color: var(--white-3);
+            background-color: var(--black-2);
+        }
+
+        pre {
+            display: block;
+            background-color: var(--black-1);
+            color: ghostwhite;
+            font-family: monospace;
+            margin: 12px 0;
+            border-radius: 4px;
+        }
+    </style> -->
+
+</head>
+
+<body>
+
+    <script>
+
+        function registerTriggers(element, callback) {
+            if (!element.hasAttribute('trigger')) return
+            // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
+            const selector = element.getAttribute('trigger')
+            const triggers = Array.from(document.querySelectorAll(selector))
+            // const triggerId = '#' + this.getAttribute('trigger')
+            // const trigger = document.querySelector(triggerId)
+
+            console.log(triggers)
+            if (!triggers) return
+            const triggerEvent = element.getAttribute('trigger-event') || 'click'
+
+            triggers.map(trigger =>
+                trigger.addEventListener(triggerEvent, callback))
+
+            // alert('trigger:' + this.getAttribute('trigger'))
+
+        }
+
+
+        class ClickCounter extends HTMLElement {
+
+            get count() {
+                const value = Number(this.getAttribute('count'))
+                return Number.isNaN(value) ? 0 : value
+            }
+
+            set count(value) {
+                this.setAttribute('count', Number.isNaN(Number(value)) ? 0 : Number(value))
+            }
+
+            constructor() {
+                super()
+                // this.count = 0
+            }
+
+            async _render() {
+                const inner = html`<b>({count})</b>`
+                const shadow = this.attachShadow({ mode: 'open' })
+                shadow.appendChild(inner)
+
+                // const inner = await html.import('test.component.html')
+
+                // get variable names
+                updateVars(this)
+
+                registerTriggers(this, () => {
+                    console.log('counting')
+                    this.count += 1
+                    updateVars(this)
+                })
+
+            }
+
+            connectedCallback() { this._render() }
+
+            disconnectedCallback() { }
+
+            attributeChangedCallback(name, oldValue, newValue) { }
+
+            adoptedCallback() { }
+
+        }
+
+        window.customElements.define('click-counter', ClickCounter)
+
+
+    </script>
+
+    <button data-role="modal-trigger">click me</button>
+    <button>click me</button>
+    <button data-role="modal-trigger">click me</button>
+    <button>other btn</button>
+    <button data-role="modal-trigger">other btn</button>
+    <button>other btn</button>
+
+    <click-counter trigger="[data-role='modal-trigger']"></click-counter>
+
+    <br>
+
+    <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
+
+    <click-counter trigger="select" trigger-event="change" count="10"></click-counter>
+    
+    
+    
+    <app-sync-subscription></app-sync-subscription>
+    
+    <click-counter trigger="app-sync-subscription" trigger-event="data"></click-counter>
+
+</body>
+
+</html>
