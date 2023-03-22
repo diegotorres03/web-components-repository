@@ -299,23 +299,25 @@ class AppModal extends HTMLElement {
 
         if (this.getAttribute('open')) this.show()
 
-        if (this.hasAttribute('trigger')) {
-            // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
-            const selector = this.getAttribute('trigger')
-            const triggers = Array.from(document.querySelectorAll(selector))
-            // const triggerId = '#' + this.getAttribute('trigger')
-            // const trigger = document.querySelector(triggerId)
+        // if (this.hasAttribute('trigger')) {
+        //     // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
+        //     const selector = this.getAttribute('trigger')
+        //     const triggers = Array.from(document.querySelectorAll(selector))
+        //     // const triggerId = '#' + this.getAttribute('trigger')
+        //     // const trigger = document.querySelector(triggerId)
 
-            console.log(triggers)
-            if (!triggers) return
-            const triggerEvent = this.getAttribute('trigger-event') || 'click'
+        //     console.log(triggers)
+        //     if (!triggers) return
+        //     const triggerEvent = this.getAttribute('trigger-event') || 'click'
 
-            triggers.map(trigger =>
-                trigger.addEventListener(triggerEvent, () => this.show()))
+        //     triggers.map(trigger =>
+        //         trigger.addEventListener(triggerEvent, () => this.show()))
 
-            // alert('trigger:' + this.getAttribute('trigger'))
+        //     // alert('trigger:' + this.getAttribute('trigger'))
 
-        }
+        // }
+        registerTriggers(this, ev => this.show())
+
 
 
     }

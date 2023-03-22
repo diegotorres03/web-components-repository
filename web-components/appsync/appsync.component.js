@@ -105,6 +105,10 @@
 
     }
 
+    rungql(query) {
+      return API.graphql(graphqlOperation(query))
+    }
+
     async connectedCallback() {
       await this._render()
       this.connectToAppSync()

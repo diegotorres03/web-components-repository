@@ -120,6 +120,9 @@ class FlipCard extends HTMLElement {
         // log(flipcard.classList)
         flipcard.classList.toggle('active')
         // log(flipcard.classList)
+        this.dispatchEvent(new CustomEvent('flipped', {
+            bubbles: true, composed: true
+        }))
 
     }
 

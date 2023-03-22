@@ -16,34 +16,6 @@
 
     <script src="https://d1s7mo6ry5mnzt.cloudfront.net/package-bundle.js"></script>
 
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/web-tools.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/tube-layout/tube-layout.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/layout.component.js"></script>
-    
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/accordion/accordion.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/modal/components/modal.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-set.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-point.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-chart.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script>
-    
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/floating-pannel/floating-pannel.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/route.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/router.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/web-worker.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/service-worker.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/todo.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/task.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/auth/login.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-subscription.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-mutation.component.js"></script>
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/green-screen/green-screen.component.js"></script>
-    
-    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/cards/plain-card.component.js"></script>
-    
-    
 
     <style>
         a {
@@ -304,7 +276,7 @@
 
             <app-route class="route" hash="green-screen">
                 <h1>Green Screen</h1>
-                <green-screen></green-screen>
+                <!-- <green-screen></green-screen> -->
             </app-route>
 
             <app-route hash="live-table">
@@ -321,12 +293,11 @@
 
             <app-route hash="modal">
                 <div style="padding: 50px;">
-                    <button id="open-modal-1">definition</button>
-                    <button id="open-modal-2">example</button>
+                    <button id="open-modal-1"  data-target="modal-definition" >definition</button>
+                    <button id="open-modal-2" data-target="modal-example" >example</button>
                 </div>
 
-
-                <app-modal id="modal-2">
+                <app-modal id="modal-2" trigger="flip-card" trigger-event="flipped" >
                     <h1 slot="title">Example</h1>
                     <section slot="main">
                         <plain-card>
@@ -365,14 +336,31 @@ modal.addEventListener('cancel', ev =>
         </flip-card> -->
                 </app-modal>
 
-                <app-modal id="modal-1">
+                <app-modal id="modal-1" trigger="[data-target='modal-definition']">
                     <h1 slot="title">Definition</h1>
                     <section slot="main" style="padding: 50px;">
                         A modal is a dialog box/popup window that is displayed on top of the current page.
                     </section>
                 </app-modal>
 
-                <script>
+                <flip-card trigger="app-modal" trigger-event="accepted" ></flip-card>
+    
+            <!-- <script>
+                    const btn = document.querySelector('#modal-1')
+                    console.log(btn)
+                    const flipcard = document.querySelector('flip-card')
+
+                    flipcard.addEventListener('flipped', ev => {
+                        alert('flipped')
+                    })
+
+                    btn.addEventListener('accepted', ev=> {
+                        console.log(ev)
+                        flipcard.flip()
+                    })
+                </script> -->
+
+                <!-- <script>
                     document.querySelector('#open-modal-2').addEventListener('click', ev => {
                         document.querySelector('#modal-2').show()
                     })
@@ -382,10 +370,10 @@ modal.addEventListener('cancel', ev =>
                         modal.show()
                     })
 
-                    modal.addEventListener('accept', ev => console.log(ev))
-                    modal.addEventListener('cancel', ev => console.log(ev))
+                    modal.addEventListener('accepted', ev => console.log(ev))
+                    modal.addEventListener('declined', ev => console.log(ev))
+                </script> -->
 
-                </script>
             </app-route>
 
 
@@ -501,6 +489,35 @@ modal.addEventListener('cancel', ev =>
         <footer slot="footer">diegotrs@amazon.com</footer>
     </app-layout>
 
+
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/web-tools.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/tube-layout/tube-layout.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/layout/components/layout.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/accordion/accordion.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/modal/components/modal.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-set.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-point.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/chart/data-chart.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/flip-card/components/wc-flip-card.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/graph/graph-viewer.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/floating-pannel/floating-pannel.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/route.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/router/router.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/web-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/scripts/service-worker.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/todo.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/todo/task.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/auth/login.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-subscription.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/appsync/appsync-mutation.component.js"></script>
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/green-screen/green-screen.component.js"></script>
+    
+    <script src="https://d1s7mo6ry5mnzt.cloudfront.net/cards/plain-card.component.js"></script>
+    
+    
 
 </body>
 

@@ -342,6 +342,15 @@
                     <button data-title="definition-modal" id="open-modal-3">definition 2</button>
                 </div>
 
+                <!-- <app-modal id="modal-1" trigger="#open-modal-1"> -->
+                <app-modal id="modal-1" trigger="[data-title='definition-modal']">
+                        <h1 slot="title">Definition</h1>
+                        <section slot="main" style="padding: 50px;">
+                            A modal is a dialog box/popup window that is displayed on top of the current page.
+                        </section>
+                    </app-modal>
+    
+
                 <app-modal id="modal-2" trigger="#open-modal-2">
                     <h1 slot="title">Example</h1>
                     <section slot="main">
@@ -381,13 +390,6 @@ modal.addEventListener('cancel', ev =>
         </flip-card> -->
                 </app-modal>
 
-                <!-- <app-modal id="modal-1" trigger="#open-modal-1"> -->
-                <app-modal id="modal-1" trigger="[data-title='definition-modal']">
-                    <h1 slot="title">Definition</h1>
-                    <section slot="main" style="padding: 50px;">
-                        A modal is a dialog box/popup window that is displayed on top of the current page.
-                    </section>
-                </app-modal>
 
 
             </app-route>

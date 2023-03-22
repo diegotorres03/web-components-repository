@@ -36,7 +36,9 @@
 
         subscribe(fn) {
             const query = gql`${this.subscriptionQuery}`
-            const subscription = rungql(query)
+            console.log('this.parentElement', this.parentElement)
+            console.log(query)
+            const subscription = this.parentElement.rungql(query)
             subscription.subscribe({
                 next: event => fn(event)
             })
@@ -47,7 +49,6 @@
             await this._render()
             await wait(1) // hack to wait until content is rendered
             this.subscriptionQuery = this.textContent
-            console.log(this.subscriptionQuery)
             this.unsubscribe = this.subscribe(event => {
                 console.log(event)
                 this.dispatchEvent(new CustomEvent('data', {

@@ -42,7 +42,9 @@
             console.log(queryStr)
             const query = gql`${queryStr}`
             console.log(query)
-            const res = await rungql(query, params)
+            console.log('this.parentElement', this.parentElement)
+            // const res = await rungql(query, params)
+            const res = await this.parentElement.rungql(query, params)
             console.log(res)
 
         }

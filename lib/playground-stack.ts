@@ -72,11 +72,8 @@ export class PlaygroundStack extends Stack {
       // .run('./web-components', 'npx webpack')
       // .run('./web-components', 'rm -rf ./node_modules')
       .addAssets('./wc-demo-page')
-      .path('auth/*')
-      .on(VIEWER_REQUEST, handlerCode)
-    // .onOriginRequest(handlerCode)
-    // .onViewerRequest(handlerCode)
-
+      // .path('auth/*')
+      // .on(VIEWER_REQUEST, handlerCode)
 
 
 
@@ -95,31 +92,31 @@ export class PlaygroundStack extends Stack {
 
     api
       .cors()
-      .authorizer('main-auth', (async ev => {
-        console.log(JSON.stringify(ev, undefined, 2))
-        // return {
-        //   isAuthorized: true,
-        //   context: {
-        //     msg: 'use this to send data to handler fn',
-        //   }
-        // }
-        return {
-          "principalId": "abcdef", // The principal user identification associated with the token sent by the client.
-          "policyDocument": {
-            "Version": "2012-10-17",
-            "Statement": [
-              {
-                "Action": "execute-api:Invoke",
-                "Effect": "Allow",
-                "Resource": "arn:aws:execute-api:{regionId}:{accountId}:{apiId}/{stage}/{httpVerb}/[{resource}/[{child-resources}]]"
-              }
-            ]
-          },
-          "context": {
-            "exampleKey": "exampleValue"
-          }
-        }
-      }).toString())
+      // .authorizer('main-auth', (async ev => {
+      //   console.log(JSON.stringify(ev, undefined, 2))
+      //   // return {
+      //   //   isAuthorized: true,
+      //   //   context: {
+      //   //     msg: 'use this to send data to handler fn',
+      //   //   }
+      //   // }
+      //   return {
+      //     "principalId": "abcdef", // The principal user identification associated with the token sent by the client.
+      //     "policyDocument": {
+      //       "Version": "2012-10-17",
+      //       "Statement": [
+      //         {
+      //           "Action": "execute-api:Invoke",
+      //           "Effect": "Allow",
+      //           "Resource": "arn:aws:execute-api:{regionId}:{accountId}:{apiId}/{stage}/{httpVerb}/[{resource}/[{child-resources}]]"
+      //         }
+      //       ]
+      //     },
+      //     "context": {
+      //       "exampleKey": "exampleValue"
+      //     }
+      //   }
+      // }).toString())
 
       .get('/users', (async function (event) {
         console.log(JSON.stringify(event, undefined, 2))
