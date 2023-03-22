@@ -78,6 +78,22 @@
         }
     </style>
 
+    <style>
+
+        /* :root {
+            --amz-blck-1: whitesmoke;
+            --amz-blck-2: #232F3E;
+            --amz-gray-1: #545B64;
+            --amz-gray-2: #687078;
+
+            --amz-blue-1: #306DA3;
+            --amz-blue-2: #0073BB;
+            --amz-turq-1: #44B9C6;
+            --amz-orang-1: blue;
+        } */
+
+    </style>
+
 </head>
 
 <body>
@@ -435,8 +451,9 @@ modal.addEventListener('cancel', ev =>
             <app-route class="route" hash="flipcard">
                 <h1>flipcard component</h1>
 
+                <button data-target="definition-flipcard" >click to open flip-card</button>
 
-                <flip-card>
+                <flip-card trigger="[data-target]">
                     <div slot="front">
                         <h1>Definition</h1>
                     </div>
@@ -447,7 +464,7 @@ modal.addEventListener('cancel', ev =>
                     </div>
                 </flip-card>
 
-                <flip-card>
+                <flip-card trigger="[data-target]" trigger-event="mouseover">
                     <div slot="front">
                         <h1>Example</h1>
                     </div>

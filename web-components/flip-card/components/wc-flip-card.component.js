@@ -10,7 +10,7 @@ class FlipCard extends HTMLElement {
         const inner = await html`
         <!-- <link rel="stylesheet" href="./flip-card/components/standar-wc-style.css"> -->
         <style>
-            *{
+            /* *{
                 --amz-blck-1:#16191F;
                 --amz-blck-2:#232F3E;
                 --amz-gray-1 :#545B64;
@@ -21,8 +21,8 @@ class FlipCard extends HTMLElement {
                 --amz-turq-1 :#44B9C6;
                 --amz-orang-1:#EC7211;
             }
+             */
             .flip-card-box {
-               
                 width: 100%;
                 height: 180px;
                 perspective: 1000px;    
@@ -32,9 +32,9 @@ class FlipCard extends HTMLElement {
                 transform:rotateY(180deg);
             }
 
-            /* .active{
+            .active{
                 transform:rotateY(180deg);
-            } */
+            }
 
             .flip-card{
                 width: 100%;
@@ -44,6 +44,7 @@ class FlipCard extends HTMLElement {
 
                 transform-style:preserve-3d ;
             }
+    
             .front, .back{
                 position: absolute;
                 width: 100%;
@@ -105,36 +106,22 @@ class FlipCard extends HTMLElement {
         updateVars(this)
 
         await sleep(1)
+        // this.addEventListener('mouseover', ev => {
+        //     console.log(ev)
+        //     this.flip()
+        // })
 
-        // [ ] I need to enable the flip from 
-        // if(this.hasAttribute('trigger')) {
-        //     const triggerId = '#' + this.getAttribute('trigger')
-        //     const trigger = document.querySelector(triggerId)
-        //     console.log(triggerId, trigger)    
-        //     if(!trigger) return
-        //     const triggerEvent = this.getAttribute('trigger-event') || 'click'
-        //     // alert('trigger:' + this.getAttribute('trigger'))
-        //     trigger.addEventListener(triggerEvent, ev => {
-        //         console.log(ev.target)
-        //         this.flip()
-        //     })
-
-        // } else { log('no trigger')}
+        registerTriggers(this, ev => this.flip())
 
     }
 
-    // flip() { //
-    //     // const flipcardBox = this.shadowRoot.querySelector('.flip-card-box')
-    //     // log(flipcardBox.classList)
-    //     // flipcardBox.classList.toggle('active')
-    //     // log(flipcardBox.classList)
+    flip() { 
+        const flipcard = this.shadowRoot.querySelector('.flip-card')
+        // log(flipcard.classList)
+        flipcard.classList.toggle('active')
+        // log(flipcard.classList)
 
-    //     const flipcard = this.shadowRoot.querySelector('.flip-card')
-    //     log(flipcard.classList)
-    //     flipcard.classList.toggle('active')
-    //     log(flipcard.classList)
-
-    // }
+    }
 
     connectedCallback() { this._render() }
 

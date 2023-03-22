@@ -150,6 +150,34 @@ function getMyLocation() {
     return { sourceUrl, currentUrl }
 }
 
+
+/**
+ * registrer triggers for an element
+ * this is what enable the trigger="css_selector" and trigger-event="click"
+ * on elements like <app-modal trigger="css_selector" and trigger-event="click">
+ *
+ * @param {HTMLElement} element
+ * @param {Function} callback
+ */
+function registerTriggers(element, callback) {
+    if (!element.hasAttribute('trigger')) return
+    // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
+    const selector = element.getAttribute('trigger')
+    const triggers = Array.from(document.querySelectorAll(selector))
+    // const triggerId = '#' + this.getAttribute('trigger')
+    // const trigger = document.querySelector(triggerId)
+
+    console.log(triggers)
+    if (!triggers) return
+    const triggerEvent = element.getAttribute('trigger-event') || 'click'
+
+    triggers.map(trigger =>
+        trigger.addEventListener(triggerEvent, callback))
+
+    // alert('trigger:' + this.getAttribute('trigger'))
+
+}
+
 const module = {
     set exports(mod) {
         const { currentUrl } = getMyLocation()
@@ -162,6 +190,7 @@ const module = {
         window.modules[pkgName] = mod
     }
 }
+
 
 /**
  *
