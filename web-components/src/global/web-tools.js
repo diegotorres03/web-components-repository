@@ -12,13 +12,13 @@
  * @param {number} [time=300]
  * @returns {Promise}
  */
-function sleep(time = 300) {
+ function sleep(time = 300) {
     return new Promise(resolve => setTimeout(resolve, time))
 }
 
 
 // document.createElement('button').
-function html(templates, ...values) {
+ function html(templates, ...values) {
     const template = document.createElement('template')
     let str = ''
     templates.forEach((template, index) => {
@@ -36,23 +36,23 @@ function html(templates, ...values) {
     return template.content.cloneNode(true)
 }
 
-const mapComponentEvents = (component) => {
+ function mapComponentEvents(component) {
     const EVENT_NAMES = [
-      "onclick",
-      "ondblclick",
-      "onabort",
-      "onanimationcancel",
-      "onauxclick",
-      "onchange",
-      "onclose",
-      "onkeydown",
-      "onkeyup",
-      "onkeypress",
-      "onload",
-      "onmouseleave",
-      "onmouseenter",
-      "onmousemove",
-      "onmouseover",
+        "onclick",
+        "ondblclick",
+        "onabort",
+        "onanimationcancel",
+        "onauxclick",
+        "onchange",
+        "onclose",
+        "onkeydown",
+        "onkeyup",
+        "onkeypress",
+        "onload",
+        "onmouseleave",
+        "onmouseenter",
+        "onmousemove",
+        "onmouseover",
     ];
     // log(component)
     EVENT_NAMES.map(eventName => {
@@ -68,7 +68,7 @@ const mapComponentEvents = (component) => {
     })
 }
 
-function updateVars(component) {
+ function updateVars(component) {
     const variables = Array.from(component.shadowRoot.querySelectorAll('.variable'))
     variables.forEach(variable =>
         Array.from(variable.classList)
@@ -85,13 +85,13 @@ function updateVars(component) {
  *
  * @param {HTMLElement} component
  */
-function renderForLoops(component) {
+ function renderForLoops(component) {
     const templates = Array.from(component.shadowRoot.querySelectorAll('template'))
     templates.forEach(template => console.log(template.dataset))
 }
 
 ///// GraphQL
-const gql = function (templates, ...values) {
+ function gql(templates, ...values) {
     let str = ''
     templates.forEach((template, index) => {
         str += template
@@ -108,7 +108,7 @@ const gql = function (templates, ...values) {
  * @param {HTMLElement} element
  * @param {Function} callback
  */
-function registerTriggers(element, callback) {
+ function registerTriggers(element, callback) {
     if (!element.hasAttribute('trigger')) return
     // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
     const selector = element.getAttribute('trigger')
@@ -127,7 +127,7 @@ function registerTriggers(element, callback) {
 
 }
 
-module.exports = {
+ module.exports = {
     html,
     mapComponentEvents,
     renderForLoops,

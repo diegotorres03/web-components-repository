@@ -1,4 +1,11 @@
-import { mapComponentEvents, updateVars, registerTriggers, html } from "../../../global/web-tools.js";
+// import { mapComponentEvents, updateVars, registerTriggers, html } from "../../../global/web-tools.js";
+import {
+  html, 
+  mapComponentEvents,
+  updateVars,
+  registerTriggers, 
+} from '../../../global/web-tools'
+
 import FlipCardHtml from "./flip-card.html";
 import FlipCardCss from "./flip-card.css";
 
@@ -22,6 +29,7 @@ class FlipCard extends HTMLElement {
   conectedCallback() {
     mapComponentEvents(this);
     updateVars(this);
+    console.log(registerTriggers)
     registerTriggers(this, this.flip);
   }
 

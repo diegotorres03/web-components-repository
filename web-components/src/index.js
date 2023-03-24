@@ -1,7 +1,10 @@
 import './global/style-tools.css';
 
-import FlipCard from './components/flip-card';
+// export * from './global/web-tools'
+export *from './components/flip-card';
 
-export default {
-  FlipCard,
-}
+// import FlipCard from './components/flip-card';
+
+// export default {
+//   FlipCard,
+// }
