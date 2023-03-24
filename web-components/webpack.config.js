@@ -1,25 +1,96 @@
-// Import path for resolving file paths
-var path = require("path");
-module.exports = {
-  // Specify the entry point for our app.
-  entry: [path.join(__dirname, "package-index.js")],
-  // Specify the output file containing our bundled code.
-  output: {
-    path: __dirname, //+ '/dist',
-    filename: 'package-bundle.js'
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const WebTools = require("./src/global/web-tools");
+const webpack = require("webpack");
+
+// const fs = require("fs");
+
+const isProduction = process.env.NODE_ENV == "production";
+
+// ⚠️ This is the dinamic import of components and layouts ⚠️
+
+// function getDirectories(srcPath) {
+//   return fs.readdirSync(srcPath).filter((file) => {
+//     return fs.statSync(path.join(srcPath, file)).isDirectory();
+//   });
+// }
+
+// const componentsPath = "./src/components";
+// const layoutsPath = "./src/layouts";
+// const componentFolders = getDirectories(componentsPath);
+// const layoutFolders = getDirectories(layoutsPath);
+
+// const componentsEntryPoints = componentFolders.reduce((entry, folder) => {
+//   entry[`${folder}.component`] =`./${path.join(componentsPath, folder, "index.js")}`;
+//   return entry;
+// }, {});
+
+
+// const layoutsEntryPoints = layoutFolders.reduce((entry, folder) => {
+//   entry[`${folder}.layout`] =`./${path.join(layoutsPath, folder, "index.js")}`;
+//   return entry;
+// }, {});
+
+
+// Dinamic bundles:
+// The main entry point only has global imports, because the components and layouts have separate entry points
+// The components and layouts are dinamically bundled individually
+
+// Full bundle:
+// The main entry point has global imports and all components and layouts (Easy importing all from one file/link)
+
+// TODO: Add a flag to choose between full bundle and dinamic bundles
+
+const config = {
+  entry: {
+    main: "./src/index.js",
+
+    // ⚠️ This is the dinamic import of components and layouts ⚠️
+    // ...componentsEntryPoints,
+    // ...layoutsEntryPoints,
   },
-  // Enable WebPack to use the 'path' package.
-  resolve: {
-    fallback: { path: require.resolve("path-browserify") }
+  output: {
+    path: path.resolve(__dirname, "dist"),
+  },
+  devServer: {
+    open: true,
+    host: "localhost",
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "index.html",
+    }),
+  ],
+  module: {
+    rules: [
+      // Rule for loading component/ CSS files using raw-loader
+      {
+        test: /\.css$/i,
+        include: path.resolve(__dirname, "src/components"),
+        use: ["raw-loader"],
+      },
+      {
+        test: /\.css$/i,
+        exclude: path.resolve(__dirname, "src/components"),
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
+    ],
+  },
+};
+
+module.exports = () => {
+  config.plugins.push(new CleanWebpackPlugin());
+  if (isProduction) {
+    config.mode = "production";
+    config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+  } else {
+    config.mode = "development";
   }
-  /**
-  * In Webpack version v2.0.0 and earlier, you must tell 
-  * webpack how to use "json-loader" to load 'json' files.
-  * To do this Enter 'npm --save-dev install json-loader' at the 
-  * command line to install the "json-loader' package, and include the 
-  * following entry in your webpack.config.js.
-  * module: {
-    rules: [{test: /\.json$/, use: use: "json-loader"}]
-  }
-  **/
+  return config;
 };
