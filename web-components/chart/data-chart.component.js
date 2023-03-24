@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     const Chart = require('chart.js/auto')
 
@@ -132,4 +132,4 @@
 
     module.exports = DataChartComponent
 
-})(module)
+})(module, require)

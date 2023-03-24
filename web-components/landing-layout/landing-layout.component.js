@@ -37,4 +37,4 @@
 
     module.exports = LandingLayout
 
-})(module)
+})(module, require)

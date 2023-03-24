@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
 
   function compareRGB(baseRed, baseGreen, baseBlue, tolerance = 10) {
@@ -109,4 +109,4 @@
 
   module.exports = GreenScreenComponent
 
-})(module)
+})(module, require)

@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     class AppModal extends HTMLElement {
 
@@ -71,4 +71,4 @@
     window.customElements.define('app-modal', AppModal)
     module.exports = AppModal
 
-})(module)
+})(module, require)

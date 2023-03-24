@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     const someData = {
         "nodes": [
@@ -63,4 +63,4 @@
 
     module.exports = GraphViewerComponent
 
-})(module)
+})(module, require)

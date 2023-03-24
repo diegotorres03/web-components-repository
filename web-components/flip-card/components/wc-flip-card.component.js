@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
 class FlipCard extends HTMLElement {
 
@@ -140,4 +140,4 @@ window.customElements.define('flip-card', FlipCard)
 
 module.exports = FlipCard
 
-})(module)
+})(module, require)

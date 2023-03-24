@@ -14,7 +14,7 @@
 // const { Amplify, API, graphqlOperation } = require('aws-amplify')
 
 
-(function (module) {
+(function (module, require) {
 
     class AppSyncMutation extends HTMLElement {
 
@@ -67,4 +67,4 @@
 
     module.exports = AppSyncMutation
 
-})(module)
+})(module, require)

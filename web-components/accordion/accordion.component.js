@@ -1,5 +1,5 @@
 
-(function (module) {
+(function (module, require) {
 
 
     class AppAccordion extends HTMLElement {
@@ -165,4 +165,4 @@
 
     module.exports = AppAccordion
 
-})(module)
+})(module, require)

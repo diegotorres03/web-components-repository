@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     class TubeLayout extends HTMLElement {
 
@@ -140,5 +140,5 @@
 
 
 
-})(module)
+})(module, require)
 

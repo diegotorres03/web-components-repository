@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
 
     const { Auth } = require('aws-amplify') || window.modules['aws-amplify']
@@ -41,4 +41,4 @@
 
     module.exports = AppLogin
 
-})(module)
+})(module, require)

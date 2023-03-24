@@ -1,7 +1,11 @@
-(function (module) {
+(function (module, require) {
 
 
   const { Amplify, API, graphqlOperation } = require('aws-amplify')
+  
+  const { html } = require('../web-tools-module')
+  // const html  = require('../web-tools')
+  // console.log(html)
 
   // console.log(Amplify, API, graphqlOperation)
 
@@ -18,17 +22,17 @@
 
 
 
-  async function sendMutation(id, level, recordType) {
-    const query = gql`mutation MyMutation {
-        createSession(id: {id: "${id}", level: "${level}", recordType: "${recordType}"}) {
-          id
-          level
-          recordType
-        }
-      }`
-    console.log(query)
-    const res = await rungql(query)
-  }
+  // async function sendMutation(id, level, recordType) {
+  //   const query = gql`mutation MyMutation {
+  //       createSession(id: {id: "${id}", level: "${level}", recordType: "${recordType}"}) {
+  //         id
+  //         level
+  //         recordType
+  //       }
+  //     }`
+  //   console.log(query)
+  //   const res = await rungql(query)
+  // }
 
 
   function subscribe(fn) {
@@ -127,4 +131,4 @@
   module.exports = AppSync
 
 
-})(module)
+})(module, require)

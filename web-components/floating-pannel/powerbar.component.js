@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     class Powerbar extends HTMLElement {
 
@@ -84,4 +84,4 @@
 
     module.exports = AppSyncMutation
 
-})(module)
+})(module, require)

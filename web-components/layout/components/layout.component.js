@@ -1,4 +1,7 @@
-(function (module) {
+(function (module, require) {
+
+    const {html, mapComponentEvents, updateVars} = require('../../web-tools-module')
+
 
     class AppLayout extends HTMLElement {
 
@@ -312,4 +315,4 @@
 
     module.exports = AppLayout
 
-})(module)
+})(module, require)

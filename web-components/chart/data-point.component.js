@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     class DataPointComponent extends HTMLElement {
 
@@ -36,4 +36,4 @@
     module.exports = DataPointComponent
 
 
-})(module)
+})(module, require)

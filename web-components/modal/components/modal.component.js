@@ -252,9 +252,8 @@ class AppModal extends HTMLElement {
             background-color: var(--white-1);
         }
     
-       
     </style>
-    
+
     <div>
         <!-- <label for="checker">open modal</label> -->
     
@@ -333,7 +332,6 @@ class AppModal extends HTMLElement {
         }))
         this.close()
     }
-
 
     cancel() {
         this.shadowRoot.dispatchEvent(new CustomEvent('declined', {

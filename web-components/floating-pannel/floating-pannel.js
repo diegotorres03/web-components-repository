@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
 class FloatingPannel extends HTMLElement {
 
@@ -104,4 +104,4 @@ window.customElements.define('floating-pannel', FloatingPannel)
 
 module.exports = FloatingPannel
 
-})(module)
+})(module, require)

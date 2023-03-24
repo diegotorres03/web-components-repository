@@ -1,7 +1,7 @@
 const { Module } = require("module")
 
 
-(function (module) {
+(function (module, require) {
 
   function emitEvent(eventName, eventDetail) {
 
@@ -57,4 +57,4 @@ const { Module } = require("module")
 
   module.export = ServiceWorkerScript
 
-})(module)
+})(module, require)

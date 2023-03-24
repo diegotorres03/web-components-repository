@@ -1,4 +1,4 @@
-(function (module) {
+(function (module, require) {
 
     class DataSetComponent extends HTMLElement {
 
@@ -35,4 +35,4 @@
 
     module.exports = DataSetComponent
 
-})(module)
+})(module, require)
