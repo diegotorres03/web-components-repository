@@ -51,7 +51,7 @@
         top: -1000px;
     }
 
-    #checker:checked~.modal-overlay {
+    /* #checker:checked~.modal-overlay {
         animation: 1s 1 normal appear;
 
         animation-delay: 0.4s;
@@ -59,20 +59,20 @@
 
         opacity: 1;
         transform: scale(1);
-        z-index: 800;
-    }
-
-    /* .modal-overlay {
-        animation: 1s 1 normal appear;
-        animation-delay: 0.4s;
-        animation-fill-mode: forwards;
-
-        opacity: 1;
-
-        transform: scale(1);
-
         z-index: 800;
     } */
+
+    .modal-overlay {
+        animation: 1s 1 normal appear;
+        animation-delay: 0.4s;
+        animation-fill-mode: forwards;
+
+        opacity: 1;
+
+        transform: scale(1);
+
+        z-index: 800;
+    }
 
     @keyframes appear {
 
