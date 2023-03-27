@@ -1,5 +1,7 @@
 (function (module, require) {
 
+
+//TO DO: ACTUALIZAR EL COMPONENTE
 class FlipCard extends HTMLElement {
 
     constructor() {
@@ -10,7 +12,7 @@ class FlipCard extends HTMLElement {
         const inner = await html`
         <!-- <link rel="stylesheet" href="./flip-card/components/standar-wc-style.css"> -->
         <style>
-            /* *{
+            *{
                 --amz-blck-1:#16191F;
                 --amz-blck-2:#232F3E;
                 --amz-gray-1 :#545B64;
@@ -21,7 +23,7 @@ class FlipCard extends HTMLElement {
                 --amz-turq-1 :#44B9C6;
                 --amz-orang-1:#EC7211;
             }
-             */
+            
             .flip-card-box {
                 width: 100%;
                 height: 180px;
