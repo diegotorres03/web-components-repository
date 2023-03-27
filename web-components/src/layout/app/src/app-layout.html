@@ -1,0 +1,28 @@
+<div class="super-container flex-column">
+  <header class="header-container flex-row align-center justify-center bcb0-cw4">
+    <slot name="header">HEADER</slot>
+  </header>
+  <section class="top-container flex-row">
+    <div class="left-header flex-row align-center bcb1-cw4">
+      <slot name="left-header">LEFT</slot>
+    </div>
+    <div class="top-menu flex-row align-center bcb1-cw4 scroll">
+      <slot name="top-menu"></slot>
+    </div>
+  </section>
+  <section class="main-container flex-row">
+    <div class="left-menu flex-column bcb1-cw4">
+      <div class="left-content">
+        <slot name="left-content">LEFT-CONTENT</slot>
+      </div>
+    </div>
+    <div class="right-container flex-column">
+      <div class="display-container flex-column justify-center align-center pattern-1">
+        <slot name="main">MAIN</slot>
+      </div>
+      <div class="footer flex-row align-center bcb1-cw4">
+        <slot name="footer">FOOTER</slot>
+      </div>
+    </div>
+  </section>
+</div>
