@@ -60,6 +60,7 @@ class AppRouter extends HTMLElement {
             })
     }
 
+
     connectedCallback() {
         this._render()
             .then(() => this._updateRoutes())

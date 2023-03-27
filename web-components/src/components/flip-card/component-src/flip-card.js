@@ -1,36 +1,40 @@
 // import { mapComponentEvents, updateVars, registerTriggers, html } from "../../../global/web-tools.js";
 import {
-  html, 
+  html,
   mapComponentEvents,
+  sleep,
   updateVars,
-  registerTriggers, 
+  registerTriggers,
 } from '../../../global/web-tools'
 
 import FlipCardHtml from "./flip-card.html";
 import FlipCardCss from "./flip-card.css";
 
 
-class FlipCard extends HTMLElement {
+export default class FlipCard extends HTMLElement {
+  get DEFAULT_EVENT_NAME() {
+    return 'flipped'
+  }
+
+
   constructor() {
     super();
 
     const template = html`
-      <style>
-        ${FlipCardCss}
-      </style>
+      <style>${FlipCardCss}</style>
       ${FlipCardHtml}
-    `;
+    `
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template);
 
   }
 
-  conectedCallback() {
+  connectedCallback() {
+
     mapComponentEvents(this);
     updateVars(this);
-    console.log(registerTriggers)
-    registerTriggers(this, this.flip);
+    registerTriggers(this, () => this.flip())
   }
 
   flip() {
@@ -39,7 +43,7 @@ class FlipCard extends HTMLElement {
     flipcard.classList.toggle("active");
     // log(flipcard.classList)
     this.dispatchEvent(
-      new CustomEvent("flipped", {
+      new CustomEvent(this.DEFAULT_EVENT_NAME, {
         bubbles: true,
         composed: true,
       })
@@ -47,4 +51,4 @@ class FlipCard extends HTMLElement {
   }
 }
 
-export default FlipCard;
+

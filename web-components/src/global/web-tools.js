@@ -110,21 +110,26 @@
  */
  function registerTriggers(element, callback) {
     if (!element.hasAttribute('trigger')) return
-    // [ ] change this from accepting an ID to accept a query selector, in this way, multiple actions can open the same modal
     const selector = element.getAttribute('trigger')
     const triggers = Array.from(document.querySelectorAll(selector))
-    // const triggerId = '#' + this.getAttribute('trigger')
-    // const trigger = document.querySelector(triggerId)
 
-    console.log(triggers)
     if (!triggers) return
-    const triggerEvent = element.getAttribute('trigger-event') || 'click'
+    let triggerEvent = element.getAttribute('trigger-event')
 
-    triggers.map(trigger =>
-        trigger.addEventListener(triggerEvent, callback))
+    triggers.map(trigger =>{
+        if(!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
+        trigger.addEventListener(triggerEvent, callback)
+    })
 
-    // alert('trigger:' + this.getAttribute('trigger'))
+    return triggers
+}
 
+function select(selector, scope = document) {
+    return scope.querySelector(selector)
+}
+
+function selectAll(selector, scope = document) {
+    return Array.from(scope.querySelectorAll(selector))
 }
 
  module.exports = {
@@ -134,5 +139,6 @@
     sleep,
     updateVars,
     gql,
-    registerTriggers
+    registerTriggers,
+    select, selectAll,
 }
