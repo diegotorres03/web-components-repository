@@ -1,13 +1,13 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const WebTools = require("./src/global/web-tools");
-const webpack = require("webpack");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const WebTools = require('./src/global/web-tools')
+const webpack = require('webpack')
 
 // const fs = require("fs");
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV == 'production'
 
 // ⚠️ This is the dinamic import of components and layouts ⚠️
 
@@ -27,12 +27,10 @@ const isProduction = process.env.NODE_ENV == "production";
 //   return entry;
 // }, {});
 
-
 // const layoutsEntryPoints = layoutFolders.reduce((entry, folder) => {
 //   entry[`${folder}.layout`] =`./${path.join(layoutsPath, folder, "index.js")}`;
 //   return entry;
 // }, {});
-
 
 // Dinamic bundles:
 // The main entry point only has global imports, because the components and layouts have separate entry points
@@ -45,22 +43,22 @@ const isProduction = process.env.NODE_ENV == "production";
 
 const config = {
   entry: {
-    main: "./src/index.js",
+    main: './src/index.js',
 
     // ⚠️ This is the dinamic import of components and layouts ⚠️
     // ...componentsEntryPoints,
     // ...layoutsEntryPoints,
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     open: true,
-    host: "localhost",
+    host: 'localhost',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "index.html",
+      template: 'index.html',
     }),
   ],
   module: {
@@ -68,34 +66,35 @@ const config = {
       // Rule for loading component/ CSS files using raw-loader
       {
         test: /\.css$/i,
-        include: path.resolve(__dirname, "src/components"),
-        use: ["raw-loader"],
+        include: [
+          path.resolve(__dirname, 'src/components'),
+          path.resolve(__dirname, 'src/layout'),
+        ],
+        use: ['raw-loader'],
       },
       {
         test: /\.css$/i,
-        include: path.resolve(__dirname, "src/global"),
-        use: ["raw-loader"],
-      },
-      {
-        test: /\.css$/i,
-        exclude: path.resolve(__dirname, "src/components"),
-        use: ["style-loader", "css-loader"],
+        exclude: [
+          path.resolve(__dirname, 'src/components'),
+          path.resolve(__dirname, 'src/layout'),
+        ],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        loader: 'html-loader',
       },
     ],
   },
-};
+}
 
 module.exports = () => {
-  config.plugins.push(new CleanWebpackPlugin());
+  config.plugins.push(new CleanWebpackPlugin())
   if (isProduction) {
-    config.mode = "production";
-    config.plugins.push(new WorkboxWebpackPlugin.GenerateSW());
+    config.mode = 'production'
+    config.plugins.push(new WorkboxWebpackPlugin.GenerateSW())
   } else {
-    config.mode = "development";
+    config.mode = 'development'
   }
-  return config;
-};
+  return config
+}
