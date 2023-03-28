@@ -12,8 +12,18 @@ import localforage from 'localforage'
 //import componentHtml from './flip-card.html'
 //import componentStyle from './flip-card.css'
 
+/**
+ * This component help to interact with IndexedDB, allowing you to persis information on the browser
+ * 
+ * 
+ * @export
+ * @class DataStore
+ * @author Diego Torres
+ * @extends {HTMLElement}
+ */
 export default class DataStore extends HTMLElement {
 
+  // [ ] emit events to enable Change Data Capture
 
   get action() { return this.getAttribute('action') }
 
@@ -30,7 +40,7 @@ export default class DataStore extends HTMLElement {
   connectedCallback() {
     mapComponentEvents(this)
     updateVars(this)
-    registerTriggers(this, (event) => this.processEvent(event))
+    registerTriggers(this, (event) => this.#processEvent(event))
 
     this.addEventListener('sync', async event => {
       console.log('request to load events', event)
@@ -59,23 +69,12 @@ export default class DataStore extends HTMLElement {
       const key = event.target.id
       console.log('request to save event', event, key)
       console.log(event.detail)
-      this.processEvent(event)
+      this.#processEvent(event)
     })
-
-
-    // this.addEventListener('added', event => {
-    //   const key = event.target.id
-    //   console.log('request to add event', event, key)
-    //   console.log(event.detail)
-    //   console.trace()
-    //   this.processEvent(event)
-    // })
-
-
 
   }
 
-  async processEvent(event) {
+  async #processEvent(event) {
     console.log(event)
     const isBtn = event.target.tagName.toLowerCase() === 'button'
     let data = isBtn ? { ...event.target.dataset } : event.detail
@@ -94,10 +93,21 @@ export default class DataStore extends HTMLElement {
       .catch(err => console.error(err))
   }
 
+  /**
+   * Save an object on IndexedDB under a given key (this key will be prefixed with the store name)
+   * @param {string} key data store key to be used
+   * @param {*} value value to be stored on this data store key
+   * @returns {*} 
+   */
   setItem(key, value) {
     return localforage.setItem(`${this.id}_${key}`, value)
   }
 
+  /**
+   * Get an item from IndexedDB by a given key (this key will be prefixed with the store name)
+   * @param {string} key 
+   * @returns {*}
+   */
   getItem(key) {
     return localforage.getItem(`${this.id}_${key}`)
   }
@@ -106,15 +116,14 @@ export default class DataStore extends HTMLElement {
     return !!this.getItem(`${this.id}_${key}`)
   }
 
+  /**
+   * remove an item from IndexedDB by a given key (this key will be prefixed with the store name)
+   * @param {string} key 
+   * @returns {*}
+   */
   removeItem(key) {
     return localforage.removeItem(`${this.id}_${key}`)
   }
-
-  disconnectedCallback() { }
-
-  attributeChangedCallback(name, oldValue, newValue) { }
-
-  adoptedCallback() { }
 
 }
 

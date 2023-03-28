@@ -9,6 +9,16 @@ import {
 //import componentHtml from './flip-card.html'
 //import componentStyle from './flip-card.css'
 
+/**
+ * Al the starting point we will find `data-point` tags, this will represent a single data entry.
+ * use `data-` attributes to store the values, tag attributes will be used by the component.
+ *
+ * @export
+ * @emits added - when a new item is attached to the dom
+ * @emits updated - when an existing data-point values change // [ ] implement this
+ * @class DataPointComponent
+ * @extends {HTMLElement}
+ */
 export default class DataPointComponent extends HTMLElement {
   get DEFAULT_EVENT_NAME() {
     return 'added'
@@ -37,13 +47,6 @@ export default class DataPointComponent extends HTMLElement {
     this.dispatchEvent(addedEvent)
   }
 
-  
-
-  disconnectedCallback() { }
-
-  attributeChangedCallback(name, oldValue, newValue) { }
-
-  adoptedCallback() { }
 
 }
 

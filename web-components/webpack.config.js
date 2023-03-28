@@ -73,6 +73,11 @@ const config = {
       },
       {
         test: /\.css$/i,
+        include: path.resolve(__dirname, "src/global"),
+        use: ["raw-loader"],
+      },
+      {
+        test: /\.css$/i,
         exclude: path.resolve(__dirname, "src/components"),
         use: ["style-loader", "css-loader"],
       },

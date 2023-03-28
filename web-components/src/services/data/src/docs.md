@@ -43,11 +43,19 @@ A `data-set` tag, will group and manage `data-point` tags.
 
 
 ## example
-in this example, every time we click, we are telling the data-set to add a new `data-point` and emit the `updated` event
+- in this example, every time we click, we are telling the data-set to add a new `data-point` and emit the `updated` event
 ```html
 <button id="source-btn" data-value="1">1</button>
 
 <data-set trigger="#source-btn"></data-set>
+```
+
+- here, we are adding an item using JavaScript
+```js
+const dataEvent = new CustomEvent('data', { detail: { your: 'data' } })
+
+const dataSet = document.querySelector('data-set')
+dataSet.addDataPoint(dataEvent)
 ```
 
 ## DataStoreComponent
