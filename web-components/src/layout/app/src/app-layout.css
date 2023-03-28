@@ -1,209 +1,149 @@
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
-
-.flex-row {
-    display: flex;
-    flex-direction: row;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.space-around {
-    justify-content: space-around;
-}
-
-.space-evenly {
-    justify-content: space-evenly;
-}
-
-.space-between {
-    justify-content: space-between;
-}
-
-.justify-center {
-    justify-content: center
-}
-
-.align-center {
-    align-items: center;
-}
-
-.grid {
-    display: grid;
-}
-
-.hidden {
-    display: none;
-}
-
-/* ⚠️ DISTRIBUTION ⚠️ */
-
 .super-container {
-    height: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .header-container {
-    height: 5%;
+  height: 5%;
+  padding: 8px;
+
+  /* color: var(--text-tone); */
+  color: red;
+  border-bottom: 1px solid var(--second-tone);
+  background-color: var(--back-tone);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .top-container {
-    height: 5%;
+  height: 5%;
+
+  display: flex;
 }
 
 .left-header {
-    width: 25%;
-    height: 100%;
+  width: 25%;
+  height: 100%;
+  padding: 8px;
+
+  color: var(--text-tone);
+  border-right: 1px solid var(--second-tone);
+  background-color: var(--back-tone);
+
+  display: flex;
+  align-items: center;
 }
 
 .top-menu {
-    width: 75%;
-    height: 100%;
+  width: 75%;
+  height: 100%;
+  padding: 8px;
+
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 8px;
+
+  color: var(--main-tone);
+  background-color: var(--back-tone);
+
+  display: flex;
+  align-items: center;
+  /* scroll */
 }
 
 .main-container {
-    height: 90%;
+  height: 90%;
+
+  display: flex;
 }
 
 .right-container {
-    width: 75%;
-    height: 100%;
-}
+  width: 75%;
+  height: 100%;
 
-.left-menu {
-    width: 25%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .display-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  height: 95%;
+  padding: 24px;
 
-    height: 95%;
-    padding: 24px;
+  overflow-y: auto;
 
-    overflow-y: auto;
+  color: var(--back-tone);
+  background-color: var(--third-tone);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
 }
 
 .footer {
-    height: 5%;
-}
+  height: 5%;
+  padding: 8px;
 
-/* style */
+  color: var(--main-tone);
+  background-color: var(--back-tone);
 
-* {
-    /* Tonos grises */
-    --black-0: #191919;
-    --black-1: #262626;
-    --black-2: #3e3e3e;
-    --black-3: #6B6B6B;
-
-    /* Tonos claros */
-    --white-1: #f5f5f5;
-    --white-2: #e2e7ed;
-    --white-3: #c4c7cc;
-    --white-4: #95989d;
-}
-
-/* ⚠️ Estilos básicos ⚠️ */
-.header-container,
-.left-header,
-.footer {
-    padding: 8px;
-}
-
-.bcb1-cw4 {
-    background-color: var(--black-1);
-    color: var(--white-4);
-}
-
-.bcb0-cw4 {
-    background-color: var(--black-0);
-    color: var(--white-4);
-}
-
-.top-menu {
-    overflow: hidden;
-    overflow-x: auto;
-    padding: 0;
-}
-
-.top-menu .link-tag {
-    display: flex;
-    align-items: center;
-
-    min-width: 120px;
-    height: 80%;
-    padding: 4px;
-    margin-right: 2px;
-
-    border: 1px solid var(--black-3);
-    border-width: 0px 0px 1px 0px;
-
-    text-decoration: none;
-    color: var(--white-3);
-
-    background-color: var(--black-2);
-}
-
-.lt-container {
-    width: 100%;
-    background-color: #6B6B6B;
-}
-
-.left-header {
-    border: 1px solid var(--black-3);
-    border-width: 0px 0px 1px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .left-menu {
-    padding: 8px;
+  width: 25%;
+  height: 100%;
+  padding: 8px;
+
+  color: var(--text-tone);
+  background-color: var(--second-tone);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
-    background-color: var(--white-1);
+  background-color: var(--white-1);
 }
 
-.footer {
-    padding: 8px;
-    background-color: var(--black-0);
-}
+/* 
 
-/* scroll style */
+
+  
+/* SCROLL */
 
 .scroll::-webkit-scrollbar {
-    -webkit-appearance: none;
-    cursor: pointer;
+  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 .scroll::-webkit-scrollbar:vertical {
-    width: 10px;
+  width: 10px;
 }
 
 .scroll::-webkit-scrollbar-button:increment,
 .scroll::-webkit-scrollbar-button {
-    display: none;
+  display: none;
 }
 
 .scroll::-webkit-scrollbar:horizontal {
-    height: 10px;
+  height: 10px;
 }
 
 .scroll::-webkit-scrollbar-thumb {
-    background-color: var(--black-3);
-    border-radius: 0px;
-    border: 3px solid var(--black-1);
-    border-width: 3px 0;
+  border-radius: 0px;
+  border-width: 3px 0;
 
+  border: 3px solid var(--back-tone);
+  background-color: var(--second-tone);
 }
 
 .scroll::-webkit-scrollbar-track {
-    border-radius: 10px;
+  border-radius: 10px;
 }

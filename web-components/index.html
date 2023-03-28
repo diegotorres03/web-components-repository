@@ -8,26 +8,22 @@
 </head>
 
 <body>
-  <style>
-    .hidden {
-      display: none;
-    }
+  <app-layout>
 
-    .grid {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      grid-template-rows: 50% 50%;
-    }
-  </style>
 
+  </app-layout>
+
+
+
+  <!-- 
   <nav>
     <a href="#page1">page1</a>
     <a href="#page2">page2</a>
     <a href="#page3">page3</a>
     <a href="#page4">page4</a>
-  </nav>
+  </nav> -->
 
-  <script id="guard-fn">
+  <!-- <script id="guard-fn">
     const guards = Object.freeze({
       guest: (ev) => { console.log(ev); return true },
       admin: (ev) => { console.log(ev); return false },
@@ -41,11 +37,11 @@
   <app-modal trigger="[hash='page2']" trigger-event="activated">
     <h1 slot="main">nagigation event detected</h1>
   </app-modal>
-
+ -->
 
   <!-- <app-layout> -->
 
-  <app-router slot="main">
+  <!-- <app-router slot="main">
 
     <app-route hash="login">
       <div>
@@ -98,10 +94,10 @@
 
 
     </app-route>
-  </app-router>
+  </app-router> -->
   <!-- </app-layout> -->
 
-  <select id="select-number">
+  <!-- <select id="select-number">
     <option>1</option>
     <option>2</option>
     <option>3</option>
@@ -145,7 +141,7 @@
     </event-group>
   </event-stream>
 
-  <app-modal trigger="[trigger='#btn4']" trigger-event="data"></app-modal>
+  <app-modal trigger="[trigger='#btn4']" trigger-event="data"></app-modal> -->
   <!-- <app-modal trigger="#group-2" trigger-event="data"></app-modal> -->
 
   <!-- <script>
@@ -154,7 +150,7 @@
     source.addEventListener('data', ev => console.log('si llego', event))
   </script> -->
 
-  <js-fn id="random-data">
+  <!-- <js-fn id="random-data">
     function(data) {
       console.log('random data generation')
       const res = {
@@ -183,10 +179,10 @@
     }
     }
   </js-fn>
-
+ -->
 
   <!-- <js-fn id="log" trigger="event-source" type="filter"> -->
-  <js-fn id="log" trigger="#group-1" type="filter">
+  <!-- <js-fn id="log" trigger="#group-1" type="filter">
     function (event, params) {
     // console.log('(>*.*)>')
     // console.log(event)
@@ -214,7 +210,7 @@
   </js-fn>
 
   <data-set visible id="event-log" trigger="#group-4" trigger-event="data"></data-set>
-  <data-set trigger="app-router" trigger-event="navigated"></data-set>
+  <data-set trigger="app-router" trigger-event="navigated"></data-set> -->
 
   <script>
     // function listenRoute() {
