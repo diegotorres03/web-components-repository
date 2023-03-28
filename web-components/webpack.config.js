@@ -78,6 +78,7 @@ const config = {
           path.resolve(__dirname, 'src/components'),
           path.resolve(__dirname, 'src/layout'),
         ],
+        include: [path.resolve(__dirname, 'src/global')],
         use: ['style-loader', 'css-loader'],
       },
       {
