@@ -28,150 +28,57 @@
     }
   </style>
 
-  <section id="chat">
-    <ul>
-      <li class="mine">my message</li>
-      <li class="not-mine">not my message</li>
-    </ul>
 
-    <textarea cols="60" rows="5"></textarea>
-    <br>
-    <button id="send-message-btn">send</button>
+  <app-accordion>
+    <section>
+        <h1>Marco</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
+    </section>
 
+    <section>
+        <h1>Alejo</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
+    </section>
 
-  </section>
-
-
-  <js-fn id="only-enter-fn">
-    function (event) {
-    console.log(event)
-    return event.code === 'Enter'
-    }
-  </js-fn>
+    <section>
+        <h1>Diego</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
+    </section>
+  </app-accordion>
 
 
-  <js-fn id="get-text">
-    function (event) {
-    const value = document.querySelector('textarea').value
-    console.log(value)
-    return { value }
-    }
-  </js-fn>
+  <flip-card>
+    <section slot="front">
+        <h1>Marco</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
+    </section>
+
+    <section slot="back">
+        <h1>Alejo</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
+    </section>
+
+    <section>
+        <h1>Diego</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
+    </section>
+  </flip-card>
 
 
+  <button>click</button>
 
-  <event-stream>
+  <app-modal trigger="button" >
+    <h1 slot="title">test modal</h1>
+    <section slot="main">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, nisi blanditiis eos recusandae illum harum impedit ipsa quasi quam quisquam. Consectetur officia quae modi omnis assumenda numquam odit provident repudiandae quis voluptatibus ipsa minima neque ex et aliquam soluta ab adipisci possimus vel, vero ea veniam. Officia repellendus molestiae rerum a nam nostrum accusantium incidunt alias! Fugit harum voluptate animi ab earum nisi amet quis blanditiis, modi atque nesciunt libero veniam qui mollitia sapiente explicabo consectetur! Quas unde ea illo repudiandae vitae labore, veniam similique sapiente est accusamus commodi aspernatur quia magni maiores repellat accusantium veritatis quaerat adipisci harum cumque odit nulla quasi. Perferendis assumenda iste, quae cum quidem repellat inventore nemo esse. Dolores maiores illum repellendus voluptatum accusamus officia modi, praesentium cupiditate rerum, voluptates quasi eligendi voluptatibus velit voluptas accusantium tempore nemo aperiam optio soluta tempora quibusdam laudantium a. Repellat cupiditate pariatur blanditiis rerum amet. Obcaecati amet error, culpa excepturi sit expedita saepe, corporis fugit sapiente ex cumque repudiandae placeat dolorem aspernatur minima libero natus maiores, omnis at voluptatibus atque? Ab aspernatur explicabo in mollitia aliquam? Excepturi debitis recusandae officia possimus aliquid ipsam id ullam. Earum, aliquid? Repellat suscipit quam adipisci obcaecati, quod alias error illo amet eveniet fugiat.
+    </section>
+  </app-modal>
 
-    <event-group id="chat-messages">
-      <event-source trigger="textarea" trigger-event="keypress" filter="#only-enter-fn" transform="#get-text" />
-      <event-source id="btn-events" trigger="#send-message-btn" trigger-event="click" transform="#get-text" />
-    </event-group>
-
-    <event-group>
-      <event-source id="storage-event" />
-    </event-group>
-
-
-    <event-group id="replica-data-set">
-      <event-source id="data-store-update" trigger="#data-store-sync" trigger-event="update" />
-      <event-source id="data-store-add" trigger="#data-store-sync" trigger-event="add" />
-    </event-group>
-
-    <event-group id="btns-dataset-group">
-      <event-source trigger="[data-value]" />
-      <event-source trigger="#list-main-store" trigger-event="list" />
-    </event-group>
+  <app-layout>
+    
 
 
-  </event-stream>
-
-  <script>
-    const chatList = document.querySelector('#chat ul')
-    document.querySelector('#replica-data-set')
-      .addEventListener('data', ev => {
-        const data = event.detail
-        const li = document.createElement('li')
-        li.textContent = data.value
-        chatList.appendChild(li)
-
-      })
-  </script>
-
-
-  <js-fn trigger="#chat-messages">
-    function (event) {
-    const data = {...event.detail, timestamp: Date.now()}
-    window.localStorage.setItem('latest-event', JSON.stringify(data))
-    }
-  </js-fn>
-
-  <!-- <data-set visible trigger="event-stream" trigger-event="data" localstorage></data-set> -->
-
-
-  <script>
-    window.addEventListener('storage', storageEvent => {
-      console.log('storage event', storageEvent)
-      const data = JSON.parse(storageEvent.newValue)
-      console.table(data)
-      const event = new CustomEvent('data', {
-        bubbles: false, composed: true,
-        detail: data,
-      })
-      document.querySelector('#storage-event').emit(event)
-    })
-  </script>
-
-
-
-  <!-- <web-worker></web-worker> -->
-
-
-  <button id="btn-set-data1" data-value="1" data-key="test-btn">set1</button>
-  <button id="btn-set-data2" data-value="2" data-key="test-btn">set2</button>
-  <button id="btn-remove-data" data-value="23" data-key="test-btn">remove</button>
-  <button id="btn-scan-data" data-size="20" data-page="1">scan</button>
-  <hr>
-
-
-
-  <js-fn id="increment-page-on-list" trigger="#btn-scan-data">
-    function (event) {
-    const query = document.querySelector('#btn-scan-data')
-    query.setAttribute('page', Number(query.getAttribute('page') || 1) + 1)
-    console.log(query)
-    }
-  </js-fn>
-
-  <!-- <data-store trigger="" ></data-store> -->
-
-  <!-- <data-store id="main-store">
-      <data-query type="set" id="set-main-store" />
-      <data-query type="get" id="set-main-store" />
-    </data-store> -->
-
-  <!-- <data-set id="btns-dataset" visible trigger="#list-main-store" trigger-event="list" ></data-set> -->
-  <!-- <data-store id="main-store" >
-    <data-query type="clear" id="set-main-store" key="btns-dataset" filter="" />
-    <data-query type="remove" id="set-main-store" key="btns-dataset" filter="" />
-
-    <data-query type="set" trigger="#btns-dataset" trigger-event="updated" action="append" />
-    <data-query type="list" id="list-main-store" trigger="#btn-scan-data" key="btns-dataset" size="3" filter="" />
-  </data-store> -->
-
-
-  <div style="display: flex; flex-direction: column;">
-
-    <data-store id="logs-datastore" action="append">
-      <!-- TODO if data-set inside data-store it means it will back up on indexeddb,
-        this should be automatic--> 
-        
-      <data-set id="btns-dataset" visible trigger="#btns-dataset-group" trigger-event="data"></data-set>
-     
-      <data-query type="list" key="btns-dataset" />
-      <data-query type="clear" key="btns-dataset" trigger="#btn-remove-data" />
-    </data-store>
-
-  </div>
+  </app-layout>
 
 
 </body>

@@ -43,8 +43,13 @@ export default class DataSetComponent extends HTMLElement {
   }
 
   /**
-   * append a <data-point> tag, it will take values from event.detail
+   * append a <data-point> tag, it will take values from event.detail 
+   * or dataset.
+   * 
+   * if event.type is other than'syncItem', an `updated` event will be triggered with the latest
+   * data-point created
    *
+   * @emits updated
    * @param {*} event
    * @memberof DataSetComponent
    */

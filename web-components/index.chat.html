@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    #chat {
+      padding: 30px;
+    }
+
+    #chat ul {
+      margin: 40px;
+    }
+
+    .mine {
+      text-align: left;
+    }
+
+    .not-mine {
+      text-align: right;
+    }
+  </style>
+
+  <section id="chat">
+    <ul>
+      <li class="mine">my message</li>
+      <li class="not-mine">not my message</li>
+    </ul>
+
+    <textarea cols="60" rows="5"></textarea>
+    <br>
+    <button id="send-message-btn">send</button>
+
+
+  </section>
+
+
+  <js-fn id="only-enter-fn">
+    function (event) {
+    console.log(event)
+    return event.code === 'Enter'
+    }
+  </js-fn>
+
+
+  <js-fn id="get-text">
+    function (event) {
+    const value = document.querySelector('textarea').value
+    console.log(value)
+    return { value }
+    }
+  </js-fn>
+
+
+
+  <event-stream>
+
+    <event-group id="chat-messages">
+      <event-source trigger="textarea" trigger-event="keypress" filter="#only-enter-fn" transform="#get-text" />
+      <event-source id="btn-events" trigger="#send-message-btn" trigger-event="click" transform="#get-text" />
+    </event-group>
+
+    <event-group>
+      <event-source id="storage-event" />
+    </event-group>
+
+
+    <event-group id="replica-data-set">
+      <event-source id="data-store-update" trigger="#data-store-sync" trigger-event="update" />
+      <event-source id="data-store-add" trigger="#data-store-sync" trigger-event="add" />
+    </event-group>
+
+    <event-group id="btns-dataset-group">
+      <event-source trigger="[data-value]" />
+      <event-source trigger="#list-main-store" trigger-event="list" />
+    </event-group>
+
+
+  </event-stream>
+
+  <script>
+    const chatList = document.querySelector('#chat ul')
+    document.querySelector('#replica-data-set')
+      .addEventListener('data', ev => {
+        const data = event.detail
+        const li = document.createElement('li')
+        li.textContent = data.value
+        chatList.appendChild(li)
+
+      })
+  </script>
+
+
+  <js-fn trigger="#chat-messages">
+    function (event) {
+    const data = {...event.detail, timestamp: Date.now()}
+    window.localStorage.setItem('latest-event', JSON.stringify(data))
+    }
+  </js-fn>
+
+  <!-- <data-set visible trigger="event-stream" trigger-event="data" localstorage></data-set> -->
+
+
+  <script>
+    window.addEventListener('storage', storageEvent => {
+      console.log('storage event', storageEvent)
+      const data = JSON.parse(storageEvent.newValue)
+      console.table(data)
+      const event = new CustomEvent('data', {
+        bubbles: false, composed: true,
+        detail: data,
+      })
+      document.querySelector('#storage-event').emit(event)
+    })
+  </script>
+
+
+
+  <!-- <web-worker></web-worker> -->
+
+
+  <button id="btn-set-data1" data-value="1" data-key="test-btn">set1</button>
+  <button id="btn-set-data2" data-value="2" data-key="test-btn">set2</button>
+  <button id="btn-remove-data" data-value="23" data-key="test-btn">remove</button>
+  <button id="btn-scan-data" data-size="20" data-page="1">scan</button>
+  <hr>
+
+
+
+  <!-- <js-fn id="increment-page-on-list" trigger="#btn-scan-data">
+    function (event) {
+    const query = document.querySelector('#btn-scan-data')
+    query.setAttribute('page', Number(query.getAttribute('page') || 1) + 1)
+    console.log(query)
+    }
+  </js-fn> -->
+
+  <!-- <data-store trigger="" ></data-store> -->
+
+  <!-- <data-store id="main-store">
+      <data-query type="set" id="set-main-store" />
+      <data-query type="get" id="set-main-store" />
+    </data-store> -->
+
+  <!-- <data-set id="btns-dataset" visible trigger="#list-main-store" trigger-event="list" ></data-set> -->
+  <!-- <data-store id="main-store" >
+    <data-query type="clear" id="set-main-store" key="btns-dataset" filter="" />
+    <data-query type="remove" id="set-main-store" key="btns-dataset" filter="" />
+
+    <data-query type="set" trigger="#btns-dataset" trigger-event="updated" action="append" />
+    <data-query type="list" id="list-main-store" trigger="#btn-scan-data" key="btns-dataset" size="3" filter="" />
+  </data-store> -->
+
+
+  <div style="display: flex; flex-direction: column;">
+
+
+    <data-store slot="main" id="logs-datastore" action="append">
+      <!-- TODO if data-set inside data-store it means it will back up on indexeddb,
+          this should be automatic-->
+
+      <data-set id="btns-dataset" visible trigger="#btns-dataset-group" trigger-event="data"></data-set>
+
+      <data-query id="query-list-items" trigger="#btn-scan-data" trigger-event="click" type="list" key="btns-dataset" />
+      <data-query type="clear" key="btns-dataset" trigger="#btn-remove-data" />
+    </data-store>
+
+  </div>
+
+  <hr>
+  <hr>
+  <hr>
+
+
+  <data-set visible trigger="#query-list-items" trigger-event="list"></data-set>
+
+</body>
+
+</html>

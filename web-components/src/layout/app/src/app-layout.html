@@ -1,4 +1,36 @@
-<div class="super-container flex-column">
+<!-- <link rel="stylesheet" href="../../global/style-tools.css"> -->
+
+
+<article class="super-container flex-column">
+  <header class="header-container flex-row align-items-center justify-content-center">
+    <slot name="header">header</slot>
+  </header>
+  <section class="top-container flex-row">
+    <div class="left-header flex-row align-items-center">
+      <slot name="left-header">left-header</slot>
+    </div>
+    <div class="top-menu flex-row align-items-center scroll">
+      <slot name="top-menu">top-menu</slot>
+    </div>
+  </section>
+  <section class="main-container flex-row">
+    <div class="left-menu flex-column">
+      <div class="left-content">
+        <slot name="left-content">left-content</slot>
+      </div>
+    </div>
+    <div class="right-container flex-column">
+      <div class="display-container flex-column justify-content-start align-items-center">
+        <slot name="main">main</slot>
+      </div>
+      <footer class="footer flex-row align-items-center">
+        <slot name="footer">footer</slot>
+      </footer>
+    </div>
+  </section>
+</article>
+
+<!-- <div class="super-container flex-column">
   <header class="header-container flex-row align-center justify-center bcb0-cw4">
     <slot name="header">HEADER</slot>
   </header>
@@ -25,4 +57,4 @@
       </div>
     </div>
   </section>
-</div>
+</div> -->

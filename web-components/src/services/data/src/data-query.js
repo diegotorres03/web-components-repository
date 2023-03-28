@@ -42,7 +42,6 @@ export default class DataQueryComponent extends HTMLElement {
 
     if (type === 'list') {
       const items = await this.getItem(key)
-      console.log(items, size, page)
 
       if(!items) return
       items.forEach((item, index) => {
@@ -52,6 +51,7 @@ export default class DataQueryComponent extends HTMLElement {
         console.log(item)
         this.emit(item, type)
       })
+
     } else if(type === 'clear') {
       this.removeItem(key)
       this.emit({}, type)
