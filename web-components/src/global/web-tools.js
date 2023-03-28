@@ -12,13 +12,13 @@
  * @param {number} [time=300]
  * @returns {Promise}
  */
- function sleep(time = 300) {
+function sleep(time = 300) {
     return new Promise(resolve => setTimeout(resolve, time))
 }
 
 
 // document.createElement('button').
- function html(templates, ...values) {
+function html(templates, ...values) {
     const template = document.createElement('template')
     let str = ''
     templates.forEach((template, index) => {
@@ -36,7 +36,7 @@
     return template.content.cloneNode(true)
 }
 
- function mapComponentEvents(component) {
+function mapComponentEvents(component) {
     const EVENT_NAMES = [
         "onclick",
         "ondblclick",
@@ -56,6 +56,7 @@
     ];
     // log(component)
     EVENT_NAMES.map(eventName => {
+        if (!component || !component.shadowRoot) return
         Array.from(component.shadowRoot.querySelectorAll(`[${eventName}]`))
             .forEach(handled => {
                 const handlerName = handled.getAttribute(eventName)
@@ -68,7 +69,8 @@
     })
 }
 
- function updateVars(component) {
+function updateVars(component) {
+    if (!component || !component.shadowRoot) return
     const variables = Array.from(component.shadowRoot.querySelectorAll('.variable'))
     variables.forEach(variable =>
         Array.from(variable.classList)
@@ -85,13 +87,13 @@
  *
  * @param {HTMLElement} component
  */
- function renderForLoops(component) {
+function renderForLoops(component) {
     const templates = Array.from(component.shadowRoot.querySelectorAll('template'))
     templates.forEach(template => console.log(template.dataset))
 }
 
 ///// GraphQL
- function gql(templates, ...values) {
+function gql(templates, ...values) {
     let str = ''
     templates.forEach((template, index) => {
         str += template
@@ -108,16 +110,16 @@
  * @param {HTMLElement} element
  * @param {Function} callback
  */
- function registerTriggers(element, callback) {
-    if (!element.hasAttribute('trigger')) return
-    const selector = element.getAttribute('trigger')
+function registerTriggers(element, callback) {
+    if (!element.hasAttribute('trigger') ) return
+    const selector = element.getAttribute('trigger') || null
     const triggers = Array.from(document.querySelectorAll(selector))
 
     if (!triggers) return
     let triggerEvent = element.getAttribute('trigger-event')
 
-    triggers.map(trigger =>{
-        if(!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
+    triggers.map(trigger => {
+        if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
         trigger.addEventListener(triggerEvent, callback)
     })
 
@@ -132,7 +134,7 @@ function selectAll(selector, scope = document) {
     return Array.from(scope.querySelectorAll(selector))
 }
 
- module.exports = {
+module.exports = {
     html,
     mapComponentEvents,
     renderForLoops,

@@ -6,7 +6,7 @@ import {
   select, selectAll
 } from '../../../global/web-tools'
 
-import {runFilters, runTransforms} from './tools'
+import { runFilters, runTransforms } from './tools'
 
 export default class EventSourceComponent extends HTMLElement {
   get DEFAULT_EVENT_NAME() {
@@ -49,16 +49,19 @@ export default class EventSourceComponent extends HTMLElement {
   // }
 
   emit(event) {
-
+    console.log(event)
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 
-    const transformedData = runTransforms(event.detail, this.getAttribute('transform'))
+    const transformedData = runTransforms(event, this.getAttribute('transform'))
 
-    this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
+    console.log(transformedData)
+    const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: false, composed: true,
       detail: transformedData,
-    }))
+    })
+    console.log(newEvent)
+    this.dispatchEvent(newEvent)
   }
 
   disconnectedCallback() { }

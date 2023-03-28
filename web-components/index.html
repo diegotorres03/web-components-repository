@@ -3,251 +3,177 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bundle Testing!</title>
+  <title>Document</title>
 </head>
 
 <body>
+
   <style>
-    .hidden {
-      display: none;
+    #chat {
+      padding: 30px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      grid-template-rows: 50% 50%;
+    #chat ul {
+      margin: 40px;
+    }
+
+    .mine {
+      text-align: left;
+    }
+
+    .not-mine {
+      text-align: right;
     }
   </style>
 
-  <nav>
-    <a href="#page1">page1</a>
-    <a href="#page2">page2</a>
-    <a href="#page3">page3</a>
-    <a href="#page4">page4</a>
-  </nav>
+  <section id="chat">
+    <ul>
+      <li class="mine">my message</li>
+      <li class="not-mine">not my message</li>
+    </ul>
 
-  <script id="guard-fn">
-    const guards = Object.freeze({
-      guest: (ev) => { console.log(ev); return true },
-      admin: (ev) => { console.log(ev); return false },
-    })
-  </script>
-
-  <script>
-    guards.guest('test')
-  </script>
-
-  <app-modal trigger="[hash='page2']" trigger-event="activated">
-    <h1 slot="main">nagigation event detected</h1>
-  </app-modal>
+    <textarea cols="60" rows="5"></textarea>
+    <br>
+    <button id="send-message-btn">send</button>
 
 
-  <!-- <app-layout> -->
-
-  <app-router slot="main">
-
-    <app-route hash="login">
-      <div>
-        <label for="">username:</label><input type="text"><br>
-        <label for="">password:</label><input type="password"><br>
-      </div>
-    </app-route>
-
-    <app-route hash="page1" guard="guest">
-      <h1>Page 1</h1>
-
-      <button id="modal-btn">Cualquier texto ahí cagado</button>
-      <flip-card></flip-card>
-      <app-modal trigger="#modal-btn">
+  </section>
 
 
-
-        <app-accordion slot="main">
-          <section>
-            <h1>test</h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non, fugiat voluptates, consectetur adipisci
-              natus fuga quas aliquam dignissimos itaque deleniti hic? Ea praesentium numquam officia quaerat nisi hic
-              explicabo. Odio.</p>
-          </section>
-          <section>
-            <h1>test</h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non, fugiat voluptates, consectetur adipisci
-              natus fuga quas aliquam dignissimos itaque deleniti hic? Ea praesentium numquam officia quaerat nisi hic
-              explicabo. Odio.</p>
-          </section>
-          <section>
-            <h1>test</h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non, fugiat voluptates, consectetur adipisci
-              natus fuga quas aliquam dignissimos itaque deleniti hic? Ea praesentium numquam officia quaerat nisi hic
-              explicabo. Odio.</p>
-          </section>
-        </app-accordion>
-      </app-modal>
-
-    </app-route>
-    <app-route hash="page2" guard="admin">
-      <h1>Page 2</h1>
-    </app-route>
-    <app-route hash="page3">
-      <h1>Page 3</h1>
-    </app-route>
-    <app-route hash="page4" trigger="app-modal">
-      <h1>Page 4</h1>
+  <js-fn id="only-enter-fn">
+    function (event) {
+    console.log(event)
+    return event.code === 'Enter'
+    }
+  </js-fn>
 
 
-
-    </app-route>
-  </app-router>
-  <!-- </app-layout> -->
-
-  <select id="select-number">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
-
-
-
-  <div class="grid">
-    <button id="btn1">btn1</button>
-    <button id="btn2">btn2</button>
-
-    <button id="btn3">btn3</button>
-    <button id="btn4">btn4</button>
-    <button id="btn5">btn5</button>
-    <button id="btn6">btn6</button>
-
-  </div>
+  <js-fn id="get-text">
+    function (event) {
+    const value = document.querySelector('textarea').value
+    console.log(value)
+    return { value }
+    }
+  </js-fn>
 
 
 
   <event-stream>
 
-    <event-group id="group-1">
-      <event-source trigger="#btn1" filter="#filter-fn" transform="map-fn" />
-      <event-source id="source1-2" trigger="#btn2" />
+    <event-group id="chat-messages">
+      <event-source trigger="textarea" trigger-event="keypress" filter="#only-enter-fn" transform="#get-text" />
+      <event-source id="btn-events" trigger="#send-message-btn" trigger-event="click" transform="#get-text" />
     </event-group>
 
-    <event-group id="group-2">
-      <event-source trigger="#btn3" />
-      <event-source trigger="#btn4" />
+    <event-group>
+      <event-source id="storage-event" />
     </event-group>
 
-    <event-group id="group-4" transform="#random-data">
-      <event-source trigger="#btn5" />
-      <event-source trigger="#btn6" />
+
+    <event-group id="replica-data-set">
+      <event-source id="data-store-update" trigger="#data-store-sync" trigger-event="update" />
+      <event-source id="data-store-add" trigger="#data-store-sync" trigger-event="add" />
     </event-group>
 
-    <event-group id="group-3">
-      <event-source trigger="#select-number" trigger-event="change" transform="#random-data" />
+    <event-group id="btns-dataset-group">
+      <event-source trigger="[data-value]" />
+      <event-source trigger="#list-main-store" trigger-event="list" />
     </event-group>
+
+
   </event-stream>
 
-  <app-modal trigger="[trigger='#btn4']" trigger-event="data"></app-modal>
-  <!-- <app-modal trigger="#group-2" trigger-event="data"></app-modal> -->
-
-  <!-- <script>
-    const source = document.querySelector('#source1-2')
-    console.log(source)
-    source.addEventListener('data', ev => console.log('si llego', event))
-  </script> -->
-
-  <js-fn id="random-data">
-    function(data) {
-      console.log('random data generation')
-      const res = {
-        value: new Date().getSeconds(),
-        label: 'test'
-      }
-      console.log('res', res)
-      return res
-    }
-  </js-fn>
-
-  <js-fn id="direct-filter-fn" trigger="#btn3">
-    function(event) {
-      console.log('direct-filter-fn')
-      return new Date().getMinutes() % 10 !== 0
-    }
-  </js-fn>
-
-
-  <js-fn id="direct-map-fn" trigger="#direct-filter-fn">
-    function (event) {
-    console.log('direct-map-fn')
-    return {
-    success: true,
-    name: event.detail.name
-    }
-    }
-  </js-fn>
-
-
-  <!-- <js-fn id="log" trigger="event-source" type="filter"> -->
-  <js-fn id="log" trigger="#group-1" type="filter">
-    function (event, params) {
-    // console.log('(>*.*)>')
-    // console.log(event)
-    return { success: true }
-    }
-  </js-fn>
-
-  <js-fn id="map-fn">
-    function (event) {
-    console.log('map-fn')
-    return {
-    success: true,
-    name: event.detail.name
-    }
-    }
-  </js-fn>
-
-
-
-  <js-fn id="filter-fn" trigger="#log">
-    function(event) {
-    console.log('filter-fn-s')
-    return new Date().getMinutes() % 10 !== 0
-    }
-  </js-fn>
-
-  <data-set visible id="event-log" trigger="#group-4" trigger-event="data"></data-set>
-  <data-set trigger="app-router" trigger-event="navigated"></data-set>
-
   <script>
-    // function listenRoute() {
+    const chatList = document.querySelector('#chat ul')
+    document.querySelector('#replica-data-set')
+      .addEventListener('data', ev => {
+        const data = event.detail
+        const li = document.createElement('li')
+        li.textContent = data.value
+        chatList.appendChild(li)
 
-    //   document.querySelector('app-router')
-    //     .addEventListener('navigated', ev => {
-    //       console.log('--->', ev)
-    //     })
-    // }
-    // setTimeout(listenRoute, 300)
+      })
   </script>
 
-  <!-- 
-  <state-machine>
-    <machine-context>
 
-    </machine-context>
-    <machine-states>
-      <machine-state name="initial" guards=""></machine-state>
-    </machine-states>
-  </state-machine>
+  <js-fn trigger="#chat-messages">
+    function (event) {
+    const data = {...event.detail, timestamp: Date.now()}
+    window.localStorage.setItem('latest-event', JSON.stringify(data))
+    }
+  </js-fn>
 
-  <event-bus>
-    <event-router trigger-event="moda-ended">
-      <event-listener trigger="app-modal" trigger-event="accepted"></event-listener>
-      <event-listener trigger="app-modal" trigger-event="declined"></event-listener>
-    </event-router>
-  </event-bus> -->
+  <!-- <data-set visible trigger="event-stream" trigger-event="data" localstorage></data-set> -->
 
-  <!-- <script>
-    document.querySelector('#flip-btn')
-      .addEventListener('click', ev => console.log(ev))
-  </script> -->
+
+  <script>
+    window.addEventListener('storage', storageEvent => {
+      console.log('storage event', storageEvent)
+      const data = JSON.parse(storageEvent.newValue)
+      console.table(data)
+      const event = new CustomEvent('data', {
+        bubbles: false, composed: true,
+        detail: data,
+      })
+      document.querySelector('#storage-event').emit(event)
+    })
+  </script>
+
+
+
+  <!-- <web-worker></web-worker> -->
+
+
+  <button id="btn-set-data1" data-value="1" data-key="test-btn">set1</button>
+  <button id="btn-set-data2" data-value="2" data-key="test-btn">set2</button>
+  <button id="btn-remove-data" data-value="23" data-key="test-btn">remove</button>
+  <button id="btn-scan-data" data-size="20" data-page="1">scan</button>
+  <hr>
+
+
+
+  <js-fn id="increment-page-on-list" trigger="#btn-scan-data">
+    function (event) {
+    const query = document.querySelector('#btn-scan-data')
+    query.setAttribute('page', Number(query.getAttribute('page') || 1) + 1)
+    console.log(query)
+    }
+  </js-fn>
+
+  <!-- <data-store trigger="" ></data-store> -->
+
+  <!-- <data-store id="main-store">
+      <data-query type="set" id="set-main-store" />
+      <data-query type="get" id="set-main-store" />
+    </data-store> -->
+
+  <!-- <data-set id="btns-dataset" visible trigger="#list-main-store" trigger-event="list" ></data-set> -->
+  <!-- <data-store id="main-store" >
+    <data-query type="clear" id="set-main-store" key="btns-dataset" filter="" />
+    <data-query type="remove" id="set-main-store" key="btns-dataset" filter="" />
+
+    <data-query type="set" trigger="#btns-dataset" trigger-event="updated" action="append" />
+    <data-query type="list" id="list-main-store" trigger="#btn-scan-data" key="btns-dataset" size="3" filter="" />
+  </data-store> -->
+
+
+  <div style="display: flex; flex-direction: column;">
+
+    <data-store id="logs-datastore" action="append">
+      <!-- TODO if data-set inside data-store it means it will back up on indexeddb,
+        this should be automatic--> 
+        
+      <data-set id="btns-dataset" visible trigger="#btns-dataset-group" trigger-event="data"></data-set>
+     
+      <data-query type="list" key="btns-dataset" />
+      <data-query type="clear" key="btns-dataset" trigger="#btn-remove-data" />
+    </data-store>
+
+  </div>
+
+
 </body>
 
 </html>

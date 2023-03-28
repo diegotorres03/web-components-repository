@@ -30,7 +30,6 @@ export default class ModalComponent extends HTMLElement {
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
 
-
   }
 
 

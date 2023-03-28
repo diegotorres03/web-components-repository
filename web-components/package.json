@@ -19,7 +19,8 @@
     "@aws-sdk/client-dynamodb": "^3.245.0",
     "aws-amplify": "^5.0.9",
     "aws-crt": "^1.15.5",
-    "chart.js": "^4.2.0"
+    "chart.js": "^4.2.0",
+    "localforage": "^1.10.0"
   },
   "devDependencies": {
     "@webpack-cli/generators": "^3.0.1",
