@@ -32,7 +32,6 @@ export default class DataQueryComponent extends HTMLElement {
   }
 
   async #processRequest(event) {
-    console.log('#processRequest(event)', event)
     const type = this.getAttribute('type')
     const key = this.getAttribute('key')
     const size = this.getAttribute('size') || 100
@@ -52,7 +51,13 @@ export default class DataQueryComponent extends HTMLElement {
         this.emit(item, type)
       })
 
-    } else if(type === 'clear') {
+    } else if(type === 'get') {
+      const item = await this.getItem(key)
+      this.emit(item, type)
+
+    } else if(type === 'put') {
+
+    } else if(type === 'clear' || type === 'delete') {
       this.removeItem(key)
       this.emit({}, type)
     }
@@ -61,7 +66,6 @@ export default class DataQueryComponent extends HTMLElement {
   }
 
   emit(data, queryType) {
-    console.log('emiting', queryType, data)
     this.dispatchEvent(new CustomEvent(queryType, {
       bubbles: true, composed: true,
       detail: data,
@@ -74,7 +78,6 @@ export default class DataQueryComponent extends HTMLElement {
 
   getItem(key) {
     const dbKey = `${this.#parent.id}_${key}`
-    console.log(dbKey)
     return localforage.getItem(dbKey)
   }
 

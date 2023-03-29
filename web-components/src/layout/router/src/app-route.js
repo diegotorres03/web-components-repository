@@ -53,14 +53,14 @@ export default class RouteComponent extends HTMLElement {
   adoptedCallback() { }
 
   activate() {
-    window.location.hash = this.getAttribute('hash')
+    window.location.hash = this.getAttribute('hash') || ''
   }
 
   activated() {
     this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
       detail: {
-        route: this.getAttribute('hash')
+        route: this.getAttribute('hash') 
       }
     }))
   }

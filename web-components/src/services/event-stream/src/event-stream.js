@@ -36,8 +36,6 @@ export default class EventStreamComponent extends HTMLElement {
   }
 
   emit(event) {
-    console.log('on stream',event)
-
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 

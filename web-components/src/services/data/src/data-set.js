@@ -54,7 +54,6 @@ export default class DataSetComponent extends HTMLElement {
    * @memberof DataSetComponent
    */
   addDataPoint(event) {
-    console.log('adding datapoint', event)
 
     if(!event.detail) return console.warn('event detail not present')
 
@@ -82,7 +81,6 @@ export default class DataSetComponent extends HTMLElement {
     })
 
     if(event.type === 'syncItem') return
-    console.log(newEvent)
     this.dispatchEvent(newEvent)
 
   }

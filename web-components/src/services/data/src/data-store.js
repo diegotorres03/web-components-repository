@@ -43,11 +43,9 @@ export default class DataStore extends HTMLElement {
     registerTriggers(this, (event) => this.#processEvent(event))
 
     this.addEventListener('sync', async event => {
-      console.log('request to load events', event)
       const key = event.detail.key
       const items = await this.getItem(key)
       const dataSet = this.querySelector(`#${event.detail.key}`)
-      console.log('dataSet', dataSet, dataSet.addDataPoint)
 
       const getEvent = (item) => new CustomEvent('syncItem', { detail: item })
 
@@ -56,7 +54,6 @@ export default class DataStore extends HTMLElement {
       if (Array.isArray(items)) {
         items.forEach(item => {
           const newEvent = getEvent(item)
-          console.log('adding', item, newEvent.type)
           dataSet.addDataPoint(newEvent)
         })
       } else {
@@ -66,9 +63,6 @@ export default class DataStore extends HTMLElement {
     })
 
     this.addEventListener('updated', event => {
-      const key = event.target.id
-      console.log('request to save event', event, key)
-      console.log(event.detail)
       this.#processEvent(event)
     })
 
@@ -80,7 +74,6 @@ export default class DataStore extends HTMLElement {
     let data = isBtn ? { ...event.target.dataset } : event.detail
     const key = event.target.id
 
-    console.log('action', this.action)
     if (this.action === 'append') {
       const item = await this.getItem(key)
       const items = Array.isArray(item) ? item : [item]

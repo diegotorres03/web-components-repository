@@ -24,38 +24,38 @@ export default class EventSourceComponent extends HTMLElement {
   connectedCallback() {
     mapComponentEvents(this)
     updateVars(this)
+
+    // acomodating window load
+    if (
+      this.getAttribute('trigger') === 'window' &&
+      this.getAttribute('trigger-event') === 'load'
+    ) {
+      if (document.readyState === "complete") {
+        // alert('here')
+        this.emit(new CustomEvent('window:loaded', {
+          bubbles: false, composed: true,
+          detail: this.dataset,
+        }))
+      }
+      window.addEventListener('load', ev => {
+        this.emit(new CustomEvent('window:loaded', {
+          bubbles: false, composed: true,
+          detail: this.dataset,
+        }))
+      })
+      return
+    }
+
+
     registerTriggers(this, (event) => this.emit(event))
   }
 
-
-  // runFilters(event) {
-  //   const filterSelector = this.getAttribute('filter')
-  //   if (!filterSelector) return true
-  //   const filters = selectAll(filterSelector)
-  //   if (filters.length === 0) return false
-  //   let res = true
-  //   filters.forEach(filter => res = filter.run(event) && res)
-  //   return res
-  // }
-
-  // runTransforms(event) {
-  //   const transformSelector = this.getAttribute('transform')
-  //   if (!transformSelector) return event
-  //   const transforms = selectAll(transformSelector)
-  //   let currentData = event.detail
-  //   transforms.forEach(transform =>
-  //     currentData = transform.run(currentData))
-  //   return currentData
-  // }
-
   emit(event) {
-    console.log(event)
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 
     const transformedData = runTransforms(event, this.getAttribute('transform'))
 
-    console.log(transformedData)
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: false, composed: true,
       detail: transformedData,

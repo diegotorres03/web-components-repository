@@ -36,7 +36,6 @@ export default class EventGroupComponent extends HTMLElement {
   }
 
   emit(event) {
-    console.log(event)
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 

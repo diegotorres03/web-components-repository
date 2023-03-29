@@ -20,8 +20,15 @@ export default class FlipCard extends HTMLElement {
   constructor() {
     super();
 
+    const disabled = this.hasAttribute('disabled')
+
     const template = html`
-      <style>${FlipCardCss}</style>
+      <style>
+      ${FlipCardCss}
+      ${disabled ? '' : `.flip-card-box:hover .flip-card {
+        transform: rotateY(180deg);
+      }`}
+      </style>
       ${FlipCardHtml}
     `
 
@@ -35,6 +42,7 @@ export default class FlipCard extends HTMLElement {
     mapComponentEvents(this);
     updateVars(this);
     registerTriggers(this, () => this.flip())
+
   }
 
   flip() {

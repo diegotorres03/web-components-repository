@@ -10,8 +10,9 @@ import { selectAll } from '../../../global/web-tools'
  */
 export function runTransforms(event, transformSelector) {
 
-  const isBtn = event.target.tagName.toLowerCase() === 'button'
-  let data = isBtn ? { ...event.target.dataset } : event.detail
+  const isBtn = event.target && event.target.tagName.toLowerCase() === 'button'
+  const dataset = event && event.target && event.target.dataset ? { ...event.target.dataset } : null
+  let data = isBtn ? dataset : event.detail
 
   if (!event) return {} // throw new Error('noting to transform')
   if (!transformSelector) return data

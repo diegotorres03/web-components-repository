@@ -38,12 +38,10 @@ export default class DataPointComponent extends HTMLElement {
     mapComponentEvents(this)
     updateVars(this)
     registerTriggers(this, (event) => console.log(event))
-    console.log('redy to emit', this.dataset)
     const addedEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
       detail: this.dataset,
     })
-    console.log(addedEvent)
     this.dispatchEvent(addedEvent)
   }
 

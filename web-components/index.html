@@ -9,242 +9,318 @@
 </head>
 
 <body>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <!-- <app-modal trigger="#window-loaded" trigger-event="data"> -->
+  <app-modal id="guest-login-accepted" trigger="#guest-session" trigger-event="updated">
+    <h1 slot="main">automatic login as guest!</h1>
+  </app-modal>
+
+
   <app-layout>
 
+    <header slot="header">
+      <button id="open-login-btn">login</button>
+      <button id="logout-btn">logout</button>
+    </header>
+
+    <nav slot="top-menu" style="width:100%;" class="flex-row justify-content-around">
+      <a href="#">Home</a>
+      <a href="#event">event</a>
+      <a href="#rooms">rooms</a>
+      <a href="#page3">page3</a>
+    </nav>
+
+    <app-router slot="main">
+
+      <app-route>
+        <h1>({EventName})</h1>
+        <flip-card disabled trigger="#guest-logged-in" trigger-event="data">
+          <h1 slot="front">Secret</h1>
+          <section slot="back">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, nemo velit quasi ratione numquam aut
+              corrupti, cupiditate molestias iste assumenda doloribus consectetur in iusto quas officia vel, ab voluptas
+              accusantium.</p>
+          </section>
+        </flip-card>
+
+        <section style="padding: 40px;">
+          <ol>
+            <li><input type="checkbox" /> this will be the place where everybody arrive</li>
+            <li><input type="checkbox" /> when a user arrive, first the app check if there is a session for user or
+              guest</li>
+            <li><input type="checkbox" /> if no session, create a guest session and assign an id and a room based on id
+              hash</li>
+            <li><input type="checkbox" /> if session, read the room and only display that room</li>
+            <li><input type="checkbox" /> user login is only required for facilitators and hosts</li>
+            <li><input type="checkbox" /> when user click login, then input the alias, a url with a token will be sent
+            </li>
+            <li><input type="checkbox" /> when reloading the app with the signed url, the user token will be stored</li>
+            <li><input type="checkbox" /> load resources according to new user access</li>
+            <li><input type="checkbox" /> </li>
+            <li><input type="checkbox" /> </li>
+          </ol>
+        </section>
+
+      </app-route>
+
+      <app-route hash="event">
+        <h1>page 1</h1>
+
+        <p>the idea is, if I send this modal to take the data from the form or div</p>
+
+        <form id="user-form">
+          <label for="">Name</label><input id="new-user-name-input" name="name" type="text">
+          <br>
+          <label for="">Alias</label><input id="new-user-alias-input" name="alias" type="text">
+        </form>
+
+
+        <event-group>
+          <event-source id="user-creation-started" data-target="#user-intro" trigger="#create-user-test-btn" trigger-event="click" transform="#get-user-from-form" />
+        </event-group>
+
+        <button id="create-user-test-btn">create</button>
+
+
+        <app-modal trigger="#update-modal-info" trigger-event="done" >
+          <section id="user-intro" slot="main">
+            <p>wecome <span data-key="name"></span> with email <span data-key="alias"></span>@amazon.com </p>
+          </section>
+        </app-modal>
+
+        <js-fn id="update-target-info" trigger="#user-creation-started" trigger-event="data">
+          function (event) {
+            console.log(event)
+            const targetSelector = event.target.dataset.target
+            console.log('targetSelector', targetSelector)
+            
+            const target = document.querySelector(targetSelector)
+            const data = event.detail
+            Object.keys(data).forEach(key => {
+              console.log('key:', key, data[key])
+              target.querySelector(`[data-key="${key}"]`).textContent = data[key]
+            }) 
+          }
+        </js-fn>
+
+        <js-fn id="get-user-from-form">
+          function (event) {
+          console.log('event', event)
+          const input = document.querySelector('#new-user-name-input')
+          const fields = Array.from(document.querySelectorAll('#user-form [name]'))
+          const data = {}
+          fields.forEach(field => {
+          data[field.name] = field.value
+          })
+          return data
+          }
+        </js-fn>
+
+        <script>
+
+        </script>
+
+      </app-route>
+
+      <app-route hash="rooms">
+        <h1>rooms</h1>
+
+        <section>
+
+          <!-- <flip-card>
+            <section slot="front">
+              <h1>Room ({roomId})</h1>
+              <a href="">chime link</a>
+            </section>
+          </flip-card>
+
+          <flip-card>
+            <section slot="front">
+              <h1>Room ({roomId})</h1>
+              <a href="">chime link</a>
+            </section>
+          </flip-card>
+
+          <flip-card>
+            <section slot="front">
+              <h1>Room ({roomId})</h1>
+              <a href="">chime link</a>
+            </section>
+          </flip-card>
+        </section> -->
+
+          <template id="flip-card-template">
+            <flip-card disabled>
+              <section slot="front">
+                <h1>Room <span data-room-id></span></h1>
+                <a href="" target="_blank">chime link</a>
+              </section>
+            </flip-card>
+          </template>
+
+      </app-route>
+
+      <app-route hash="page3">
+        <h1>page 3</h1>
+
+        <p>the idea is, if I send this modal to take the data from the form or div</p>
+        <form id="user-form">
+          <label for="">Name</label><input type="text">
+          <br>
+          <label for="">Alias</label><input type="text">
+        </form>
+
+
+
+      </app-route>
+
+    </app-router>
 
   </app-layout>
 
-
-
-  <!-- 
-  <nav>
-    <a href="#page1">page1</a>
-    <a href="#page2">page2</a>
-    <a href="#page3">page3</a>
-    <a href="#page4">page4</a>
-  </nav> -->
-
-  <!-- <script id="guard-fn">
-    const guards = Object.freeze({
-      guest: (ev) => { console.log(ev); return true },
-      admin: (ev) => { console.log(ev); return false },
-    })
-  </script>
-
-    <section>
-        <h1>Alejo</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
-    </section>
-
-    <section>
-        <h1>Diego</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
-    </section>
-  </app-accordion>
-
-
-  <flip-card>
-    <section slot="front">
-        <h1>Marco</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
-    </section>
-
-    <section slot="back">
-        <h1>Alejo</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
-    </section>
-
-    <section>
-        <h1>Diego</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam dolor optio, est saepe laborum at. Nesciunt nostrum saepe quas in officiis? Quisquam, vitae aliquam. Totam animi voluptates esse velit culpa.</p>
-    </section>
-  </flip-card>
-
-
-  <button>click</button>
-
-  <app-modal trigger="button" >
-    <h1 slot="title">test modal</h1>
+  <app-modal id="auth-modal" trigger="#open-login-btn">
+    <h1 slot="title">Authenticate</h1>
     <section slot="main">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, nisi blanditiis eos recusandae illum harum impedit ipsa quasi quam quisquam. Consectetur officia quae modi omnis assumenda numquam odit provident repudiandae quis voluptatibus ipsa minima neque ex et aliquam soluta ab adipisci possimus vel, vero ea veniam. Officia repellendus molestiae rerum a nam nostrum accusantium incidunt alias! Fugit harum voluptate animi ab earum nisi amet quis blanditiis, modi atque nesciunt libero veniam qui mollitia sapiente explicabo consectetur! Quas unde ea illo repudiandae vitae labore, veniam similique sapiente est accusamus commodi aspernatur quia magni maiores repellat accusantium veritatis quaerat adipisci harum cumque odit nulla quasi. Perferendis assumenda iste, quae cum quidem repellat inventore nemo esse. Dolores maiores illum repellendus voluptatum accusamus officia modi, praesentium cupiditate rerum, voluptates quasi eligendi voluptatibus velit voluptas accusantium tempore nemo aperiam optio soluta tempora quibusdam laudantium a. Repellat cupiditate pariatur blanditiis rerum amet. Obcaecati amet error, culpa excepturi sit expedita saepe, corporis fugit sapiente ex cumque repudiandae placeat dolorem aspernatur minima libero natus maiores, omnis at voluptatibus atque? Ab aspernatur explicabo in mollitia aliquam? Excepturi debitis recusandae officia possimus aliquid ipsam id ullam. Earum, aliquid? Repellat suscipit quam adipisci obcaecati, quod alias error illo amet eveniet fugiat.
+      <label for="auth-alias-input">Alias</label>
+      <input type="text" name="" id="auth-alias-input">
     </section>
   </app-modal>
- -->
 
-  <!-- <app-layout> -->
-
-  <!-- <app-router slot="main">
-
-    <app-route hash="login">
-      <div>
-        <label for="">username:</label><input type="text"><br>
-        <label for="">password:</label><input type="password"><br>
-      </div>
-    </app-route>
-
-    <app-route hash="page1" guard="guest">
-      <h1>Page 1</h1>
-
-      <button id="modal-btn">Cualquier texto ahí cagado</button>
-      <flip-card></flip-card>
-      <app-modal trigger="#modal-btn">
-
-
-  </app-layout>
+  <!-- test 2 -->
 
 
 
-    </app-route>
-  </app-router> -->
-  <!-- </app-layout> -->
+  <!-- EVENT MANAGEMENT -->
 
-  <!-- <select id="select-number">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-  </select>
+  <data-store id="user-store">
+    <data-query id="guest-login" data-log key="guest-session" type="get" trigger="#window-loaded"
+      trigger-event="data" />
+    <data-query id="delete-guest-session" data-log key="guest-session" type="delete" trigger="#logout-btn" />
 
+    <data-query id="get-user-session" data-log key="user-session" type="get" />
+    <data-query id="delete-user-session" data-log key="user-session" type="delete" trigger="#logout-btn" />
 
+    <data-set id="guest-session" visible trigger="#not-logged-in-guest" trigger-event="data"></data-set>
+    <data-set id="user-session" visible trigger="#user-auth-request" trigger-event="data"></data-set>
 
-  <div class="grid">
-    <button id="btn1">btn1</button>
-    <button id="btn2">btn2</button>
-
-    <button id="btn3">btn3</button>
-    <button id="btn4">btn4</button>
-    <button id="btn5">btn5</button>
-    <button id="btn6">btn6</button>
-
-  </div>
-
+    <data-query id="delete-user-session" key="user-session" type="delete" trigger="#logout-modal"
+      trigger-event="accepted" />
+  </data-store>
 
 
   <event-stream>
 
-    <event-group id="group-1">
-      <event-source trigger="#btn1" filter="#filter-fn" transform="map-fn" />
-      <event-source id="source1-2" trigger="#btn2" />
+    <event-group id="user-auth-request">
+      <event-source trigger="#auth-modal" trigger-event="accepted" transform="#get-alias" />
     </event-group>
 
-    <event-group id="group-2">
-      <event-source trigger="#btn3" />
-      <event-source trigger="#btn4" />
+    <event-group id="only-for-auth-users">
+      <event-source trigger="#get-user-session" trigger-event="get" filter="#is-auth" />
     </event-group>
 
-    <event-group id="group-4" transform="#random-data">
-      <event-source trigger="#btn5" />
-      <event-source trigger="#btn6" />
+    <event-group id="decide-how-login">
+
+      <!-- if not logged in as guest -->
+      <event-source id="not-logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#is-empty"
+        transform="#generate-guest-id" />
+
+      <!-- if logged in as guest -->
+      <event-source id="logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#not-empty" />
+
+      <!-- if not logged in as user -->
+      <event-source id="not-logged-in-user" trigger="#user-login" trigger-event="get" filter="#is-empty" />
+
+      <!-- if logged in as user -->
+      <event-source id="logged-in-user" trigger="#user-login" trigger-event="get" filter="#not-empty" />
+
     </event-group>
 
-    <event-group id="group-3">
-      <event-source trigger="#select-number" trigger-event="change" transform="#random-data" />
+    <event-group id="guest-logged-in">
+      <event-source trigger="#guest-session" trigger-event="updated" />
+      <event-source trigger="#logged-in-guest" trigger-event="data" />
     </event-group>
+
+
+    <event-group id="log-out">
+      <event-source />
+    </event-group>
+
+    <event-source id="window-loaded" trigger="window" trigger-event="load" />
+
+    <event-source id="add-room" data-log trigger="#add-room-btn" trigger-event="click" transform="#add-room-ui-item" />
+
   </event-stream>
 
-  <app-modal trigger="[trigger='#btn4']" trigger-event="data"></app-modal> -->
-  <!-- <app-modal trigger="#group-2" trigger-event="data"></app-modal> -->
 
-  <!-- <script>
-    const source = document.querySelector('#source1-2')
-    console.log(source)
-    source.addEventListener('data', ev => console.log('si llego', event))
-  </script> -->
+  <app-modal id="logout-modal" trigger="#only-for-auth-users" trigger-event="data">
+    <h2 slot="main">logging out</h2>
+  </app-modal>
 
-  <!-- <js-fn id="random-data">
-    function(data) {
-      console.log('random data generation')
-      const res = {
-        value: new Date().getSeconds(),
-        label: 'test'
-      }
-      console.log('res', res)
-      return res
+  <!-- <js-fn ></js-fn> -->
+
+  <button id="add-room-btn" data-id="roomX" data-url="https://chime.aws/roomX">add room</button>
+
+  <!-- <app-modal trigger="#add-room" trigger-event="data"  ></app-modal> -->
+
+  <js-fn id="add-room-ui-item">
+    function (item) {
+    if(!item) return
+    const flipCardTemplate = document.querySelector('#flip-card-template')
+    const container = flipCardTemplate.parentElement
+    const copy = flipCardTemplate.content.cloneNode(true)
+    copy.querySelector('a').href = item.url
+    copy.querySelector('[data-room-id]').textContent = item.id
+    container.appendChild(copy)
     }
   </js-fn>
 
-  <js-fn id="direct-filter-fn" trigger="#btn3">
-    function(event) {
-      console.log('direct-filter-fn')
-      return new Date().getMinutes() % 10 !== 0
-    }
-  </js-fn>
-
-
-  <js-fn id="direct-map-fn" trigger="#direct-filter-fn">
+  <js-fn id="not-empty">
     function (event) {
-    console.log('direct-map-fn')
-    return {
-    success: true,
-    name: event.detail.name
-    }
-    }
-  </js-fn>
- -->
-
-  <!-- <js-fn id="log" trigger="event-source" type="filter"> -->
-  <!-- <js-fn id="log" trigger="#group-1" type="filter">
-    function (event, params) {
-    // console.log('(>*.*)>')
-    // console.log(event)
-    return { success: true }
+    return !!event.detail
     }
   </js-fn>
 
-  <js-fn id="map-fn">
+
+  <js-fn id="is-empty">
     function (event) {
-    console.log('map-fn')
-    return {
-    success: true,
-    name: event.detail.name
-    }
+    return !event.detail
     }
   </js-fn>
 
-
-
-  <js-fn id="filter-fn" trigger="#log">
-    function(event) {
-    console.log('filter-fn-s')
-    return new Date().getMinutes() % 10 !== 0
+  <js-fn id="log-fn" trigger="[data-log]" trigger-event="get">
+    function (event) {
+    console.log(event)
+    console.log(event.detail)
     }
   </js-fn>
 
-  <data-set visible id="event-log" trigger="#group-4" trigger-event="data"></data-set>
-  <data-set trigger="app-router" trigger-event="navigated"></data-set> -->
+  <js-fn id="generate-guest-id">
+    function (event) {
+    const now = Date.now()
+    return {guestId: `guest:${now}`, room: now % 5 }
+    }
+  </js-fn>
 
-  <script>
-    // function listenRoute() {
+  <js-fn id="is-auth">
+    function (event) {
+    console.log(event.detail)
+    const isAllawed = event.detail && event.detail.alias
+    console.log(isAllawed)
+    return isAllawed
+    }
+  </js-fn>
 
-    //   document.querySelector('app-router')
-    //     .addEventListener('navigated', ev => {
-    //       console.log('--->', ev)
-    //     })
-    // }
-    // setTimeout(listenRoute, 300)
-  </script>
+  <js-fn id="get-alias">
+    function () {
+    return { alias: document.querySelector('#auth-alias-input').value }
+    }
+  </js-fn>
 
-  <!-- 
-  <state-machine>
-    <machine-context>
-
-    </machine-context>
-    <machine-states>
-      <machine-state name="initial" guards=""></machine-state>
-    </machine-states>
-  </state-machine>
-
-  <event-bus>
-    <event-router trigger-event="moda-ended">
-      <event-listener trigger="app-modal" trigger-event="accepted"></event-listener>
-      <event-listener trigger="app-modal" trigger-event="declined"></event-listener>
-    </event-router>
-  </event-bus> -->
-
-  <!-- <script>
-    document.querySelector('#flip-btn')
-      .addEventListener('click', ev => console.log(ev))
-  </script> -->
 </body>
 
 </html>
