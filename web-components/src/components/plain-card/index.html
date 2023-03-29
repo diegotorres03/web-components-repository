@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card-component</title>
+
+    <link rel="stylesheet" href="../../global/style-tools.css">
+    <link rel="stylesheet" href="../../global/Themes/theme-swamp.css">
+
+    <style>
+        .card-container {
+            width: 400px;
+            overflow: hidden;
+            border-radius: 2px;
+        }
+
+        .card-title {
+            width: 100%;
+            padding: 8px;
+            border-bottom: 1px solid var(--main-tone);
+            color: var(--main-tone);
+            background-color: var(--back-tone);
+        }
+
+        .card-content {
+            padding: 8px;
+            background-color: var(--third-tone);
+            color: var(--back-tone);
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body class="flex-column align-items-center justify-content-center">
+
+    <div class="card-container">
+
+        <div class="card-title">
+
+            <slot name="title">Title</slot>
+
+        </div>
+        <div class="card-content">
+
+            <slot name="main">Main</slot>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
