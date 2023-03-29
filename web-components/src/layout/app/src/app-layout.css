@@ -9,8 +9,7 @@
   height: 5%;
   padding: 8px;
 
-  /* color: var(--text-tone); */
-  color: red;
+  color: var(--text-tone);
   border-bottom: 1px solid var(--second-tone);
   background-color: var(--back-tone);
 
