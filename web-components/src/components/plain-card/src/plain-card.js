@@ -8,7 +8,7 @@ import {
 import plainCardHtml from './plain-card.html'
 import plainCardStyle from './plain-card.css'
 
-export default class extends HTMLElement {
+export default class PlainCardComponent extends HTMLElement {
   constructor() {
     super()
     const template = html` <style>
@@ -32,4 +32,4 @@ export default class extends HTMLElement {
   adoptedCallback() {}
 }
 
-window.customElements.define('')
+window.customElements.define('plain-card', PlainCardComponent)

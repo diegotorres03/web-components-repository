@@ -13,6 +13,14 @@
     .hidden {
       display: none;
     }
+
+    nav {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+    }
   </style>
 
   <!-- <app-modal trigger="#window-loaded" trigger-event="data"> -->
@@ -28,7 +36,7 @@
       <button id="logout-btn">logout</button>
     </header>
 
-    <nav slot="top-menu" style="width:100%;" class="flex-row justify-content-around">
+    <nav slot="top-menu" class="flex-row justify-content-around">
       <a href="#">Home</a>
       <a href="#event">event</a>
       <a href="#rooms">rooms</a>
@@ -81,13 +89,14 @@
 
 
         <event-group>
-          <event-source id="user-creation-started" data-target="#user-intro" trigger="#create-user-test-btn" trigger-event="click" transform="#get-user-from-form" />
+          <event-source id="user-creation-started" data-target="#user-intro" trigger="#create-user-test-btn"
+            trigger-event="click" transform="#get-user-from-form" />
         </event-group>
 
         <button id="create-user-test-btn">create</button>
 
 
-        <app-modal trigger="#update-modal-info" trigger-event="done" >
+        <app-modal trigger="#update-modal-info" trigger-event="done">
           <section id="user-intro" slot="main">
             <p>wecome <span data-key="name"></span> with email <span data-key="alias"></span>@amazon.com </p>
           </section>
@@ -95,16 +104,16 @@
 
         <js-fn id="update-target-info" trigger="#user-creation-started" trigger-event="data">
           function (event) {
-            console.log(event)
-            const targetSelector = event.target.dataset.target
-            console.log('targetSelector', targetSelector)
-            
-            const target = document.querySelector(targetSelector)
-            const data = event.detail
-            Object.keys(data).forEach(key => {
-              console.log('key:', key, data[key])
-              target.querySelector(`[data-key="${key}"]`).textContent = data[key]
-            }) 
+          console.log(event)
+          const targetSelector = event.target.dataset.target
+          console.log('targetSelector', targetSelector)
+
+          const target = document.querySelector(targetSelector)
+          const data = event.detail
+          Object.keys(data).forEach(key => {
+          console.log('key:', key, data[key])
+          target.querySelector(`[data-key="${key}"]`).textContent = data[key]
+          })
           }
         </js-fn>
 
@@ -129,10 +138,10 @@
 
       <app-route hash="rooms">
         <h1>rooms</h1>
-
+        <!-- 
         <section>
 
-          <!-- <flip-card>
+          <flip-card>
             <section slot="front">
               <h1>Room ({roomId})</h1>
               <a href="">chime link</a>
@@ -154,21 +163,28 @@
           </flip-card>
         </section> -->
 
-          <template id="flip-card-template">
-            <flip-card disabled>
-              <section slot="front">
-                <h1>Room <span data-room-id></span></h1>
-                <a href="" target="_blank">chime link</a>
-              </section>
-            </flip-card>
-          </template>
+        <template id="flip-card-template">
+          <flip-card disabled>
+            <section slot="front">
+              <h1>Room <span data-room-id></span></h1>
+              <a href="" target="_blank">chime link</a>
+            </section>
+          </flip-card>
+        </template>
 
       </app-route>
 
       <app-route hash="page3">
-        <h1>page 3</h1>
 
-        <p>the idea is, if I send this modal to take the data from the form or div</p>
+        <plain-card>
+          <h1 slot="title">page 3</h1>
+
+          <p slot="main">the idea is, if I send this modal to take the data from the form or div</p>
+
+        </plain-card>
+
+
+
         <form id="user-form">
           <label for="">Name</label><input type="text">
           <br>
