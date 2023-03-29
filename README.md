@@ -14,3 +14,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `cdk synth`       emits the synthesized CloudFormation template
 
 
+this command is usefull if max watchers error on ubuntu, pop os
+```sh
+sudo sysctl -w fs.inotify.max_user_watches=524288
+```

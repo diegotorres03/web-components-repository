@@ -5,6 +5,12 @@
     <app-sync-subscription id="event-subs"></app-sync-subscription>
 </app-sync>
 
+<js-fn trigger="" >
+    function (event) {
+        window.localStorage.setItem('latest-event', event.detail)
+    }
+</js-fn>
+
 <event-stream id="all-events-stream" event-name="any-change" >
 
     <event-group id="user-changed" event-name="user-changed">

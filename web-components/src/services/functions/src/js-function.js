@@ -24,6 +24,7 @@ export default class JSFunctionComponent extends HTMLElement {
   }
 
   run(event){
+    console.log('event.detail', event)
     return this.#fn(event)
   }
 

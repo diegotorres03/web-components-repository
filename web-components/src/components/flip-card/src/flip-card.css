@@ -4,9 +4,9 @@
   perspective: 1000px;
 }
 
-.flip-card-box:hover .flip-card {
+/* .flip-card-box:hover .flip-card {
   transform: rotateY(180deg);
-}
+} */
 
 .active{
   transform:rotateY(180deg);

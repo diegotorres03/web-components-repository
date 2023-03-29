@@ -36,11 +36,10 @@ export default class EventStreamComponent extends HTMLElement {
   }
 
   emit(event) {
-
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 
-    const transformedData = runTransforms(event.detail, this.getAttribute('transform'))
+    const transformedData = runTransforms(event, this.getAttribute('transform'))
 
     this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
