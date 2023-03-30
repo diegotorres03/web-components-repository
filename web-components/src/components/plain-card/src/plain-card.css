@@ -1,0 +1,20 @@
+.card-container {
+  width: 400px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.card-title {
+  width: 100%;
+  padding: 8px;
+  border-bottom: 1px solid var(--main-tone);
+  color: var(--main-tone);
+  background-color: var(--back-tone);
+}
+
+.card-content {
+  padding: 8px;
+  background-color: var(--third-tone);
+  color: var(--back-tone);
+  text-align: justify;
+}

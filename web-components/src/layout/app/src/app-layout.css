@@ -26,7 +26,7 @@
 
 .left-header {
   width: 25%;
-  height: 100%;
+  /* height: 100%; */
   padding: 8px;
 
   color: var(--text-tone);
@@ -39,7 +39,7 @@
 
 .top-menu {
   width: 75%;
-  height: 100%;
+  /* height: 100%; */
   padding: 8px;
 
   overflow: hidden;
@@ -146,3 +146,12 @@
 .scroll::-webkit-scrollbar-track {
   border-radius: 10px;
 }
+/* 
+::slotted(header) {
+  text-decoration: none;
+  color: green !important;
+  background-color: red;
+}
+app-layout::d {
+  color: red !important;
+} */
