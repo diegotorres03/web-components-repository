@@ -15,7 +15,6 @@
     }
   </style>
 
-  <!-- <app-modal trigger="#window-loaded" trigger-event="data"> -->
   <app-modal id="guest-login-accepted" trigger="#guest-session" trigger-event="updated">
     <h1 slot="main">automatic login as guest!</h1>
   </app-modal>
@@ -24,6 +23,7 @@
   <app-layout>
 
     <header slot="header">
+      <span id="user-alias" data-key="alias"></span>
       <button id="open-login-btn">login</button>
       <button id="logout-btn">logout</button>
     </header>
@@ -38,7 +38,7 @@
     <app-router slot="main">
 
       <app-route>
-        <h1>({EventName})</h1>
+        <h1>({SelectedEventName})</h1>
         <flip-card disabled trigger="#guest-logged-in" trigger-event="data">
           <h1 slot="front">Secret</h1>
           <section slot="back">
@@ -69,57 +69,169 @@
       </app-route>
 
       <app-route hash="event">
-        <h1>page 1</h1>
-
+        <h1>Welcome to your events</h1>
+        <hr>
         <p>the idea is, if I send this modal to take the data from the form or div</p>
 
-        <form id="user-form">
-          <label for="">Name</label><input id="new-user-name-input" name="name" type="text">
-          <br>
-          <label for="">Alias</label><input id="new-user-alias-input" name="alias" type="text">
-        </form>
+        <section style="border:1px solid black;">
+          <button id="open-create-event-modal">create new event</button>
+        </section>
 
+        <app-modal id="create-new-event-modal" trigger="#open-create-event-modal">
 
-        <event-group>
-          <event-source id="user-creation-started" data-target="#user-intro" trigger="#create-user-test-btn" trigger-event="click" transform="#get-user-from-form" />
-        </event-group>
+          <h1 slot="title">Create new event</h1>
+          <form id="event-form" slot="main">
+            <label>Event Name</label><input name="name" type="text"><br>
+            <label>Date</label><input name="date" type="date"><br>
+            <label>time</label><input name="time" type="time"><br>
+            <label>duration in hours</label><input name="duration" type="number"><br>
+            <label>Host Alias</label><input name="alias" type="text"><br>
+          </form>
 
-        <button id="create-user-test-btn">create</button>
-
-
-        <app-modal trigger="#update-modal-info" trigger-event="done" >
-          <section id="user-intro" slot="main">
-            <p>wecome <span data-key="name"></span> with email <span data-key="alias"></span>@amazon.com </p>
-          </section>
         </app-modal>
 
-        <js-fn id="update-target-info" trigger="#user-creation-started" trigger-event="data">
+        <button id="refresh-event-list">reload</button>
+        <button id="clear-event-list">clear list</button>
+
+        <event-source data-target="#create-new-event-modal" trigger="#event-form [name]" trigger-event="keyup"
+          transform="#event-to-dataset" />
+        <event-source data-target="#create-new-event-modal" data-source="#event-form [name]"
+          trigger="#open-create-event-modal" transform="#event-to-dataset" />
+        <event-source trigger="#create-new-event-modal" trigger-event="accepted" transform="#log-fn" />
+
+        <event-group>
+          <event-source id="user-creation-started" data-target="#user-intro" trigger="#create-user-test-btn"
+            trigger-event="click" transform="#get-user-from-form" />
+        </event-group>
+
+
+
+        <section id="display-event-list">
+          <template id="event-list-item-template">
+            <section>
+              <h1 data-key="name"></h1>
+              <ul>
+                <li><b>Date</b><span data-key="date"></span></li>
+                <li><b>Time</b><span data-key="time"></span></li>
+                <li><b>Duration</b><span data-key="duration"></span></li>
+                <li><b>Host Alias</b><span data-key="alias"></span></li>
+              </ul>
+              <button id="delete-event-btn">remove event</button>
+              <hr>
+            </section>
+          </template>
+          <!-- new items will be added here -->
+        </section>
+
+
+        <event-source trigger="#clear-event-list" data-target="#event-list-item-template"
+          transform="#empty-container" />
+        <event-source trigger="#list-events" trigger-event="list" data-target="#event-list-item-template"
+          transform="#event-to-ui" />
+
+        <event-group id="run-list-events">
+          <event-source trigger="#event-list" trigger-event="updated" />
+          <event-source trigger="#refresh-event-list" />
+          <event-source trigger="#logged-in-user" trigger-event="data" />
+        </event-group>
+
+        <app-modal trigger="#only-for-auth-users" trigger-event="data"></app-modal>
+
+
+        <data-store id="event-store">
+          <data-query id="list-events" type="list" key="event-list" trigger="#run-list-events" trigger-event="data" />
+          <data-set id="event-list" append trigger="#create-new-event-modal" trigger-event="accepted"></data-set>
+        </data-store>
+
+        <template>
+          <script>
+            function test(item) {
+              const { target } = item.__eventSource.dataset
+              console.log('event-to-ui', target, item)
+
+              if (!item) return
+
+              const template = document.querySelector(target)
+              const container = template.parentElement
+              const copy = template.content.cloneNode(true)
+              const keys = Object.keys(item)
+              keys.filter(key => key !== '__eventSource').map(key => {
+                console.log(key, `[data-key="${key}"]`)
+                const targetValueElement = copy.querySelector(`[data-key="${key}"]`)
+                if (!targetValueElement) return
+                const attr = targetValueElement.dataset.attribute || 'textContent'
+                console.log(attr)
+                targetValueElement[attr] = item[key]
+              })
+              // copy.querySelector('a').href = item.url
+              // copy.querySelector('[data-key="id" data-attribute="textContent"]').textContent = item.id
+              container.appendChild(copy)
+            }
+          </script>
+        </template>
+
+
+        <js-fn id="empty-container">
           function (event) {
-            console.log(event)
-            const targetSelector = event.target.dataset.target
-            console.log('targetSelector', targetSelector)
-            
-            const target = document.querySelector(targetSelector)
-            const data = event.detail
-            Object.keys(data).forEach(key => {
-              console.log('key:', key, data[key])
-              target.querySelector(`[data-key="${key}"]`).textContent = data[key]
-            }) 
+          if(!event) return
+
+          const { target } = event.__eventSource.dataset
+
+          const template = document.querySelector(target)
+          console.log('empty container', target, event, template)
+
+          const children = Array.from(template.parentElement.childNodes)
+          console.log(children)
+          children
+          .filter(child => child && child.tagName && child.tagName !== 'TEMPLATE')
+          .forEach(child => child.remove && child.remove())
+          return event
           }
         </js-fn>
 
-        <js-fn id="get-user-from-form">
+        <js-fn id="update-ui-values">
           function (event) {
-          console.log('event', event)
-          const input = document.querySelector('#new-user-name-input')
-          const fields = Array.from(document.querySelectorAll('#user-form [name]'))
-          const data = {}
-          fields.forEach(field => {
-          data[field.name] = field.value
+            const { target } = event.__eventSource.dataset
+            console.log('event-to-ui', target, event)
+  
+            if(!event || Object.keys(event).length === 1) return
+  
+            const targetElement = document.querySelector(target)
+            const keys = Object.keys(event)
+            keys.filter(key => key !== '__eventSource').map(key => {
+              console.log(key, `[data-key="${key}"]`)
+              const targetValueElement = targetElement.querySelector(`[data-key="${key}"]`)
+              if(!targetValueElement) return
+              const attr = targetValueElement.dataset.attribute || 'textContent'
+              console.log(attr)
+              targetValueElement[attr] = event[key]
+            })
+            }
+        </js-fn>
+
+        <js-fn id="event-to-ui">
+          function (event) {
+          const { target } = event.__eventSource.dataset
+          console.log('event-to-ui', target, event)
+
+          if(!event || Object.keys(event).length === 1) return
+
+          const template = document.querySelector(target)
+          const container = template.parentElement
+          const copy = template.content.cloneNode(true)
+          const keys = Object.keys(event)
+          keys.filter(key => key !== '__eventSource').map(key => {
+          console.log(key, `[data-key="${key}"]`)
+          const targetValueElement = copy.querySelector(`[data-key="${key}"]`)
+          if(!targetValueElement) return
+          const attr = targetValueElement.dataset.attribute || 'textContent'
+          console.log(attr)
+          targetValueElement[attr] = event[key]
           })
-          return data
+          container.appendChild(copy)
           }
         </js-fn>
+
 
         <script>
 
@@ -130,38 +242,37 @@
       <app-route hash="rooms">
         <h1>rooms</h1>
 
+        <section id="room-form">
+          <div id="new-room-form">
+            <label>Room Name</label>
+            <input type="text" name="id">
+            <br>
+            <label>Room Url</label>
+            <input type="text" name="url">
+          </div>
+
+          <button id="add-room-btn">add new room</button>
+
+          <event-source trigger="#new-room-form input" trigger-event="keyup" transform="#event-to-dataset"
+            data-target="#add-room-btn" />
+
+          <app-modal trigger="#modal-opener" trigger-event="data"></app-modal>
+
+        </section>
+
         <section>
-
-          <!-- <flip-card>
-            <section slot="front">
-              <h1>Room ({roomId})</h1>
-              <a href="">chime link</a>
-            </section>
-          </flip-card>
-
-          <flip-card>
-            <section slot="front">
-              <h1>Room ({roomId})</h1>
-              <a href="">chime link</a>
-            </section>
-          </flip-card>
-
-          <flip-card>
-            <section slot="front">
-              <h1>Room ({roomId})</h1>
-              <a href="">chime link</a>
-            </section>
-          </flip-card>
-        </section> -->
 
           <template id="flip-card-template">
             <flip-card disabled>
               <section slot="front">
-                <h1>Room <span data-room-id></span></h1>
-                <a href="" target="_blank">chime link</a>
+                <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+                <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
               </section>
             </flip-card>
           </template>
+
+        </section>
+
 
       </app-route>
 
@@ -175,7 +286,20 @@
           <label for="">Alias</label><input type="text">
         </form>
 
-
+        <app-accordion>
+          <section>
+            <h1>test</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, esse culpa? Ad perspiciatis,
+              vero nam placeat quia neque at unde ipsa porro, explicabo deserunt aperiam voluptate molestias totam
+              beatae praesentium!</p>
+          </section>
+          <section>
+            <h1>test</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, esse culpa? Ad perspiciatis,
+              vero nam placeat quia neque at unde ipsa porro, explicabo deserunt aperiam voluptate molestias totam
+              beatae praesentium!</p>
+          </section>
+        </app-accordion>
 
       </app-route>
 
@@ -197,8 +321,17 @@
 
   <!-- EVENT MANAGEMENT -->
 
+  <!-- <app-modal trigger="#list-events" trigger-event="list"><h1 slot="main">saved</h1></app-modal> -->
+
+
+  <!-- STATE: start -->
+  <event-group id="state-start">
+    <event-source name="start" id="window-loaded" trigger="window" trigger-event="load" />
+  </event-group>
+
   <data-store id="user-store">
-    <data-query id="guest-login" data-log key="guest-session" type="get" trigger="#window-loaded"
+    <!-- STATE: get guest token -->
+    <data-query name="get-guest-token" id="guest-login" data-log key="guest-session" type="get" trigger="#window-loaded"
       trigger-event="data" />
     <data-query id="delete-guest-session" data-log key="guest-session" type="delete" trigger="#logout-btn" />
 
@@ -213,35 +346,62 @@
   </data-store>
 
 
+  <event-source trigger="#get-token-from-url" data-target="#user-alias" transform="#update-ui-values" />
+
   <event-stream>
+
 
     <event-group id="user-auth-request">
       <event-source trigger="#auth-modal" trigger-event="accepted" transform="#get-alias" />
     </event-group>
 
     <event-group id="only-for-auth-users">
-      <event-source trigger="#get-user-session" trigger-event="get" filter="#is-auth" />
+      <event-source trigger="#get-user-session" trigger-event="get" filter="#not-empty" />
     </event-group>
 
-    <event-group id="decide-how-login">
 
-      <!-- if not logged in as guest -->
-      <event-source id="not-logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#is-empty"
-        transform="#generate-guest-id" />
+    <event-group id="user-stream">
 
-      <!-- if logged in as guest -->
-      <event-source id="logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#not-empty" />
+      <event-source id="get-token-from-url"  trigger="window-loaded" trigger-event="load" transform="#get-token-from-url-fn"/>
 
       <!-- if not logged in as user -->
       <event-source id="not-logged-in-user" trigger="#user-login" trigger-event="get" filter="#is-empty" />
 
       <!-- if logged in as user -->
       <event-source id="logged-in-user" trigger="#user-login" trigger-event="get" filter="#not-empty" />
-
     </event-group>
 
+    <event-group id="guest-stream">
+
+      <!-- if not logged in as guest -->
+      <event-source name="generate-guest-token" id="not-logged-in-guest" trigger="#guest-login" trigger-event="get"
+        filter="#is-empty" transform="#generate-guest-id" />
+
+      <!-- if logged in as guest -->
+      <event-source id="logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#not-empty" />
+    </event-group>
+
+
+
+    <js-fn id="get-token-from-url-fn" >
+      function (event) {
+        // url example 'https://domain.com/#hash?token=value'
+        const hashPath = window.location.hash
+        <!-- const [hash, token] = window.location.hash.split(/[\/]/g) -->
+        const token = hashPath.split('token=').pop()
+        return token ? { token } : null
+      }
+    </js-fn>
+
+
+    <js-fn id="navigate-to-home" trigger="[data-navigate='rooms']">
+      function (event) {
+      window.location.hash = 'rooms'
+      }
+    </js-fn>
+
     <event-group id="guest-logged-in">
-      <event-source trigger="#guest-session" trigger-event="updated" />
+      <event-source trigger="#guest-session" trigger-event="updated" data-navigate="rooms" />
       <event-source trigger="#logged-in-guest" trigger-event="data" />
     </event-group>
 
@@ -250,9 +410,9 @@
       <event-source />
     </event-group>
 
-    <event-source id="window-loaded" trigger="window" trigger-event="load" />
 
-    <event-source id="add-room" data-log trigger="#add-room-btn" trigger-event="click" transform="#add-room-ui-item" />
+    <event-source id="add-room" data-log trigger="#add-room-btn" trigger-event="click"
+      transform="#update-ui-values-from-event" />
 
   </event-stream>
 
@@ -263,18 +423,91 @@
 
   <!-- <js-fn ></js-fn> -->
 
-  <button id="add-room-btn" data-id="roomX" data-url="https://chime.aws/roomX">add room</button>
 
   <!-- <app-modal trigger="#add-room" trigger-event="data"  ></app-modal> -->
 
-  <js-fn id="add-room-ui-item">
-    function (item) {
+
+  <template>
+    <script>
+      alert('test')
+    </script>
+  </template>
+
+
+
+  <app-modal trigger="#update-modal-info" trigger-event="done">
+    <section id="user-intro" slot="main">
+      <p>wecome <span data-key="name"></span> with email <span data-key="alias"></span>@amazon.com </p>
+    </section>
+  </app-modal>
+
+  <js-fn id="update-target-info" trigger="#user-creation-started" trigger-event="data">
+    function (event) {
+    console.log(event)
+    const targetSelector = event.target.dataset.target
+    console.log('targetSelector', targetSelector)
+
+    const target = document.querySelector(targetSelector)
+    const data = event.detail
+    Object.keys(data).forEach(key => {
+    console.log('key:', key, data[key])
+    target.querySelector(`[data-key="${key}"]`).textContent = data[key]
+    })
+    }
+  </js-fn>
+
+  <js-fn id="get-user-from-form" data-target="#user-form [name]">
+    function (event, target) {
+    console.log('event', event)
+    const input = document.querySelector('#new-user-name-input')
+    // const fields = Array.from(document.querySelectorAll(target))
+    const data = {}
+    fields.forEach(field => {
+    data[field.name] = field.value
+    })
+    return data
+    }
+  </js-fn>
+
+
+  <js-fn id="event-to-dataset">
+    function (data) {
+    const { target, source } = data.__eventSource.dataset
+    const { trigger } = data.__eventSource
+    console.log('data', target, trigger)
+
+    const targetElement = document.querySelector(target)
+    const fields = Array.from(document.querySelectorAll(source || trigger))
+
+    fields.map(field => {
+    const { name, value } = field
+    console.log(name, value)
+    targetElement.dataset[name] = value
+    console.log(targetElement.dataset)
+    })
+
+    return data
+    }
+  </js-fn>
+
+  <js-fn id="update-ui-values-from-event" data-target="#flip-card-template" data-test="true">
+    function (item, target, test) {
+    console.log(item)
     if(!item) return
-    const flipCardTemplate = document.querySelector('#flip-card-template')
-    const container = flipCardTemplate.parentElement
-    const copy = flipCardTemplate.content.cloneNode(true)
-    copy.querySelector('a').href = item.url
-    copy.querySelector('[data-room-id]').textContent = item.id
+    const template = document.querySelector(target)
+    const container = template.parentElement
+    const copy = template.content.cloneNode(true)
+    const keys = Object.keys(item)
+    keys.map(key => {
+    console.log(key, `[data-key="${key}"]`)
+    const targetValueElement = copy.querySelector(`[data-key="${key}"]`)
+    if(!targetValueElement) return
+    const attr = targetValueElement.dataset.attribute
+    console.log(attr)
+    targetValueElement[attr] = item[key]
+    })
+    // copy.querySelector('a').href = item.url
+    // copy.querySelector('[data-key="id" data-attribute="textContent"]').textContent = item.id
     container.appendChild(copy)
     }
   </js-fn>

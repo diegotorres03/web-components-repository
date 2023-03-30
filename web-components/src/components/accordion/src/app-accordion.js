@@ -23,7 +23,6 @@ export default class AccordionComponent extends HTMLElement {
 
 
     connectedCallback() {
-        console.log('connectedCallback')
         updateVars(this)
         registerTriggers(this, (ev) => console.log(ev))
 

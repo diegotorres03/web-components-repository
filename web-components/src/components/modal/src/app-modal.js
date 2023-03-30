@@ -42,9 +42,7 @@ export default class ModalComponent extends HTMLElement {
   accept() {
     this.shadowRoot.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
-      detail: {
-        success: true
-      }
+      detail: {...this.dataset}
     }))
     this.close()
   }
@@ -52,9 +50,7 @@ export default class ModalComponent extends HTMLElement {
   cancel() {
     this.shadowRoot.dispatchEvent(new CustomEvent('declined', {
       bubbles: true, composed: true,
-      detail: {
-        success: true
-      }
+      detail: {...this.dataset}
     }))
     this.close()
   }

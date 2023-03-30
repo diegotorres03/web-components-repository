@@ -13,6 +13,17 @@ export default class EventSourceComponent extends HTMLElement {
     return 'data'
   }
 
+  defaultEventName = 'data'
+
+
+  get #eventSource() {
+    return {
+      trigger: this.getAttribute('trigger'),
+      triggerEvent: this.getAttribute('trigger-event') || this.getAttribute('event'),
+      dataset: {...this.dataset}
+    }
+  }
+
   constructor() {
     super()
     const template = html`<slot></slot>`
@@ -20,6 +31,7 @@ export default class EventSourceComponent extends HTMLElement {
     this.shadowRoot.appendChild(template)
   }
 
+  
 
   connectedCallback() {
     mapComponentEvents(this)
@@ -46,21 +58,21 @@ export default class EventSourceComponent extends HTMLElement {
       return
     }
 
-
     registerTriggers(this, (event) => this.emit(event))
   }
 
   emit(event) {
+    console.log('event-source event =>', event)
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 
-    const transformedData = runTransforms(event, this.getAttribute('transform'))
+    const transformedData = runTransforms(event, this.getAttribute('transform'), this.#eventSource)
+
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: false, composed: true,
       detail: transformedData,
     })
-    console.log(newEvent)
     this.dispatchEvent(newEvent)
   }
 

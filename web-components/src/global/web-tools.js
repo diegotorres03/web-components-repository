@@ -123,10 +123,12 @@ function registerTriggers(element, callback) {
   const triggers = Array.from(document.querySelectorAll(selector))
 
   if (!triggers) return
-  let triggerEvent = element.getAttribute('trigger-event')
+  let triggerEvent = element.getAttribute('trigger-event') || element.getAttribute('event')
 
   triggers.map((trigger) => {
+    // if()
     if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
+    console.log('triggerEvent', triggerEvent, trigger.DEFAULT_EVENT_NAME )
     trigger.addEventListener(triggerEvent, callback)
   })
 

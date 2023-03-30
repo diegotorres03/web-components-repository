@@ -25,7 +25,7 @@ export default class DataStore extends HTMLElement {
 
   // [ ] emit events to enable Change Data Capture
 
-  get action() { return this.getAttribute('action') }
+  // get action() { return this.getAttribute('action') }
 
   constructor() {
     super()
@@ -74,7 +74,7 @@ export default class DataStore extends HTMLElement {
     let data = isBtn ? { ...event.target.dataset } : event.detail
     const key = event.target.id
 
-    if (this.action === 'append') {
+    if (this.hasAttribute('append') || event.target.hasAttribute('append')) {
       const item = await this.getItem(key)
       const items = Array.isArray(item) ? item : [item]
       items.unshift(data)

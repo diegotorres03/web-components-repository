@@ -8,19 +8,19 @@ import { selectAll } from '../../../global/web-tools'
  * @param {*} transformSelector - this will be the event.detail on the next step, the rest of the event will be discarded
  * @return {*} 
  */
-export function runTransforms(event, transformSelector) {
+export function runTransforms(event, transformSelector, __eventSource = {}) {
 
   const isBtn = event.target && event.target.tagName.toLowerCase() === 'button'
   const dataset = event && event.target && event.target.dataset ? { ...event.target.dataset } : null
   let data = isBtn ? dataset : event.detail
 
   if (!event) return {} // throw new Error('noting to transform')
-  if (!transformSelector) return data
+  if (!transformSelector) return { ...data, __eventSource }
   const transforms = selectAll(transformSelector)
-  let currentData = data
+  let currentData = { ...data, __eventSource }
   transforms.forEach(transform =>
     currentData = transform.run(currentData))
-  return currentData
+  return { ...currentData, __eventSource }
 }
 
 export function runFilters(event, filterSelector) {

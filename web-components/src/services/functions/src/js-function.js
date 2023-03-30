@@ -15,6 +15,7 @@ export default class JSFunctionComponent extends HTMLElement {
   }
 
   #fn
+  #params
 
   constructor() {
     super()
@@ -23,9 +24,13 @@ export default class JSFunctionComponent extends HTMLElement {
     this.shadowRoot.appendChild(template)
   }
 
-  run(event){
-    console.log('event.detail', event)
-    return this.#fn(event)
+  run(event) {
+    
+    if(!this.#params) return  this.#fn(event)
+
+    const [first, ...fnParams] = this.#params
+    const fnParamValues = fnParams.map(key => this.dataset[key])
+    return this.#fn(event, ...fnParamValues)
   }
 
   connectedCallback() {
@@ -35,10 +40,10 @@ export default class JSFunctionComponent extends HTMLElement {
     const [sigStr, sigParams] = funSigRegex.exec(fnStr)
     const fnBody = fnStr.replace(sigStr, '')
     let content = fnBody.trim()
-    content = content.charAt(0)=== '{'? content.replace('{', '') : content
-    content = content.slice(0, content.length -1)
-    const params = sigParams.split(/[,]/g).map(str => str.trim())
-    this.#fn = new Function(...params, content)
+    content = content.charAt(0) === '{' ? content.replace('{', '') : content
+    content = content.slice(0, content.length - 1)
+    this.#params = sigParams.split(/[,]/g).map(str => str.trim())
+    this.#fn = new Function(...this.#params, content)
 
     mapComponentEvents(this)
     updateVars(this)
