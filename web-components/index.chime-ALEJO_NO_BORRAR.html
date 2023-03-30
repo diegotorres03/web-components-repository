@@ -193,9 +193,9 @@
           function (event) {
             const { target } = event.__eventSource.dataset
             console.log('event-to-ui', target, event)
-  
+
             if(!event || Object.keys(event).length === 1) return
-  
+
             const targetElement = document.querySelector(target)
             const keys = Object.keys(event)
             keys.filter(key => key !== '__eventSource').map(key => {
