@@ -12,6 +12,9 @@ import FlipCardCss from "./flip-card.css";
 
 
 export default class FlipCard extends HTMLElement {
+
+  static get observedAttributes() { return ['scale']; }
+
   get DEFAULT_EVENT_NAME() {
     return 'flipped'
   }
@@ -26,7 +29,7 @@ export default class FlipCard extends HTMLElement {
       <style>
       ${FlipCardCss}
       ${disabled ? '' : `.flip-card-box:hover .flip-card {
-        transform: rotateY(180deg);
+        transform: rotateY(180deg) scale(var(--scale));
       }`}
       </style>
       ${FlipCardHtml}
@@ -57,6 +60,15 @@ export default class FlipCard extends HTMLElement {
       })
     );
   }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'scale') {
+      const styleComponent = this.shadowRoot.querySelector('style')
+      styleComponent.style.setProperty('--scale', newValue)
+      console.log(style, style.style)
+    }
+  }
+
 }
 
 

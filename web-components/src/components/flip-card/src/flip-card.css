@@ -1,3 +1,7 @@
+:host {
+  --scale: 1.3;
+}
+
 .flip-card-box {
   width: 300px;
   height: 180px;
@@ -9,7 +13,8 @@
 } */
 
 .active{
-  transform:rotateY(180deg);
+  
+  transform:rotateY(180deg) scale(var(--scale));
 }
 
 .flip-card {

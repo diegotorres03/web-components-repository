@@ -27,10 +27,10 @@ function html(templates, ...values) {
   if (str.match(/[^{}]*(?=\})/g)) {
     const regexRes = Array.from(str.matchAll(/[^{\}]+(?=})/g))
     regexRes.forEach(
-      (res) =>
+      (key) =>
         (str = str.replace(
-          `({${res}})`,
-          `<span class="variable ${res}-var">${res}</span>`,
+          `({${key}})`,
+          `<span class="variable ${key}-var" data-key="${key}">${key}</span>`,
         )),
     )
   }

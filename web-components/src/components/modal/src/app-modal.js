@@ -15,10 +15,10 @@ export default class ModalComponent extends HTMLElement {
   static get observedAttributes() {
     return ['open']
   }
-  
+
   get DEFAULT_EVENT_NAME() {
     return 'accepted'
-  } 
+  }
 
   constructor() {
     super()
@@ -40,34 +40,50 @@ export default class ModalComponent extends HTMLElement {
   }
 
   accept() {
+    // [ ] read form values or data-key and send that as part of the event data
+    const inputFields = [...this.querySelectorAll('[name]')]
+
+    // [ ] add hability to use data-key and also get text content
+    const datasetFields = [... this.querySelectorAll('[data-key]')]
+
+    const inputData = {}
+    inputFields.forEach(field => {
+      inputData[field.name] = field.value
+    })
+
     this.shadowRoot.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
-      detail: {...this.dataset}
+      detail: { ...inputData, ...this.dataset }
     }))
-    this.close()
+
+    this.hide()
   }
 
   cancel() {
     this.shadowRoot.dispatchEvent(new CustomEvent('declined', {
       bubbles: true, composed: true,
-      detail: {...this.dataset}
+      detail: { ...this.dataset }
     }))
-    this.close()
+    this.hide()
   }
 
   show() {
-    this.setAttribute('open', true)
+    this.setAttribute('open', '')
   }
 
-  close() {
-    this.setAttribute('open', false)
+  hide() {
+    this.removeAttribute('open')
+  }
+
+  toggle() {
+    this.hasAttribute('open') ? this.hide() : this.show()
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    // console.log(name, oldValue, typeof newValue)
+    console.log(name, oldValue, typeof newValue)
     if (!this.shadowRoot) return
     if (name === 'open' && this.shadowRoot.querySelector('#checker')) {
-      this.shadowRoot.querySelector('#checker').checked = newValue === 'true'
+      this.shadowRoot.querySelector('#checker').checked = this.hasAttribute(name)
     }
   }
 

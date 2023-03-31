@@ -23,288 +23,76 @@
     }
   </style>
 
+  <script>
+    const filters = Object.freeze({
+      test(event, param) {
+        console.log(event, param)
+        return event.detail
+      },
 
-    <button >click me</button>
+    })
 
-    <event-source trigger="button" data-test="true" />
-
-    <app-modal trigger="event-source" event="data" ></app-modal>
-
-    <nav slot="top-menu" class="flex-row justify-content-around">
-      <a href="#">Home</a>
-      <a href="#event">event</a>
-      <a href="#rooms">rooms</a>
-      <a href="#page3">page3</a>
-    </nav>
-
-      function isEmpty() {
-
-      }
-    </script>
-
-
-      </app-route>
-
-      <app-route hash="event">
-        <h1>page 1</h1>
-
-        <p>the idea is, if I send this modal to take the data from the form or div</p>
-
-        <form id="user-form">
-          <label for="">Name</label><input id="new-user-name-input" name="name" type="text">
-          <br>
-          <label for="">Alias</label><input id="new-user-alias-input" name="alias" type="text">
-        </form>
+    const transforms = Object.freeze({
+      count(data, direction = 1) {
+        console.log(data, direction)
+        const { id, name, count } = data
+        return { id, name, count: Date.now() % 100 }
+        // return { id, name, count: Number(count) + Number(direction) }
+      },
+    })
 
 
-        <event-group>
-          <event-source id="user-creation-started" data-target="#user-intro" trigger="#create-user-test-btn"
-            trigger-event="click" transform="#get-user-from-form" />
-        </event-group>
+  </script>
 
-        <button id="create-user-test-btn">create</button>
-
-
-        <app-modal trigger="#update-modal-info" trigger-event="done">
-          <section id="user-intro" slot="main">
-            <p>wecome <span data-key="name"></span> with email <span data-key="alias"></span>@amazon.com </p>
-          </section>
-        </app-modal>
-
-        <js-fn id="update-target-info" trigger="#user-creation-started" trigger-event="data">
-          function (event) {
-          console.log(event)
-          const targetSelector = event.target.dataset.target
-          console.log('targetSelector', targetSelector)
-
-          const target = document.querySelector(targetSelector)
-          const data = event.detail
-          Object.keys(data).forEach(key => {
-          console.log('key:', key, data[key])
-          target.querySelector(`[data-key="${key}"]`).textContent = data[key]
-          })
-          }
-        </js-fn>
-
-        <js-fn id="get-user-from-form">
-          function (event) {
-          console.log('event', event)
-          const input = document.querySelector('#new-user-name-input')
-          const fields = Array.from(document.querySelectorAll('#user-form [name]'))
-          const data = {}
-          fields.forEach(field => {
-          data[field.name] = field.value
-          })
-          return data
-          }
-        </js-fn>
-
-        <script>
-
-        </script>
-
-      </app-route>
-
-      <app-route hash="rooms">
-        <h1>rooms</h1>
-        <!-- 
-        <section>
-
-          <flip-card>
-            <section slot="front">
-              <h1>Room ({roomId})</h1>
-              <a href="">chime link</a>
-            </section>
-          </flip-card>
-
-          <flip-card>
-            <section slot="front">
-              <h1>Room ({roomId})</h1>
-              <a href="">chime link</a>
-            </section>
-          </flip-card>
-
-          <flip-card>
-            <section slot="front">
-              <h1>Room ({roomId})</h1>
-              <a href="">chime link</a>
-            </section>
-          </flip-card>
-        </section> -->
-
-        <template id="flip-card-template">
-          <flip-card disabled>
-            <section slot="front">
-              <h1>Room <span data-room-id></span></h1>
-              <a href="" target="_blank">chime link</a>
-            </section>
-          </flip-card>
-        </template>
-
-      </app-route>
-
-      <app-route hash="page3">
-
-        <plain-card>
-          <h1 slot="title">page 3</h1>
-
-          <p slot="main">the idea is, if I send this modal to take the data from the form or div</p>
-
-        </plain-card>
-
-
-
-        <form id="user-form">
-          <label for="">Name</label><input type="text">
-          <br>
-          <label for="">Alias</label><input type="text">
-        </form>
-
-
-
-      </app-route>
-
-    </app-router>
-
-  </app-layout>
-
-  <app-modal id="auth-modal" trigger="#open-login-btn">
-    <h1 slot="title">Authenticate</h1>
+  <button id="open-counter-modal">open</button>
+  <app-modal id="counter-modal" trigger="#open-counter-modal">
     <section slot="main">
-      <label for="auth-alias-input">Alias</label>
-      <input type="text" name="" id="auth-alias-input">
+      <input type="hidden" value="random-id-1234">
+      <label for="">Name</label><input type="text" name="name" id=""><br>
+      <label for="">initial count</label><input type="text" name="count" id=""><br>
     </section>
   </app-modal>
 
-  <!-- test 2 -->
 
 
+  <ui-dataset-sync trigger="#counter-modal" event="accepted">
+    <button id="test-btn" data-id="123" data-name="test-btn" data-count="99">click me</button>
+  </ui-dataset-sync>
 
-  <!-- EVENT MANAGEMENT -->
+  <event-source id="btn-count-activated" trigger="#counter-modal" event="accepted" />
+  <!-- <event-source id="btn-count-activated" trigger="#test-btn" event="click" /> -->
 
-  <data-store id="user-store">
-    <data-query id="guest-login" data-log key="guest-session" type="get" trigger="#window-loaded"
-      trigger-event="data" />
-    <data-query id="delete-guest-session" data-log key="guest-session" type="delete" trigger="#logout-btn" />
+  <!-- <event-source trigger="button" data-test="true" js-filter="counter" /> -->
 
-    <data-query id="get-user-session" data-log key="user-session" type="get" />
-    <data-query id="delete-user-session" data-log key="user-session" type="delete" trigger="#logout-btn" />
+  <!-- <event-source trigger="button" data-direction="1" transform="count" /> -->
 
-    <data-set id="guest-session" visible trigger="#not-logged-in-guest" trigger-event="data"></data-set>
-    <data-set id="user-session" visible trigger="#user-auth-request" trigger-event="data"></data-set>
+  <!-- <data-store  >
+  </data-store> -->
 
-    <data-query id="delete-user-session" key="user-session" type="delete" trigger="#logout-modal"
-      trigger-event="accepted" />
+  <!-- <button onclick="function changeScale(event) {document.querySelector('flip-card').setAttribute('scale', '2')}">change</button> -->
+
+  <!-- <flip-card trigger="button" ></flip-card> -->
+
+
+  <data-store id="click-counter">
+    <data-set id="count-btn-dataset" visible pretty trigger="#btn-count-activated" event="data"></data-set>
+    <data-set append id="count-btn-dataset-log" trigger="#btn-count-activated" event="data"></data-set>
   </data-store>
 
+  <ui-data-sync trigger="#count-btn-dataset" event="updated">
+    <plain-card id="" trigger="event-source" event="data" data-point-id="random-id">
+      <section slot="main">
+        <p>hello <span data-key="name">user</span>,
+          <input type="text" name="name">
+          you have clicked <b data-key="count">0</b>times
+        </p>
+        <a href="" data-key="url" data-attribute="href">a link</a>
+        <hr>
+        <p>for a grand total of ({count}) esto es TODO</p>
+      </section>
+    </plain-card>
+  </ui-data-sync>
 
-  <event-stream>
-
-    <event-group id="user-auth-request">
-      <event-source trigger="#auth-modal" trigger-event="accepted" transform="#get-alias" />
-    </event-group>
-
-    <event-group id="only-for-auth-users">
-      <event-source trigger="#get-user-session" trigger-event="get" filter="#is-auth" />
-    </event-group>
-
-    <event-group id="decide-how-login">
-
-      <!-- if not logged in as guest -->
-      <event-source id="not-logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#is-empty"
-        transform="#generate-guest-id" />
-
-      <!-- if logged in as guest -->
-      <event-source id="logged-in-guest" trigger="#guest-login" trigger-event="get" filter="#not-empty" />
-
-      <!-- if not logged in as user -->
-      <event-source id="not-logged-in-user" trigger="#user-login" trigger-event="get" filter="#is-empty" />
-
-      <!-- if logged in as user -->
-      <event-source id="logged-in-user" trigger="#user-login" trigger-event="get" filter="#not-empty" />
-
-    </event-group>
-
-    <event-group id="guest-logged-in">
-      <event-source trigger="#guest-session" trigger-event="updated" />
-      <event-source trigger="#logged-in-guest" trigger-event="data" />
-    </event-group>
-
-
-    <event-group id="log-out">
-      <event-source />
-    </event-group>
-
-    <event-source id="window-loaded" trigger="window" trigger-event="load" />
-
-    <event-source id="add-room" data-log trigger="#add-room-btn" trigger-event="click" transform="#add-room-ui-item" />
-
-  </event-stream>
-
-
-  <app-modal id="logout-modal" trigger="#only-for-auth-users" trigger-event="data">
-    <h2 slot="main">logging out</h2>
-  </app-modal>
-
-  <!-- <js-fn ></js-fn> -->
-
-  <button id="add-room-btn" data-id="roomX" data-url="https://chime.aws/roomX">add room</button>
-
-  <!-- <app-modal trigger="#add-room" trigger-event="data"  ></app-modal> -->
-
-  <js-fn id="add-room-ui-item">
-    function (item) {
-    if(!item) return
-    const flipCardTemplate = document.querySelector('#flip-card-template')
-    const container = flipCardTemplate.parentElement
-    const copy = flipCardTemplate.content.cloneNode(true)
-    copy.querySelector('a').href = item.url
-    copy.querySelector('[data-room-id]').textContent = item.id
-    container.appendChild(copy)
-    }
-  </js-fn>
-
-  <js-fn id="not-empty">
-    function (event) {
-    return !!event.detail
-    }
-  </js-fn>
-
-
-  <js-fn id="is-empty">
-    function (event) {
-    return !event.detail
-    }
-  </js-fn>
-
-  <js-fn id="log-fn" trigger="[data-log]" trigger-event="get">
-    function (event) {
-    console.log(event)
-    console.log(event.detail)
-    }
-  </js-fn>
-
-  <js-fn id="generate-guest-id">
-    function (event) {
-    const now = Date.now()
-    return {guestId: `guest:${now}`, room: now % 5 }
-    }
-  </js-fn>
-
-  <js-fn id="is-auth">
-    function (event) {
-    console.log(event.detail)
-    const isAllawed = event.detail && event.detail.alias
-    console.log(isAllawed)
-    return isAllawed
-    }
-  </js-fn>
-
-  <js-fn id="get-alias">
-    function () {
-    return { alias: document.querySelector('#auth-alias-input').value }
-    }
-  </js-fn>
 
 </body>
 

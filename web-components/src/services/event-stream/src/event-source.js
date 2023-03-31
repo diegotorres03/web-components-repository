@@ -37,6 +37,9 @@ export default class EventSourceComponent extends HTMLElement {
     mapComponentEvents(this)
     updateVars(this)
 
+    const fnName = this.getAttribute('filter')
+    console.log('fnName', fnName , window[fnName])
+
     // acomodating window load
     if (
       this.getAttribute('trigger') === 'window' &&
@@ -62,12 +65,10 @@ export default class EventSourceComponent extends HTMLElement {
   }
 
   emit(event) {
-    console.log('event-source event =>', event)
     const filterResult = runFilters(event, this.getAttribute('filter'))
     if (!filterResult) return
 
     const transformedData = runTransforms(event, this.getAttribute('transform'), this.#eventSource)
-
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: false, composed: true,

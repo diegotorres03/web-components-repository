@@ -71,13 +71,14 @@ export default class DataSetComponent extends HTMLElement {
     } ${dataAttributes} />`
     
 
-    this.shadowRoot.appendChild(template)
+    this.shadowRoot.prepend(template)
+    // this.shadowRoot.appendChild(template)
 
     if(!data) return console.warn('no data')
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
-      detail: data,
+      detail: {...data, __id: id},
     })
 
     if(event.type === 'syncItem') return

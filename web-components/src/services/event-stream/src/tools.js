@@ -1,12 +1,12 @@
 import { selectAll } from '../../../global/web-tools'
 
 /**
- *
+ * 
  *
  * @export
  * @param {*} event a regular dom event
  * @param {*} transformSelector - this will be the event.detail on the next step, the rest of the event will be discarded
- * @return {*} 
+ * @return {*} only data part, event information is removed, this will be wraped by a data event from event-source
  */
 export function runTransforms(event, transformSelector, __eventSource = {}) {
 
@@ -16,10 +16,16 @@ export function runTransforms(event, transformSelector, __eventSource = {}) {
 
   if (!event) return {} // throw new Error('noting to transform')
   if (!transformSelector) return { ...data, __eventSource }
-  const transforms = selectAll(transformSelector)
+
+
+  const fnNames = transformSelector.split(/[,]/g).map(item => item.trim())
   let currentData = { ...data, __eventSource }
-  transforms.forEach(transform =>
-    currentData = transform.run(currentData))
+  fnNames.forEach(fnName => {
+    try {
+      currentData = transforms[fnName](currentData)
+    } catch (err) { console.warn(err) }
+  })
+  console.log(currentData)
   return { ...currentData, __eventSource }
 }
 
@@ -31,4 +37,5 @@ export function runFilters(event, filterSelector) {
   let res = true
   filters.forEach(filter => res = filter.run(event) && res)
   return res
+
 }
