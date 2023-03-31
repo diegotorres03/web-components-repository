@@ -10,3 +10,5 @@ node_modules
 cdk.out
 
 dist
+
+# All html and js on the root directory
