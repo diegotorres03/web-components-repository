@@ -51,12 +51,13 @@ export default class UIDataSyncComponent extends HTMLElement {
   }
 
   updateValues(event) {
-    // console.log(event)
+    console.log(event)
     const data = event.detail
-    // console.log(data)
+    console.log(data)
 
     // console.log('this.dataset', this.dataset)
     const lastItem = this.#children[0]
+    if(!lastItem) return
 
     // lastItem.querySelector
     const keys = Object.keys(data)
@@ -75,7 +76,7 @@ export default class UIDataSyncComponent extends HTMLElement {
         // console.log(key, '=>', fields)
         fields.forEach(field => {
           const attr = field.dataset.attribute || 'textContent'
-          // console.log(attr, field[attr], data[key])
+          console.log(attr, field[attr], data[key])
           field[attr] = data[key]
         })
 

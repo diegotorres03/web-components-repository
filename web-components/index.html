@@ -13,14 +13,6 @@
     .hidden {
       display: none;
     }
-
-    nav {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-
-    }
   </style>
 
   <script>
@@ -40,58 +32,221 @@
         // return { id, name, count: Number(count) + Number(direction) }
       },
     })
-
-
   </script>
 
-  <button id="open-counter-modal">open</button>
-  <app-modal id="counter-modal" trigger="#open-counter-modal">
-    <section slot="main">
-      <input type="hidden" value="random-id-1234">
-      <label for="">Name</label><input type="text" name="name" id=""><br>
-      <label for="">initial count</label><input type="text" name="count" id=""><br>
-    </section>
-  </app-modal>
 
+  <app-router>
 
+    <!-- <app-route></app-route> -->
+    <app-route hash="login">
+      <nav>
+        <a href="#rooms">rooms</a>
+        <a href="#admin">admin</a>
+        <a href="#login">login</a>
+      </nav>
+      <hr>
+      <app-modal open>
+        <section slot="main">
+          <form>
+            <label for="">Alias: </label><input type="text" name="alias">
+          </form>
+        </section>
+      </app-modal>
+    </app-route>
 
-  <ui-dataset-sync trigger="#counter-modal" event="accepted">
-    <button id="test-btn" data-id="123" data-name="test-btn" data-count="99">click me</button>
-  </ui-dataset-sync>
+    <!-- <app-route></app-route> -->
+    <app-route hash="rooms">
 
-  <event-source id="btn-count-activated" trigger="#counter-modal" event="accepted" />
-  <!-- <event-source id="btn-count-activated" trigger="#test-btn" event="click" /> -->
+      <h1>rooms</h1>
+      <nav>
+        <a href="#rooms">rooms</a>
+        <a href="#admin">admin</a>
+        <a href="#login">login</a>
+      </nav>
 
-  <!-- <event-source trigger="button" data-test="true" js-filter="counter" /> -->
+      <hr>
+      <style>
+        .grid {
+          display: grid;
+          grid-template-columns: 50% 50%;
+          grid-template-rows: 50% 50%;
+          gap: 40px;
+        }
+      </style>
+      <section class="grid">
 
-  <!-- <event-source trigger="button" data-direction="1" transform="count" /> -->
+        <flip-card>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
 
-  <!-- <data-store  >
-  </data-store> -->
+        <flip-card disabled>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
 
-  <!-- <button onclick="function changeScale(event) {document.querySelector('flip-card').setAttribute('scale', '2')}">change</button> -->
+        <flip-card disabled>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
 
-  <!-- <flip-card trigger="button" ></flip-card> -->
+        <flip-card>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
 
-
-  <data-store id="click-counter">
-    <data-set id="count-btn-dataset" visible pretty trigger="#btn-count-activated" event="data"></data-set>
-    <data-set append id="count-btn-dataset-log" trigger="#btn-count-activated" event="data"></data-set>
-  </data-store>
-
-  <ui-data-sync trigger="#count-btn-dataset" event="updated">
-    <plain-card id="" trigger="event-source" event="data" data-point-id="random-id">
-      <section slot="main">
-        <p>hello <span data-key="name">user</span>,
-          <input type="text" name="name">
-          you have clicked <b data-key="count">0</b>times
-        </p>
-        <a href="" data-key="url" data-attribute="href">a link</a>
-        <hr>
-        <p>for a grand total of ({count}) esto es TODO</p>
       </section>
-    </plain-card>
-  </ui-data-sync>
+      <!-- <app-accordion>
+        <section>
+          <h1>Main room</h1>
+          <p>This will be the room for the main presentation before going to breakout sessions.</p>
+        </section>
+      </app-accordion>
+
+      <app-accordion>
+        <section>
+          <h1>Room 12</h1>
+          <p>This room has been designated for me by a random hash.</p>
+        </section>
+      </app-accordion> -->
+
+    </app-route>
+
+    <!-- <app-route></app-route> -->
+    <app-route hash="admin">
+
+      <app-layout>
+        <h1 slot="header">admin</h1>
+        <nav slot="top-menu">
+          <a href="#rooms">rooms</a>
+          <a href="#admin">admin</a>
+          <a href="#login">login</a>
+        </nav>
+        <h2 slot="left-header">Events</h2>
+        <section slot="left-content">
+          <app-accordion>
+            <section>
+              <h1>CDK Event</h1>
+              <p>This will be the room for the main presentation before going to breakout sessions.</p>
+            </section>
+
+            <section>
+              <h1>Other</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
+                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
+                quis assumenda praesentium!</p>
+            </section>
+          </app-accordion>
+          <hr>
+          <app-accordion>
+            <section>
+              <h1>other info</h1>
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae, cum! Dolores quia repudiandae
+                autem, error voluptatem similique odit animi laudantium sunt. Ducimus eum earum labore? Odio quod
+                reiciendis fugit quaerat adipisci ullam asperiores reprehenderit, minus unde sed quos harum tenetur ipsa
+                ipsum aliquid molestias impedit eos necessitatibus atque. Nemo velit tempora voluptate eum commodi odio
+                perferendis quasi numquam ex odit? Sint nemo fugiat similique dignissimos voluptatibus commodi iure
+                nulla corrupti blanditiis? Iusto ratione voluptates commodi quisquam quaerat nostrum eveniet earum
+                beatae qui eligendi laborum fugit officia rerum nemo distinctio nesciunt harum, dignissimos suscipit
+                consequuntur amet consequatur accusantium. Doloremque, magnam possimus?</p>
+            </section>
+
+            <section>
+              <h1>Other</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
+                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
+                quis assumenda praesentium!</p>
+            </section>
+          </app-accordion>
+
+          <section>
+            <h1>Other</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
+              doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit quis
+              assumenda praesentium!</p>
+          </section>
+          </app-accordion>
+
+          <section>
+            <h1>Other</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
+              doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit quis
+              assumenda praesentium!</p>
+          </section>
+          </app-accordion>
+        </section>
+
+        <section slot="main">
+          <article>
+            <h1>TODO</h1>
+            <input type="checkbox" name="" id=""><label>create event if none present</label><br>
+            <input type="checkbox" name="" id=""><label>dysplay basic event info</label><br>
+            <input type="checkbox" name="" id=""><label>add rooms</label><br>
+          </article>
+
+
+          <hr>
+          <br>
+          <br>
+          <br>
+          <br>
+          <article id="room table">
+
+            <table>
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>url</th>
+                  <th>host</th>
+                  <th>date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <ui-data-sync trigger="#room-list" event="updated" >
+                  <tr>
+                    <td data-key="name">Main Room</td>
+                    <td data-key="url" data-attribute="href"><a href="https://chime.aws/1234">URL</a></td>
+                    <td data-key="host">Chandra Reddy</td>
+                    <td data-key="date">April 20 - 2023 at 3:00 pm</td>
+                  </tr>
+                </ui-data-sync>
+              </tbody>
+            </table>
+
+            <button id="add-room-btn" >add room</button>
+
+            <app-modal id="new-room-modal" trigger="#add-room-btn" action="click" >
+              <form slot="main">
+                <label for="">Room Name</label><input type="text" name="name"><br>
+                <label for="">Room url</label><input type="text" name="url"><br>
+                <label for="">Host</label><input type="text" name="host"><br>
+                <label for="">Facilitator</label><input type="text" name="alias"><br>
+                <label for="">date</label><input type="date" name="date"><br>
+              </form>
+            </app-modal>
+
+            <data-store id="room-store">
+
+              <data-set id="room-list" trigger="#new-room-modal" event="accepted" visible ></data-set>
+            </data-store>
+
+          </article>
+
+        </section>
+
+      </app-layout>
+
+    </app-route>
+
+  </app-router>
 
 
 </body>
