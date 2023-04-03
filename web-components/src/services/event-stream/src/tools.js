@@ -14,9 +14,14 @@ export function runTransforms(event, transformSelector, __eventSource = {}) {
   const dataset = event && event.target && event.target.dataset ? { ...event.target.dataset } : null
   let data = isBtn ? dataset : event.detail
 
+  
+  
   if (!event) return {} // throw new Error('noting to transform')
-  if (!transformSelector) return { ...data, __eventSource }
 
+  if (transformSelector) alert('selector')
+  if (!transformSelector) return { ...data, __eventSource }
+  
+  console.log('on runTransforms', event, transformSelector, __eventSource)
 
   const fnNames = transformSelector.split(/[,]/g).map(item => item.trim())
   let currentData = { ...data, __eventSource }

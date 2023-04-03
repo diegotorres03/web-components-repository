@@ -15,15 +15,21 @@
     }
   </style>
 
-  <script>
+  <script id="transforms-and-filters">
     const filters = Object.freeze({
       test(event, param) {
         console.log(event, param)
         return event.detail
       },
+      hasSessionToken(event) {
+        console.clear()
+        console.log('on hasSessionToken', event)
+        return true
+      }
 
     })
 
+    // localhost:8080/#admin?token=asdasd
     const transforms = Object.freeze({
       count(data, direction = 1) {
         console.log(data, direction)
@@ -31,11 +37,43 @@
         return { id, name, count: Date.now() % 100 }
         // return { id, name, count: Number(count) + Number(direction) }
       },
+      getTokenFromUrl(event) {
+        console.log('on getTokenFromUrl', event)
+        alert('test')
+        const [hash, query] = window.location.hash.split('?')
+        if(!query) return null
+        const search = new URLSearchParams(query)
+        return search.get('token')
+
+      }
     })
   </script>
 
 
+
+  <!-- Session management -->
+  <!-- <event-source id="" trigger="window" event="load" filter="hasSessionToken"  /> -->
+  
+  <app-modal trigger="#get-token-from-url" event="loaded"></app-modal>
+  <event-source id="get-token-from-url" trigger="window" event="load" transform="getTokenFromUrl"/>
+  
+  <data-store id="user-session">
+    <data-set id="browser-token" visible></data-set>
+    <data-set id="user-token" trigger="#get-token-from-url" event="data"></data-set>
+  </data-store>
+  
+  <!-- /Session management -->
+
   <app-router>
+
+    <app-route>
+      <h1>hi</h1>
+      <nav>
+        <a href="#rooms">rooms</a>
+        <a href="#admin">admin</a>
+        <a href="#login">login</a>
+      </nav>
+    </app-route>
 
     <!-- <app-route></app-route> -->
     <app-route hash="login">
@@ -294,7 +332,7 @@
                 </div>
               </template>
             </ui-data-repeat>
-    
+
 
             <app-modal id="confirm-delete-room-modal" trigger="#ui-rooms-list" event="delete">
               <h1 slot="title">You are about to delete this room</h1>
@@ -312,11 +350,6 @@
               <event-source trigger="#ui-rooms-list" event="edit" />
             </event-group>
 
-            <script>
-              setTimeout(() => {
-
-              }, 1000)
-            </script>
 
             <app-modal id="new-room-modal" trigger="#open-event-modal" event="data">
               <!-- <app-modal id="new-room-modal" trigger="#on-load-event" action="loaded"> -->
@@ -334,6 +367,7 @@
             <!-- <app-modal trigger="#get-current-event" event="get"></app-modal> -->
 
             <event-source id="on-load-event" trigger="window" event="load" />
+
             <event-group id="event-info-changed">
               <event-source trigger="#get-current-event" event="list" />
               <event-source trigger="#room-list" event="updated" />

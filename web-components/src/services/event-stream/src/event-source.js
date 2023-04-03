@@ -15,6 +15,11 @@ export default class EventSourceComponent extends HTMLElement {
 
   defaultEventName = 'data'
 
+  get #transformNames() {
+    if(!this.getAttribute('transform')) return []
+    return this.getAttribute('transform').split(/[,]/g).map(fnName => fnName.trim())
+  }
+  #fitlerNames = []
 
   get #eventSource() {
     return {
@@ -40,6 +45,9 @@ export default class EventSourceComponent extends HTMLElement {
     // const fnName = this.getAttribute('filter')
 
     // acomodating window load
+    console.log('attr transfrom',this.#transformNames)
+    
+
     if (
       this.getAttribute('trigger') === 'window' &&
       this.getAttribute('event') === 'load'
@@ -61,8 +69,11 @@ export default class EventSourceComponent extends HTMLElement {
 
   emit(event) {
     const filterResult = runFilters(event, this.getAttribute('filter'))
+    console.log('filterResult', filterResult)
     if (!filterResult) return
 
+
+    console.log('attr transfrom',this.getAttribute('transform'))
     const transformedData = runTransforms(event, this.getAttribute('transform'), this.#eventSource)
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
