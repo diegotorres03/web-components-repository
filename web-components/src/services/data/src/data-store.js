@@ -7,6 +7,8 @@ import {
 
 // import { setItem, getItem, removeItem } from 'localforage'
 import localforage from 'localforage'
+import DataSetComponent from './data-set'
+import DataQueryComponent from './data-query'
 
 
 //import componentHtml from './flip-card.html'
@@ -26,6 +28,9 @@ export default class DataStore extends HTMLElement {
   // [ ] emit events to enable Change Data Capture
 
   // get action() { return this.getAttribute('action') }
+
+
+  #dataSets
 
   constructor() {
     super()
@@ -62,9 +67,22 @@ export default class DataStore extends HTMLElement {
 
     })
 
-    this.addEventListener('updated', event => {
-      this.#processEvent(event)
+    this.#dataSets = Array.from(this.querySelectorAll('data-set'))
+    console.log('this.#dataSets', this.#dataSets)
+
+
+    this.#dataSets.forEach(dataSet => {
+      console.log('data-set id=', dataSet.id)
+      dataSet.addEventListener(DataQueryComponent.EVENT_TYPES.put, event => this.#processCrudEvent(event, DataQueryComponent.EVENT_TYPES.put))
+      dataSet.addEventListener(DataQueryComponent.EVENT_TYPES.list, event => this.#processCrudEvent(event, DataQueryComponent.EVENT_TYPES.list))
+      dataSet.addEventListener(DataQueryComponent.EVENT_TYPES.get, event => this.#processCrudEvent(event, DataQueryComponent.EVENT_TYPES.get))
+      dataSet.addEventListener(DataQueryComponent.EVENT_TYPES.delete, event => this.#processCrudEvent(event, DataQueryComponent.EVENT_TYPES.delete))
+      dataSet.addEventListener(DataQueryComponent.EVENT_TYPES.clear, event => this.#processCrudEvent(event, DataQueryComponent.EVENT_TYPES.clear))
     })
+
+
+
+    this.addEventListener('updated', event => this.#processEvent(event))
 
   }
 
@@ -84,6 +102,10 @@ export default class DataStore extends HTMLElement {
     this.setItem(key, data)
       // .then(res => console.log(res))
       .catch(err => console.error(err))
+  }
+
+  async #processCrudEvent(event) {
+
   }
 
   /**

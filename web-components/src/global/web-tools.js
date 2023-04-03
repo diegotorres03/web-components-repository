@@ -130,6 +130,7 @@ function registerTriggers(element, callback) {
     if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
     console.log('triggerEvent', triggerEvent, trigger.DEFAULT_EVENT_NAME )
     trigger.addEventListener(triggerEvent, callback)
+    // trigger.removeEventListener()
   })
 
   return triggers

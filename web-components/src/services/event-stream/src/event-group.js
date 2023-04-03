@@ -31,8 +31,10 @@ export default class EventGroupComponent extends HTMLElement {
 
 
     Array.from(this.querySelectorAll('event-source'))
-      .forEach(eventSource => eventSource
-        .addEventListener('data', event => this.emit(event)))
+      .forEach(eventSource => {
+        eventSource.addEventListener('data', event => this.emit(event))
+        eventSource.addEventListener('loaded', event => this.emit(event))
+      })
   }
 
   emit(event) {
@@ -41,6 +43,7 @@ export default class EventGroupComponent extends HTMLElement {
 
     const transformedData = runTransforms(event, this.getAttribute('transform'))
 
+    console.info(`${this.id} emiting ${this.DEFAULT_EVENT_NAME}`, event)
     this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: false, composed: true,
       detail: transformedData,

@@ -35,10 +35,10 @@ export default class UIDataSyncComponent extends HTMLElement {
   #mapChildren() {
     this.#template
     this.#childrenMap = new Map()
-    this.#children = Array.from(this.children)
+    const children = Array.from(this.children)
 
-    this.#children.filter(child => {
-      console.log(child.tagName)
+
+    this.#children = children.filter(child => {
       if (child.tagName.toLowerCase() === 'template') {
         this.#template = child
         return false
@@ -51,37 +51,50 @@ export default class UIDataSyncComponent extends HTMLElement {
   }
 
   updateValues(event) {
-    console.log(event)
     const data = event.detail
+    console.time('ui-data-sync updateValues')
+
+    if(!Array.isArray(this.#children) || this.#children.length === 0) return
+
+    const firstItem = this.#children[0]
+
+    if(firstItem.id === data.__id) {
+      // [ ] this means item already exist
+      alert('es el mismo')
+    }
+
     console.log(data)
-
-    // console.log('this.dataset', this.dataset)
-    const lastItem = this.#children[0]
-    if(!lastItem) return
-
-    // lastItem.querySelector
     const keys = Object.keys(data)
+
+    // create
+
+    if(this.hasAttribute('append')) {
+      // [ ] keep appending to the list, even if an item with the same id is present, this is like a log
+    }
+
+    // firstItem.querySelector
     keys
       .filter(key => key !== '__eventSource')
       .forEach(key => {
         if (key === '__id') {
           // this.dataset.dataPointId = data[key]
+          firstItem.id = `target_${data[key]}`
           this.setAttribute('data-point-id', data[key])
         }
 
         const fields = [
-          ...lastItem.querySelectorAll(`[data-key="${key}"]`),
-          ...lastItem.querySelectorAll(`[name="${key}"]`),
+          ...firstItem.querySelectorAll(`[data-key="${key}"]`),
+          ...firstItem.querySelectorAll(`[name="${key}"]`),
         ]
         // console.log(key, '=>', fields)
         fields.forEach(field => {
           const attr = field.dataset.attribute || 'textContent'
-          console.log(attr, field[attr], data[key])
           field[attr] = data[key]
         })
 
       })
 
+    console.timeEnd('ui-data-sync updateValues')
     this.dispatchEvent(new CustomEvent('data', {
       bubbles: false, composed: true,
       detail: {},

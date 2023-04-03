@@ -36,7 +36,7 @@ export default class ModalComponent extends HTMLElement {
   connectedCallback() {
     mapComponentEvents(this);
     updateVars(this);
-    registerTriggers(this, () => this.show())
+    registerTriggers(this, (event) => this.show(event))
   }
 
   accept() {
@@ -67,8 +67,11 @@ export default class ModalComponent extends HTMLElement {
     this.hide()
   }
 
-  show() {
+  show(event = {}) {
     this.setAttribute('open', '')
+    if(!event.detail) return
+    Object.keys(event.detail).forEach(key => 
+      this.setAttribute(`data-${key}`, event.detail[key]))
   }
 
   hide() {
@@ -80,7 +83,7 @@ export default class ModalComponent extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log(name, oldValue, typeof newValue)
+    // console.log(name, oldValue, typeof newValue)
     if (!this.shadowRoot) return
     if (name === 'open' && this.shadowRoot.querySelector('#checker')) {
       this.shadowRoot.querySelector('#checker').checked = this.hasAttribute(name)

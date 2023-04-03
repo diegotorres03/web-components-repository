@@ -88,14 +88,26 @@ export default class RouterComponent extends HTMLElement {
     window.addEventListener('hashchange', ev => {
       console.log('=>', window.location.hash)
       this.#updateRoutes()
+      const searchParms = new URLSearchParams(window.location.search)
+      console.log(searchParms)
+      console.log(searchParms.has('test'))
       this.shadowRoot.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
         bubbles: true, composed: true,
         detail: {
           test: true,
-          hash: window.location.hash
+          hash: window.location.hash,
+          
         }
       }))
     })
+
+    // function (event) {
+    //   // url example 'https://domain.com/#hash?token=value'
+    //   const hashPath = window.location.hash
+    //   const [hash, token] = window.location.hash.split(/[\/]/g)
+    //   const token = hashPath.split('token=').pop()
+    //   return token ? { token } : null
+    // }
   }
 
   disconnectedCallback() { }

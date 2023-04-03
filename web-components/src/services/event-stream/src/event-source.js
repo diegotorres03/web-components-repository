@@ -20,7 +20,7 @@ export default class EventSourceComponent extends HTMLElement {
     return {
       trigger: this.getAttribute('trigger'),
       triggerEvent: this.getAttribute('trigger-event') || this.getAttribute('event'),
-      dataset: {...this.dataset}
+      dataset: { ...this.dataset }
     }
   }
 
@@ -31,32 +31,27 @@ export default class EventSourceComponent extends HTMLElement {
     this.shadowRoot.appendChild(template)
   }
 
-  
+
 
   connectedCallback() {
     mapComponentEvents(this)
     updateVars(this)
 
-    const fnName = this.getAttribute('filter')
-    console.log('fnName', fnName , window[fnName])
+    // const fnName = this.getAttribute('filter')
 
     // acomodating window load
     if (
       this.getAttribute('trigger') === 'window' &&
-      this.getAttribute('trigger-event') === 'load'
+      this.getAttribute('event') === 'load'
     ) {
-      if (document.readyState === "complete") {
+      window.addEventListener('load', event => {
         // alert('here')
-        this.emit(new CustomEvent('window:loaded', {
+        console.info(`${this.id} emiting load`, event)
+        this.dispatchEvent(new CustomEvent('loaded', {
           bubbles: false, composed: true,
-          detail: this.dataset,
+          detail: { ...event.detail, ...this.dataset },
         }))
-      }
-      window.addEventListener('load', ev => {
-        this.emit(new CustomEvent('window:loaded', {
-          bubbles: false, composed: true,
-          detail: this.dataset,
-        }))
+
       })
       return
     }
@@ -74,6 +69,7 @@ export default class EventSourceComponent extends HTMLElement {
       bubbles: false, composed: true,
       detail: transformedData,
     })
+    console.info(`${this.id} emiting ${this.DEFAULT_EVENT_NAME}`, event)
     this.dispatchEvent(newEvent)
   }
 
