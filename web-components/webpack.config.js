@@ -43,7 +43,7 @@ const isProduction = process.env.NODE_ENV == 'production'
 
 const config = {
   entry: {
-    main: './src/index.js',
+    dWCk: './src/index.js',
 
     // ⚠️ This is the dinamic import of components and layouts ⚠️
     // ...componentsEntryPoints,
