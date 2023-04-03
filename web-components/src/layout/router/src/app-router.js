@@ -78,8 +78,6 @@ export default class RouterComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
     registerTriggers(this, (event) => console.log(event))
 
 

@@ -19,7 +19,10 @@ export default class EventSourceComponent extends HTMLElement {
     if(!this.getAttribute('transform')) return []
     return this.getAttribute('transform').split(/[,]/g).map(fnName => fnName.trim())
   }
-  #fitlerNames = []
+  get #fitlerNames() {
+    if(!this.getAttribute('filters')) return []
+    return this.getAttribute('filters').split(/[,]/g).map(fnName => fnName.trim())
+  }
 
   get #eventSource() {
     return {
@@ -39,13 +42,10 @@ export default class EventSourceComponent extends HTMLElement {
 
 
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
-
     // const fnName = this.getAttribute('filter')
 
     // acomodating window load
-    console.log('attr transfrom',this.#transformNames)
+    console.log('attr transfrom',this.#transformNames, this.#fitlerNames)
     
 
     if (

@@ -25,8 +25,6 @@ export default class EventGroupComponent extends HTMLElement {
 
 
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
     registerTriggers(this, (event) => this.emit(event))
 
 
