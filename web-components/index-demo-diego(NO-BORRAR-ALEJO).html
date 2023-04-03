@@ -5,22 +5,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>deck-reader</title>
-
+  <title>Document</title>
 </head>
 
 <body>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 
-  <deck-reader>
+  <script>
+    const filters = Object.freeze({
+      test(event, param) {
+        console.log(event, param)
+        return event.detail
+      },
 
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
+    })
 
-  </deck-reader>
+    const transforms = Object.freeze({
+      count(data, direction = 1) {
+        console.log(data, direction)
+        const { id, name, count } = data
+        return { id, name, count: Date.now() % 100 }
+        // return { id, name, count: Number(count) + Number(direction) }
+      },
+    })
+  </script>
 
 
   <app-router>
@@ -33,7 +45,7 @@
         <a href="#login">login</a>
       </nav>
       <hr>
-      <app-modal id="login-modal" open>
+      <app-modal open>
         <section slot="main">
           <form>
             <label for="">Alias: </label><input type="text" name="alias">
@@ -41,8 +53,6 @@
         </section>
       </app-modal>
     </app-route>
-
-
 
     <!-- <app-route></app-route> -->
     <app-route hash="rooms">
@@ -57,75 +67,43 @@
       <hr>
       <style>
         .grid {
-          padding: 20px;
           display: grid;
-          grid-template-columns: 45% 45%;
-          grid-template-rows: 45% 45%;
+          grid-template-columns: 50% 50%;
+          grid-template-rows: 50% 50%;
           gap: 40px;
         }
       </style>
+      <section class="grid">
 
-
-<!-- <flip-card></flip-card> -->
-
-      <section class="">
-        <plain-card style="width: 90vh;">
-          <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
-          <section slot="main" style="text-align: center;">
-            <small>this room is visible to everybody and it will be the starting point of the conversation</small>
-            <br>
+        <flip-card>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
             <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
           </section>
-        </plain-card>
+        </flip-card>
+
+        <flip-card disabled>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
+
+        <flip-card disabled>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
+
+        <flip-card>
+          <section slot="front">
+            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </flip-card>
+
       </section>
-
-
-      <ui-data-repeat class="grid" id="ui-rooms-list" trigger="#event-info-changed" event="data">
-        <template>
-          <div>
-
-            <plain-card>
-              <h1 slot="title"><span name="name"></span></h1>
-              <section slot="main">
-                <b>hosted by:</b><span name="alias"></span>
-                <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-              </section>
-            </plain-card>
-          </div>
-        </template>
-      </ui-data-repeat>
-
-      <!-- <section class="grid">
-
-        <flip-card>
-          <section slot="front">
-            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
-            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-          </section>
-        </flip-card>
-
-        <flip-card disabled>
-          <section slot="front">
-            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
-            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-          </section>
-        </flip-card>
-
-        <flip-card disabled>
-          <section slot="front">
-            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
-            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-          </section>
-        </flip-card>
-
-        <flip-card>
-          <section slot="front">
-            <h1>Room <span data-key="id" data-attribute="textContent"></span></h1>
-            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-          </section>
-        </flip-card>
-
-      </section> -->
       <!-- <app-accordion>
         <section>
           <h1>Main room</h1>
@@ -187,22 +165,22 @@
                 doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
                 quis assumenda praesentium!</p>
             </section>
+          </app-accordion>
 
-            <section>
-              <h1>Other</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
-                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
-                quis
-                assumenda praesentium!</p>
-            </section>
+          <section>
+            <h1>Other</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
+              doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit quis
+              assumenda praesentium!</p>
+          </section>
+          </app-accordion>
 
-            <section>
-              <h1>Other</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
-                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
-                quis
-                assumenda praesentium!</p>
-            </section>
+          <section>
+            <h1>Other</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
+              doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit quis
+              assumenda praesentium!</p>
+          </section>
           </app-accordion>
         </section>
 
@@ -223,7 +201,6 @@
           <article id="room table">
 
             <table>
-
               <thead>
                 <tr>
                   <th>name</th>
@@ -232,65 +209,21 @@
                   <th>date</th>
                 </tr>
               </thead>
-
+              <tbody>
+                <ui-data-sync trigger="#room-list" event="updated" >
+                  <tr>
+                    <td data-key="name">Main Room</td>
+                    <td data-key="url" data-attribute="href"><a href="https://chime.aws/1234">URL</a></td>
+                    <td data-key="host">Chandra Reddy</td>
+                    <td data-key="date">April 20 - 2023 at 3:00 pm</td>
+                  </tr>
+                </ui-data-sync>
+              </tbody>
             </table>
 
-            <hr>
+            <button id="add-room-btn" >add room</button>
 
-            <ui-data-sync trigger="#event-info-changed" event="data">
-              <div>
-                <span name="name"><i>Room Name</i></span>
-                <span name="url" data-attribute="href"><a href="https://chime.aws/1234">URL</a></span>
-                <span name="host"><i>Host Alias</i></span>
-                <span name="facilitator"><i>Facilitator Alias</i></span>
-                <span name="date"><i>Date and Time of the event</i></span>
-              </div>
-            </ui-data-sync>
-
-            <br>
-            <hr>
-            <br>
-            <hr>
-            <br>
-
-            <ui-data-repeat id="ui-rooms-list" trigger="#event-info-changed" event="data">
-              <template>
-                <div>
-                  <span name="name">Main Room</span>
-                  <span name="url" data-attribute="href"><a href="https://chime.aws/1234">URL</a></span>
-                  <span name="host">Chandra Reddy</span>
-                  <span name="date">April 20 - 2023 at 3:00 pm</span>
-                  <button name="edit">✏️</button>
-                  <button name="delete">🗑️</button>
-                </div>
-              </template>
-            </ui-data-repeat>
-            
-            <app-modal id="confirm-delete-room-modal" trigger="#ui-rooms-list" event="delete">
-              <h1 slot="title">You are about to delete this room</h1>
-              <p slot="main">Room <b data-key="name"></b> will be deleted.</p>
-            </app-modal>
-
-            <br>
-            <hr>
-            <br>
-
-            <button id="add-room-btn">add room</button>
-
-            <event-group id="open-event-modal">
-              <event-source trigger="#add-room-btn" action="click" />
-              <event-source trigger="#ui-rooms-list" event="edit" />
-            </event-group>
-
-            <script>
-              setTimeout(() => {
-
-              }, 1000)
-            </script>
-
-            <app-modal id="new-room-modal" trigger="#open-event-modal" event="data">
-              <!-- <app-modal id="new-room-modal" trigger="#on-load-event" action="loaded"> -->
-
+            <app-modal id="new-room-modal" trigger="#add-room-btn" action="click" >
               <form slot="main">
                 <label for="">Room Name</label><input type="text" name="name"><br>
                 <label for="">Room url</label><input type="text" name="url"><br>
@@ -300,29 +233,9 @@
               </form>
             </app-modal>
 
-            <!-- <app-modal trigger="#on-load-event" event="loaded"></app-modal> -->
-            <!-- <app-modal trigger="#get-current-event" event="get"></app-modal> -->
-
-            <event-source id="on-load-event" trigger="window" event="load" />
-            <event-group id="event-info-changed">
-              <event-source trigger="#get-current-event" event="list" />
-              <event-source trigger="#room-list" event="updated" />
-
-            </event-group>
-
-            <hr>
-            <br>
-            <br>
-            <br>
-            <br>
-
             <data-store id="room-store">
-              <data-set visible id="room-list" trigger="#new-room-modal" event="accepted" append visible>
-                <data-query id="delete-room-query" key="room-list" type="delete" trigger="#confirm-delete-room-modal"
-                  event="accepted"></data-query>
-                <data-query id="get-current-event" key="room-list" type="list" trigger="#on-load-event"
-                  event="loaded"></data-query>
-              </data-set>
+
+              <data-set id="room-list" trigger="#new-room-modal" event="accepted" visible ></data-set>
             </data-store>
 
           </article>
