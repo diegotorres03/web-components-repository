@@ -69,34 +69,41 @@
       <hr>
       <style>
         .grid {
+          padding: 20px;
           display: grid;
-          grid-template-columns: 50% 50%;
-          grid-template-rows: 50% 50%;
+          grid-template-columns: 45% 45%;
+          grid-template-rows: 45% 45%;
           gap: 40px;
         }
       </style>
 
-      <section>
-        <flip-card style="width: 90vh;">
-          <section slot="front" style="text-align: center;">
-            <h1>Main Room <span data-key="id" data-attribute="textContent"></span></h1>
+
+<!-- <flip-card></flip-card> -->
+
+      <section class="">
+        <plain-card style="width: 90vh;">
+          <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
+          <section slot="main" style="text-align: center;">
             <small>this room is visible to everybody and it will be the starting point of the conversation</small>
             <br>
             <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
           </section>
-        </flip-card>
+        </plain-card>
       </section>
 
 
       <ui-data-repeat class="grid" id="ui-rooms-list" trigger="#event-info-changed" event="data">
         <template>
-          <flip-card>
-            <section slot="front">
-              <h1><span name="name"></span></h1>
-              <b>hosted by:</b><span name="alias"></span>
-              <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-            </section>
-          </flip-card>
+          <div>
+
+            <plain-card>
+              <h1 slot="title"><span name="name"></span></h1>
+              <section slot="main">
+                <b>hosted by:</b><span name="alias"></span>
+                <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+              </section>
+            </plain-card>
+          </div>
         </template>
       </ui-data-repeat>
 
@@ -270,7 +277,7 @@
                 </div>
               </template>
             </ui-data-repeat>
-
+            
             <app-modal id="confirm-delete-room-modal" trigger="#ui-rooms-list" event="delete">
               <h1 slot="title">You are about to delete this room</h1>
               <p slot="main">Room <b data-key="name"></b> will be deleted.</p>

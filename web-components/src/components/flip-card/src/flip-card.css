@@ -13,7 +13,6 @@
 } */
 
 .active{
-  
   transform:rotateY(180deg) scale(var(--scale));
 }
 
