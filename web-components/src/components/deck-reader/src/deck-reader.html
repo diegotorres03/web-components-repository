@@ -1,0 +1,35 @@
+<section class="card-reader-container">
+
+    <div class="left">
+
+        <!-- TODO: slot this buttons ⬇️ -->
+        <button class="route-btn clickable"><span>Route</span><span class="icon-dot">x</span></button>
+        <button class="route-btn clickable"><span>Route</span><span class="icon-dot">x</span></button>
+        <button class="route-btn clickable"><span>Route</span><span class="icon-dot">x</span></button>
+        <button class="route-btn clickable"><span>Route</span><span class="icon-dot">x</span></button>
+
+    </div>
+
+    <div class="right">
+
+        <div class="card-display">
+
+            <slot class="card-scroll">
+
+                <!-- Items -->
+
+            </slot>
+
+        </div>
+
+        <div class="card-controls">
+
+            <button class="btn arrow-left clickable">👈</button>
+            <button class="btn rollup clickable">📜</button>
+            <button class="btn arrow-right clickable">👉</button>
+
+        </div>
+
+    </div>
+
+</section>

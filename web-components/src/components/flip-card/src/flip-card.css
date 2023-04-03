@@ -12,9 +12,8 @@
   transform: rotateY(180deg);
 } */
 
-.active{
-  
-  transform:rotateY(180deg) scale(var(--scale));
+.active {
+  transform: rotateY(180deg) scale(var(--scale));
 }
 
 .flip-card {
@@ -41,14 +40,23 @@
   align-items: center;
   justify-content: center;
 
-  /* background-color: ghostwhite; */
-  color: #d5d5d5;
+  background-color: var(--back-tone);
+  color: var(--main-tone);
 }
 
 .back {
   transform: rotateY(180deg);
+  background-color: var(--second-tone);
+  color: var(--main-tone);
 }
 
-.back h5 {
-  font-size: 28px;
-}
+/* .back-content,
+.front-content {
+  display: block;
+  padding: 12px;
+} */
+/* 
+.back-content h5,
+.front-content h5 {
+  font-size: 2em;
+} */
