@@ -5,13 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Documentos</title>
 </head>
 
 <body>
   <style>
     .hidden {
       display: none;
+    }
+
+    .disable {
+      filter: contrast(60%)grayscale(40%);
     }
   </style>
 
@@ -115,8 +119,6 @@
 
     </app-route>
 
-
-
     <!-- <app-route></app-route> -->
     <app-route hash="rooms">
 
@@ -137,7 +139,7 @@
         } */
       </style>
 
-      <section class="flex-column">
+      <section class="disable flex-column">
         <plain-card style="width: 90vh;">
           <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
           <section slot="main" style="text-align: center;">
@@ -213,28 +215,38 @@
     <app-route hash="admin">
 
       <app-layout>
-        <h1 slot="header">admin</h1>
+
+        <h1 style="font-size:18px;" slot="header">admin</h1>
         <nav slot="top-menu">
+
           <a href="#rooms">rooms</a>
           <a href="#admin">admin</a>
           <a href="#login">login</a>
+
         </nav>
-        <h2 slot="left-header">Events</h2>
+        <h2 style="font-size:18px;" slot="left-header">Events</h2>
         <section slot="left-content">
+
           <app-accordion>
-            <section>
-              <h1>CDK Event</h1>
-              <p>This will be the room for the main presentation before going to breakout sessions.</p>
-            </section>
 
             <section>
+
+              <h1>CDK Event</h1>
+              <p>This will be the room for the main presentation before going to breakout sessions.</p>
+
+            </section>
+            <section>
+
               <h1>Other</h1>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
                 doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
                 quis assumenda praesentium!</p>
+
             </section>
           </app-accordion>
+
           <hr>
+
           <app-accordion>
             <section>
               <h1>other info</h1>
@@ -273,20 +285,18 @@
           </app-accordion>
         </section>
 
-        <section slot="main">
+        <section class="flex-column" slot="main">
+
           <article>
-            <h1>TODO</h1>
-            <input type="checkbox" name="" id=""><label>create event if none present</label><br>
-            <input type="checkbox" name="" id=""><label>dysplay basic event info</label><br>
-            <input type="checkbox" name="" id=""><label>add rooms</label><br>
+            <p slot="title">TODO</p>
+            <div slot="main">
+              <input type="checkbox" name="" id=""><label>create event if none present</label><br>
+              <input type="checkbox" name="" id=""><label>dysplay basic event info</label><br>
+              <input type="checkbox" name="" id=""><label>add rooms</label><br>
+            </div>
+
           </article>
 
-
-          <hr>
-          <br>
-          <br>
-          <br>
-          <br>
           <article id="room table">
 
             <table>
@@ -392,7 +402,7 @@
           </article>
 
         </section>
-
+        <small slot="footer">Footer</small>
       </app-layout>
 
     </app-route>

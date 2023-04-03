@@ -14,7 +14,7 @@
 
 .card-content {
   padding: 8px;
-  background-color: var(--third-tone);
+  background-color: var(--text-tone);
   color: var(--back-tone);
   text-align: justify;
 }
