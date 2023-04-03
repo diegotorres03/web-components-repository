@@ -27,7 +27,10 @@ export default class DataPointComponent extends HTMLElement {
   constructor() {
     super()
     const template = html`<span></span>
-      ${this.hasAttribute('visible') ? JSON.stringify(this.dataset) + `<hr>` : ''}
+      ${this.hasAttribute('visible') ? 
+        this.hasAttribute('pretty') ? 
+        JSON.stringify(this.dataset, undefined,2 ):
+        JSON.stringify(this.dataset) + `<hr>` : ''}
     `
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)

@@ -1,0 +1,145 @@
+.card-reader-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: 520px;
+  height: 440px;
+
+  padding: 12px;
+  border-radius: 12px;
+
+  background-color: var(--back-tone);
+}
+
+div.left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  width: 45%;
+  height: 100%;
+
+  border-radius: 8px;
+}
+
+.route-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 12px;
+
+  border: none;
+  border-radius: 6px;
+
+  color: ghostwhite;
+  background-color: var(--second-tone);
+}
+
+.route-btn:nth-of-type(1) .icon-dot {
+  color: #ff4949;
+}
+
+.route-btn:nth-of-type(2) .icon-dot {
+  color: #4998ff;
+}
+
+.route-btn:nth-of-type(3) .icon-dot {
+  color: #ffce49;
+}
+
+.route-btn:nth-of-type(4) .icon-dot {
+  color: #448d24;
+}
+
+div.right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 55%;
+  height: 100%;
+}
+
+.card-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 90%;
+
+  border-radius: 8px;
+
+  background-color: var(--main-tone);
+
+  overflow: hidden;
+}
+
+.card-scroll {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  /* TODO: make it a switch!*/
+  padding: 0 50px;
+  gap: 100px;
+
+  background-color: transparent;
+
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+
+  /* scroll-padding: 48px; */
+
+  /* scrollbar-width: none; */
+}
+
+.card-scroll::slotted(flip-card) {
+  min-width: 100%;
+  height: 100px;
+
+  scroll-snap-align: center;
+}
+
+/* .card-scroll flip-card {
+  min-width: 200px;
+  height: 300px;
+
+  scroll-snap-align: center;
+} */
+
+/* .card-scroll img {
+  width: 300px;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+} */
+
+.card-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  height: 10%;
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 8px 24px;
+  border: none;
+
+  border-top: 2px solid rgba(248, 248, 255, 0.118);
+  color: ghostwhite;
+  background-color: var(--second-tone);
+}
+
+.btn span {
+  font-size: 24px;
+}

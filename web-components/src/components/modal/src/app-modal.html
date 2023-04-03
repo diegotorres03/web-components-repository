@@ -13,15 +13,15 @@
             <section class="modal-wrap flex-column align-center">
                 <header class="modal-header flex-row align-center space-between">
     
-                    <slot name="title" class="title">This is a title</slot>
+                    <slot name="title" class="title">Slot Name: <b>title</b></slot>
                     <label class="close darker relative" for="checker"><span class="flex-row justify-center align-center">&#10006;</span></label>
     
                 </header>
-                <section class="main-content">
-    
-                    <slot name="main"></slot>
-    
+
+                <section class="main-content">    
+                    <slot name="main">Slot Name: <b>main</b></slot>
                 </section>
+
                 <footer class="footer-content flex-row space-between">
     
                     <slot name="footer ">

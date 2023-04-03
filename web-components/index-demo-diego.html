@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentos</title>
+  <title>Document</title>
 </head>
 
 <body>
@@ -13,27 +13,17 @@
     .hidden {
       display: none;
     }
-
-    .disable {
-      filter: contrast(60%)grayscale(40%);
-    }
   </style>
 
-  <script id="transforms-and-filters">
+  <script>
     const filters = Object.freeze({
       test(event, param) {
         console.log(event, param)
         return event.detail
       },
-      hasSessionToken(event) {
-        console.clear()
-        console.log('on hasSessionToken', event)
-        return true
-      }
 
     })
 
-    // localhost:8080/#admin?token=asdasd
     const transforms = Object.freeze({
       count(data, direction = 1) {
         console.log(data, direction)
@@ -41,43 +31,11 @@
         return { id, name, count: Date.now() % 100 }
         // return { id, name, count: Number(count) + Number(direction) }
       },
-      getTokenFromUrl(event) {
-        console.log('on getTokenFromUrl', event)
-        alert('test')
-        const [hash, query] = window.location.hash.split('?')
-        if(!query) return null
-        const search = new URLSearchParams(query)
-        return search.get('token')
-
-      }
     })
   </script>
 
 
-
-  <!-- Session management -->
-  <!-- <event-source id="" trigger="window" event="load" filter="hasSessionToken"  /> -->
-  
-  <app-modal trigger="#get-token-from-url" event="loaded"></app-modal>
-  <event-source id="get-token-from-url" trigger="window" event="load" transform="getTokenFromUrl"/>
-  
-  <data-store id="user-session">
-    <data-set id="browser-token" visible></data-set>
-    <data-set id="user-token" trigger="#get-token-from-url" event="data"></data-set>
-  </data-store>
-  
-  <!-- /Session management -->
-
   <app-router>
-
-    <app-route>
-      <h1>hi</h1>
-      <nav>
-        <a href="#rooms">rooms</a>
-        <a href="#admin">admin</a>
-        <a href="#login">login</a>
-      </nav>
-    </app-route>
 
     <!-- <app-route></app-route> -->
     <app-route hash="login">
@@ -94,30 +52,9 @@
           </form>
         </section>
       </app-modal>
-
-      <style>
-        flip-card {
-          width: 200px;
-          height: 300px;
-        }
-      </style>
-
-      <!-- <deck-reader>
-        <flip-card>
-          <h1 slot="front">front 1</h1>
-        </flip-card>
-        <flip-card>
-          <h1 slot="front">front 2</h1>
-        </flip-card>
-        <flip-card>
-          <h1 slot="front">front 3</h1>
-        </flip-card>
-        <flip-card>
-          <h1 slot="front">front 4</h1>
-        </flip-card>
-      </deck-reader> -->
-
     </app-route>
+
+
 
     <!-- <app-route></app-route> -->
     <app-route hash="rooms">
@@ -131,38 +68,37 @@
 
       <hr>
       <style>
-        /* .grid {
+        .grid {
           display: grid;
           grid-template-columns: 50% 50%;
           grid-template-rows: 50% 50%;
           gap: 40px;
-        } */
+        }
       </style>
 
-      <section class="disable flex-column">
-        <plain-card style="width: 90vh;">
-          <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
-          <section slot="main" style="text-align: center;">
+      <section>
+        <flip-card style="width: 90vh;">
+          <section slot="front" style="text-align: center;">
+            <h1>Main Room <span data-key="id" data-attribute="textContent"></span></h1>
             <small>this room is visible to everybody and it will be the starting point of the conversation</small>
             <br>
             <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
           </section>
-        </plain-card>
+        </flip-card>
       </section>
 
 
       <ui-data-repeat class="grid" id="ui-rooms-list" trigger="#event-info-changed" event="data">
         <template>
-          <plain-card>
-            <h1 slot="title"><span name="name"></span></h1>
-            <section slot="main">
+          <flip-card>
+            <section slot="front">
+              <h1><span name="name"></span></h1>
               <b>hosted by:</b><span name="alias"></span>
               <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
             </section>
-          </plain-card>
+          </flip-card>
         </template>
       </ui-data-repeat>
-
 
       <!-- <section class="grid">
 
@@ -215,38 +151,28 @@
     <app-route hash="admin">
 
       <app-layout>
-
-        <h1 style="font-size:18px;" slot="header">admin</h1>
+        <h1 slot="header">admin</h1>
         <nav slot="top-menu">
-
           <a href="#rooms">rooms</a>
           <a href="#admin">admin</a>
           <a href="#login">login</a>
-
         </nav>
-        <h2 style="font-size:18px;" slot="left-header">Events</h2>
+        <h2 slot="left-header">Events</h2>
         <section slot="left-content">
-
           <app-accordion>
-
             <section>
-
               <h1>CDK Event</h1>
               <p>This will be the room for the main presentation before going to breakout sessions.</p>
-
             </section>
-            <section>
 
+            <section>
               <h1>Other</h1>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
                 doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
                 quis assumenda praesentium!</p>
-
             </section>
           </app-accordion>
-
           <hr>
-
           <app-accordion>
             <section>
               <h1>other info</h1>
@@ -285,18 +211,20 @@
           </app-accordion>
         </section>
 
-        <section class="flex-column" slot="main">
-
+        <section slot="main">
           <article>
-            <p slot="title">TODO</p>
-            <div slot="main">
-              <input type="checkbox" name="" id=""><label>create event if none present</label><br>
-              <input type="checkbox" name="" id=""><label>dysplay basic event info</label><br>
-              <input type="checkbox" name="" id=""><label>add rooms</label><br>
-            </div>
-
+            <h1>TODO</h1>
+            <input type="checkbox" name="" id=""><label>create event if none present</label><br>
+            <input type="checkbox" name="" id=""><label>dysplay basic event info</label><br>
+            <input type="checkbox" name="" id=""><label>add rooms</label><br>
           </article>
 
+
+          <hr>
+          <br>
+          <br>
+          <br>
+          <br>
           <article id="room table">
 
             <table>
@@ -343,7 +271,6 @@
               </template>
             </ui-data-repeat>
 
-
             <app-modal id="confirm-delete-room-modal" trigger="#ui-rooms-list" event="delete">
               <h1 slot="title">You are about to delete this room</h1>
               <p slot="main">Room <b data-key="name"></b> will be deleted.</p>
@@ -360,6 +287,11 @@
               <event-source trigger="#ui-rooms-list" event="edit" />
             </event-group>
 
+            <script>
+              setTimeout(() => {
+
+              }, 1000)
+            </script>
 
             <app-modal id="new-room-modal" trigger="#open-event-modal" event="data">
               <!-- <app-modal id="new-room-modal" trigger="#on-load-event" action="loaded"> -->
@@ -377,7 +309,6 @@
             <!-- <app-modal trigger="#get-current-event" event="get"></app-modal> -->
 
             <event-source id="on-load-event" trigger="window" event="load" />
-
             <event-group id="event-info-changed">
               <event-source trigger="#get-current-event" event="list" />
               <event-source trigger="#room-list" event="updated" />
@@ -402,7 +333,7 @@
           </article>
 
         </section>
-        <small slot="footer">Footer</small>
+
       </app-layout>
 
     </app-route>

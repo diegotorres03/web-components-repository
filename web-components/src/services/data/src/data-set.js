@@ -6,15 +6,22 @@ import {
   sleep,
 } from '../../../global/web-tools'
 
+import DataQueryComponent from './data-query'
+
 
 //import componentHtml from './flip-card.html'
 //import componentStyle from './flip-card.css'
+
+// [ ] use MutationObserver to detect DOM changes and update accordingly
 
 export default class DataSetComponent extends HTMLElement {
   get DEFAULT_EVENT_NAME() {
     return 'updated'
   }
 
+  get #dataPoints() {
+    return Array.from(this.querySelectorAll('data-point'))
+  }
 
   constructor() {
     super()
@@ -40,7 +47,83 @@ export default class DataSetComponent extends HTMLElement {
     await sleep(1)
     this.#loadFromDatastore()
 
+    this.#registerQueries()
+
   }
+
+  #registerQueries() {
+    const dataQueries = Array.from(this.querySelectorAll('data-query'))
+    dataQueries.forEach(query => {
+      console.log('data-query', query)
+      const eventName = query.getAttribute('type')
+      query.addEventListener(eventName, event => {
+        console.log('performing query', event)
+        if(eventName === DataQueryComponent.EVENT_TYPES.put) {
+          // this.setItem()
+        } else if(eventName === DataQueryComponent.EVENT_TYPES.delete) {
+          const id = event.detail.__id
+          this.removeItem(id)
+        // } else if() {
+        // } else if() {
+        // } else if() {
+
+        }
+        // here emit to data-store or whoever is the parent the query results so data-store can process the change'
+        const newEvent = new CustomEvent(eventName, {
+          bubbles: true, composed: true,
+          detail: { ...event.detail  },
+        })
+    
+        // if(event.type === 'syncItem') return
+        this.dispatchEvent(newEvent)
+      })
+    })
+  }
+
+
+  find(key) {
+    this.#dataPoints
+      .find(item => console.log('data-point', item))
+  }
+
+  /**
+   * Save an object on IndexedDB under a given key (this key will be prefixed with the store name)
+   * @param {string} key data store key to be used
+   * @param {*} value value to be stored on this data store key
+   * @returns {*} 
+   */
+  setItem(key, value) {
+    const item = this.#dataPoints.find(item => item.id === key)
+    console.log(item)
+    // return localforage.setItem(`${this.id}_${key}`, value)
+  }
+
+  /**
+   * Get an item from IndexedDB by a given key (this key will be prefixed with the store name)
+   * @param {string} key 
+   * @returns {*}
+   */
+  getItem(key) {
+    return localforage.getItem(`${this.id}_${key}`)
+  }
+
+  hasItem(key) {
+    return !!this.getItem(`${this.id}_${key}`)
+  }
+
+  /**
+   * remove an item from IndexedDB by a given key (this key will be prefixed with the store name)
+   * @param {string} key 
+   * @returns {*}
+   */
+  removeItem(key) {
+    const item = this.#dataPoints.find(item => item.id === key)
+    if(!item) return console.warn('item not found', key)
+    console.log(item)
+    // item.remove()
+
+  }
+
 
   /**
    * append a <data-point> tag, it will take values from event.detail 
@@ -71,13 +154,14 @@ export default class DataSetComponent extends HTMLElement {
     } ${dataAttributes} />`
     
 
-    this.shadowRoot.appendChild(template)
+    this.shadowRoot.prepend(template)
+    // this.shadowRoot.appendChild(template)
 
     if(!data) return console.warn('no data')
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
-      detail: data,
+      detail: {...data, __id: id, },
     })
 
     if(event.type === 'syncItem') return
