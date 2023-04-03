@@ -5,22 +5,34 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>deck-reader</title>
-
+  <title>Document</title>
 </head>
 
 <body>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
 
-  <deck-reader>
+  <script>
+    const filters = Object.freeze({
+      test(event, param) {
+        console.log(event, param)
+        return event.detail
+      },
 
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
-    <flip-card></flip-card>
+    })
 
-  </deck-reader>
+    const transforms = Object.freeze({
+      count(data, direction = 1) {
+        console.log(data, direction)
+        const { id, name, count } = data
+        return { id, name, count: Date.now() % 100 }
+        // return { id, name, count: Number(count) + Number(direction) }
+      },
+    })
+  </script>
 
 
   <app-router>
@@ -40,6 +52,29 @@
           </form>
         </section>
       </app-modal>
+
+      <style>
+        flip-card {
+          width: 200px;
+          height: 300px;
+        }
+      </style>
+
+      <!-- <deck-reader>
+        <flip-card>
+          <h1 slot="front">front 1</h1>
+        </flip-card>
+        <flip-card>
+          <h1 slot="front">front 2</h1>
+        </flip-card>
+        <flip-card>
+          <h1 slot="front">front 3</h1>
+        </flip-card>
+        <flip-card>
+          <h1 slot="front">front 4</h1>
+        </flip-card>
+      </deck-reader> -->
+
     </app-route>
 
 
@@ -56,19 +91,15 @@
 
       <hr>
       <style>
-        .grid {
-          padding: 20px;
+        /* .grid {
           display: grid;
-          grid-template-columns: 45% 45%;
-          grid-template-rows: 45% 45%;
+          grid-template-columns: 50% 50%;
+          grid-template-rows: 50% 50%;
           gap: 40px;
-        }
+        } */
       </style>
 
-
-<!-- <flip-card></flip-card> -->
-
-      <section class="">
+      <section class="flex-column">
         <plain-card style="width: 90vh;">
           <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
           <section slot="main" style="text-align: center;">
@@ -82,18 +113,16 @@
 
       <ui-data-repeat class="grid" id="ui-rooms-list" trigger="#event-info-changed" event="data">
         <template>
-          <div>
-
-            <plain-card>
-              <h1 slot="title"><span name="name"></span></h1>
-              <section slot="main">
-                <b>hosted by:</b><span name="alias"></span>
-                <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
-              </section>
-            </plain-card>
-          </div>
+          <plain-card>
+            <h1 slot="title"><span name="name"></span></h1>
+            <section slot="main">
+              <b>hosted by:</b><span name="alias"></span>
+              <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+            </section>
+          </plain-card>
         </template>
       </ui-data-repeat>
+
 
       <!-- <section class="grid">
 
@@ -265,7 +294,8 @@
                 </div>
               </template>
             </ui-data-repeat>
-            
+    
+
             <app-modal id="confirm-delete-room-modal" trigger="#ui-rooms-list" event="delete">
               <h1 slot="title">You are about to delete this room</h1>
               <p slot="main">Room <b data-key="name"></b> will be deleted.</p>
