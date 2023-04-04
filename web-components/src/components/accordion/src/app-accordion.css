@@ -11,14 +11,14 @@
   width: 100%;
 }
 
-.tab input {
+.tab .input {
   position: absolute;
   left: 0;
   top: 0;
   z-index: -999;
 }
 
-.tab label {
+.tab .label {
   display: flex;
   align-items: center;
   background-color: var(--back-tone);
@@ -29,8 +29,8 @@
   font-size: 12px;
 }
 
-.tab input:focus + label,
-.tab label:hover {
+.tab .input:focus + .label,
+.tab .label:hover {
   filter: brightness(1.15);
   cursor: pointer;
 }
@@ -44,7 +44,7 @@
   color: var(--back-tone);
 }
 
-.tab input:checked ~ .tab-content {
+.tab .input:checked ~ .tab-content {
   max-height: 300px;
   padding: 8px;
   color: var(--back-tone);

@@ -41,8 +41,8 @@ export default class AccordionComponent extends HTMLElement {
 
                 const title = titleElement.textContent
                 const itemTemplate = html`<div class="tab">
-                    <input id="tab-${index + 1}" type="radio" name="tabs" ${index === 0 && 'checked ="true"'}>
-                    <label for="tab-${index + 1}">${title}</label>
+                    <input class="input" id="tab-${index + 1}" type="radio" name="tabs" ${index === 0 && 'checked ="true"'}>
+                    <label class="label" for="tab-${index + 1}">${title}</label>
                     <div class="tab-content">
                     </div>
                 </div>`

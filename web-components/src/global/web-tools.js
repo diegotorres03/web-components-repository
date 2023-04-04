@@ -123,7 +123,7 @@ function registerTriggers(element, callback) {
   const triggers = Array.from(document.querySelectorAll(selector))
 
   if (!triggers) return
-  let triggerEvent = element.getAttribute('trigger-event') || element.getAttribute('event')
+  let triggerEvent = element.getAttribute('on') || element.getAttribute('event')
 
   triggers.map((trigger) => {
     // if()

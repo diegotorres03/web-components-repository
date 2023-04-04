@@ -33,8 +33,9 @@ export default class AppAuthenticationComponent extends HTMLElement {
       // [x] look for token in URL
       const urlSession = this.#getTokenFromURL()
       if (urlSession) {
-        // alert(`urlSession: ${JSON.stringify(urlSession, null, 2)}`)
         await localforage.setItem('session', urlSession)
+        // const session = await localforage.getItem('session')
+        // alert(`urlSession: ${JSON.stringify(session, null, 2)}`)
         return this.#emit(urlSession, 'loggedin')
       }
 
@@ -87,6 +88,7 @@ export default class AppAuthenticationComponent extends HTMLElement {
   }
 
   async logout() {
+    console.trace()
     await localforage.removeItem('session')
     // alert('deleting session')
     this.#emit(null, 'loggingout')

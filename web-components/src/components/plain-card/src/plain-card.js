@@ -11,7 +11,7 @@ import plainCardStyle from './plain-card.css'
 export default class PlainCardComponent extends HTMLElement {
   constructor() {
     super()
-    const template = html` <style>
+    const template = html`<style>
         ${plainCardStyle}
       </style>
       ${plainCardHtml}`
