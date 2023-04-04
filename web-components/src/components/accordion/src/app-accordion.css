@@ -1,9 +1,10 @@
 .tab-group {
-  margin: 0 auto;
-  max-width: 40em;
+  /* max-width: 40em; */
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
+
+  margin-bottom: 8px;
 }
 
 .tab {
@@ -24,14 +25,14 @@
   background-color: var(--back-tone);
   color: var(--main-tone);
 
-  padding: 6px;
+  padding: 8px;
 
   font-size: 12px;
 }
 
-.tab .input:focus + .label,
-.tab .label:hover {
-  filter: brightness(1.15);
+.tab input:focus + label,
+.tab label:hover {
+  filter: brightness(1.15) contrast(80%);
   cursor: pointer;
 }
 

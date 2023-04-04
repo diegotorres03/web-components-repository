@@ -7,7 +7,6 @@
 
 .header-container {
   height: 5%;
-  /* padding: 8px; */
 
   color: var(--text-tone);
   border-bottom: 1px solid var(--second-tone);
@@ -67,7 +66,7 @@
 
 .display-container {
   height: 95%;
-  padding: 24px;
+  padding: 8px;
 
   overflow-y: auto;
 
@@ -103,6 +102,8 @@
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+
+  scrollbar-width: none;
 }
 
 .main-content {

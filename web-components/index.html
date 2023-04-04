@@ -44,6 +44,17 @@
     </section>
   </app-modal> -->
 
+        <ui-data-repeat class="grid" id="ui-rooms-list" trigger="#event-info-changed" event="data">
+          <template>
+            <plain-card>
+              <h1 class="section-title" slot="title"><span name="name"></span></h1>
+              <section slot="main">
+                <b>hosted by:</b><span name="alias"></span>
+                <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+              </section>
+            </plain-card>
+          </template>
+        </ui-data-repeat>
 
 </body>
 </html>
