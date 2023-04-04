@@ -25,11 +25,7 @@
         console.log(event, param)
         return event.detail
       },
-      hasSessionToken(event) {
-        console.clear()
-        console.log('on hasSessionToken', event)
-        return true
-      }
+
 
     })
 
@@ -41,36 +37,66 @@
         return { id, name, count: Date.now() % 100 }
         // return { id, name, count: Number(count) + Number(direction) }
       },
-      getTokenFromUrl(event) {
-        console.log('on getTokenFromUrl', event)
-        alert('test')
-        const [hash, query] = window.location.hash.split('?')
-        if(!query) return null
-        const search = new URLSearchParams(query)
-        return search.get('token')
 
+    })
+  </script>
+  <app-authenication></app-authenication>
+
+  <script>
+    window.addEventListener('load', async event => {
+      const auth = document.querySelector('app-authenication')
+     
+      
+      if(window.location.hash.includes('#admin')) {
+        const session = await auth.getSessionData()
+        if(!session) { 
+          return window.location.href = '#login'
+        }
       }
+
+      // if (window.location.hash !== '#login') return
+      // auth.logout()
+      // alert('navigating')
+
+    })
+
+    window.addEventListener('hashchange', async event => {
+      const auth = document.querySelector('app-authenication')
+      const url = new URL(event.newURL)
+      console.log('hashchange', event, event.newURL, url, url.hash, url.hash === '#login')
+
+      if(url.hash === '#admin') {
+        const session = await auth.getSessionData()
+        if(session) { 
+          console.log('session found')
+          return
+        }
+      }
+
+      if (url.hash !== '#login') return
+      auth.logout()
+
     })
   </script>
 
 
-
   <!-- Session management -->
   <!-- <event-source id="" trigger="window" event="load" filter="hasSessionToken"  /> -->
-  
-  <app-modal trigger="#get-token-from-url" event="loaded"></app-modal>
-  <event-source id="get-token-from-url" trigger="window" event="load" transform="getTokenFromUrl"/>
-  
+
+  <!-- <app-modal trigger="app-authenication" event="loggedin"></app-modal> -->
+  <event-source id="get-token-from-url" trigger="window" event="load" transform="getTokenFromUrl" />
+
   <data-store id="user-session">
     <data-set id="browser-token" visible></data-set>
     <data-set id="user-token" trigger="#get-token-from-url" event="data"></data-set>
   </data-store>
-  
+
   <!-- /Session management -->
 
   <app-router>
 
     <app-route>
+
       <h1>hi</h1>
       <nav>
         <a href="#rooms">rooms</a>
@@ -212,7 +238,7 @@
     </app-route>
 
     <!-- <app-route></app-route> -->
-    <app-route hash="admin">
+    <app-route hash="admin" auth="">
 
       <app-layout>
 
@@ -222,6 +248,13 @@
           <a href="#rooms">rooms</a>
           <a href="#admin">admin</a>
           <a href="#login">login</a>
+          <button id="logout-btn" >logout</button>
+          <script>
+            document.querySelector('#logout-btn').addEventListener('click', event => {
+              document.querySelector('app-authenication').logout()
+              window.location.hash="login"
+            })
+          </script>
 
         </nav>
         <h2 style="font-size:18px;" slot="left-header">Events</h2>
@@ -362,7 +395,6 @@
 
 
             <app-modal id="new-room-modal" trigger="#open-event-modal" event="data">
-              <!-- <app-modal id="new-room-modal" trigger="#on-load-event" action="loaded"> -->
 
               <form slot="main">
                 <label for="">Room Name</label><input type="text" name="name"><br>
@@ -376,7 +408,6 @@
             <!-- <app-modal trigger="#on-load-event" event="loaded"></app-modal> -->
             <!-- <app-modal trigger="#get-current-event" event="get"></app-modal> -->
 
-            <event-source id="on-load-event" trigger="window" event="load" />
 
             <event-group id="event-info-changed">
               <event-source trigger="#get-current-event" event="list" />
@@ -394,8 +425,8 @@
               <data-set visible id="room-list" trigger="#new-room-modal" event="accepted" append visible>
                 <data-query id="delete-room-query" key="room-list" type="delete" trigger="#confirm-delete-room-modal"
                   event="accepted"></data-query>
-                <data-query id="get-current-event" key="room-list" type="list" trigger="#on-load-event"
-                  event="loaded"></data-query>
+                <data-query id="get-current-event" key="room-list" type="list" trigger="app-authenication"
+                  event="loggedin"></data-query>
               </data-set>
             </data-store>
 
