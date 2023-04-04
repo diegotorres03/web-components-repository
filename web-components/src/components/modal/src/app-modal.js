@@ -46,15 +46,21 @@ export default class ModalComponent extends HTMLElement {
     // [ ] add hability to use data-key and also get text content
     const datasetFields = [... this.querySelectorAll('[data-key]')]
 
+    console.log(inputFields)
+
     const inputData = {}
     inputFields.forEach(field => {
       inputData[field.name] = field.value
     })
 
-    this.shadowRoot.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
+    const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
       detail: { ...inputData, ...this.dataset }
-    }))
+    })
+
+    console.log(newEvent)
+
+    this.shadowRoot.dispatchEvent(newEvent)
 
     this.hide()
   }
@@ -68,6 +74,7 @@ export default class ModalComponent extends HTMLElement {
   }
 
   show(event = {}) {
+    console.log('on modal show', event)
     this.setAttribute('open', '')
     if(!event.detail) return
     Object.keys(event.detail).forEach(key => 

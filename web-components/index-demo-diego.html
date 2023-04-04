@@ -128,20 +128,6 @@
         }
       </style>
 
-      <!-- <deck-reader>
-        <flip-card>
-          <h1 slot="front">front 1</h1>
-        </flip-card>
-        <flip-card>
-          <h1 slot="front">front 2</h1>
-        </flip-card>
-        <flip-card>
-          <h1 slot="front">front 3</h1>
-        </flip-card>
-        <flip-card>
-          <h1 slot="front">front 4</h1>
-        </flip-card>
-      </deck-reader> -->
 
     </app-route>
 
@@ -218,14 +204,20 @@
           <app-accordion>
 
             <section>
-              <ui-data-sync trigger="">
-                <h1 data-key="event-name">CDK Event</h1>
-                <p data-key="event-description">This will be the room for the main presentation before going to breakout
-                  sessions.</p>
+              <ui-data-sync trigger="#create-event-modal" on="accepted">
+                <h1 data-key="name">CDK Event</h1>
+                <small data-key="event-description">This will be the room for the main presentation before going to
+                  breakout
+                  sessions.</small>
+                <label name="name">Name:</label><br>
+                <label name="date">Date:</label><br>
+                <label name="time">Time:</label><br>
+                <label name="duration">duration in hours:</label><br>
+                <label name="host">Host:</label><br>
               </ui-data-sync>
 
               <button id="open-creat-event-btn">Create event</button>
-              <app-modal trigger="#open-creat-event-btn" on="click" >
+              <app-modal id="create-event-modal" trigger="#open-creat-event-btn" on="click">
                 <h1 slot="title">Event Form</h1>
                 <form slot="main">
                   <label for="">Name:</label><input type="text" name="name"><br>
@@ -236,7 +228,8 @@
                 </form>
               </app-modal>
 
-              <data-set id="event-information"></data-set>
+
+
 
             </section>
 
@@ -249,6 +242,11 @@
 
             </section>
           </app-accordion>
+
+          <data-store id="event-store">
+            <data-set id="event-information" visible trigger="#create-event-modal" on="accepted"></data-set>
+          </data-store>
+
 
           <hr>
 

@@ -31,18 +31,22 @@ The goal with this lab is to showcase alternatives to create web applications wi
         1. add a flip card
         2. display front and back slots
         3. disable flip
-    2. contrilling web component properties 
-        1. add title and content to the modal
-        2. connect flip to modal 
-        3. button + modal example
-    3. let's create some HTML
-        1. create an empty html page
-        2. create simple elements like lists and tables
-        3. using those elements, lets create an user card
-    4. let's wrap it in to a web component
-        1. lets make this user card a web component
-        2. how to pass data to the component
-        3. how to get data from the component
+    2. triggers and events 
+        1. create a button and a modal
+        2. connect button to modal
+        3. connect flip to modal
+        4. reflect event data in ui
+    3. creating our first web component
+        1. create required files
+        2. copy paste html and css
+        3. create `SecretCardComponent` class
+        4. testing the new `secret-card` tag
+    4. comunication from within a component
+        1. swap html event handling for js event handling
+        2. xx
+        3. xx
+        3. xx
+        3. xx
     <!-- 1. let's share our component -->
 2. **Composing apps with Web Components**
     1. comunication between components

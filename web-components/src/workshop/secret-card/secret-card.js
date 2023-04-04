@@ -1,0 +1,35 @@
+// this is a set of global tools to simplify development
+import {  html } from '../../global/web-tools'
+
+import componentStyle from './secret-card.css'
+import componentHtml from './secret-card.html'
+
+
+export default class SecretCardComponent extends HTMLElement {
+
+  constructor() {
+    super()
+    const template = html`
+        <style>${componentStyle}</style>
+        ${componentHtml}
+    `
+     this.attachShadow({ mode: 'open' })
+     this.shadowRoot.appendChild(template)
+  }
+
+  
+  connectedCallback() {
+    
+  }
+
+  disconnectedCallback() { }
+
+  attributeChangedCallback(name, oldValue, newValue) { }
+
+  adoptedCallback() { }
+
+}
+
+// here we are registering our component on the browser
+// first argument is how you will use the tag <secret-card>
+window.customElements.define('secret-card', SecretCardComponent)

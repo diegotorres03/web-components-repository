@@ -7,6 +7,7 @@ import './global/Themes/theme-night.css'
 export * from './components'
 export * from './layout'
 export * from './services'
+export * from './workshop'
 // import FlipCard from './components/flip-card';
 
 // export default {

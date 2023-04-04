@@ -22,7 +22,7 @@ export default class AppAuthenticationComponent extends HTMLElement {
     this.shadowRoot.appendChild(template)
   }
 
-  // http://localhost:8080/#?token=eyJhbGlhcyI6ImRpZWdvdHJzIiwicm9vbSI6InJvb20gMSIsImV2ZW50IjoiZXZlbnQgMSJ9
+  // http://localhost:8080/#admin?token=eyJhbGlhcyI6ImRpZWdvdHJzIiwicm9vbSI6InJvb20gMSIsImV2ZW50IjoiZXZlbnQgMSJ9
   // eyJhbGlhcyI6ImRpZWdvdHJzIiwicm9vbSI6InJvb20gMSIsImV2ZW50IjoiZXZlbnQgMSJ9
   connectedCallback() {
     registerTriggers(this, (event) => console.log(event))
