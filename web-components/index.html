@@ -105,7 +105,6 @@
 
     <app-route>
 
-
       <h1>hi</h1>
       <nav class="nav-container">
         <a href="#rooms">rooms</a>
@@ -116,12 +115,31 @@
 
     <!-- <app-route></app-route> -->
     <app-route hash="login">
-      <nav>
-        <a href="#rooms">rooms</a>
-        <a href="#admin">admin</a>
-        <a href="#login">login</a>
-      </nav>
-      <hr>
+      <style>
+        .header-container {
+          width: 100%;
+          height: 80px;
+          padding: 10px;
+          background-color: var(--back-tone);
+        }
+
+        .header-container h1 {
+          color: var(--text-tone);
+        }
+
+        .header-container nav {
+          width: fit-content;
+        }
+      </style>
+
+      <div class="header-container flex-column align-items-center justify-content-evenly">
+        <h1>Login</h1>
+        <nav>
+          <a href="#rooms">rooms</a>
+          <a href="#admin">admin</a>
+          <a href="#login">login</a>
+        </nav>
+      </div>
       <app-modal id="login-modal" open>
         <section slot="main">
           <form>
@@ -135,17 +153,34 @@
     <!-- <app-route></app-route> -->
     <app-route hash="rooms">
 
-      <h1>rooms</h1>
-      <nav>
-        <a href="#rooms">rooms</a>
-        <a href="#admin">admin</a>
-        <a href="#login">login</a>
-      </nav>
+      <style>
+        .header-container {
+          width: 100%;
+          height: 80px;
+          padding: 10px;
+          background-color: var(--back-tone);
+        }
 
-      <hr>
+        .header-container h1 {
+          color: var(--text-tone);
+        }
+
+        .header-container nav {
+          width: fit-content;
+        }
+      </style>
+
+      <div class="header-container flex-column align-items-center justify-content-evenly">
+        <h1>Rooms</h1>
+        <nav>
+          <a href="#rooms">Rooms</a>
+          <a href="#admin">Admin</a>
+          <a href="#login">Login</a>
+        </nav>
+      </div>
 
       <section class="disable flex-column">
-        <plain-card style="width: 90vh;">
+        <plain-card>
           <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
           <section slot="main" style="text-align: center;">
             <small>this room is visible to everybody and it will be the starting point of the conversation</small>
@@ -155,8 +190,7 @@
         </plain-card>
       </section>
 
-
-      <ui-data-repeat class="grid" id="ui-rooms-list" trigger="#event-info-changed" event="data">
+      <ui-data-repeat id="ui-rooms-list" trigger="#event-info-changed" event="data">
         <template>
           <plain-card>
             <h1 slot="title"><span name="name"></span></h1>
@@ -221,7 +255,6 @@
 
           <app-accordion>
 
-
             <section>
               <ui-data-sync trigger="">
                 <h3 data-key="event-name">CDK Event</h3>
@@ -255,25 +288,21 @@
                 </form>
               </app-modal>
 
-
-
-
             </section>
 
-            <section>
-
-              <h1>Other</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
-                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
-                quis assumenda praesentium!</p>
-
-            </section>
           </app-accordion>
 
         </section>
 
-        <section class="flex-column" slot="main">
+        <style>
+          .room-manage-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+        </style>
 
+        <section class="room-manage-container" slot="main">
 
           <article id="room table">
 
@@ -290,7 +319,6 @@
 
             </table>
 
-            <hr>
             <!-- 
             <ui-data-sync trigger="#event-info-changed" event="data">
               <div>
@@ -302,12 +330,8 @@
               </div>
             </ui-data-sync> -->
 
-            <br>
-            <hr>
-            <br>
-            <hr>
-            <br>
 
+            <!--  [ ] insertar en una tabla-->
             <ui-data-repeat id="ui-rooms-list" trigger="#event-info-changed" event="data">
               <template>
                 <div>
@@ -341,10 +365,6 @@
 
             <button name="edit">✏️</button>
 
-            <br>
-            <hr>
-            <br>
-
             <plain-card>
               <h1 slot="title">TODO</h1>
               <article slot="main">
@@ -353,7 +373,6 @@
                 <input type="checkbox" name="" id=""><label> add rooms</label><br>
               </article>
             </plain-card>
-
 
             <app-modal id="new-room-modal" trigger="#open-event-modal" event="data">
 
@@ -364,23 +383,18 @@
                 <label for="">Facilitator</label><input type="text" name="alias"><br>
                 <label for="">date</label><input type="date" name="date"><br>
               </form>
+
             </app-modal>
 
             <!-- <app-modal trigger="#on-load-event" event="loaded"></app-modal> -->
             <!-- <app-modal trigger="#get-current-event" event="get"></app-modal> -->
 
-
             <event-group id="event-info-changed">
+
               <event-source trigger="#get-current-event" event="list" />
               <event-source trigger="#room-list" event="updated" />
 
             </event-group>
-
-            <hr>
-            <br>
-            <br>
-            <br>
-            <br>
 
             <data-store id="room-store">
               <data-set id="room-list" trigger="#new-room-modal" event="accepted" append>
