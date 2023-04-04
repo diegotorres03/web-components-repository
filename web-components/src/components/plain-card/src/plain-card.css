@@ -1,13 +1,14 @@
 .card-container {
   width: 400px;
   overflow: hidden;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .card-title {
   width: 100%;
   padding: 8px;
-  border-bottom: 1px solid var(--main-tone);
+
+  /* border-bottom: 1px solid var(--main-tone); */
   color: var(--main-tone);
   background-color: var(--back-tone);
 }
