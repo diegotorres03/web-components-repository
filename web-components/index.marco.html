@@ -17,6 +17,13 @@
     .disable {
       filter: contrast(60%)grayscale(40%);
     }
+
+    nav a {
+      background-color: var(--second-tone);
+      color: var(--main-tone);
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
   </style>
 
   <script id="transforms-and-filters">
@@ -40,6 +47,7 @@
 
     })
   </script>
+
   <app-authenication></app-authenication>
 
   <script>
@@ -97,8 +105,9 @@
 
     <app-route>
 
+
       <h1>hi</h1>
-      <nav>
+      <nav class="nav-container">
         <a href="#rooms">rooms</a>
         <a href="#admin">admin</a>
         <a href="#login">login</a>
@@ -121,14 +130,6 @@
         </section>
       </app-modal>
 
-      <style>
-        flip-card {
-          width: 200px;
-          height: 300px;
-        }
-      </style>
-
-
     </app-route>
 
     <!-- <app-route></app-route> -->
@@ -142,14 +143,6 @@
       </nav>
 
       <hr>
-      <style>
-        /* .grid {
-          display: grid;
-          grid-template-columns: 50% 50%;
-          grid-template-rows: 50% 50%;
-          gap: 40px;
-        } */
-      </style>
 
       <section class="disable flex-column">
         <plain-card style="width: 90vh;">
@@ -181,15 +174,40 @@
     <!-- <app-route></app-route> -->
     <app-route hash="admin" auth="">
 
+      <style>
+        h1 {
+          font-size: 20px;
+        }
+
+        nav {
+          width: 100%;
+        }
+
+        nav button {
+          padding: 4px 8px;
+          border-radius: 2px;
+
+          background-color: var(--main-tone);
+          color: var(--back-tone);
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+      </style>
+
       <app-layout>
 
-        <h1 style="font-size:18px;" slot="header">admin</h1>
-        <nav slot="top-menu">
 
-          <a href="#rooms">rooms</a>
-          <a href="#admin">admin</a>
-          <a href="#login">login</a>
-          <button id="logout-btn">logout</button>
+        <h1 slot="header">Admin</h1>
+        <nav class="flex-row justify-content-between align-items-center" slot="top-menu">
+          <div>
+            <a href="#rooms">Rooms</a>
+            <a href="#admin">Admin</a>
+            <a href="#login">Login</a>
+          </div>
+          <button id="logout-btn">Logout</button>
           <script>
             document.querySelector('#logout-btn').addEventListener('click', event => {
               document.querySelector('app-authenication').logout()
@@ -198,33 +216,42 @@
           </script>
 
         </nav>
-        <h2 style="font-size:18px;" slot="left-header">Events</h2>
+        <h1 slot="left-header">Events</h1>
         <section slot="left-content">
 
           <app-accordion>
 
+
             <section>
-              <ui-data-sync trigger="#create-event-modal" on="accepted">
-                <h1 data-key="name">CDK Event</h1>
-                <small data-key="event-description">This will be the room for the main presentation before going to
-                  breakout
-                  sessions.</small>
-                <label name="name">Name:</label><br>
-                <label name="date">Date:</label><br>
-                <label name="time">Time:</label><br>
-                <label name="duration">duration in hours:</label><br>
-                <label name="host">Host:</label><br>
+              <ui-data-sync trigger="">
+                <h3 data-key="event-name">CDK Event</h3>
+                <p data-key="event-description">This will be the room for the main presentation before going to breakout
+                  sessions.</p>
               </ui-data-sync>
 
               <button id="open-creat-event-btn">Create event</button>
-              <app-modal id="create-event-modal" trigger="#open-creat-event-btn" on="click">
-                <h1 slot="title">Event Form</h1>
+
+              <app-modal trigger="#open-creat-event-btn" on="click">
+                <h4 slot="title">Event Form</h4>
+
+                <style>
+                  form {
+                    display: flex;
+                    flex-direction: column;
+                  }
+                </style>
+
                 <form slot="main">
-                  <label for="">Name:</label><input type="text" name="name"><br>
-                  <label for="">Date:</label><input type="date" name="date"><br>
-                  <label for="">Time:</label><input type="time" name="time"><br>
-                  <label for="">duration in hours:</label><input type="number" name="duration"><br>
-                  <label for="">Host:</label><input type="text" name="host"><br>
+                  <label for="">Name:</label>
+                  <input type="text" name="name">
+                  <label for="">Date:</label>
+                  <input type="date" name="date">
+                  <label for="">Time:</label>
+                  <input type="time" name="time">
+                  <label for="">duration in hours:</label>
+                  <input type="number" name="duration">
+                  <label for="">Host:</label>
+                  <input type="text" name="host">
                 </form>
               </app-modal>
 
@@ -243,43 +270,6 @@
             </section>
           </app-accordion>
 
-          <data-store id="event-store">
-            <data-set id="event-information" visible trigger="#create-event-modal" on="accepted"></data-set>
-          </data-store>
-
-
-          <hr>
-
-          <app-accordion style="display: none;">
-            <section>
-              <h1>Event Detail</h1>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae, cum! Dolores quia repudiandae
-                autem, error voluptatem similique odit animi laudantium sunt. Ducimus eum earum labore? Odio quod
-                reiciendis fugit quaerat adipisci ullam asperiores reprehenderit, minus unde sed quos harum tenetur ipsa
-                ipsum aliquid molestias impedit eos necessitatibus atque. Nemo velit tempora voluptate eum commodi odio
-                perferendis quasi numquam ex odit? Sint nemo fugiat similique dignissimos voluptatibus commodi iure
-                nulla corrupti blanditiis? Iusto ratione voluptates commodi quisquam quaerat nostrum eveniet earum
-                beatae qui eligendi laborum fugit officia rerum nemo distinctio nesciunt harum, dignissimos suscipit
-                consequuntur amet consequatur accusantium. Doloremque, magnam possimus?</p>
-            </section>
-
-
-            <section>
-              <h1>Other</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
-                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
-                quis
-                assumenda praesentium!</p>
-            </section>
-
-            <section>
-              <h1>Other</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos repellendus asperiores quas recusandae
-                doloribus non qui libero. Unde autem iure velit voluptates alias tenetur temporibus, asperiores fugit
-                quis
-                assumenda praesentium!</p>
-            </section>
-          </app-accordion>
         </section>
 
         <section class="flex-column" slot="main">

@@ -1,35 +1,31 @@
-    <style>
-        
-    </style>
+<div>
+    <!-- <label for="checker">open modal</label> -->
 
+    <input id="checker" type="checkbox">
 
-    <div>
-        <!-- <label for="checker">open modal</label> -->
-    
-        <input class="absolute" id="checker" type="checkbox">
-    
-        <div class="modal-overlay flex-row align-center justify-center fixed">
-    
-            <section class="modal-wrap flex-column align-center">
-                <header class="modal-header flex-row align-center space-between">
-    
-                    <slot name="title" class="title">Slot Name: <b>title</b></slot>
-                    <label class="close darker relative" for="checker"><span class="flex-row justify-center align-center">&#10006;</span></label>
-    
-                </header>
+    <div class="modal-overlay">
 
-                <section class="main-content">    
-                    <slot name="main">Slot Name: <b>main</b></slot>
-                </section>
+        <section class="modal-wrap">
+            <header class="modal-header">
 
-                <footer class="footer-content flex-row space-between">
-    
-                    <slot name="footer ">
-                        <button onclick="accept" class="dft-btn brighter clickable">Accept</button>
-                        <button onclick="cancel" class="dft-btn darker clickable">Decline</button>
-                    </slot>
-    
-                </footer>
+                <slot name="title" class="title">Slot Name: <b>title</b></slot>
+                <label class="close" for="checker">
+                    <span class="close-content ">&#10006;</span></label>
+
+            </header>
+
+            <section class="main-content">
+                <slot name="main">Slot Name: <b>main</b></slot>
             </section>
-        </div>
+
+            <footer class="footer-content ">
+
+                <slot name="footer ">
+                    <button onclick="accept" class="accept-btn clickable">Accept</button>
+                    <button onclick="cancel" class="decline-btn clickable">Decline</button>
+                </slot>
+
+            </footer>
+        </section>
     </div>
+</div>

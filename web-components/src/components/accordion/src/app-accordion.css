@@ -1,9 +1,10 @@
 .tab-group {
-  margin: 0 auto;
-  max-width: 40em;
+  min-width: 200px;
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
+
+  margin-bottom: 8px;
 }
 
 .tab {
@@ -22,16 +23,19 @@
   display: flex;
   align-items: center;
   background-color: var(--back-tone);
-  color: var(--main-tone);
+  color: var(--third-tone);
 
-  padding: 6px;
+  padding: 8px;
 
   font-size: 12px;
 }
+.label:not(:last-of-type) {
+  border-bottom: 1px solid var(--third-tone);
+}
 
-.tab .input:focus + .label,
-.tab .label:hover {
-  filter: brightness(1.15);
+.tab input:focus + label,
+.tab label:hover {
+  filter: brightness(1.15) contrast(80%);
   cursor: pointer;
 }
 
@@ -40,12 +44,28 @@
 
   overflow: hidden;
   transition: all 0.35s;
-  background-color: var(--third-tone);
+  background-color: var(--text-tone);
   color: var(--back-tone);
+
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .tab .input:checked ~ .tab-content {
-  max-height: 300px;
+  max-height: 400px;
   padding: 8px;
   color: var(--back-tone);
+}
+.tab .input:checked ~ .label {
+  color: var(--main-tone);
+  filter: brightness(1.25) contrast(90%);
+}
+
+.tab-content h1,
+.tab-content h2,
+.tab-content h3,
+.tab-content h4,
+.tab-content h5 {
+  font-size: 20px;
+  margin: 0 0 4px;
 }
