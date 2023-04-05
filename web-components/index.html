@@ -7,6 +7,412 @@
   <title>Document</title>
 </head>
 <body>
+  <style>
+    .hidden {
+      display: none;
+    }
+
+    .disable {
+      filter: contrast(60%)grayscale(40%);
+    }
+
+    nav a {
+      background-color: var(--second-tone);
+      color: var(--main-tone);
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+  </style>
+
+  <script id="transforms-and-filters">
+    const filters = Object.freeze({
+      test(event, param) {
+        console.log(event, param)
+        return event.detail
+      },
+
+
+    })
+
+    // localhost:8080/#admin?token=asdasd
+    const transforms = Object.freeze({
+      count(data, direction = 1) {
+        console.log(data, direction)
+        const { id, name, count } = data
+        return { id, name, count: Date.now() % 100 }
+        // return { id, name, count: Number(count) + Number(direction) }
+      },
+
+    })
+  </script>
+
+  <app-authenication></app-authenication>
+
+  <script>
+    window.addEventListener('load', async event => {
+      const auth = document.querySelector('app-authenication')
+
+
+      if (window.location.hash.includes('#admin')) {
+        const session = await auth.getSessionData()
+        if (!session) {
+          return window.location.href = '#login'
+        }
+      }
+
+      // if (window.location.hash !== '#login') return
+      // auth.logout()
+      // alert('navigating')
+
+    })
+
+    window.addEventListener('hashchange', async event => {
+      const auth = document.querySelector('app-authenication')
+      const url = new URL(event.newURL)
+      console.log('hashchange', event, event.newURL, url, url.hash, url.hash === '#login')
+
+      if (url.hash === '#admin') {
+        const session = await auth.getSessionData()
+        if (session) {
+          console.log('session found')
+          return
+        }
+      }
+
+      // if (url.hash !== '#login') return
+      // auth.logout()
+
+    })
+  </script>
+
+
+  <!-- Session management -->
+  <!-- <event-source id="" trigger="window" event="load" filter="hasSessionToken"  /> -->
+
+  <!-- <app-modal trigger="app-authenication" event="loggedin"></app-modal> -->
+  <event-source id="get-token-from-url" trigger="window" event="load" transform="getTokenFromUrl" />
+
+  <data-store id="user-session">
+    <data-set id="browser-token"></data-set>
+    <data-set id="user-token" trigger="#get-token-from-url" event="data"></data-set>
+  </data-store>
+
+  <!-- /Session management -->
+
+  <app-router>
+
+    <app-route>
+
+      <h1>hi</h1>
+      <nav class="nav-container">
+        <a href="#rooms">rooms</a>
+        <a href="#admin">admin</a>
+        <a href="#login">login</a>
+      </nav>
+    </app-route>
+
+    <!-- <app-route></app-route> -->
+    <app-route hash="login">
+      <style>
+        .header-container {
+          width: 100%;
+          height: 80px;
+          padding: 10px;
+          background-color: var(--back-tone);
+        }
+
+        .header-container h1 {
+          color: var(--text-tone);
+        }
+
+        .header-container nav {
+          width: fit-content;
+        }
+      </style>
+
+      <div class="header-container flex-column align-items-center justify-content-evenly">
+        <h1>Login</h1>
+        <nav>
+          <a href="#rooms">rooms</a>
+          <a href="#admin">admin</a>
+          <a href="#login">login</a>
+        </nav>
+      </div>
+      <app-modal id="login-modal" open>
+        <section slot="main">
+          <form>
+            <label for="">Alias: </label><input type="text" name="alias">
+          </form>
+        </section>
+      </app-modal>
+
+    </app-route>
+
+    <!-- <app-route></app-route> -->
+    <app-route hash="rooms">
+
+      <style>
+        .header-container {
+          width: 100%;
+          height: 80px;
+          padding: 10px;
+          background-color: var(--back-tone);
+        }
+
+        .header-container h1 {
+          color: var(--text-tone);
+        }
+
+        .header-container nav {
+          width: fit-content;
+        }
+      </style>
+
+      <div class="header-container flex-column align-items-center justify-content-evenly">
+        <h1>Rooms</h1>
+        <nav>
+          <a href="#rooms">Rooms</a>
+          <a href="#admin">Admin</a>
+          <a href="#login">Login</a>
+        </nav>
+      </div>
+
+      <section class="disable flex-column">
+        <plain-card>
+          <h1 slot="title">Main Room <span data-key="id" data-attribute="textContent"></span></h1>
+          <section slot="main" style="text-align: center;">
+            <small>this room is visible to everybody and it will be the starting point of the conversation</small>
+            <br>
+            <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+          </section>
+        </plain-card>
+      </section>
+
+      <ui-data-repeat id="ui-rooms-list" trigger="#event-info-changed" event="data">
+        <template>
+          <plain-card>
+            <h1 slot="title"><span name="name"></span></h1>
+            <section slot="main">
+              <b>hosted by:</b><span name="alias"></span>
+              <a data-key="url" data-attribute="href" href="" target="_blank">chime link</a>
+            </section>
+          </plain-card>
+        </template>
+      </ui-data-repeat>
+
+
+    </app-route>
+
+    <!-- <app-route></app-route> -->
+    <app-route hash="admin" auth="">
+
+      <style>
+        h1 {
+          font-size: 20px;
+        }
+
+        nav {
+          width: 100%;
+        }
+
+        nav button {
+          padding: 4px 8px;
+          border-radius: 2px;
+
+          background-color: var(--main-tone);
+          color: var(--back-tone);
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+      </style>
+
+      <app-layout>
+
+
+        <h1 slot="header">Admin</h1>
+        <nav class="flex-row justify-content-between align-items-center" slot="top-menu">
+          <div>
+            <a href="#rooms">Rooms</a>
+            <a href="#admin">Admin</a>
+            <a href="#login">Login</a>
+          </div>
+          <button id="logout-btn">Logout</button>
+          <script>
+            document.querySelector('#logout-btn').addEventListener('click', event => {
+              document.querySelector('app-authenication').logout()
+              window.location.hash = "login"
+            })
+          </script>
+
+        </nav>
+        <h1 slot="left-header">Events</h1>
+        <section slot="left-content">
+
+          <app-accordion>
+
+            <section>
+              <ui-data-sync trigger="">
+                <h3 data-key="event-name">CDK Event</h3>
+                <p data-key="event-description">This will be the room for the main presentation before going to breakout
+                  sessions.</p>
+              </ui-data-sync>
+
+              <button id="open-creat-event-btn">Create event</button>
+
+              <app-modal trigger="#open-creat-event-btn" on="click">
+                <h4 slot="title">Event Form</h4>
+
+                <style>
+                  form {
+                    display: flex;
+                    flex-direction: column;
+                  }
+                </style>
+
+                <form slot="main">
+                  <label for="">Name:</label>
+                  <input type="text" name="name">
+                  <label for="">Date:</label>
+                  <input type="date" name="date">
+                  <label for="">Time:</label>
+                  <input type="time" name="time">
+                  <label for="">duration in hours:</label>
+                  <input type="number" name="duration">
+                  <label for="">Host:</label>
+                  <input type="text" name="host">
+                </form>
+              </app-modal>
+
+            </section>
+
+          </app-accordion>
+
+        </section>
+
+        <style>
+          .room-manage-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+        </style>
+
+        <section class="room-manage-container" slot="main">
+
+          <article id="room table">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>name</th>
+                  <th>url</th>
+                  <th>host</th>
+                  <th>date</th>
+                </tr>
+              </thead>
+
+            </table>
+
+            <!-- 
+            <ui-data-sync trigger="#event-info-changed" event="data">
+              <div>
+                <span name="name"><i>Room Name</i></span>
+                <span name="url" data-attribute="href"><a href="https://chime.aws/1234">URL</a></span>
+                <span name="host"><i>Host Alias</i></span>
+                <span name="facilitator"><i>Facilitator Alias</i></span>
+                <span name="date"><i>Date and Time of the event</i></span>
+              </div>
+            </ui-data-sync> -->
+
+
+            <!--  [ ] insertar en una tabla-->
+            <ui-data-repeat id="ui-rooms-list" trigger="#event-info-changed" event="data">
+              <template>
+                <div>
+                  <span name="name">Main Room</span>
+                  <span name="url" data-attribute="href"><a href="https://chime.aws/1234">URL</a></span>
+                  <span name="host">Chandra Reddy</span>
+                  <span name="date">April 20 - 2023 at 3:00 pm</span>
+                  <button name="edit">✏️</button>
+                  <button name="send">✉️</button>
+                  <button name="delete">🗑️</button>
+                </div>
+              </template>
+            </ui-data-repeat>
+
+
+            <app-modal id="confirm-delete-room-modal" trigger="#ui-rooms-list" event="delete">
+              <h1 slot="title">You are about to delete this room</h1>
+              <p slot="main">Room <b data-key="name"></b> will be deleted.</p>
+            </app-modal>
+
+            <br>
+            <hr>
+            <br>
+
+            <button id="add-room-btn">add room</button>
+
+            <event-group id="open-event-modal">
+              <event-source trigger="#add-room-btn" action="click" />
+              <event-source trigger="#ui-rooms-list" event="edit" />
+            </event-group>
+
+            <button name="edit">✏️</button>
+
+            <plain-card>
+              <h1 slot="title">TODO</h1>
+              <article slot="main">
+                <input type="checkbox" name="" id=""><label> create event if none present</label><br>
+                <input type="checkbox" name="" id=""><label> dysplay basic event info</label><br>
+                <input type="checkbox" name="" id=""><label> add rooms</label><br>
+              </article>
+            </plain-card>
+
+            <app-modal id="new-room-modal" trigger="#open-event-modal" event="data">
+
+              <form slot="main">
+                <label for="">Room Name</label><input type="text" name="name"><br>
+                <label for="">Room url</label><input type="text" name="url"><br>
+                <label for="">Host</label><input type="text" name="host"><br>
+                <label for="">Facilitator</label><input type="text" name="alias"><br>
+                <label for="">date</label><input type="date" name="date"><br>
+              </form>
+
+            </app-modal>
+
+            <!-- <app-modal trigger="#on-load-event" event="loaded"></app-modal> -->
+            <!-- <app-modal trigger="#get-current-event" event="get"></app-modal> -->
+
+            <event-group id="event-info-changed">
+
+              <event-source trigger="#get-current-event" event="list" />
+              <event-source trigger="#room-list" event="updated" />
+
+            </event-group>
+
+            <data-store id="room-store">
+              <data-set id="room-list" trigger="#new-room-modal" event="accepted" append>
+                <data-query id="delete-room-query" key="room-list" type="delete" trigger="#confirm-delete-room-modal"
+                  event="accepted"></data-query>
+                <data-query id="get-current-event" key="room-list" type="list" trigger="app-authenication"
+                  event="loggedin"></data-query>
+              </data-set>
+            </data-store>
+
+          </article>
+
+        </section>
+        <small slot="footer">Footer</small>
+      </app-layout>
+
+    </app-route>
+
+  </app-router>
+
 
   <button id="reveal-btn">reveal secret</button>
   
