@@ -1,2 +1,2 @@
-export * from './router'
-export * from './app'
+export * from 'src/layouts/router'
+export * from 'src/layouts/app'

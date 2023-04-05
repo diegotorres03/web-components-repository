@@ -1,1 +1,1 @@
-export * from './src/app-layout'
+export * from 'src/layouts/app/src/app-layout'

@@ -1,1 +1,1 @@
-export * from './src/js-function'
+export * from 'src/services/functions/src/js-function'

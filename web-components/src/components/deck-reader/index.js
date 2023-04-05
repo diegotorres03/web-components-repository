@@ -1,1 +1,1 @@
-export * from './src/deck-reader.js'
+export * from 'src/components/deck-reader/src/deck-reader.js'

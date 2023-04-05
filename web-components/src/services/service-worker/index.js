@@ -1,1 +1,1 @@
-export * from './src/service-worker'
+export * from 'src/services/service-worker/src/service-worker'

@@ -8,7 +8,4 @@ node_modules
 # CDK asset staging directory
 .cdk.staging
 cdk.out
-
 dist
-
-# All html and js on the root directory

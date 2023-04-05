@@ -1,1 +1,1 @@
-export * from './src/app-modal'
+export * from 'src/components/modal/src/app-modal'

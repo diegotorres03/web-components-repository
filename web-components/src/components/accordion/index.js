@@ -1,1 +1,1 @@
-export * from './src/app-accordion'
+export * from 'src/components/accordion/src/app-accordion'
