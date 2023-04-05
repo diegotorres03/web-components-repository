@@ -15,6 +15,7 @@ creating a simple `flip-card` and giving it some size
     <flip-card ></flip-card>
   </div>
 ```
+
 ### Activity 2: display front and back slots
 adding content to `flip-card` by using the `slot` attribute
 ```html
@@ -60,6 +61,10 @@ preventing card to flip by passing the `disable` attribute
     </flip-card>
   </div>
 ```
+
+
+---
+
 
 ## Section 2: triggers and events
 
@@ -209,6 +214,8 @@ adding `data-sync` and also linking it to app-modal
   </app-modal>
 ```
 
+---
+
 
 ## Section 3: creating our first web component
 
@@ -343,7 +350,7 @@ if you have any css, copy it in to `secret-card.css`
   ```
 
 here is the whole snippet
-  ```js
+```js
   // this is a set of global tools to simplify development
   import {  html } from '../../../global/web-tools'
 
@@ -369,15 +376,243 @@ here is the whole snippet
   // first argument is how you will use the tag <secret-card>
   window.customElements.define('secret-card', SecretCardComponent)
 
-  ```
+```
 
 
 ### Activity 4: testing the new `secret-card` tag
 now, let's we go back to `index.html` and replace the previous content with just this:
 ```html
+  <secret-card></secret-card>
+```
+
+## Section 4: comunication from within a component
+
+## Activity 1: remove the `button`, `ui-data-sync` and all the `trigger` and `on` attributes from `secret-card.html`
+From within the component, we will be handling events with JavaScript rather than the `trigger` attribute.
+```html
+<div class="flip-card-container">
+    <flip-card disabled>
+      <section slot="front">
+        <h1>This card holds a secret</h1>
+        <small>the secret is in the other side </small>
+      </section>
+
+      <section slot="back">
+        <h1>Hello <span name="name"></span></h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, blanditiis eius. Ea ipsum minus, amet commodi, delectus iure dolorem quasi doloribus cum facilis hic illum! Cupiditate est doloremque vero delectus.</p>
+      </section>
+    </flip-card>
+  </div>
+
+
+  <app-modal>
+    <h1 slot="title" >Do you want to know the secret</h1>
+    <section slot="main" >
+      <p>But first, let us know your name</p>
+      <input type="text" name="name" id="">
+    </section>
+  </app-modal>
+```
+
+
+## Activity 2:get interactive elements from `secret-card.js`
+Here we want to select and store reference for the  `flip-card` and `app-modal` elements.
+1. 
+```js
+  // ... imports here
+
+  export default class SecretCardComponent extends HTMLElement {
+
+    // 1. private variables to store a reference to flip-card and modal
+    #flipCard
+    #modal
+
+    constructor() {
+      super()
+      const template = html`
+        <style>${componentStyle}</style>
+        ${componentHtml}
+      `
+      this.attachShadow({ mode: 'open' })
+      this.shadowRoot.appendChild(template)
+
+      // 2. selecting elements from shadow dom
+      this.#flipCard = this.shadowRoot.querySelector('flip-card')
+      this.#modal = this.shadowRoot.querySelector('app-modal')
+
+    }
+
+  }
+
+  window.customElements.define('secret-card', SecretCardComponent)
 
 ```
 
+
+## Activity 3: add event listeners
+Now we are going to listen to the `click` event on the `flip-card`, when this event is detected we want to open the modal and ask for a password
+```js
+export default class SecretCardComponent extends HTMLElement {
+
+  #flipCard
+  #modal
+
+  constructor() {
+    super()
+    const template = html`
+        <style>${componentStyle}</style>
+        ${componentHtml}
+    `
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template)
+
+    this.#flipCard = this.shadowRoot.querySelector('flip-card')
+    this.#modal = this.shadowRoot.querySelector('app-modal')
+    
+    // when flip card is clicked, show the modal
+    this.#flipCard.addEventListener('click', event => this.#modal.show())
+
+
+    this.#modal.addEventListener('accepted', event => {
+      console.log(event) // data is located on event.detail
+    })
+  }
+}
+```
+on `secret-card.html` let's change the input name for password
+```html
+  <!-- replace -->
+   <app-modal>
+     <h1 slot="title">Do you want to know the secret</h1>
+     <section slot="main">
+       <p>But first, let us know your name</p>
+       <input type="text" name="name" id="">
+     </section>
+   </app-modal>
+
+  <!-- for this -->
+   <app-modal>
+     <h1 slot="title">Do you want to know the secret</h1>
+     <section slot="main">
+       <p>But first, let us know the password</p>
+       <input type="password" name="secret" id="">
+     </section>
+   </app-modal>
+
+```
+
+## Activity 4: get a value from an attribute
+Here we want to listen to the `secret-word` property from the `secret-card` component,
+on `index.html` let's add this property.
+```html
+  <secret-card secret-word="a secret password"></secret-card>
+```
+now, let's use this value inside the `secret-card.js` file
+```js
+
+export default class SecretCardComponent extends HTMLElement {
+
+  #flipCard
+  #modal
+
+  constructor() {
+    super()
+    const template = html`
+        <style>${componentStyle}</style>
+        ${componentHtml}
+    `
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template)
+
+    this.#flipCard = this.shadowRoot.querySelector('flip-card')
+    this.#modal = this.shadowRoot.querySelector('app-modal')
+    
+    this.#flipCard.addEventListener('click', event => this.#modal.show())
+
+    this.#modal.addEventListener('accepted', event => {
+      console.log(event)
+      const { secret } = event.detail
+      // this.getAttribute is the way
+      if (secret === this.getAttribute('secret-word'))
+      this.#flipCard.flip()
+    })
+  }
+
+}
+```
+
+### Activity 5: implement the `trigger` and `on` attributes
+Now, let's enable this component to listen to events from other components by using `trigger` and `on` attributes.
+In order to achieve this, we are going to be using the `registerTriggers` helper function from `web-components/src/global/web-tools.js`, feel free to explore the source code for this function and any other component used on this workshop.
+First let's import `registerTriggers`
+```js
+// this is a set of global tools to simplify development
+import { html, registerTriggers } from '../../global/web-tools'
+
+import componentStyle from './secret-card.css'
+import componentHtml from './secret-card.html'
+
+
+export default class SecretCardComponent extends HTMLElement {
+...
+```
+
+Our goal is to register event listeners when the component is mounted on the dom.
+Then call the `registerTriggers` function wich internally get all the elements that match the [css selector](doclink). Then register a listener for the event specified on the `on` attribute.
+We only need to pass a callback function to handle those events
+Here we are using the [connectedCallback](link to doc) life cycle event, this will be called when the component in mounted on DOM.
+
+```js
+export default class SecretCardComponent extends HTMLElement {
+
+  #flipCard
+  #modal
+
+
+  constructor() {
+    super()
+    const template = html`
+        <style>${componentStyle}</style>
+        ${componentHtml}
+    `
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template)
+
+    this.#flipCard = this.shadowRoot.querySelector('flip-card')
+    this.#modal = this.shadowRoot.querySelector('app-modal')
+    this.#flipCard.addEventListener('click', event => this.#modal.show())
+    this.#modal.addEventListener('accepted', event => {
+      console.log(event)
+      const { secret } = event.detail
+      if (secret === this.getAttribute('secret-word'))
+      this.#flipCard.flip()
+    })
+  }
+
+  connectedCallback() {
+    registerTriggers(this, () => this.#modal.show())
+  }
+
+
+}
+
+```
+
+Finally, let's test on `index.html`
+```html
+...
+<body>
+
+  <button id="reveal-btn">reveal secret</button>
+  
+  <secret-card trigger="#reveal-btn" on="click" secret-word="a secret password"></secret-card>
+  
+</body>
+...
+```
+
+
+---
 
 
 # Chapter 2: Composing apps with Web Components
@@ -401,3 +636,9 @@ end chapter 1
 ```html
 
 ```
+
+
+---
+
+
+[back to top](#chapter-1-intro-to-web-components)
