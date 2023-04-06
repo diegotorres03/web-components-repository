@@ -30,7 +30,7 @@ const config = {
         test: /\.css$/i,
         include: [
           path.resolve(__dirname, 'src/components'),
-          path.resolve(__dirname, 'src/layout'),
+          path.resolve(__dirname, 'src/layouts'),
         ],
         use: ['raw-loader'],
       },
@@ -38,7 +38,7 @@ const config = {
         test: /\.css$/i,
         exclude: [
           path.resolve(__dirname, 'src/components'),
-          path.resolve(__dirname, 'src/layout'),
+          path.resolve(__dirname, 'src/layouts'),
         ],
         include: [path.resolve(__dirname, 'src/global')],
         use: ['style-loader', 'css-loader'],
