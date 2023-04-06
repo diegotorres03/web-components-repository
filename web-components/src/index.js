@@ -1,10 +1,10 @@
-import 'src/global/style-tools.css'
+import './global/web-tools'
 // import './global/Themes/theme-swamp.css'
-import 'src/global/Themes/theme-mono.css'
+import './global/themes/theme-mono.css'
 // import './global/Themes/theme-night.css'
 
-export * from 'src/components'
-export * from 'src/layouts'
-export * from 'src/services'
-export * from 'src/workshop'
+export * from './components'
+export * from './layouts'
+export * from './services'
+export * from './workshop'
 // import FlipCard from './components/flip-card';

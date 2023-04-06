@@ -1,1 +1,1 @@
-export * from 'src/workshop/secret-card'
+export * from './secret-card'
