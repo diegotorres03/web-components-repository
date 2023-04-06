@@ -1,0 +1,61 @@
+<mxfile host="65bd71144e">
+    <diagram id="_PFnQVZeaqABYH4b3Fgm" name="Page-1">
+        <mxGraphModel dx="1215" dy="542" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.browserWindow;rSize=0;strokeColor=#666666;strokeColor2=#008cff;strokeColor3=#c4c4c4;mainText=,;recursiveResize=0;" vertex="1" parent="1">
+                    <mxGeometry x="232" y="49" width="848" height="493" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="172" y="165" width="658" height="309" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Page 1" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="2">
+                    <mxGeometry x="60" y="12" width="110" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="https://www.draw.io" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;rSize=0;fontSize=17;fontColor=#666666;align=left;" vertex="1" parent="2">
+                    <mxGeometry x="130" y="60" width="250" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="10" y="165" width="146" height="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="10" y="119" width="820" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="227" y="222" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="615" y="222" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="421" y="222" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="227" y="309" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="615" y="309" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="421" y="309" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="227" y="391" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="615" y="391" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="Flip&lt;br&gt;Card" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="421" y="391" width="144" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Accordion&lt;br&gt;with&lt;br&gt;instructions&lt;br&gt;and&amp;nbsp;&lt;br&gt;Q&amp;amp;A" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="16.5" y="274" width="133" height="192" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="Plain Card&lt;br&gt;with stats about&amp;nbsp;&lt;br&gt;the current&lt;br&gt;game" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                    <mxGeometry x="16.5" y="175" width="131.5" height="87" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
