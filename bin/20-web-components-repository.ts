@@ -3,6 +3,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { WebComponentsRepositoryStack } from '../lib/web-components-repository-stack';
 import { WebComponentsPipelineStack } from '../lib/pipeline-stack'
+import { WebDevConStack } from '../lib/web-dev-con-stack'
 
 import {PlaygroundStack} from '../lib/playground-stack'
 
@@ -17,6 +18,8 @@ const env = {
 
 // new WebComponentsPipelineStack(app, 'webComponentsRepoPilepine', { env })
 
+
+new WebDevConStack(app, 'web-dev-con')
 
 new WebComponentsRepositoryStack(app, 'wc-stage', { env })
 

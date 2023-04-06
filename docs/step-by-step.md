@@ -619,6 +619,185 @@ Finally, let's test it in `index.html`:
 # Chapter 2: Composing apps with Web Components
 ### Activity x: 
 
+
+## Section 1: data components
+## Section 2: event components
+
+### Activity 1: basic event handling
+Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
+
+This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
+Let's see some examples:
+
+**let's start with the basic**
+
+In this exaple, we have one `button` and `app-modal`, as trigger we are passing the id of the button (note the `#`) an the event will be `click`.
+```html
+  <button id="btn" >click me</button>
+
+  <app-modal trigger="#btn" on="click" ></app-modal> -->
+```
+
+**Now, let's say we need to listen to 2 buttons**
+
+Not an issue! `trigger` accepts any valid css selector, so we can do something like this:
+```html
+  <button id="btn-1" data-modal >click me</button>
+  <button id="btn-2" data-modal >or click me</button>
+
+  <app-modal trigger="[data-modal]" on="click" ></app-modal> -->
+```
+here we added a `data-modal` attribute and passed `[data-modal]` as trigger. By doing this, `app-modal` will listen to any element that has `data-modal` and emits a click event.
+
+**Well! what if the other element emit a different event**
+
+Let's look at this scenario, we have a `button` and a `select`. The issue here is that we want to listen to the `change` event on the `select` and `click` on `button`.
+```html
+
+  <button id="btn" >click me</button>
+
+  <select id="sel">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
+  <app-modal trigger="#btn" on="click" ></app-modal>
+
+
+```
+
+
+Introducing `event-source` and `event-group`.
+With `event-source` we can listen to a trigger and it will emit a new `data` event, in other words, is acting as the man in the middle. this in order to decouple the consumers from the producers of events.  
+
+
+let's review the initial example with an `event-source`.
+Now `app-modal` will open when a `data` event from `event-source` is emited, and this will happen when `click` is detected on the `button`.
+
+```html
+  <button id="btn" >click me</button>
+
+  <app-modal trigger="#on-btn-click" on="data" ></app-modal>
+
+  <event-source id="on-btn-click" trigger="#btn" on="click" ></event-source>
+```
+
+let's do the same for the `select`, 
+```html
+  
+  <button id="btn" >click me</button>
+
+  <select id="sel">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
+  <app-modal trigger=".app-modal-trigger" on="data" ></app-modal>
+
+  <event-source class="app-modal-trigger" id="on-btn-click" trigger="#btn" on="click" ></event-source>
+  <event-source class="app-modal-trigger" id="on-select-change" trigger="#sel" on="change" ></event-source>
+```
+
+This solution will work fine, but we will discover other ways to achieve the same
+
+### Activity 2: `event-source` and `event-group`
+
+As we learned in the previous activity, the `event-source` tag acts as a mediator. It listens to events from a source and then immediately emits a data event with the values passed from the previous event.
+
+If you need to group multiple events and capture them, you can use the event-group. This element automatically subscribes to all children event sources and emits a `data` event for each event received from the `event-source`.
+```html
+  <button id="btn" >click me</button>
+
+  <select id="sel">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+  </select>
+
+  <app-modal trigger="#app-modal-trigger" on="data" ></app-modal>
+
+  <event-group id="app-modal-trigger">
+    <event-source trigger="#btn" on="click" ></event-source>
+    <event-source id="on-select-change" trigger="#sel" on="change" ></event-source>
+  </event-group>
+```
+
+We can also send many to many events.
+let's see this with an example.
+Starting with 4 buttons and 4 flip-cards
+```html
+  <style>
+    #button-list{
+      display: flex;
+      flex-direction: row;
+    }
+
+    #flip-grid {
+      display: grid;
+      grid-template-columns: 45% 45%;
+      grid-template-rows: 45% 45%;
+    }
+  </style>
+
+  <div id="button-list">
+    <button id="btn-1" >click me 1</button>
+    <button id="btn-2" >click me 2</button>
+    <button id="btn-3" >click me 3</button>
+    <button id="btn-4" >click me 4</button>
+  </div>
+    
+
+  <div id="flip-grid">
+    <flip-card trigger="#app-modal-trigger-1" on="data"></flip-card>
+    <flip-card trigger="#app-modal-trigger-2" on="data"></flip-card>
+    <flip-card trigger="#app-modal-trigger-3" on="data"></flip-card>
+    <flip-card trigger="#app-modal-trigger-4" on="data"></flip-card>
+  </div>
+
+```
+
+TODO: do step by step for this
+```html
+  <event-stream>
+    <event-group id="app-modal-trigger-1">
+      <event-source trigger="#btn-1" on="click" ></event-source>
+      <event-source trigger="#btn-2" on="click" ></event-source>
+    </event-group>
+  
+    <event-group id="app-modal-trigger-2">
+      <event-source trigger="#btn-3" on="click" ></event-source>
+      <event-source trigger="#btn-4" on="click" ></event-source>
+    </event-group>
+  
+
+    <event-group id="app-modal-trigger-3">
+      <event-source trigger="#btn-1" on="click" ></event-source>
+      <event-source trigger="#btn-3" on="click" ></event-source>
+    </event-group>
+  
+    <event-group id="app-modal-trigger-4">
+      <event-source trigger="#btn-2" on="click" ></event-source>
+      <event-source trigger="#btn-4" on="click" ></event-source>
+    </event-group>
+  
+  </event-stream>
+```
+
+
+When our app grow, and we need a way to funnel events, for analytics or other purposes, we can host ours `event-groups` on an `event-stream`
+```html
+```
+
+
+
+
+## Section 3: layout components
+
+
+
+
 ---
 
 end chapter 1

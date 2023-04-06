@@ -12,6 +12,12 @@ The goal of this lab is to showcase web components as an option when creating we
 
 
 ## steps
+
+## Stage link url
+[js lib](https://d1hhjlyh3vlkqr.cloudfront.net/main.js)
+
+
+
 ---
 
 1. [**Introduction to Web Components**](./step-by-step.md#chapter-1-intro-to-web-components)
