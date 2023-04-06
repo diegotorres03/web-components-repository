@@ -3,7 +3,7 @@
 ## Section 1: Using our first components
 
 ### Activity 1: Add a flip card
-Create a simple `flip-card` and give it some size
+Create a simple `flip-card` and give it some size:
 ```html
   <style>
     .flip-card-container {
@@ -17,7 +17,7 @@ Create a simple `flip-card` and give it some size
 ```
 
 ### Activity 2: Display front and back slots
-Add content to `flip-card` by using the `slot` attribute
+Add content to `flip-card` by using the `slot` attribute:
 ```html
   <style>
     .flip-card-container {
@@ -40,7 +40,7 @@ Add content to `flip-card` by using the `slot` attribute
 ```
 
 ### Activity 3: Disable flip
-Prevent the card from flipping by passing the `disable` attribute
+Prevent the card from flipping by passing the `disable` attribute:
 ```html
   <style>
     .flip-card-container {
@@ -69,8 +69,7 @@ Prevent the card from flipping by passing the `disable` attribute
 ## Section 2: Triggers and Events
 
 ### Activity 1: Create a button and a modal
-Adding a `button` and a `app-modal` and link them together.
-`trigger` attribute is a CSS selector and `on` is the event name
+Add a `button` and an `app-modal` and link them together:
 ```html
   <style>
     .flip-card-container {
@@ -96,13 +95,14 @@ Adding a `button` and a `app-modal` and link them together.
 
 ```
 
-### Activity 2: Connect modal to the button
-The idea here is that the `button`, when pressed, will emit the `click` event.
-We are going to listen to this event by using the `trigger` and `on` attributes on `app-modal`, which is acting as the listener.
+### Activity 2: Connect the modal to the button
+The idea here is that the `button`, when clicked, will emit a `click` event.
+We are going to listen for this event by using the `trigger` and `on` attributes in `app-modal`, which act as the listener for the click event.
 
-The `trigger` attribute is the CSS query for the element(s) this component will be listening to.
+The `trigger` attribute is the CSS query the `app-modal` component will be listening for.
 
-The `on` attribute is the event name for the element(s) this component is listening to.
+The `on` attribute is the event type the `app-modal` component is listening for.
+
 ```html
   <style>
     .flip-card-container {
@@ -118,10 +118,10 @@ The `on` attribute is the event name for the element(s) this component is listen
 
   <button>open</button>
 
-  <app-modal>
+  <app-modal trigger="button" on="click">
     <h1 slot="title" >This is the new title</h1>
     <section slot="main" >
-      <p>Add html here =)</p>
+      <p>Add HTML here =)</p>
       <input type="text" name="alias" id="">
     </section>
   </app-modal>
@@ -129,8 +129,8 @@ The `on` attribute is the event name for the element(s) this component is listen
 ```
 
 
-### Activity 3: Connect flip to modal
-Link `flip-card` and `app-modal` with the `trigger` attribute
+### Activity 3: Connect the flip-card component to the app-modal
+Link `flip-card` and `app-modal` with the `trigger` attribute:
 ```html
   <style>
     .flip-card-container {
@@ -164,8 +164,8 @@ Link `flip-card` and `app-modal` with the `trigger` attribute
 
 ## Activity 4: Reflect event data in the UI
 Here we are going to demonstrate how to get the data sent in an event, and how to change a components `textContent` or an attribute.
-To implement, create a `data-sync` tag around the HTML you want to update.
-Add the `name="propertyName"` property to the `input` or `label` tags, or `data-key="propertyName"` to the other tags. `propertyName` is the key of the data you are receiving.
+To implement, create a `ui-data-sync` tag around the HTML you want to update.
+Add the `name="<'propertyName'>"` property to the `input` or `label` tags, or `data-key="<'propertyName'>"` to the other tags. `propertyName` is the key for the data you are receiving.
 For example:
 ```js
 const sampleEventData = {
@@ -209,7 +209,7 @@ Add `data-sync` and link it to `app-modal`
     <h1 slot="title" >Do you want to know the secret?</h1>
     <section slot="main" >
       <p>First, let us know your name</p>
-      <input type="text" name="name" id="">
+      <input type="text" name="name">
     </section>
   </app-modal>
 ```
@@ -220,13 +220,13 @@ Add `data-sync` and link it to `app-modal`
 ## Section 3: Creating our first web component
 
 ### Activity 1: Create required files
-Inside the `src/workshop` folder we will create an `index.js` which will be the index for all components created in this lab
+Inside the `src/workshop` folder we will create an `index.js` which will be the index for all components created in this lab and add the following 'export' statement to it:
 - `index.js` in `src/workshop`
   ```js
   export * from './secret-card'
   ```
 Next, create a folder called `secret-card` and create the following files inside it:
-- `index.js` - This will be the access point to our component
+- `index.js` - This will be the access point to our component. Add the following 'export' statement to it:
   ```js
   export * from './secret-card'
   ```
@@ -252,6 +252,7 @@ Once finished, your folder structure should look like this:
 
 ### Activity 2: Copy/paste the HTML and CSS
 Copy all the HTML inside the `body` tag (not including the `body` tag itself) into `secret-card.html`. Don't add `body`, `html` or `header` tags.
+[DIEGO TO DO - need clarification somewhere on the refernce to 'bogy', 'html', 'header'....these are mentioned in the line above but not found anywhere in the instructions so far]
 ```html
 <div class="flip-card-container">
     <flip-card disabled trigger="app-modal" on="accepted">
@@ -279,7 +280,7 @@ Copy all the HTML inside the `body` tag (not including the `body` tag itself) in
     </section>
   </app-modal>
 ```
-If you have any CSS, copy it into `secret-card.css`
+Copy the following CSS it into `secret-card.css`
 ```css
   .flip-card-container {
     width: 500px; 
@@ -289,11 +290,11 @@ If you have any CSS, copy it into `secret-card.css`
 
 ### Activity 3: Create `SecretCardComponent` class
 In `secret-card.js` we will now provide the component definition and it's functionality.
-- First we want to import some dependencies. The `html` stored on  `./web-components/src/global/web-tools.js`
+- First we want to import some dependencies. Add the following line to import the `html` stored in  `./web-components/src/global/web-tools.js`:
   ```js
     import {  html } from '../../../global/web-tools'
   ```
-- Next, create a class named `SecretCardComponent`. This class will extend the native `HTMLElement` class.
+- Next, create a class named `SecretCardComponent`. This class will extend the native `HTMLElement` class:
   ```js
   import {  html } from '../../../global/web-tools'
 
@@ -303,7 +304,7 @@ In `secret-card.js` we will now provide the component definition and it's functi
     }
   }
   ```
-- Import the HTML and CSS
+- Import the HTML and CSS:
   ```js
   import {  html } from '../../../global/web-tools'
   
@@ -316,7 +317,7 @@ In `secret-card.js` we will now provide the component definition and it's functi
     }
   }
   ```
-- Lets use the imported assets in our component by creating a template and attaching it to the shadow root of the component
+- Lets use the imported assets in our component by creating a template and attaching it to the shadow root of the component:
   ```js
   import {  html } from '../../../global/web-tools'
 
@@ -338,7 +339,7 @@ In `secret-card.js` we will now provide the component definition and it's functi
 
   }
   ```
-- Finally, register the web component on the browser by calling 
+- Finally, register the web component on the browser by calling:
   ```js
   export default class SecretCardComponent extends HTMLElement {
     ...
@@ -380,15 +381,15 @@ Here is the whole snippet:
 
 
 ### Activity 4: Testing the new `secret-card` tag
-Let's we go back to `index.html` and replace the previous content with just this:
+Let's now we go back to `index.html` and use the new component we just created by replacing the previous content with this single line:
 ```html
   <secret-card></secret-card>
 ```
 
 ## Section 4: Communication from within a component
 
-## Activity 1: remove the `button`, `ui-data-sync` and all the `trigger` and `on` attributes from `secret-card.html`
-From within the component, we will be handling events with JavaScript rather than the `trigger` attribute.
+### Activity 1: Remove the `button`, `ui-data-sync` and all the `trigger` and `on` attributes from `secret-card.html`
+From within the component, we will be handling events with JavaScript rather than the `trigger` attribute:
 ```html
 <div class="flip-card-container">
     <flip-card disabled>
@@ -415,8 +416,8 @@ From within the component, we will be handling events with JavaScript rather tha
 ```
 
 
-## Activity 2: Get interactive elements from `secret-card.js`
-Here we want to select and store a reference for the  `flip-card` and `app-modal` elements.
+### Activity 2: Get interactive elements from `secret-card.js`
+Here we want to select and store a reference for the `flip-card` and `app-modal` elements:
 1. 
 ```js
   // ... imports here
@@ -449,7 +450,7 @@ Here we want to select and store a reference for the  `flip-card` and `app-modal
 ```
 
 
-## Activity 3: Add event listeners
+### Activity 3: Add event listeners
 Now we are going to listen to the `click` event on the `flip-card`. When this event is detected we want to open the modal and ask for a password
 ```js
 export default class SecretCardComponent extends HTMLElement {
@@ -501,13 +502,13 @@ In `secret-card.html`, let's change the input from a name type to a password typ
 
 ```
 
-## Activity 4: Get a value from an attribute
+### Activity 4: Get a value from an attribute
 Here we want to listen to the `secret-word` property from the `secret-card` component.
 In `index.html`, let's add this property:
 ```html
   <secret-card secret-word="a secret password"></secret-card>
 ```
-Now, let's use this value inside the `secret-card.js` file
+Now, let's use this value inside the `secret-card.js` file:
 ```js
 
 export default class SecretCardComponent extends HTMLElement {
@@ -542,9 +543,9 @@ export default class SecretCardComponent extends HTMLElement {
 ```
 
 ### Activity 5: Implement the `trigger` and `on` attributes
-Let's enable this component to listen to events from other components by using `trigger` and `on` attributes.
+Let's enable this component to listen to events from other components by using the `trigger` and `on` attributes.
 In order to achieve this, we are going to be using the `registerTriggers` helper function from `web-components/src/global/web-tools.js`. Feel free to explore the source code for this function and any other component used on this workshop.
-First, let's import `registerTriggers`
+First, let's import `registerTriggers`:
 ```js
 // this is a set of global tools to simplify development
 import { html, registerTriggers } from '../../global/web-tools'
@@ -558,7 +559,7 @@ export default class SecretCardComponent extends HTMLElement {
 ```
 
 Our goal is to register event listeners when the component is mounted on the DOM.
-Then call the `registerTriggers` function which, internally, will get all the elements that match the [css selector](doclink). Then register a listener for the event specified on the `on` attribute.
+Then call the `registerTriggers` function which, internally, will get all the elements that match the [css selector](doclink). Then register a listener for the event specified in the `on` attribute.
 We only need to pass a callback function to handle those events.
 Here we are using the [connectedCallback](link to doc) life cycle event. This will be called when the component is mounted on the DOM.
 
@@ -598,7 +599,7 @@ export default class SecretCardComponent extends HTMLElement {
 
 ```
 
-Finally, let's test in `index.html`
+Finally, let's test it in `index.html`:
 ```html
 ...
 <body>
