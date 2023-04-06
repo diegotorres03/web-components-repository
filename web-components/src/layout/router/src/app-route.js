@@ -57,12 +57,17 @@ export default class RouteComponent extends HTMLElement {
   }
 
   activated() {
-    this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
+    const componetHash = this.getAttribute('hash')
+    const currentHash = window.location.hash.replace('#', '')
+    if(currentHash !== componetHash) return
+    const event = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
       detail: {
-        route: this.getAttribute('hash') 
+        route: currentHash
       }
-    }))
+    })
+    console.log(event)
+    this.dispatchEvent(event)
   }
 
 }

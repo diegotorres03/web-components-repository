@@ -54,7 +54,10 @@ export default class RouterComponent extends HTMLElement {
 
 
 
-    routes.forEach(route => route.classList.remove('hidden'))
+    routes.forEach(route => {
+      route.classList.remove('hidden')
+      route.activated()
+    })
 
 
     routes

@@ -1,25 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
+
 <body>
-  
-  <button>Add 1 to dataset</button>
-  <br>
-  <app-modal trigger="button" on="click">
-    <form slot="main">
-      <label>name</label><input type="text" name="name"><br>
-      <label>value</label><input type="number" name="value"><br>
-    </form>
-  </app-modal>
-  <data-set trigger="app-modal" on="accepted" visible >
-  </data-set>
 
 
+  <app-layout>
+
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+    </nav>
+
+    <section slot="left-content">
+
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <b>Best Score:</b><span>0</span>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+    </section>
+
+    <app-router slot="main">
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+        <h1 slot="title">Start new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+
+      <script>
+        document
+          .querySelector('app-router')
+          .addEventListener('navigated', event =>
+            console.log(`navigated to ${event.detail.hash || 'home'}`))
+      </script>
+
+      <app-route>
+        <h1>I'm Home</h1>
+      </app-route>
+
+      <app-route id="game-route" hash="game">
+
+        <h1>I'm Game</h1>
+        <ui-data-sync trigger="#username-selection-modal" on="accepted">
+          <p>Welcome <span data-key="username"></span></p>
+        </ui-data-sync>
+
+        <grid-layout rows="3" columns="3">
+          <template>
+            <flip-card></flip-card>
+          </template>
+        </grid-layout>
+
+      </app-route>
+
+      <app-route hash="leaderboard">
+        <h1>I'm Leaderboard</h1>
+      </app-route>
+
+    </app-router>
+
+    <footer slot="footer">Thank you.</footer>
+
+  </app-layout>
 
 </body>
+
 </html>

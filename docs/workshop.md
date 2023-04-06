@@ -45,8 +45,9 @@ The goal of this lab is to showcase web components as an option when creating we
 2. **Composing apps with Web Components**
     1. [ ] Layout components
         1. [ ] app-layout
-        2. [ ] deck-reader
-        3. [ ] app-router
+        2. [ ] hash routing
+        3. [ ] grid-layout component
+        4. [ ] mind-flip component
     2. [ ] Data components
         1. [ ] data point
         2. [ ] data set

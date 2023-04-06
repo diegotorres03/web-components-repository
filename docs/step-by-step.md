@@ -162,7 +162,7 @@ Link `flip-card` and `app-modal` with the `trigger` attribute:
   </app-modal>
 ```
 
-## Activity 4: Reflect event data in the UI
+### Activity 4: Reflect event data in the UI
 Here we are going to demonstrate how to get the data sent in an event, and how to change a components `textContent` or an attribute.
 To implement, create a `ui-data-sync` tag around the HTML you want to update.
 Add the `name="<'propertyName'>"` property to the `input` or `label` tags, or `data-key="<'propertyName'>"` to the other tags. `propertyName` is the key for the data you are receiving.
@@ -617,10 +617,205 @@ Finally, let's test it in `index.html`:
 
 
 # Chapter 2: Composing apps with Web Components
-### Activity x: 
+
+## Section 1: layout components
+
+### Activity 1: app-layout
+This create and app layout.
+the slot name will be displayed on the browser
+```html
+   <app-layout></app-layout>
+```
+
+let's fill `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. Here we are adding some titles and a navigation bar on top with 3 routes
+```html
+  <style>
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+  </style>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+    </nav>
+
+    <footer slot="footer">Thank you.</footer>
+  </app-layout>
+```
+
+Now, on the left-content lets add some components, a `plain-card` on top and an `app-accordion` below   
+```html
+   ...
+    </nav>
+
+    <section slot="left-content">
+      <plain-card></plain-card>
+      <app-accordion></app-accordion>
+    </section>
+
+    <footer slot="foother">Thank you.</footer>
+    ...
+```
+
+There are 2 slots on `plain-card`: `title` to add text to upper bar, and `main` to add the content of the card.
+Let's add some placeholders for the score
+```html
+  <plain-card>
+     <h2 slot="title">My Score</h2>
+     <section slot="main">
+       <b>Best Score:</b><span>0</span>
+     </section>
+   </plain-card>
+```
+
+For the accoirdion, we only use one slot, so is not require to specify the slot attribute, everything passed to this component, will be added inside the accordion.
+Every item on the accordion should be wrapped on a tag, like `section`, `article` or `div`. Also, the first item should be a <h*> like `h1`, `h2` and so on. This will be adopted as the title on the accordion tab
+Here let's add the instructions for our game
+```html
+   <app-accordion>
+      <section>
+       <h5>Game instructions</h5>
+       <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+       <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+      </section>
+      <section>
+       <h5>FAQs</h5>
+       <b>Question 1:</b>
+       <p>answer 1</p>
+       <hr>
+       <b>Question 2:</b>
+       <p>answer 2</p>
+       <hr>
+      </section>
+   </app-accordion>
+```
+
+So, `main` slot is the last one to fill, but before doing it, let's talk about routing.
 
 
-## Section 1: data components
+### Activity 2: hash routing
+On the previous chapter we added 3 links at the top of the page, `home`, `game` and `leaderboard`.
+In order to handle them we'll make use hash routing. In other words, we will display different content on fiferent hash (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
+
+To detect and handle this hash changes, we have the  `app-router` and `app-route` components.
+The first one, `app-router` is the parent element, and is the one that listen for chages in the url and let the child `app-route` to activate or not.
+
+Lets add an `app-router` as the main slot:
+```html
+  ...
+         </section>
+      </app-accordion>
+    </section>
+
+    <app-router slot="main">
+      <!-- routes will be here -->
+    </app-router>
+
+    <footer slot="footer">Thank you.</footer>
+  ...
+```
+
+For each individual route, we will use an `app-route`.
+This component has the attribute `hash="<hash_rotue>"` to specify when it should be displayed or not.
+For the default route, don't spesify the `hash` attribute
+
+Let's add `app-route` for the 3 routes we have:
+```html
+  ...
+   <app-router slot="main">
+
+      <app-route>I'm Home</app-route>
+      <app-route hash="game" >I'm Game</app-route>
+      <app-route hash="leaderboard" >I'm Leaderboard</app-route>
+
+   </app-router>
+  ...
+```
+
+and let's add a `hidden` css class
+```css
+    .hidden {
+      display: none;
+    }
+```
+
+Now if you test in your browser, you should be able to navigate and see page changes on your app.
+
+app-router emit a `navigated` event when there is a change in the url, and it will activate the proper `app-route`.
+This `app-route` when the hash match, it will display its content and it will emit the `activated` event.
+
+Let's see this in action. by adding an `app-modal` that ask for a username everytime we navigate to the `Game` page.
+first, let's add an `id` attribute to the game route:
+```html
+  <app-route id="game-route" hash="game">
+```
+then let's add an `app-modal` and set the `trigger` and the `on` attributes,
+```html
+  ...
+   <app-router slot="main">
+  
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+        <h1 slot="title">Start new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>Choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+  
+      <app-route>
+  ...
+```
+
+On the game route, let's reflect the username.
+Let's add an `ui-data-sync` to get the `username` input from `app-modal` and place it inside a `span` tag. 
+**Note:** the input name must match the data-key attribute on the desired target element.
+
+```html
+   ...
+   <app-route id="game-route" hash="game">
+     <h1>I'm Game</h1>
+     <ui-data-sync trigger="#username-selection-modal" on="accepted" >
+       <p>Welcome <span data-key="username"></span></p>
+     </ui-data-sync>
+   </app-route>
+   ...
+```
+
+and lastly, lets log in the console, every route change.
+```html
+   ...
+   </app-modal>
+
+      <script>
+        document
+          .querySelector('app-router')
+          .addEventListener('navigated', event =>
+            console.log(`navigated to ${event.detail.hash || 'home'}`))
+      </script>
+
+      <app-route>
+   ...
+```
+
+
+
+### Activity x: xxx
+### Activity x: xxx
+```html
+```
+```html
+```
+
+## Section 2: data components
 
 ### Activity 1: data point and data set
 
@@ -643,9 +838,9 @@ This exaple is good for fixed values, but if we need user input here is an easy 
 first,
 
 
-## Section 2: event components
+## Section 3: event components
 
-### Activity 2: basic event handling
+### Activity 1: basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
@@ -779,7 +974,6 @@ Starting with 4 buttons and 4 flip-cards
   </div>
 
 ```
-
 TODO: do step by step for this
 ```html
   <event-stream>
@@ -813,9 +1007,10 @@ When our app grow, and we need a way to funnel events, for analytics or other pu
 ```
 
 
+### Activity 3: 
 
 
-## Section 3: layout components
+
 
 
 
