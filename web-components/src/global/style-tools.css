@@ -156,3 +156,7 @@ button {
   filter: brightness(0.95);
   transform: scale(0.95);
 }
+
+/* flip-card {
+  display: block;
+} */

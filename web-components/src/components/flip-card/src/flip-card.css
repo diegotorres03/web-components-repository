@@ -37,8 +37,6 @@
 
   width: 100%;
   height: 100%;
-  /* En caso de textos largos, se desbordan y queda mal esteticamente */
-  padding: 12px;
 
   backface-visibility: hidden;
   overflow: hidden;
@@ -55,13 +53,12 @@
   color: var(--main-tone);
 }
 
-/* .back-content,
+.back-content,
 .front-content {
-  display: block;
   padding: 12px;
-} */
-/* 
-.back-content h5,
-.front-content h5 {
-  font-size: 2em;
-} */
+}
+
+/* Aplica el estilo a la etiqueta personalizada por fuera */
+:host {
+  display: block;
+}
