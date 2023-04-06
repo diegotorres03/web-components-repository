@@ -8,77 +8,18 @@
 </head>
 <body>
   
+  <button>Add 1 to dataset</button>
+  <br>
+  <app-modal trigger="button" on="click">
+    <form slot="main">
+      <label>name</label><input type="text" name="name"><br>
+      <label>value</label><input type="number" name="value"><br>
+    </form>
+  </app-modal>
+  <data-set trigger="app-modal" on="accepted" visible >
+  </data-set>
 
-  <!-- step 1: so far we conect components this way -->
-<!-- 
-  <button id="btn" >click me</button>
 
-  <app-modal trigger="#btn" on="click" ></app-modal> -->
-
-
-  <!-- step 2 -->
-
-  <!-- <button id="btn-1" data-modal >click me</button>
-  <button id="btn-2" data-modal >or click me</button>
-
-  <app-modal trigger="[data-modal]" on="click" ></app-modal> -->
-
-  <!-- step 3 -->
-
-  
-
-  <style>
-    #button-list{
-      display: flex;
-      flex-direction: row;
-    }
-
-    #flip-grid {
-      display: grid;
-      grid-template-columns: 45% 45%;
-      grid-template-rows: 45% 45%;
-    }
-  </style>
-
-  <div id="button-list">
-    <button id="btn-1" >click me 1</button>
-    <button id="btn-2" >click me 2</button>
-    <button id="btn-3" >click me 3</button>
-    <button id="btn-4" >click me 4</button>
-  </div>
-    
-
-  <div id="flip-grid">
-    <flip-card trigger="#app-modal-trigger-1" on="data"></flip-card>
-    <flip-card trigger="#app-modal-trigger-2" on="data"></flip-card>
-    <flip-card trigger="#app-modal-trigger-3" on="data"></flip-card>
-    <flip-card trigger="#app-modal-trigger-4" on="data"></flip-card>
-  </div>
-
-  <event-stream>
-
-    <event-group id="app-modal-trigger-1">
-      <event-source trigger="#btn-1" on="click" ></event-source>
-      <event-source trigger="#btn-2" on="click" ></event-source>
-    </event-group>
-  
-    <event-group id="app-modal-trigger-2">
-      <event-source trigger="#btn-3" on="click" ></event-source>
-      <event-source trigger="#btn-4" on="click" ></event-source>
-    </event-group>
-  
-
-    <event-group id="app-modal-trigger-3">
-      <event-source trigger="#btn-1" on="click" ></event-source>
-      <event-source trigger="#btn-3" on="click" ></event-source>
-    </event-group>
-  
-    <event-group id="app-modal-trigger-4">
-      <event-source trigger="#btn-2" on="click" ></event-source>
-      <event-source trigger="#btn-4" on="click" ></event-source>
-    </event-group>
-  
-  </event-stream>
 
 </body>
 </html>

@@ -620,9 +620,31 @@ Finally, let's test in `index.html`
 
 
 ## Section 1: data components
+
+### Activity 1: data point and data set
+
+A `data-point` tag represent a single data entry, imagine this as a record on a SQL table.
+
+Data sets are a collection of data points.
+
+We can make the `data-set` listen for events and add the content of `event.detail` or the data attributes from the `event.target`.
+
+Let's see this in action. We just need a couple `button` with some data attributes and a `data-set` component listening for event on those buttons.
+Note: add the `visible` attribute to `data-set` to make the data-points visible, this is helpful for development.
+```html
+  <button id="btn-1" data-name="btn-1" data-value="1">Add 1 to dataset</button>
+  <button id="btn-2" data-name="btn-2" data-value="2">Add 2 to dataset</button>
+  <br>
+  <data-set trigger="button" on="click" visible ></data-set>
+```
+
+This exaple is good for fixed values, but if we need user input here is an easy way to do it.
+first,
+
+
 ## Section 2: event components
 
-### Activity 1: basic event handling
+### Activity 2: basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.

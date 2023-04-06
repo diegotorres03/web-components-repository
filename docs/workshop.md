@@ -50,11 +50,10 @@ The goal of this lab is to showcase web components as an option when creating we
         5. [implement the `trigger` and `on` attributes](./step-by-step.md#activity-5-implement-the-trigger-and-on-attributes)
     <!-- 1. Let's share our component -->
 2. **Composing apps with Web Components**
-<<<<<<< HEAD
     1. [ ] data components
-       1. [ ] data point anddata set
-       2. [ ] data query
-       3. [ ] data store
+       1. [ ] data point and data set
+       2. [ ] data store
+       3. [ ] data query
        4. [ ] ui sync components
     2. [ ] event components
        1. [ ] basic event handling
@@ -71,30 +70,6 @@ The goal of this lab is to showcase web components as an option when creating we
         3. install reusable constructs for lab
     2. deploy webapp using CDK
         1. use `WebappConstruct` to deploy webapp
-=======
-    1. [ ] Layout components
-       1. [ ] app-layout
-       2. [ ] deck-reader
-       3. [ ] app-router
-    2. [ ] Data components
-       1. [ ] data point
-       2. [ ] data set
-       3. [ ] data query
-       4. [ ] data store
-       5. [ ] ui sync components
-    3. [ ] Event components
-       1. [ ] event source
-       2. [ ] event group
-       3. [ ] event stream
-       4. [ ] transforms and filters
-3. **Deploy webapps to AWS**
-    1. Introduction to [AWS CDK](https://aws.amazon.com/cdk/)
-        1. install CDK
-        2. initialize CDK project
-        3. install reusable constructs for the lab
-    2. Deploy webapp using CDK
-        1. use `WebappConstruct`to deploy the webapp
->>>>>>> 6727bf527f339040f6a6eb29f06161b61dcb2b83
         2. lambda@edge??
     3. Create and deploy a rest api using CDK
         1. create `RestApiContruct`
