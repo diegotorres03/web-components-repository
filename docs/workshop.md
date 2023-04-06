@@ -20,7 +20,8 @@ The goal with this lab is to showcase alternatives to create web applications wi
 
 ## steps
 
-
+## Stage link url
+[js lib](https://d1hhjlyh3vlkqr.cloudfront.net/main.js)
 
 
 
@@ -49,21 +50,19 @@ The goal with this lab is to showcase alternatives to create web applications wi
         5. [implement the `trigger` and `on` attributes](./step-by-step.md#activity-5-implement-the-trigger-and-on-attributes)
     <!-- 1. let's share our component -->
 2. **Composing apps with Web Components**
-    1. [ ] layout components
+    1. [ ] data components
+       1. [ ] data point anddata set
+       2. [ ] data query
+       3. [ ] data store
+       4. [ ] ui sync components
+    2. [ ] event components
+       1. [ ] basic event handling
+       2. [ ] `event-source`, `event-group` and `event stream`
+       3. [ ] transforms and filters
+    3. [ ] layout components
        1. [ ] app-layout
        2. [ ] deck-reader
        3. [ ] app-router
-    2. [ ] data components
-       1. [ ] data point
-       2. [ ] data set
-       3. [ ] data query
-       4. [ ] data store
-       5. [ ] ui sync components
-    3. [ ] event components
-       1. [ ] event source
-       2. [ ] event group
-       3. [ ] event stream
-       4. [ ] transforms and filters
 3. **deploy webapps to AWS**
     1. Intro to AWS CDK
         1. install cdk
