@@ -1,29 +1,17 @@
 # Reimagining the web with native Web Components
 
-The goal of this lab is to showcase web components as an option when creating web application, with a focus on reusability and easy of use 
+The goal of this lab is to showcase web components as an option when creating web application, with a focus on simplicity and reusability. 
 
 
 ## Prerequisites
-1. **Introduction to HTML** (optional)
-    1. HTML tags
-        1. definition
-        1. examples
-    1. CSS selectors
-        1. id
-        1. class
-        1. data-attributes
-    1. JavaScript `querySelector`
-        1. getting an element from the DOM with CSS selectors
-        1. listen to events
-        1. changing element properties
-        1. adding/removing CSS classes
+---
+1. (AWS Account)[https://aws.amazon.com/free/]
+2. Text editor or IDE -recommend (Cloud9)[https://aws.amazon.com/cloud9/]
+3. (NodeJS)[https://nodejs.org/en]
+4. Basic understanding of HTML, JavaScript and CSS
+
 
 ## steps
-
-
-
-
-
 ---
 
 1. [**Introduction to Web Components**](./step-by-step.md#chapter-1-intro-to-web-components)
@@ -41,7 +29,7 @@ The goal of this lab is to showcase web components as an option when creating we
         2. [copy/paste html and CSS](./step-by-step.md#activity-2-copy-paste-html-and-css)
         3. [create `SecretCardComponent` class](./step-by-step.md#activity-3-create-secretcardcomponent-class)
         4. [testing the new `secret-card` tag](./step-by-step.md#activity-4-testing-the-new-secret-card-tag)
-    4. [Communication from within a component](./step-by-step.md#section-4-comunication-from-within-a-component)
+    4. [Communication from within a component](./step-by-step.md#section-4-communication-from-within-a-component)
         1. [remove the `button` and all the `trigger` and `on` attributes from `secret-card.html`](./step-by-step.md#activity-1-remove-the-button-ui-data-sync-and-all-the-trigger-and-on-attributes-from-secret-cardhtml)
         2. [get interactive elements from `secret-card.js`](./step-by-step.md#activity-2get-interactive-elements-from-secret-cardjs)
         3. [add event listeners](./step-by-step.md#activity-3-add-event-listeners)
