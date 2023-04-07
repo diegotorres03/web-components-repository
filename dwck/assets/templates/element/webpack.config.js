@@ -1,14 +1,12 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
 // Entry point for webpack bundler
 const entry = {
-  dWCk: './src/index.js',
+  main: './src/index.js',
 };
 
 // Output path and filename for webpack bundler
@@ -35,34 +33,32 @@ const moduleRules = [
   {
     test: /\.css$/i,
     include: [
-      path.resolve(__dirname, 'src/components'),
-      path.resolve(__dirname, 'src/layouts'),
+      // include all the css files meant to be imported in js files
     ],
     use: ['raw-loader'],
   },
   {
     test: /\.css$/i,
     exclude: [
-      path.resolve(__dirname, 'src/components'),
-      path.resolve(__dirname, 'src/layouts'),
+      // exclude all the css files meant to be imported in js files
     ],
-    include: [path.resolve(__dirname, 'src/global')],
+    include: [
+      // include all the css files meant to be imported in html files
+    ],
     use: ['style-loader', 'css-loader'],
   },
   {
     test: /\.html$/i,
     loader: 'html-loader',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-    }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: 'src/sw.js', to: 'sw.js' },
-      ],
-    }),
-  ],
+];
+
+// Webpack configuration
+const config = {
+  entry,
+  output,
+  devServer,
+  plugins,
   module: {
     rules: moduleRules,
   },
