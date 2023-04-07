@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "This is a set of scripts to create simple starter templates for the Diego Web Components Kit (DWCk)",
   "main": "index.js",
-  "type": "module",
   "bin": {
     "dwck": "./index.js"
   },
@@ -16,8 +15,6 @@
   },
   "license": "ISC",
   "dependencies": {
-    "commander": "^10.0.0",
-    "fs-extra": "^11.1.1",
-    "progress": "^2.0.3"
+    "commander": "^10.0.0"
   }
 }
