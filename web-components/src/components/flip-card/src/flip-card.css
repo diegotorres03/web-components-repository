@@ -38,7 +38,7 @@
   width: 100%;
   height: 100%;
   /* En caso de textos largos, se desbordan y queda mal esteticamente */
-  padding: 12px;
+  /* padding: 12px; */
 
   backface-visibility: hidden;
   overflow: hidden;

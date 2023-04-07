@@ -808,7 +808,52 @@ and lastly, lets log in the console, every route change.
 
 
 
-### Activity x: xxx
+### Activity 3: grid-layout component
+on `web-components/src/workshop` create the `grid-layout` folder
+then create the `index.js` on `web-components/src/workshop/grid-layout` with the following content:
+```js
+  export * from './grid-layout'
+```
+then lets create `grid-layout.js` on the same folder and let's initialize an emtpy component
+```js
+   import { html, registerTriggers } from '../../../global/web-tools'
+
+   export default class GridLayoutComponent extends HTMLElement {
+
+     constructor() {
+       super()
+       const template = html``
+       this.attachShadow({ mode: 'open' })
+       this.shadowRoot.appendChild(template)
+     }
+
+     connectedCallback() {
+       registerTriggers(this, (event) => console.log(event))
+     }
+
+   }
+
+   window.customElements.define('grid-layout', GridLayoutComponent)
+```
+
+
+Now, in order to render the content that is passed between the `<grid-layout>this content </grid-layout>` we need to use a `slot` tag.
+Because for our use case, this component will only have one slot, there is no need to specify the slot name when consuming this `grid-layout`
+
+let's go back to the constructor function and add the slot tag
+```js
+   constructor() {
+      super()
+      const template = html`<slot></slot>` // here
+      this.attachShadow({ mode: 'open' })
+      this.shadowRoot.appendChild(template)
+   }
+```
+
+this will be enogh to test our component,  no grid so far.
+On `index.html` lets add the following snippet:
+```
+
 ### Activity x: xxx
 ```html
 ```

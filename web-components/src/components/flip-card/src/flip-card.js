@@ -59,6 +59,12 @@ export default class FlipCard extends HTMLElement {
     )
   }
 
+  reset() {
+    const flipcard = this.shadowRoot.querySelector('.flip-card')
+    flipcard.classList.remove('active')
+
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'scale') {
       const styleComponent = this.shadowRoot.querySelector('style')

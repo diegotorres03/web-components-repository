@@ -15,6 +15,10 @@
     .hidden {
       display: none;
     }
+    app-router {
+      width: 100%;
+      display: block;
+    }
   </style>
 </head>
 
@@ -88,11 +92,65 @@
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
 
-        <grid-layout rows="3" columns="3">
-          <template>
-            <flip-card></flip-card>
-          </template>
+        <template></template>
+
+        <!-- emit levelCompleted, levelFailed, abandoned, error -->
+        <memory-flip-board level="4" time="30s" preview></memory-flip-board>        
+
+
+<!-- 
+        <grid-layout gap="1px" columns="4" rows="4">
+            <flip-card>
+              <span slot="back">🍍</span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back">🍍</span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
+            <flip-card>
+              <span slot="back"></span>
+            </flip-card>
         </grid-layout>
+ -->
+
 
       </app-route>
 
