@@ -15,6 +15,7 @@
     .hidden {
       display: none;
     }
+
     app-router {
       width: 100%;
       display: block;
@@ -92,13 +93,24 @@
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
 
-        <template></template>
+        <button id="change-level-btn">change level</button>
+
+        <app-modal id="change-level-modal" trigger="#change-level-btn" on="click">
+          <form slot="main">
+            <input type="number" name="level">
+          </form>
+
+        </app-modal>
 
         <!-- emit levelCompleted, levelFailed, abandoned, error -->
-        <memory-flip-board level="4" time="30s" preview></memory-flip-board>        
+        <ui-data-sync trigger="#change-level-modal" on="accepted">
+          <h3  data-key="level">3</h3>
+          <span data-key="level"></span>
+          <memory-flip-board data-key="level" data-attribute="level" username="diegotrs" level="2" time="30s" preview></memory-flip-board>
+        </ui-data-sync>
 
 
-<!-- 
+        <!-- 
         <grid-layout gap="1px" columns="4" rows="4">
             <flip-card>
               <span slot="back">🍍</span>
