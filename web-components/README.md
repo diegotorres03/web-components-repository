@@ -1,13 +1,5 @@
 
 # dWCk
-
-## TODO
-
-- [ ] Update this
-- [ ] Move the relevant tests html files to the assets/html
-- [ ] Add npm option / wepack hack to serve the test asesets
-- [ ] Delete all the non-standard folders from the root of the project on the development branch
-
 ## UI Components
 
 Simple to use leaf components, use this as basic building blocks for your application.
