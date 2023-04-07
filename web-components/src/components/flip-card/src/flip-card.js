@@ -2,7 +2,6 @@
 import {
   html,
   mapComponentEvents,
-  sleep,
   updateVars,
   registerTriggers,
 } from '../../../global/web-tools'
