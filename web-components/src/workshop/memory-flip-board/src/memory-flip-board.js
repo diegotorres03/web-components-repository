@@ -1,5 +1,7 @@
-import { html, registerTriggers, updateVars } from '../../global/web-tools'
+import { html, registerTriggers, updateVars } from '../../../global/web-tools'
 
+
+// [ ] Alejo, meta copilit aca
 
 const emojiList = [
   '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒',
@@ -49,9 +51,6 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
       <main>
       
       </main>
-      <!-- <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
-                                                
-                                                </grid-layout> -->
     `
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)

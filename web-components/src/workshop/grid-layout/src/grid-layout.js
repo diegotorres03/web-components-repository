@@ -1,4 +1,4 @@
-import { html, registerTriggers } from '../../global/web-tools'
+import { html, registerTriggers } from '../../../global/web-tools'
 
 export default class GridLayoutComponent extends HTMLElement {
 
