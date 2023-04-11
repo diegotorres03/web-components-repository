@@ -5,10 +5,8 @@
   "main": "package-index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production --node-env=production",
-    "dev": "webpack --mode development --config development.config.js",
-    "build:dev": "webpack --mode=development",
-    "build:prod": "webpack --mode=production --node-env=production",
+    "build": "webpack --mode production --node-env production",
+    "dev": "webpack --mode development",
     "watch": "webpack --watch",
     "serve": "webpack serve"
   },

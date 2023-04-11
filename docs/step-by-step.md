@@ -618,16 +618,16 @@ Finally, let's test it in `index.html`:
 
 # Chapter 2: Composing apps with Web Components
 
-## Section 1: layout components
+## Section 1: Layout components
 
 ### Activity 1: app-layout
-This create and app layout.
-the slot name will be displayed on the browser
+Lets create and app layout.
+The slot name will be displayed in the browser:
 ```html
    <app-layout></app-layout>
 ```
 
-let's fill `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. Here we are adding some titles and a navigation bar on top with 3 routes
+Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. Here we are adding some titles and a navigation bar on top with 3 routes:
 ```html
   <style>
     nav a {
@@ -649,7 +649,7 @@ let's fill `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. 
   </app-layout>
 ```
 
-Now, on the left-content lets add some components, a `plain-card` on top and an `app-accordion` below   
+Now, on the left-content, lets add some components - a `plain-card` on top and an `app-accordion` below:  
 ```html
    ...
     </nav>
@@ -663,8 +663,8 @@ Now, on the left-content lets add some components, a `plain-card` on top and an 
     ...
 ```
 
-There are 2 slots on `plain-card`: `title` to add text to upper bar, and `main` to add the content of the card.
-Let's add some placeholders for the score
+There are 2 slots in `plain-card` - `title` to add text to upper bar, and `main` to add the content of the card.
+Let's add some placeholders for the score:
 ```html
   <plain-card>
      <h2 slot="title">My Score</h2>
@@ -674,9 +674,9 @@ Let's add some placeholders for the score
    </plain-card>
 ```
 
-For the accoirdion, we only use one slot, so is not require to specify the slot attribute, everything passed to this component, will be added inside the accordion.
-Every item on the accordion should be wrapped on a tag, like `section`, `article` or `div`. Also, the first item should be a <h*> like `h1`, `h2` and so on. This will be adopted as the title on the accordion tab
-Here let's add the instructions for our game
+For the accordion, we only use one slot, so it's not require to specify the slot attribute. Everything passed to this component will be added inside the accordion.
+Every item on the accordion should be wrapped on a tag, like `section`, `article` or `div`. Also, the first item should be a <h*> like `h1`, `h2` and so on. This will be adopted as the title on the accordion tab.
+Here let's add the instructions for our game:
 ```html
    <app-accordion>
       <section>
@@ -687,24 +687,24 @@ Here let's add the instructions for our game
       <section>
        <h5>FAQs</h5>
        <b>Question 1:</b>
-       <p>answer 1</p>
+       <p>Answer 1</p>
        <hr>
        <b>Question 2:</b>
-       <p>answer 2</p>
+       <p>Answer 2</p>
        <hr>
       </section>
    </app-accordion>
 ```
 
-So, `main` slot is the last one to fill, but before doing it, let's talk about routing.
+So, the `main` slot is the last one to fill, but before doing it, let's talk about routing.
 
 
-### Activity 2: hash routing
-On the previous chapter we added 3 links at the top of the page, `home`, `game` and `leaderboard`.
-In order to handle them we'll make use hash routing. In other words, we will display different content on fiferent hash (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
+### Activity 2: Hash routing
+In the previous chapter we added 3 links at the top of the page - `home`, `game` and `leaderboard`.
+In order to handle them we'll make use of hash routing. In other words, we will display different content with different hashes (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
 
-To detect and handle this hash changes, we have the  `app-router` and `app-route` components.
-The first one, `app-router` is the parent element, and is the one that listen for chages in the url and let the child `app-route` to activate or not.
+To detect and handle these hash changes, we have the `app-router` and `app-route` components.
+The first one, `app-router`, is the parent element, and is the one that listens for changes in the url and allows the child `app-route` to activate or not.
 
 Lets add an `app-router` as the main slot:
 ```html
@@ -723,7 +723,7 @@ Lets add an `app-router` as the main slot:
 
 For each individual route, we will use an `app-route`.
 This component has the attribute `hash="<hash_rotue>"` to specify when it should be displayed or not.
-For the default route, don't spesify the `hash` attribute
+For the default route, don't specify the `hash` attribute.
 
 Let's add `app-route` for the 3 routes we have:
 ```html
@@ -738,30 +738,30 @@ Let's add `app-route` for the 3 routes we have:
   ...
 ```
 
-and let's add a `hidden` css class
+and let's add a `hidden` css class"
 ```css
     .hidden {
       display: none;
     }
 ```
 
-Now if you test in your browser, you should be able to navigate and see page changes on your app.
+Now, if you test in your browser, you should be able to navigate and see page changes on your app.
 
-app-router emit a `navigated` event when there is a change in the url, and it will activate the proper `app-route`.
-This `app-route` when the hash match, it will display its content and it will emit the `activated` event.
+`app-router` emits a `navigated` event when there is a change in the url and it will activate the proper `app-route`.
+This `app-route`, when the hash is matched, it will display its content and it will emit the `activated` event.
 
-Let's see this in action. by adding an `app-modal` that ask for a username everytime we navigate to the `Game` page.
-first, let's add an `id` attribute to the game route:
+Let's see this in action by adding an `app-modal` that asks for a username every time we navigate to the `Game` page.
+fFrst, let's add an `id` attribute to the game route:
 ```html
   <app-route id="game-route" hash="game">
 ```
-then let's add an `app-modal` and set the `trigger` and the `on` attributes,
+Then let's add an `app-modal` and set the `trigger` and the `on` attributes:
 ```html
   ...
    <app-router slot="main">
   
       <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
-        <h1 slot="title">Start new match</h1>
+        <h1 slot="title">Start a new match</h1>
         <section slot="main">
           <p>Ready to start a new match?</p>
           <p>Choose a username and let's play</p>
@@ -777,7 +777,7 @@ then let's add an `app-modal` and set the `trigger` and the `on` attributes,
 
 On the game route, let's reflect the username.
 Let's add an `ui-data-sync` to get the `username` input from `app-modal` and place it inside a `span` tag. 
-**Note:** the input name must match the data-key attribute on the desired target element.
+**Note:** The input name must match the data-key attribute on the desired target element.
 
 ```html
    ...
@@ -790,7 +790,7 @@ Let's add an `ui-data-sync` to get the `username` input from `app-modal` and pla
    ...
 ```
 
-and lastly, lets log in the console, every route change.
+And lastly, lets log every route change in the console.
 ```html
    ...
    </app-modal>
@@ -860,18 +860,18 @@ On `index.html` lets add the following snippet:
 ```html
 ```
 
-## Section 2: data components
+## Section 2: Data components
 
-### Activity 1: data point and data set
+### Activity 1: Data point and data set
 
-A `data-point` tag represent a single data entry, imagine this as a record on a SQL table.
+A `data-point` tag represents a single data entry. Imagine this as a record in a SQL table.
 
 Data sets are a collection of data points.
 
 We can make the `data-set` listen for events and add the content of `event.detail` or the data attributes from the `event.target`.
 
-Let's see this in action. We just need a couple `button` with some data attributes and a `data-set` component listening for event on those buttons.
-Note: add the `visible` attribute to `data-set` to make the data-points visible, this is helpful for development.
+Let's see this in action. We just need a couple of `button` elements with some data attributes and a `data-set` component listening for events on those buttons.
+Note: Add the `visible` attribute to `data-set` to make the data-points visible. This is helpful for development.
 ```html
   <button id="btn-1" data-name="btn-1" data-value="1">Add 1 to dataset</button>
   <button id="btn-2" data-name="btn-2" data-value="2">Add 2 to dataset</button>
@@ -879,13 +879,13 @@ Note: add the `visible` attribute to `data-set` to make the data-points visible,
   <data-set trigger="button" on="click" visible ></data-set>
 ```
 
-This exaple is good for fixed values, but if we need user input here is an easy way to do it.
-first,
+This example is good for fixed values, but if we need user input here is an easy way to do it.
+first,???
 
 
-## Section 3: event components
+## Section 3: Event components
 
-### Activity 1: basic event handling
+### Activity 1: Basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
@@ -893,7 +893,7 @@ Let's see some examples:
 
 **let's start with the basic**
 
-In this exaple, we have one `button` and `app-modal`, as trigger we are passing the id of the button (note the `#`) an the event will be `click`.
+In this example, we have one `button` and `app-modal`. As a trigger we are passing the id of the button (note the `#`) an the event will be `click`.
 ```html
   <button id="btn" >click me</button>
 
@@ -902,18 +902,18 @@ In this exaple, we have one `button` and `app-modal`, as trigger we are passing 
 
 **Now, let's say we need to listen to 2 buttons**
 
-Not an issue! `trigger` accepts any valid css selector, so we can do something like this:
+Not an issue! `trigger` accepts any valid CSS selector, so we can do something like this:
 ```html
   <button id="btn-1" data-modal >click me</button>
   <button id="btn-2" data-modal >or click me</button>
 
   <app-modal trigger="[data-modal]" on="click" ></app-modal> -->
 ```
-here we added a `data-modal` attribute and passed `[data-modal]` as trigger. By doing this, `app-modal` will listen to any element that has `data-modal` and emits a click event.
+Here we added a `data-modal` attribute and passed `[data-modal]` as the trigger. By doing this, `app-modal` will listen to any element that has `data-modal` and emits a click event.
 
-**Well! what if the other element emit a different event**
+**Well! what if the other element emits a different event**
 
-Let's look at this scenario, we have a `button` and a `select`. The issue here is that we want to listen to the `change` event on the `select` and `click` on `button`.
+Let's look at this scenario. We have a `button` and a `select`. The issue here is that we want to listen to the `change` event on the `select` and `click` on `button`.
 ```html
 
   <button id="btn" >click me</button>
@@ -931,11 +931,11 @@ Let's look at this scenario, we have a `button` and a `select`. The issue here i
 
 
 Introducing `event-source` and `event-group`.
-With `event-source` we can listen to a trigger and it will emit a new `data` event, in other words, is acting as the man in the middle. this in order to decouple the consumers from the producers of events.  
+With `event-source` we can listen to a trigger and it will emit a new `data` event. In other words, it is acting as the man in the middle in order to decouple the consumers from the producers of events.  
 
 
-let's review the initial example with an `event-source`.
-Now `app-modal` will open when a `data` event from `event-source` is emited, and this will happen when `click` is detected on the `button`.
+Let's review the initial example with an `event-source`.
+Now `app-modal` will open when a `data` event from `event-source` is emitted, and this will happen when `click` is detected on the `button`.
 
 ```html
   <button id="btn" >click me</button>
@@ -945,7 +945,7 @@ Now `app-modal` will open when a `data` event from `event-source` is emited, and
   <event-source id="on-btn-click" trigger="#btn" on="click" ></event-source>
 ```
 
-let's do the same for the `select`, 
+Let's do the same for the `select`: 
 ```html
   
   <button id="btn" >click me</button>
@@ -962,7 +962,7 @@ let's do the same for the `select`,
   <event-source class="app-modal-trigger" id="on-select-change" trigger="#sel" on="change" ></event-source>
 ```
 
-This solution will work fine, but we will discover other ways to achieve the same
+This solution will work fine, but we will discover other ways to achieve the same thing.
 
 ### Activity 2: `event-source` and `event-group`
 
@@ -987,8 +987,8 @@ If you need to group multiple events and capture them, you can use the event-gro
 ```
 
 We can also send many to many events.
-let's see this with an example.
-Starting with 4 buttons and 4 flip-cards
+Let's see this with an example.
+Starting with 4 buttons and 4 flip-cards:
 ```html
   <style>
     #button-list{
@@ -1047,7 +1047,7 @@ TODO: do step by step for this
 ```
 
 
-When our app grow, and we need a way to funnel events, for analytics or other purposes, we can host ours `event-groups` on an `event-stream`
+When our app grow, and we need a way to funnel events, for analytics or other purposes. We can host ours `event-groups` on an `event-stream`:
 ```html
 ```
 

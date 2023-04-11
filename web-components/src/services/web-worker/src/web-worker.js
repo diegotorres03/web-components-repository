@@ -5,12 +5,13 @@ import {
   registerTriggers,
 } from '../../../global/web-tools'
 
+import defaultWorker from '../utils/default-worker.js'
 
 //import componentHtml from './flip-card.html'
 //import componentStyle from './flip-card.css'
 
 // export default class WebWorkerComponent extends HTMLScriptElement {
-  export default class WebWorkerComponent extends HTMLElement {
+export default class WebWorkerComponent extends HTMLElement {
   get DEFAULT_EVENT_NAME() {
     return 'message'
   }
@@ -31,36 +32,33 @@ import {
     // this.textContent = `console.log('removed')`
   }
 
-
   connectedCallback() {
     mapComponentEvents(this)
     updateVars(this)
-    registerTriggers(this, (event) => (event))
+    registerTriggers(this, (event) => event)
 
     this.#registerWorker()
     // this.#worker.onmessage = message =>
   }
-
 
   #registerWorker() {
     // let url = this.getAttribute('src')
     const fnStr = `
     self.onmessage = function (event) {
       console.log('from main', event.data)
-  
+
       // Send a message back to the main thread
       self.postMessage('Hello from the worker!')
     }`
 
-
     // let url = URL.createObjectURL(new Blob([fnStr]))
 
     // this.#worker = new Worker(url)
-    this.#worker = new Worker(new URL('./worker-example.js', import.meta.url))
+    // import the worker-example from the utils folder
+    this.#worker = new Worker(new URL(defaultWorker, import.meta.url))
 
-    this.onMessage(event => this.emit(event))
+    this.onMessage((event) => this.emit(event))
     this.postMessage({ test: true, message: 'esooo carajoo!!' })
-
   }
 
   sendEvent(event) {
@@ -69,14 +67,17 @@ import {
 
   emit(event) {
     console.log('emiting', event)
-    this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
-      bubbles: true, composed: true,
-      detail: event
-    }))
+    this.dispatchEvent(
+      new CustomEvent(this.DEFAULT_EVENT_NAME, {
+        bubbles: true,
+        composed: true,
+        detail: event,
+      }),
+    )
   }
 
   onMessage(handler) {
-    this.#worker.onmessage = message => {
+    this.#worker.onmessage = (message) => {
       const event = JSON.parse(message.data)
       handler(event)
     }
@@ -86,12 +87,11 @@ import {
     this.#worker.postMessage(message)
   }
 
-  disconnectedCallback() { }
+  disconnectedCallback() {}
 
-  attributeChangedCallback(name, oldValue, newValue) { }
+  attributeChangedCallback(name, oldValue, newValue) {}
 
-  adoptedCallback() { }
-
+  adoptedCallback() {}
 }
 
 // window.customElements.define('web-worker', WebWorkerComponent, {extends: 'script'})
