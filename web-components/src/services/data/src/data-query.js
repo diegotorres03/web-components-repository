@@ -64,6 +64,7 @@ export default class DataQueryComponent extends HTMLElement {
 
     } else if(type === 'get') {
       const item = await this.getItem(key)
+      console.log('item', item)
       this.emit(item, type)
 
     } else if(type === 'put') {

@@ -1361,7 +1361,7 @@ Remember `data-key` attribute or `name` attribute will be used to let the ui com
 
 ## Section 2.3: Event components
 
-### Activity 2.3.1: Basic event handling
+### Activity 2.3.1: basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
@@ -1373,7 +1373,7 @@ In this example, we have one `button` and `app-modal`. As a trigger we are passi
 ```html
   <button id="btn" >click me</button>
 
-  <app-modal trigger="#btn" on="click" ></app-modal> -->
+  <app-modal trigger="#btn" on="click" ></app-modal>
 ```
 
 **Now, let's say we need to listen to 2 buttons**
@@ -1383,26 +1383,27 @@ Not an issue! `trigger` accepts any valid CSS selector, so we can do something l
   <button id="btn-1" data-modal >click me</button>
   <button id="btn-2" data-modal >or click me</button>
 
-  <app-modal trigger="[data-modal]" on="click" ></app-modal> -->
+  <app-modal trigger="[data-modal]" on="click" ></app-modal>
 ```
 Here we added a `data-modal` attribute and passed `[data-modal]` as the trigger. By doing this, `app-modal` will listen to any element that has `data-modal` and emits a click event.
 
 **Well! what if the other element emits a different event**
 
-Let's look at this scenario. We have a `button` and a `select`. The issue here is that we want to listen to the `change` event on the `select` and `click` on `button`.
+Let's look at this scenario. We currently have a `data-set` and a `data-query`. The issue here is that we want to listen to the `data` event on the `data-set` and `get` on `data-query`.
 ```html
-
-  <button id="btn" >click me</button>
-
-  <select id="sel">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-
-  <app-modal trigger="#btn" on="click" ></app-modal>
-
-
+...
+<plain-card>
+  ...
+  <!-- this component should listen to... -->
+  <ui-data-sync trigger="#game-current-level" on="updated">
+    ...
+...
+<!-- this data set and .... -->
+<data-set id="game-current-level" trigger="#game-board" on="levelup">
+  <!-- this data query. And both emit different events -->
+  <data-query id="get-current-level" type="get"></data-query>
+</data-set>
+...
 ```
 
 
@@ -1411,121 +1412,101 @@ With `event-source` we can listen to a trigger and it will emit a new `data` eve
 
 
 Let's review the initial example with an `event-source`.
-Now `app-modal` will open when a `data` event from `event-source` is emitted, and this will happen when `click` is detected on the `button`.
-
+Step 1, keep the current event flow, `data-set` is the one updating the `plain-card`.
+The only diference is that we are going to add an `event-source` in the middle:
 ```html
-  <button id="btn" >click me</button>
+...
+<plain-card>
+  ...
+  <!-- update trigger and event to newly created event-source... -->
+  <ui-data-sync trigger="#level-updated" on="data">
+    ...
+...
 
-  <app-modal trigger="#on-btn-click" on="data" ></app-modal>
+<!-- add event source and set the trigger to data-set -->
+<event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
 
-  <event-source id="on-btn-click" trigger="#btn" on="click" ></event-source>
+<!-- no change on data-set -->
+<data-set id="game-current-level" trigger="#game-board" on="levelup">
+...
 ```
 
-Let's do the same for the `select`: 
+Now is just a matter of testing in the browser. Test also the functionallity, if you win a match you sould see the updated score.
+If we inspect the html, we should see the `event-source`
+![event-source tag on html](./assets/event-source-1.png)
+
+Let's do the same for the `data-query`: 
 ```html
-  
-  <button id="btn" >click me</button>
+...
+<plain-card>
+  ...
+  <!-- update trigger and event to newly created event-source for the get query -->
+  <ui-data-sync trigger="#query-level" on="data">
+    ...
+...
+<!-- add this new event-source and use the query as trigger -->
+<event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
+<event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
 
-  <select id="sel">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
+<data-store id="current-session">
 
-  <app-modal trigger=".app-modal-trigger" on="data" ></app-modal>
-
-  <event-source class="app-modal-trigger" id="on-btn-click" trigger="#btn" on="click" ></event-source>
-  <event-source class="app-modal-trigger" id="on-select-change" trigger="#sel" on="change" ></event-source>
+<data-set id="game-current-level" trigger="#game-board" on="levelup">
+  <data-query id="get-current-level" type="get"></data-query>
+...
 ```
 
-This solution will work fine, but we will discover other ways to achieve the same thing.
+In this case, our score won't be updated when we clear a level, because we are no longer listening to the `memory-flip-board`. Instead we are waiting on the `data-query` to react to an event. 
+Ideally, we want this query to execute when the page loads, so we can get the data saved by `data-store` on [IndexedDB](). Luckly for us, `event-source` tags can react to a `load` even on `window`.
 
-### Activity 2.3.2: `event-source` and `event-group`
+Lets implement this change:
+```html
+...
+<!-- add this new event-source and use the query as trigger -->
+<event-source id="on-load" trigger="window" on="load"></event-source>
+
+...
+
+<data-set id="game-current-level" trigger="#game-board" on="levelup">
+  <!-- set the new event source #on-load as trigger -->
+  <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
+...
+```
+
+To test this, lets refresh the browser play a couple of levels and then refresh again.
+You should see the highest level achieve there.
+![updated ui screenshot](./assets/event-source-2.png)
+
+
+
+### Activity 2.3.2: working with multiple event flows
 
 As we learned in the previous activity, the `event-source` tag acts as a mediator. It listens to events from a source and then immediately emits a data event with the values passed from the previous event.
 
-If you need to group multiple events and capture them, you can use the event-group. This element automatically subscribes to all children event sources and emits a `data` event for each event received from the `event-source`.
+If you need to group multiple events and capture them, you can use the `event-group`. This element automatically subscribes to all children event sources and emits a `data` event for each event received from the `event-source`.
+
+Let use it to group the `data-query` and the `data-set` to always refresh the score
 ```html
-  <button id="btn" >click me</button>
-
-  <select id="sel">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-  </select>
-
-  <app-modal trigger="#app-modal-trigger" on="data" ></app-modal>
-
-  <event-group id="app-modal-trigger">
-    <event-source trigger="#btn" on="click" ></event-source>
-    <event-source id="on-select-change" trigger="#sel" on="change" ></event-source>
-  </event-group>
+...
+<event-group id="level-group">
+  <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
+  <event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
+</event-group>
+...
 ```
 
-We can also send many to many events.
-Let's see this with an example.
-Starting with 4 buttons and 4 flip-cards:
+and lets update the `plain-card` for current score and we should be able to see changes while we play and also that change should still be there if we refresh:
 ```html
-  <style>
-    #button-list{
-      display: flex;
-      flex-direction: row;
-    }
-
-    #flip-grid {
-      display: grid;
-      grid-template-columns: 45% 45%;
-      grid-template-rows: 45% 45%;
-    }
-  </style>
-
-  <div id="button-list">
-    <button id="btn-1" >click me 1</button>
-    <button id="btn-2" >click me 2</button>
-    <button id="btn-3" >click me 3</button>
-    <button id="btn-4" >click me 4</button>
-  </div>
-    
-
-  <div id="flip-grid">
-    <flip-card trigger="#app-modal-trigger-1" on="data"></flip-card>
-    <flip-card trigger="#app-modal-trigger-2" on="data"></flip-card>
-    <flip-card trigger="#app-modal-trigger-3" on="data"></flip-card>
-    <flip-card trigger="#app-modal-trigger-4" on="data"></flip-card>
-  </div>
-
-```
-TODO: do step by step for this
-```html
-  <event-stream>
-    <event-group id="app-modal-trigger-1">
-      <event-source trigger="#btn-1" on="click" ></event-source>
-      <event-source trigger="#btn-2" on="click" ></event-source>
-    </event-group>
-  
-    <event-group id="app-modal-trigger-2">
-      <event-source trigger="#btn-3" on="click" ></event-source>
-      <event-source trigger="#btn-4" on="click" ></event-source>
-    </event-group>
-  
-
-    <event-group id="app-modal-trigger-3">
-      <event-source trigger="#btn-1" on="click" ></event-source>
-      <event-source trigger="#btn-3" on="click" ></event-source>
-    </event-group>
-  
-    <event-group id="app-modal-trigger-4">
-      <event-source trigger="#btn-2" on="click" ></event-source>
-      <event-source trigger="#btn-4" on="click" ></event-source>
-    </event-group>
-  
-  </event-stream>
+...
+<plain-card>
+  ..
+    <!-- update trigger to new event-group id -->
+    <ui-data-sync trigger="#level-group"  on="data">
+...
 ```
 
+**Note:** _if you need to delete items on IndexedDB, on devtools, go to storage then IndexedDB then look for the item you want to delete, right click, then delete_
+![delete item from idexeddb](./assets/indexeddb-4.png)
 
-When our app grow, and we need a way to funnel events, for analytics or other purposes. We can host ours `event-groups` on an `event-stream`:
-```html
-```
 
 
 ### Activity 2.3.3: 

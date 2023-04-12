@@ -43,11 +43,11 @@
         <h2 slot="title">My Score</h2>
         <section slot="main">
 
-          <ui-data-sync trigger="#game-current-level" on="updated">
+          <ui-data-sync trigger="#level-group" on="data">
             <section>
-              <b>Level:</b><span data-key="level"></span><br>
-              <b>Attempts:</b><span data-key="attempts"></span><br>
-              <b>Username:</b><span data-key="username"></span><br>
+              <b>Level:</b><span data-key="level">1</span><br>
+              <b>Attempts:</b><span data-key="attempts">0</span><br>
+              <b>Username:</b><span data-key="username">Guest</span><br>
             </section>
           </ui-data-sync>
         </section>
@@ -73,7 +73,7 @@
 
     <app-router slot="main">
 
-      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+      <!-- <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
         <h1 slot="title">Start new match</h1>
         <section slot="main">
           <p>Ready to start a new match?</p>
@@ -82,7 +82,7 @@
             <label>Username:</label><input type="text" name="username">
           </form>
         </section>
-      </app-modal>
+      </app-modal> -->
 
       <script>
         document
@@ -125,15 +125,17 @@
         <!-- </section>
         </ui-data-sync> -->
 
-        <!-- <memory-flip-board id="game-board" username="diegotrs" level="2" time="30s" preview></memory-flip-board> -->
-
-
-        <!-- <event-source id="scores" trigger="#game-board" on="levelup"></event-source> -->
+        <event-source id="on-load" trigger="window" on="load"></event-source>
+        
+        <event-group id="level-group">
+          <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
+          <event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
+        </event-group>
 
         <data-store id="current-session">
 
           <data-set id="game-current-level" trigger="#game-board" on="levelup">
-            <data-query id="get-current-level" type="get" trigger="#load-current-level" on="click"></data-query>
+            <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
           </data-set>
 
           <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>

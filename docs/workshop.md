@@ -55,7 +55,7 @@ The goal of this lab is to showcase web components as an option when creating we
         4. [ui sync components](step-by-step.md#activity-224-ui-sync-components)
     3. [Event components](step-by-step.md#)
         1. [basic event handling](step-by-step.md#)
-        2. [`event-source`, `event-group` and `event stream`](step-by-step.md#)
+        2. [working with multiple event flows](step-by-step.md#)
         3. [transforms and filters](step-by-step.md#)
         4. [challenge?](step-by-step.md#)
 3. **Deploy webapps to AWS**

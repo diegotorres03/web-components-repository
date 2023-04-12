@@ -16,11 +16,11 @@ export default class EventSourceComponent extends HTMLElement {
   defaultEventName = 'data'
 
   get #transformNames() {
-    if(!this.getAttribute('transform')) return []
+    if (!this.getAttribute('transform')) return []
     return this.getAttribute('transform').split(/[,]/g).map(fnName => fnName.trim())
   }
   get #fitlerNames() {
-    if(!this.getAttribute('filters')) return []
+    if (!this.getAttribute('filters')) return []
     return this.getAttribute('filters').split(/[,]/g).map(fnName => fnName.trim())
   }
 
@@ -45,17 +45,18 @@ export default class EventSourceComponent extends HTMLElement {
     // const fnName = this.getAttribute('filter')
 
     // acomodating window load
-    console.log('attr transfrom',this.#transformNames, this.#fitlerNames)
-    
+    console.log('attr transfrom', this.#transformNames, this.#fitlerNames)
+    registerTriggers(this, (event) => this.emit(event))
+
 
     if (
       this.getAttribute('trigger') === 'window' &&
-      this.getAttribute('event') === 'load'
+      this.getAttribute('on') === 'load'
     ) {
       window.addEventListener('load', event => {
         // alert('here')
         console.info(`${this.id} emiting load`, event)
-        this.dispatchEvent(new CustomEvent('loaded', {
+        this.dispatchEvent(new CustomEvent('data', {
           bubbles: false, composed: true,
           detail: { ...event.detail, ...this.dataset },
         }))
@@ -64,7 +65,6 @@ export default class EventSourceComponent extends HTMLElement {
       return
     }
 
-    registerTriggers(this, (event) => this.emit(event))
   }
 
   emit(event) {
@@ -73,7 +73,7 @@ export default class EventSourceComponent extends HTMLElement {
     if (!filterResult) return
 
 
-    console.log('attr transfrom',this.getAttribute('transform'))
+    console.log('attr transfrom', this.getAttribute('transform'))
     const transformedData = runTransforms(event, this.getAttribute('transform'), this.#eventSource)
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
