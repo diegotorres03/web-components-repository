@@ -1507,6 +1507,36 @@ and lets update the `plain-card` for current score and we should be able to see 
 **Note:** _if you need to delete items on IndexedDB, on devtools, go to storage then IndexedDB then look for the item you want to delete, right click, then delete_
 ![delete item from idexeddb](./assets/indexeddb-4.png)
 
+That was easy, right!
+Lets do it again, this time, lets keep the game log up to date with each score emmited by the `memory-flip-board`.
+
+First, locate the `data-store` with id=`logs-store`. Here we will se the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the leaderboard page. And we also want the query to be executed on page load.
+```html
+...
+<!-- create event-group with event-source for data-set and data-query -->
+<event-group id="all-game-logs">
+  <event-source trigger="#list-game-logs" on="list" ></event-source>
+  <event-source trigger="#game-log" on="updated" ></event-source>
+</event-group>
+
+<!-- this is what we already have -->
+<data-store id="logs-store">
+  <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+    <!-- Add on-load trigger so query execute on page load -->
+    <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
+  </data-set>
+</data-store>
+...
+```
+
+Then, on the `leaderboard` route, lets go to the `ui-data-repeat` and change the trigger to the `event-group`:
+```html
+...
+<ui-data-repeat id="game-log-cards" trigger="#all-game-logs" on="data">
+...
+```
+
+Now you can play all you want and you will see how many matches have you played on that browser.
 
 
 ### Activity 2.3.3: 

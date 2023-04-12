@@ -73,7 +73,7 @@
 
     <app-router slot="main">
 
-      <!-- <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
         <h1 slot="title">Start new match</h1>
         <section slot="main">
           <p>Ready to start a new match?</p>
@@ -82,7 +82,7 @@
             <label>Username:</label><input type="text" name="username">
           </form>
         </section>
-      </app-modal> -->
+      </app-modal>
 
       <script>
         document
@@ -144,13 +144,15 @@
 
         </data-store>
         
+        <event-group id="all-game-logs">
+          <event-source trigger="#list-game-logs" on="list" ></event-source>
+          <event-source trigger="#game-log" on="updated" ></event-source>
+        </event-group>
 
         <data-store id="logs-store">
-
           <data-set id="game-log" visible append trigger="#game-board" on="levelup">
-            <data-query id="list-game-logs" type="list"></data-query>
+            <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
           </data-set>
-          
         </data-store>
 
 
@@ -173,7 +175,7 @@
 
         <hr>
 
-        <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
+        <ui-data-repeat id="game-log-cards" trigger="#all-game-logs" on="data">
           <template>
             <plain-card>
               <h2 slot="title" data-key="username">username</h2>
