@@ -1,5 +1,5 @@
 // this is a set of global tools to simplify development
-import { html, registerTriggers } from '../../global/web-tools'
+import { html, registerTriggers } from '../../../global/web-tools'
 
 import componentStyle from './secret-card.css'
 import componentHtml from './secret-card.html'

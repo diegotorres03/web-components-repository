@@ -33,8 +33,6 @@
       <a href="#">Home</a>
       <a href="#game">Game</a>
       <a href="#leaderboard">Leaderboard</a>
-
-      <button id="log-out-btn">logout</button>
     </nav>
 
     <section slot="left-content">
@@ -43,7 +41,7 @@
         <h2 slot="title">My Score</h2>
         <section slot="main">
 
-          <ui-data-sync trigger="#game-current-level" on="updated">
+          <ui-data-sync trigger="#game-log" on="updated">
             <section>
               <b>Level:</b><span data-key="level"></span><br>
               <b>Attempts:</b><span data-key="attempts"></span><br>
@@ -97,60 +95,51 @@
 
       <app-route id="game-route" hash="game">
 
-        <ui-data-sync trigger="#game-current-level" on="updated">
-          <h1>On level <span data-key="level">1</span></h1>
-        </ui-data-sync>
-
-        <ui-data-sync trigger="#current-username" on="updated">
+        <h1>I'm Game</h1>
+        <ui-data-sync trigger="#username-selection-modal" on="accepted">
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
 
-        <!-- <button id="change-level-btn">change level</button>
+        <button id="change-level-btn">change level</button>
+
         <app-modal id="change-level-modal" trigger="#change-level-btn" on="click">
           <form slot="main">
             <input type="number" name="level">
           </form>
+
         </app-modal>
+
+        <!-- <select name="level" id="select-level">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select> -->
+
         <data-store id="game-store">
           <data-set id="current-level" trigger="#change-level-modal" on="accepted" visible>
-            <data-query id="get-current-level" type="get" trigger="#load-current-level" on="click"></data-query>
+            <data-query id="get-current-level" key="current-level" type="get"  trigger="#load-current-level" on="click" ></data-query>
           </data-set>
         </data-store>
-        <button id="load-current-level" >load</button> -->
 
-        <!-- <ui-data-sync trigger="#get-current-level" on="get">
-          <section> -->
-        <memory-flip-board id="game-board" username="diegotrs" data-key="level" data-attribute="level" level="2"
-          time="30s" preview></memory-flip-board>
-        <!-- </section>
-        </ui-data-sync> -->
+
+        <button id="load-current-level">load</button>
+
+        
+
+        <ui-data-sync trigger="#get-current-level" on="get">
+          <section>
+            <memory-flip-board id="game-board" username="diegotrs" data-key="level" data-attribute="level" level="2"
+              time="30s" preview></memory-flip-board>
+          </section>
+        </ui-data-sync>
 
         <!-- <memory-flip-board id="game-board" username="diegotrs" level="2" time="30s" preview></memory-flip-board> -->
 
 
+
         <!-- <event-source id="scores" trigger="#game-board" on="levelup"></event-source> -->
-
-        <data-store id="current-session">
-
-          <data-set id="game-current-level" trigger="#game-board" on="levelup">
-            <data-query id="get-current-level" type="get" trigger="#load-current-level" on="click"></data-query>
-          </data-set>
-
-          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
-            <data-query id="clear-current-user" type="clear" trigger="#log-out-btn" on="click">
-          </data-set>
-
-        </data-store>
-        
-
-        <data-store id="logs-store">
-
-          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
-            <data-query id="list-game-logs" type="list"></data-query>
-          </data-set>
-          
-        </data-store>
-
+        <data-set id="game-log" visible trigger="#game-board" on="levelup"></data-set>
 
         <app-modal trigger="#game-board" on="levelup">
           <ui-data-sync slot="title" trigger="#scores" on="data">
@@ -168,22 +157,6 @@
 
       <app-route hash="leaderboard">
         <h1>I'm Leaderboard</h1>
-
-        <hr>
-
-        <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
-          <template>
-            <plain-card>
-              <h2 slot="title" data-key="username">username</h2>
-              <section slot="main">
-                <b>Level:</b><span data-key="level"></span><br>
-                <b>Attempts:</b><span data-key="attempts"></span><br>
-              </section>
-            </plain-card>
-          </template>
-        </ui-data-repeat>
-
-
       </app-route>
 
     </app-router>

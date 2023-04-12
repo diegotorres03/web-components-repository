@@ -55,10 +55,10 @@ export default class WebWorkerComponent extends HTMLElement {
 
     // this.#worker = new Worker(url)
     // import the worker-example from the utils folder
-    this.#worker = new Worker(new URL(defaultWorker, import.meta.url))
+    // this.#worker = new Worker(new URL(defaultWorker, import.meta.url))
 
-    this.onMessage((event) => this.emit(event))
-    this.postMessage({ test: true, message: 'esooo carajoo!!' })
+    // this.onMessage((event) => this.emit(event))
+    // this.postMessage({ test: true, message: 'esooo carajoo!!' })
   }
 
   sendEvent(event) {

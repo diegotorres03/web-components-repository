@@ -1090,9 +1090,9 @@ window.customElements.define('memory-flip-board', MemoriFlipBoardComponent)
 
 ```
 
-## Section 2.2: Data components
+## Section 2: Data components
 
-### Activity 2.2.1: Data point and data set
+### Activity 1: Data point and data set
 
 A `data-point` tag represents a single data entry. Imagine this as a record in a SQL table.
 
@@ -1100,268 +1100,22 @@ Data sets are a collection of data points.
 
 We can make the `data-set` listen for events and add the content of `event.detail` or the data attributes from the `event.target`.
 
-Let's see this in action.
-When we pass a level, `memory-flip-board` will emit the `levelup` event, we can capture the data from that event to use it later in other parts of the UI.
-Create a `data-set` tag under the `memory-flip-board`
+Let's see this in action. We just need a couple of `button` elements with some data attributes and a `data-set` component listening for events on those buttons.
+Note: Add the `visible` attribute to `data-set` to make the data-points visible. This is helpful for development.
 ```html
-   <memory-flip-board id="game-board" level="2"  preview></memory-flip-board>
-   ...
-   <data-set id="game-current-level
-game-current-level" visible trigger="#game-board" on="levelup"></data-set>
-```
-The `visible` attibute is for dev pourposes, it will allow us to see a changelog of the value.
-
-If you inspect the html of the page, you will see a new `data-point` every time the there is an event on `data-set`
-```html
-   <data-point id="data-point-1681247878649" visible="" data-level="5" data-__id="data-point-1681246258858"></data-point>
+  <button id="btn-1" data-name="btn-1" data-value="1">Add 1 to dataset</button>
+  <button id="btn-2" data-name="btn-2" data-value="2">Add 2 to dataset</button>
+  <br>
+  <data-set trigger="button" on="click" visible ></data-set>
 ```
 
-the field `id` and `data-__id` is automatically added if none provided, this is the id of the record and shoudl be unique in the page.
-
-Data sets emit an `updated` event when something change.
-lets go back to the `app-route` for the `#games` route and lets dynamically update the level on the UI.
-```html
-   change ...
-   <app-route id="game-route" hash="game">
-     <h1>I'm Game</h1>
-     <ui-data-sync trigger="#username-selection-modal" on="accepted" >
-       <p>Welcome <span data-key="username"></span></p>
-     </ui-data-sync>
-   
-   for ...
-    <app-route id="game-route" hash="game">
-
-        <!-- This is new -->
-        <ui-data-sync trigger="#game-current-level" on="updated">
-          <h1>On level <span data-key="level">1</span></h1>
-        </ui-data-sync>
-
-        <ui-data-sync trigger="#username-selection-modal" on="accepted">
-          <p>Welcome <span data-key="username"></span></p>
-        </ui-data-sync>
-  ...
-```
+This example is good for fixed values, but if we need user input here is an easy way to do it.
+first,???
 
 
-Now that we have this new tool, lets save all the important information so we don't have to promt the user for it.
+## Section 3: Event components
 
-First, lets save the username, the one we get when the navigation to game page happends, [on step 2.1.2](#activity-212-hash-routing)
-
-Under our previous `data-set`, lets create a new one, we are going to use the `#username-selection-modal` the one that opens when the #game page is activated
-```html
-  // username-selection-modal is the modal that pop up every time we navigate to #game
-  <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible ></data-set>
-```
-
-On the game route, the `ui-data-sync` that is listening to the same modal, lets switch it to listen to the new `data-set`. Our goal here is to link that UI change to the dataset instead of the modal. (for decoupling)
-```html
-     change ...    
-     <ui-data-sync trigger="#username-selection-modal" on="accepted">
-     
-     for ...
-     <ui-data-sync trigger="#current-username" on="updated">
-   ...
-```
-
-
-Lastly, lets add another `data-set` that will act as our game log, this time we will use the `append` attribute to let the data set know that all values should be stored.
-
-Think of a data-set without the append as a regular variable and with the append as an array.
-```html
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup"></data-set>
-```
-No extra UI changes for this one just yet
-
-### Activity 2.2.2: Data query
-
-Great! Now we can store data, but we can only create data-points.
-In order to delete, update or append we can use the `data-query` component.
-This component provide an easy way to perfrom crud operation on data sets.
-
-operations like:
-- `get` an item
-- `list` items
-- `put` an item
-- `delete` an item
-- `clear` all the items
-
-When a query is perfomed, the result will be delivered as an event, the type of the event will be the same as the type of operation, like the ones in the previous list.
-
-Lets add a query to clear the current username. Inside the `data-set` for `current-username`
-lets add a `data-query`
-```html
-  ...
-  <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
-    <data-query id="clear-current-user" type="clear" trigger="#logout-btn" on="click">
-  </data-set>
-  ...
-```
-And lets add a logout button with the matching id. In the `app-layout` on the `header` slot, lets add the button inside the nav tag
-```html
-  ...
-  <app-layout>
-
-    <header slot="header">Welcome to our memory flip game</header>
-    <b slot="left-header">Game stats</b>
-    <nav slot="top-menu" class="">
-      <a href="#">Home</a>
-      <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
-
-      <!-- add this button -->
-      <button id="logout-btn">logout</button>
-    </nav>
- ...
-```
-
-for `#get-current-level` data set, we are only using a get query, no trigger for now.
-```html
-   <data-set id="game-current-level" trigger="#game-board" on="levelup">
-      <data-query id="get-current-level" type="get"></data-query>
-    </data-set>
-```
-
-and for `#game-log`, because this is is appending all events, the if we use `get` it will emit an event with an array of values, if we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now.
-```html
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup">
-    <data-query id="list-game-logs" type="list"></data-query>
-  </data-set>
-```
-
-
-### Activity 2.2.3: Data store
-
-Data sets are great! they help us to store state and share it accros our webapp.
-The only issue is, they are not persistent, if we refresh the browsers, that data is gone.
-would it be nice if we just have a magic tag, that by only wraping our data sets on it, it will store all of it on [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) or [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and it magically integrates with all the `data-query` we alreary wrote...
-
-
-Introducing... (>\*.\*)> `data-store` <(\*.\*<) 
-This component will handle the heavy lifting of setting up IndexedDB and keeping datasets in sync after a refresh.
-
-Lets see it in action!
-Create a `data-store` tag with an id of `current-session` and move the `#current-username` and `#game-current-level` data sets inside.
-```html
-...
-<data-store id="current-session">
-
-  <data-set id="game-current-level" trigger="#game-board" on="levelup">
-    ...
-  </data-set>
-
-  <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
-    ...
-  </data-set>
-
-</data-store>
-...
-```
-
-And create another `data-store` for the `#game-log`
-```html
-...
-<data-store id="logs-store">
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup">
-    ...
-  </data-set>
-</data-store>
-...
-```
-
-After this, go to the browser refresh the app, provide a username and open [devtools]() go to storage, and indexeddb. There you should see an entry with the key `current-session_current-username` the value is a json wich contains the username you provided.
-![indexeddb screenshot](./assets/indexeddb-1.png)
-
-
-Play the first level and refresh indexeddb again
-![indexeddb screenshot 2](./assets/indexeddb-2.png)
-
-And now we see both data stores and all the data-sets.
-
-_note: the IndexedDB key is composed from the data-store id and the data-set id_
-
-Also notice that datasets will keep their state when refresh
-![dataset screenshoot](./assets/indexeddb-3.png)
-
-
-### Activity 2.2.4: ui sync components
-
-We are already familiar with the `ui-data-sync`, we used a couple of time already, but there are other 2 components we can leverage to make this application interactive.
-
-But first lets warm up with the familiar `ui-data-sync`. Level, username and score are important pieces of information that we want to always keep up to date.
-
-For username, lets update the existing `ui-data-sync`  so it uses the `data-set` as trigger instead of the `app-modal`
-```html
-from ...
-<ui-data-sync trigger="#username-selection-modal" on="accepted">
-  <p>Welcome <span data-key="username"></span></p>
-</ui-data-sync>
-to...
-<ui-data-sync trigger="#current-username" on="updated">
-  <p>Welcome <span data-key="username"></span></p>
-</ui-data-sync>
-...
-```
-
-And last for this step is to reflect the current score on the `left-content` slot from `app-layout` component:
-```html
-update ...
-<plain-card>
-  <h2 slot="title">My Score</h2>
-  <section slot="main">
-    <b>Best Score:</b><span>0</span>
-  </section>
-</plain-card>
-with this...
-<plain-card>
-  <h2 slot="title">My Score</h2>
-  <section slot="main">
-
-    <ui-data-sync trigger="#game-current-level" on="updated">
-      <section>
-        <b>Level:</b><span data-key="level"></span><br>
-        <b>Attempts:</b><span data-key="attempts"></span><br>
-        <b>Username:</b><span data-key="username"></span><br>
-      </section>
-    </ui-data-sync>
-
-  </section>
-</plain-card>
-...
-```
-
-This works great with single items, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat` to provide a template that will be used to create every instance of the items send by the dataset.
-
-On the leaderboard route lets create a list of plain cards, each one will represent a new game log from `#game-log` data set.
-The html that go inside the `template` tag will be cloned and used for each event.
-Remember `data-key` attribute or `name` attribute will be used to let the ui component know where to add the values of the event.
-
-```html
-...
-<app-route hash="leaderboard">
-  <h1>Game log</h1>
-
-  <hr>
-
-  <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
-    <template>
-      <plain-card>
-        <h2 slot="title" data-key="username">username</h2>
-        <section slot="main">
-          <b>Level:</b><span data-key="level"></span><br>
-          <b>Attempts:</b><span data-key="attempts"></span><br>
-        </section>
-      </plain-card>
-    </template>
-  </ui-data-repeat>
-
-
-</app-route>
-...
-```
-
-## Section 2.3: Event components
-
-### Activity 2.3.1: Basic event handling
+### Activity 1: Basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
@@ -1440,7 +1194,7 @@ Let's do the same for the `select`:
 
 This solution will work fine, but we will discover other ways to achieve the same thing.
 
-### Activity 2.3.2: `event-source` and `event-group`
+### Activity 2: `event-source` and `event-group`
 
 As we learned in the previous activity, the `event-source` tag acts as a mediator. It listens to events from a source and then immediately emits a data event with the values passed from the previous event.
 
@@ -1528,7 +1282,7 @@ When our app grow, and we need a way to funnel events, for analytics or other pu
 ```
 
 
-### Activity 2.3.3: 
+### Activity 3: 
 
 
 

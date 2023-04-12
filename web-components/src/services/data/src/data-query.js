@@ -43,7 +43,7 @@ export default class DataQueryComponent extends HTMLElement {
 
   async #processRequest(event) {
     const type = this.getAttribute('type')
-    const key = this.getAttribute('key')
+    const key = this.getAttribute('key') || this.parentElement.id
     const size = this.getAttribute('size') || 100
     const page = this.getAttribute('page') || 1
 

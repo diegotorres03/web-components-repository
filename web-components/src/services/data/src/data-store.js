@@ -80,8 +80,6 @@ export default class DataStore extends HTMLElement {
       dataSet.addEventListener(DataQueryComponent.EVENT_TYPES.clear, event => this.#processCrudEvent(event, DataQueryComponent.EVENT_TYPES.clear))
     })
 
-
-
     this.addEventListener('updated', event => this.#processEvent(event))
 
   }

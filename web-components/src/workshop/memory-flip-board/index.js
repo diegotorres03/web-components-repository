@@ -1,1 +1,1 @@
-export * from './memory-flip-board'
+export * from './src/memory-flip-board'

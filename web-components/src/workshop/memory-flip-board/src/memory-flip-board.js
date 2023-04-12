@@ -43,9 +43,6 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
 
   constructor() {
     super()
-
-
-
     const template = html`
       <h1>({attempts})</h1>
       <main>
@@ -128,36 +125,38 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
           this.attempts += MemoriFlipBoardComponent.TRAP_PENALTY
           return
         }
-        if (this.#currentCard) {
-          this.#waiting = true
-          // this.#didIWon()
-          setTimeout(() => {
-            if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
-              this.#currentCard.setAttribute('data-paired', '')
-              flipCard.setAttribute('data-paired', '')
-              console.log(this.#currentCard.dataset.pairId, flipCard.dataset.pairId)
-              this.#currentCard = null
-              this.#waiting = false
-              this.#didIWon()
-              return
-            }
-
-            this.#openCards.set(flipCard, false)
-            this.#openCards.set(this.#currentCard, false)
-            this.#currentCard.reset()
-            flipCard.reset()
-            this.#currentCard = null
-            this.#waiting = false
-          }, 1_000)
-          this.attempts += 1
-          updateVars(this)
+        if (!this.#currentCard) {
+          this.#currentCard = flipCard
           return
         }
-        this.#currentCard = flipCard
+        this.#waiting = true
+        
+        setTimeout(() => {
+          if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
+            this.#currentCard.setAttribute('data-paired', '')
+            flipCard.setAttribute('data-paired', '')
+            console.log(this.#currentCard.dataset.pairId, flipCard.dataset.pairId)
+            this.#currentCard = null
+            this.#waiting = false
+            this.#didIWon()
+            return
+          }
+
+          this.#openCards.set(flipCard, false)
+          this.#openCards.set(this.#currentCard, false)
+          this.#currentCard.reset()
+          flipCard.reset()
+          this.#currentCard = null
+          this.#waiting = false
+        }, 1_000)
+        this.attempts += 1
+        updateVars(this)
+        return
 
       }))
 
   }
+
 
   connectedCallback() {
     updateVars(this)
@@ -178,7 +177,7 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
       })
 
     if (!yesYoyDid) return
-    const event = new CustomEvent('done', {
+    const event = new CustomEvent('levelup', {
       bubbles: true, composed: true,
       detail: {
         level: this.level,
@@ -190,10 +189,6 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
     console.log(event)
     this.dispatchEvent(event)
     this.setAttribute('level', this.level + 1)
-
-  }
-
-  showAll() {
 
   }
 

@@ -51,7 +51,7 @@ export default class UIDataSyncComponent extends HTMLElement {
   }
 
   updateValues(event) {
-    const data = event.detail
+    const data = event.detail || event.target && event.target.dataset
     console.time('ui-data-sync updateValues')
 
     if (!Array.isArray(this.#children) || this.#children.length === 0) return
@@ -63,14 +63,9 @@ export default class UIDataSyncComponent extends HTMLElement {
     //   alert('es el mismo')
     // }
 
-    console.log(data)
+    console.log(data, this.#children)
     const keys = Object.keys(data)
 
-    // create
-
-    if (this.hasAttribute('append')) {
-      // [ ] keep appending to the list, even if an item with the same id is present, this is like a log
-    }
 
     this.#children.forEach(firstItem => {
       // console.log('firstItem', firstItem)
@@ -89,11 +84,16 @@ export default class UIDataSyncComponent extends HTMLElement {
             ...firstItem.querySelectorAll(`[data-key="${key}"]`),
             ...firstItem.querySelectorAll(`[name="${key}"]`),
           ]
-          // console.log(key, '=>', fields)
+          console.log(key, '=>', fields)
 
           fields.forEach(field => {
-            const attr = field.dataset.attribute || 'textContent'
-            field[attr] = data[key]
+            if(!field.dataset.attribute) {
+              field.textContent = data[key]
+              // field[attr] = data[key]
+            }
+            const attr = field.dataset.attribute
+            console.log('attr', attr)
+            field.setAttribute(attr, data[key])
           })
 
         })

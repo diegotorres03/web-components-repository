@@ -1,1 +1,1 @@
-export * from './grid-layout'
+export * from './src/grid-layout'
