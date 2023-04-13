@@ -4,7 +4,7 @@
   "description": "",
   "main": "package-index.js",
   "scripts": {
-    "build:prod": "rm -f ./assets/lib/dWCk.js && webpack --mode production --node-env production && cp ./dist/dWCk.js ./assets/lib/dWCk.js",
+    "build:prod": "webpack --mode production --node-env production",
     "build:dev": "webpack --mode development --node-env development",
     "serve": "webpack serve --mode development --node-env development",
     "test": "echo \"Error: no test specified\" && exit 1",
