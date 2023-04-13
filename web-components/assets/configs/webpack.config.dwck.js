@@ -1,24 +1,26 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const isProduction = process.env.NODE_ENV == 'production';
+const isProduction = process.env.NODE_ENV == 'production'
+
+console.log('Environment is production: ', isProduction)
 
 // Entry point for webpack bundler
 const entry = {
-  dWCk: './src/index.js',
-};
+  main: './src/index.js',
+}
 
 // Output path and filename for webpack bundler
 const output = {
   path: path.resolve(__dirname, 'dist'),
-};
+}
 
 // Webpack dev server configuration
 const devServer = {
   open: true,
   host: 'localhost',
-};
+}
 
 // Webpack plugins
 const plugins = [
@@ -26,34 +28,26 @@ const plugins = [
     template: 'index.html',
   }),
   new CleanWebpackPlugin(),
-];
+]
 
 // Webpack loaders
 const moduleRules = [
   {
     test: /\.css$/i,
-    include: [
-      path.resolve(__dirname, 'src/components'),
-      path.resolve(__dirname, 'src/layouts'),
-      path.resolve(__dirname, 'src/workshop'),
-    ],
+    include: [path.resolve(__dirname, 'src/elements')],
     use: ['raw-loader'],
   },
   {
     test: /\.css$/i,
-    exclude: [
-      path.resolve(__dirname, 'src/components'),
-      path.resolve(__dirname, 'src/layouts'),
-      path.resolve(__dirname, 'src/workshop'),
-    ],
-    include: [path.resolve(__dirname, 'src/global')],
+    exclude: [path.resolve(__dirname, 'src/elements')],
+    include: [path.resolve(__dirname, 'src/lib')],
     use: ['style-loader', 'css-loader'],
   },
   {
     test: /\.html$/i,
     loader: 'html-loader',
   },
-];
+]
 
 // Webpack configuration
 const config = {
@@ -64,13 +58,13 @@ const config = {
   module: {
     rules: moduleRules,
   },
-};
+}
 
 module.exports = () => {
   if (isProduction) {
-    config.mode = 'production';
+    config.mode = 'production'
   } else {
-    config.mode = 'development';
+    config.mode = 'development'
   }
-  return config;
-};
+  return config
+}

@@ -18,13 +18,9 @@ program
   .action((name) => {
     console.log(`Creating a new DWCK project called ${name}`)
 
-    CreateProjectFolder.CreateDwckProjectFolder(name)
+    CreateProjectFolder.createDwckProjectFolder(name)
     // [ ] Create a new index.html file with the name of the project
     // [ ] Create a new elements folder
-    // [ ] Copy the DWCK bundle to the lib folder
-    // [ ] Copy the DWCK web and style tools to the lib folder
-
-
   })
 
 program
