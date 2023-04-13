@@ -593,12 +593,39 @@ here is a sample of our end goal:
 
 ## Section 2.1: Layout components
 
+Before we begin, lets start with a brand new `index.html`
+lets delete everything we added inside the `body` tag.
+your `index.html` should look like this:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Cod1hhmpatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+
+</body>
+
+</html>
+```
+
 ### Activity 2.1.1: app-layout
-Lets create and app layout.
+
+Inside the `body` tag on `index.html` lets use the `app-layout` tag to create an empty application layout 
 The slot name will be displayed in the browser:
 ```html
    <app-layout></app-layout>
 ```
+
+By using this tag, we should be able to see in the browser, an empty shell for a web application, the names you see in each section is the name of the corresponding slot.
+![empty app layout screenshot](./assets/app-layout-1.png)
 
 Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. Here we are adding some titles and a navigation bar on top with 3 routes:
 ```html
