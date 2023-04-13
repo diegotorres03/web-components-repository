@@ -83,7 +83,7 @@ async function buildBundle(tempFolderPath) {
   console.log('Building bundle...');
   return new Promise((resolve, reject) => {
     exec(
-      'npm install && npm run build:prod',
+      'npm install && npm run build:dev',
       { cwd: `${tempFolderPath}/web-components` },
       (error, stdout, stderr) => {
         console.info(stdout);
