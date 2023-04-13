@@ -1,27 +1,45 @@
 # SetUp
-1. Navigate to your folder (the one you want to use for this lab).
-2. Run `npx dwck project web-components-app`
-3. locate index.html file on the root of folder.
-4. have fun!
+1. Open a terminal window and create a folder we will use for this lab. The name doesn't matter.
+2. Now change directory into that folder.
+3. Run the following command - `npx dwck project web-components-app` - and hit `y` when asked to confirm. This will deploy the project structure for our lab into this folder. 
+4. Now change directory into the `web-components-app` folder and run `npm install -D`
+5. Open the `web-components-app` folder in your code editor of choice.
+6. Create an `index.html` file in the root of this folder, add the following contents and save:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+```
+7. Finally, run `npm run serve`. This will open a browser with the contents of the `index.html` file you just created (which is actually an empty page).
+
+**Note:** In Lessons 1 and 2, unless explicitly directed otherwise, we will be working in the `index.html` file we just created above.
 
 
 
-**Note:** Use `index.html` on the root folder for this lab, some activities will indicate you to create other files, those will be on `src/components` folder.
-
-# Chapter 1: Introduction to Web Components
+# Lesson 1: Introduction to Web Components
+In this lesson we are going to work with some pre-created components to get you familiar with how to use and interact with components. So lets get started!
 
 ## Section 1.1: Using our first components
 
 ### Activity 1.1.1: Add a flip card
-Create a simple `flip-card` on [index.html](../index.html) and give it some size:
+Create a simple `flip-card` in your [index.html](../index.html) by adding the following line to the `<body>` section:
 ```html
 <flip-card style="width: 500px;"></flip-card>
 ```
+Now save your changes and refresh your browser. Congratulations, you have just added your first web component! Move your mouse over the flip card to interact with it. Also, feel free to adjust the width value if you want to play with the size of the flip card.
 
-Add content to `flip-card` by using the `slot` attribute:
+Now lets add content to our `flip-card` by using the `slot` attribute. Add the following to the `<flip-card>` section, save and refresh the browser page:
 ```html
 ...
-<flip-card style="width: 500px;">
   <section slot="front">
     <h1>This card holds a secret</h1>
     <small>the secret is in the other side </small>
@@ -30,11 +48,11 @@ Add content to `flip-card` by using the `slot` attribute:
   <section slot="back">
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, blanditiis eius. Ea ipsum minus, amet commodi, delectus iure dolorem quasi doloribus cum facilis hic illum! Cupiditate est doloremque vero delectus.</p>
   </section>
-</flip-card>
 ...
 ```
+Perfect! Now we have some content added! 
 
-Prevent the card from flipping by passing the `disable` attribute:
+Additionally, lets prevent the card from flipping when we move our mouse over it by passing the `disable` attribute:
 ```html
 <flip-card disabled style="width: 500px;">
 ...
@@ -48,7 +66,9 @@ Prevent the card from flipping by passing the `disable` attribute:
 
 
 ### Activity 1.1.2: Create a button and a modal
-Under the `flip-card`, add a `button` and an `app-modal`, at this stage they are not connected. For the modal content, we are going to use the slots `tittle` and `main`
+Lets build on this now by adding a `button` and a `modal` to our web page. 
+
+For the modal content, we are going to use the slots `title` and `main`. (Note: at this stage the button and the modal are not connected. We will come to that later). Add the following `button` and `app-modal` html under the `<flip-card>` section of our index.html file, save and refresh our browser page:
 ```html
 ...
 <button>open</button>
@@ -56,18 +76,19 @@ Under the `flip-card`, add a `button` and an `app-modal`, at this stage they are
 <app-modal>
    <h1 slot="title" >This is the new title</h1>
    <section slot="main" >
-      <p>Add html here =)</p>
+      <p>Add text here</p>
       <input type="text" name="alias">
    </section>
 </app-modal>
 ```
 
-The idea here is that the `button`, when clicked, will emit a `click` event.
-We are going to listen for this event by using the `trigger` and `on` attributes in `app-modal`, which act as the listener for the click event.
+Our click button should now appear on the page. Notice however that when you click it is does nothing. So lets change that so when we click on it our modal will appear. The idea here is that the `button`, when clicked, will emit a `click` event. We are going to listen for this event by using the `trigger` and `on` attributes in `app-modal`, which act as the listener for the click event.
 
 The `trigger` attribute is the CSS query the `app-modal` component will be listening for.
 
 The `on` attribute is the event type the `app-modal` component is listening for.
+
+So lets update our `app-modal` definition to include `trigger` and `on` attributes as follows: 
 
 ```html
 ...
@@ -75,7 +96,12 @@ The `on` attribute is the event type the `app-modal` component is listening for.
 ...
 ```
 
-In the previous example, we are selecting all buttons since we pass the `button` selector, lets see how to add more granularity:
+Now if you click on the button again, this time our modal should appear!
+
+
+The issue with this however is, because we have specified `button` as the trigger for our modal, this modal will get triggered any time any button on the page is clicked. So lets see how to add more granularity to control what action each button triggers if we decide to add multiple buttons to our page. We'll accomplish this using the `id` attribute.
+
+Update our `button` and `app-modal` component definitions as follows:
 ```html
 ...
 <button id="open-modal-btn">open</button>
@@ -84,7 +110,7 @@ In the previous example, we are selecting all buttons since we pass the `button`
 ...
 ```
 
-we can even use mutliple buttons if we select by class or attribute
+However, if we want multiple different buttons to trigger the same action, we can accomplish this using data attributes as follows. Go ahead and try it:
 ```html
 ...
 <button id="open-modal-btn" data-attribute="you can use data attributes too">open</button>
@@ -94,8 +120,8 @@ we can even use mutliple buttons if we select by class or attribute
 ...
 ```
 
-### Activity 1.1.3: Connect the flip-card component to the app-modal
-Link `flip-card` and `app-modal` with the `trigger` attribute:
+### Activity 1.1.3: Connect the flip-card to the app-modal
+First, lets connect our flip-card component to our app-modal component so when we click `accept` in our modal it will flip our flip-card! Update our `flip-card` definition as follows and try it out:
 ```html
 ...
 <flip-card disabled trigger="app-modal" on="accepted"  style="width: 500px;">
@@ -104,12 +130,9 @@ Link `flip-card` and `app-modal` with the `trigger` attribute:
 ...
 ```
 
-Here we are going to demonstrate how to get the data sent in an event, and how to change a components `textContent` or an attribute.
-To implement, create a `ui-data-sync` tag around the HTML you want to update.
-Add the `name="<'propertyName'>"` property to the `input` or `label` tags, or `data-key="<'propertyName'>"` to the other tags. `propertyName` is the key for the data you are receiving.
+Now that thats working, we are going to demonstrate how to get the data sent in an event, and how to change a components `textContent` or an attribute, so add some text in the text box on our app-modal and click accept we should see our flip card update. 
 
-Add an `ui-data-sync` and link it to `app-modal`.
-Inside `ui-data-sync` lets add 
+Inside the back slot section, lets replace the `<p>..</p>` section with the following `ui-data-sync`. Don't forget to save and refresh the browser page:
 ```html
 ...
 <flip-card disabled trigger="app-modal" on="accepted">
@@ -121,9 +144,9 @@ Inside `ui-data-sync` lets add
        <h1>Hello <span name="alias"></span></h1>
      </ui-data-sync>
 
-     <!-- Remove lorem ipsum and <p> tags -->
 ...
 ```
+Now when you click a button, enter some text in the text box, click `Accept` and see what happens!
 
 **Note:** we are goint to cover `ui-data-sync` in more detail later on the lab.
 
@@ -584,9 +607,9 @@ Finally, let's test it in `index.html` by adding a button and confguring trigger
 ---
 
 
-# Chapter 2: Composing apps with Web Components
+# Lesson 2: Composing apps with Web Components
 
-In this chapter, we are going to create an amazing game using only web components, some provided by the lab, some that we are about to create.
+In this Lesson, we are going to create an amazing game using only web components, some provided by the lab, some that we are about to create.
 
 here is a sample of our end goal:
 ![awesome game screenshot](./assets/game-preview-1.png)
@@ -700,7 +723,7 @@ So, the `main` slot is the last one to fill, but before doing it, let's talk abo
 
 
 ### Activity 2.1.2: Hash routing
-In the previous chapter we added 3 links at the top of the page - `home`, `game` and `leaderboard`.
+In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `leaderboard`.
 In order to handle them we'll make use of hash routing. In other words, we will display different content with different hashes (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
 
 To detect and handle these hash changes, we have the `app-router` and `app-route` components.
@@ -1549,7 +1572,7 @@ Now you can play all you want and you will see how many matches have you played 
 
 ---
 
-end chapter 1
+end Lesson 1
 
 ---
 
@@ -1570,4 +1593,4 @@ end chapter 1
 ---
 
 
-[back to top](#chapter-1-intro-to-web-components)
+[back to top](#Lesson-1-intro-to-web-components)
