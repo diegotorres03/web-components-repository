@@ -1,4 +1,4 @@
-import { html, registerTriggers, updateVars } from '../../../global/web-tools'
+import { html, registerTriggers, updateVars } from '../../global/web-tools'
 
 
 // [ ] Alejo, meta copilit aca
