@@ -17,10 +17,8 @@ program
   .description('Create a new DWCK project')
   .action((name) => {
     console.log(`Creating a new DWCK project called ${name}`)
-
     CreateProjectFolder.createDwckProjectFolder(name)
     // [ ] Create a new index.html file with the name of the project
-    // [ ] Create a new elements folder
   })
 
 program
