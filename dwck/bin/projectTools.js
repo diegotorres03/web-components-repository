@@ -1,168 +1,181 @@
-import fs from 'fs'
-import https from 'https'
+import fs from 'fs-extra';
+import { exec } from 'child_process';
+import ProgressBar from 'progress';
+import readline from 'readline';
 
-function CreatePackageJSON(folderPath, projectName) {
-  const packageJSON = {
-    name: `${projectName}`,
-    version: '1.0.0',
-    description: '',
-    main: 'index.js',
-    scripts: {
-      'build:prod': 'webpack --mode production --node-env production',
-      'build:dev': 'webpack --mode development --node-env development',
-      'serve': 'webpack serve --mode development --node-env development',
-      'test': 'echo "Error: no test specified" && exit 1',
-      'watch': 'webpack --mode development --watch',
-    },
-    author: '',
-    license: 'ISC',
-    dependencies: {},
-    devDependencies: {
-      '@webpack-cli/generators': '^3.0.1',
-      'clean-webpack-plugin': '^4.0.0',
-      'css-loader': '^6.7.3',
-      'html-loader': '^4.2.0',
-      'html-webpack-plugin': '^5.5.0',
-      'raw-loader': '^4.0.2',
-      'style-loader': '^3.3.2',
-      'webpack': '^5.76.1',
-      'webpack-cli': '^5.0.1',
-      'webpack-dev-server': '^4.12.0',
-    },
+const BRANCH = 'feature/template_cli';
+const REPO_URL =
+  'https://github.com/diegotorres03/web-components-repository.git';
+
+function clearTerminal() {
+  process.stdout.write('\x1Bc');
+}
+function updateProgressBar(progressBar, tickValue) {
+  readline.clearLine(process.stdout, 0);
+  readline.cursorTo(process.stdout, 0);
+  progressBar.tick(tickValue);
+  if (progressBar.complete) {
+    console.log('Done!');
   }
-
-  fs.writeFileSync(
-    `${folderPath}/package.json`,
-    JSON.stringify(packageJSON, null, 2),
-  )
 }
 
-function CreateWebpackConfig(folderPath) {
-  let webpackConfig = `
-  const path = require('path');
-  const HtmlWebpackPlugin = require('html-webpack-plugin');
-  const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// Clone the specified repository using sparse checkout
+// TODO: Move this function to a separate file
+async function gitSparseClone(rurl, localdir, ...sparsePaths) {
+  return new Promise((resolve, reject) => {
+    const commands = [
+      `mkdir -p "${localdir}"`,
+      `cd "${localdir}"`,
+      'git init',
+      `git remote add -f origin "${rurl}"`,
+      'git config core.sparseCheckout true',
+    ];
 
-  const isProduction = process.env.NODE_ENV == 'production';
-
-  console.log('Environment is production: ', isProduction);
-
-  // Entry point for webpack bundler
-  const entry = {
-    main: './src/index.js',
-  };
-
-  // Output path and filename for webpack bundler
-  const output = {
-    path: path.resolve(__dirname, 'dist'),
-  };
-
-  // Webpack dev server configuration
-  const devServer = {
-    open: true,
-    host: 'localhost',
-  };
-
-  // Webpack plugins
-  const plugins = [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-    }),
-    new CleanWebpackPlugin(),
-  ];
-
-  // Webpack loaders
-  const moduleRules = [
-    {
-      test: /\.css$/i,
-      include: [
-        path.resolve(__dirname, 'src/elements'),
-      ],
-      use: ['raw-loader'],
-    },
-    {
-      test: /\.css$/i,
-      exclude: [
-        path.resolve(__dirname, 'src/elements'),
-      ],
-      include: [
-        path.resolve(__dirname, 'src/lib'),
-      ],
-      use: ['style-loader', 'css-loader'],
-    },
-    {
-      test: /\.html$/i,
-      loader: 'html-loader',
-    },
-  ];
-
-  // Webpack configuration
-  const config = {
-    entry,
-    output,
-    devServer,
-    plugins,
-    module: {
-      rules: moduleRules,
-    },
-  };
-
-  module.exports = () => {
-    if (isProduction) {
-      config.mode = 'production';
-    } else {
-      config.mode = 'development';
+    for (const path of sparsePaths) {
+      commands.push(`echo "${path}" >> .git/info/sparse-checkout`);
     }
-    return config;
-  };
-`
-  fs.writeFileSync(`${folderPath}/webpack.config.js`, webpackConfig)
+
+    commands.push(`git pull origin ${BRANCH}`);
+
+    const fullCommand = commands.join(' && ');
+
+    exec(fullCommand, (error, stdout, stderr) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve({ stdout, stderr });
+      }
+    });
+  });
 }
 
-function CreateFolderStructure(folderPath) {
-  const srcFolder = `${folderPath}/src`
-  const elementsFolder = `${srcFolder}/elements`
-  const libFolder = `${srcFolder}/lib`
+// Create the required folder structure for the project
+async function createFolderStructure(folderPath) {
+  console.log('Creating folder structure...');
+  const srcFolder = `${folderPath}/src`;
+  const elementsFolder = `${srcFolder}/elements`;
+  const libFolder = `${srcFolder}/lib`;
 
-  if (!fs.existsSync(srcFolder)) {
-    fs.mkdirSync(srcFolder)
-  }
-  if (!fs.existsSync(elementsFolder)) {
-    fs.mkdirSync(elementsFolder)
-  }
-  if (!fs.existsSync(libFolder)) {
-    fs.mkdirSync(libFolder)
+  for (const folder of [srcFolder, elementsFolder, libFolder]) {
+    try {
+      await fs.access(folder);
+    } catch {
+      await fs.mkdir(folder);
+    }
   }
 }
 
-function CopyLibraryFromGithub(folderPath) {
-  const libFolder = `${folderPath}/src/lib`
-
-  const styleToolsURl = 'https://raw.githubusercontent.com/diegotorres03/web-components-repository/main/web-components/src/global/style-tools.css'
-  const webToolsURL = 'https://raw.githubusercontent.com/diegotorres03/web-components-repository/main/web-components/src/global/web-tools.js'
-
-  https.get(styleToolsURl, (res) => {
-    res.on('data', (d) => {
-      fs.writeFileSync(`${libFolder}/style-tools.css`, d)
-    })
-  })
-
-  https.get(webToolsURL, (res) => {
-    res.on('data', (d) => {
-      fs.writeFileSync(`${libFolder}/web-tools.js`, d)
-    })
-  })
+// Clone the web components folder from the repository
+async function cloneWebComponentsFolderFromRepo(tempFolderPath) {
+  console.log('Cloning web components folder from repository...');
+  const sparsePath = 'web-components';
+  try {
+    await fs.mkdir(tempFolderPath);
+    await gitSparseClone(REPO_URL, tempFolderPath, sparsePath);
+    console.log('Sparse clone completed.');
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
 }
 
-export function CreateDwckProjectFolder(projectName) {
-  const folderName = projectName
-  const folderPath = `./${folderName}`
-  if (!fs.existsSync(folderPath)) {
-    fs.mkdirSync(folderPath)
-    CreatePackageJSON(folderPath, projectName)
-    CreateWebpackConfig(folderPath)
-    CreateFolderStructure(folderPath)
-    CopyLibraryFromGithub(folderPath)
+// Build the bundle for the project
+async function buildBundle(tempFolderPath) {
+  console.log('Building bundle...');
+  return new Promise((resolve, reject) => {
+    exec(
+      'npm install && npm run build:prod',
+      { cwd: `${tempFolderPath}/web-components` },
+      (error, stdout, stderr) => {
+        console.info(stdout);
+        if (error) {
+          console.error(stderr);
+          reject(error);
+        } else {
+          resolve();
+        }
+      },
+    );
+  });
+}
+
+// Copy the configuration files from the cloned repository to the project folder
+async function copyConfigFiles(folderPath, tempFolderPath, projectName) {
+  console.log('Copying configuration files...');
+
+  const packageJSONPath = `${tempFolderPath}/assets/configs/template_package.json`;
+  const packageJSON = await fs.readJson(packageJSONPath);
+
+  packageJSON.name = projectName;
+
+  await fs.writeJson(`${folderPath}/package.json`, packageJSON, { spaces: 2 });
+  await fs.copy(
+    `${tempFolderPath}/assets/configs/webpack.config.dwck.js`,
+    `${folderPath}/webpack.config.js`,
+  );
+  await fs.copy(
+    `${tempFolderPath}/src/global/style-tools.css`,
+    `${folderPath}/src/lib/style-tools.css`,
+  );
+  await fs.copy(
+    `${tempFolderPath}/src/global/themes`,
+    `${folderPath}/src/lib/themes`,
+  );
+  await fs.copy(
+    `${tempFolderPath}/src/global/web-tools.js`,
+    `${folderPath}/src/lib/web-tools.js`,
+  );
+}
+
+// Copy the built bundle to the project folder
+async function copyBundle(tempFolderPath, projectFolderPath) {
+  console.log('Copying built bundle to the project folder...');
+  const bundlePath = `${tempFolderPath}/web-components/dist`;
+  const targetPath = `${projectFolderPath}/src/lib`;
+  const files = await fs.readdir(bundlePath);
+  for (const file of files) {
+    if (file === 'dWCk.js') {
+      await fs.copy(`${bundlePath}/${file}`, `${targetPath}/${file}`);
+    }
   }
-  return folderPath
+}
+
+// Main function to create a new Dwck project folder
+export async function createDwckProjectFolder(projectName) {
+  clearTerminal();
+  const progressBar = new ProgressBar('[:bar] :percent :etas', {
+    total: 100,
+    width: 40,
+    complete: '=',
+    incomplete: ' ',
+  });
+
+  try {
+    const folderPath = `./${projectName}`;
+
+    if (await fs.pathExists(folderPath)) {
+      throw new Error(`Folder '${folderPath}' already exists.`);
+    }
+    await fs.mkdir(folderPath);
+    await createFolderStructure(folderPath);
+    updateProgressBar(progressBar, 10);
+    const tempFolderPath = `./${projectName}_temp`;
+    await cloneWebComponentsFolderFromRepo(tempFolderPath);
+    updateProgressBar(progressBar, 30);
+    await copyConfigFiles(
+      folderPath,
+      `${tempFolderPath}/web-components`,
+      projectName,
+    );
+    updateProgressBar(progressBar, 10);
+    await buildBundle(tempFolderPath);
+    updateProgressBar(progressBar, 30);
+    await copyBundle(tempFolderPath, folderPath);
+    await fs.rm(tempFolderPath, { recursive: true });
+    console.log('Project folder creation completed successfully!');
+    updateProgressBar(progressBar, 20);
+    return folderPath;
+  } catch (error) {
+    console.error(`Failed to create project folder: ${error.message}`);
+    throw error;
+  }
 }
