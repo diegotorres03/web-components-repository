@@ -37,8 +37,8 @@ const moduleRules = [
     include: [
       path.resolve(__dirname, 'src/components'),
       path.resolve(__dirname, 'src/layouts'),
-      path.resolve(__dirname, 'src/workshop'),
-    ],
+      !isProduction ? path.resolve(__dirname, 'src/workshop') : undefined,
+    ].filter(Boolean),
     use: ['raw-loader'],
   },
   {
@@ -46,8 +46,8 @@ const moduleRules = [
     exclude: [
       path.resolve(__dirname, 'src/components'),
       path.resolve(__dirname, 'src/layouts'),
-      path.resolve(__dirname, 'src/workshop'),
-    ],
+      !isProduction ? path.resolve(__dirname, 'src/workshop') : undefined,
+    ].filter(Boolean),
     include: [path.resolve(__dirname, 'src/global')],
     use: ['style-loader', 'css-loader'],
   },
