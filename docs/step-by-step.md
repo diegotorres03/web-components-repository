@@ -2366,6 +2366,161 @@ Lets test on the browser!!
 
 We only need to refresh and win a couple of maches then navigate to the `leaderboard` page and we should see our log.
 
+The final version should look like this:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Cod1hhmpatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    /* this class is to hide routes */
+    .hidden {
+      display: none;
+    }
+
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+  </style>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <button id="logout-btn">logout</button>
+    </nav>
+
+    <section slot="left-content">
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <ui-data-sync trigger="#current-level" on="updated">
+            <div>
+              <b>Level:</b><span data-key="level"></span><br>
+              <b>Attempts:</b><span data-key="attempts"></span><br>
+              <b>Username:</b><span data-key="username"></span><br>
+            </div>
+          </ui-data-sync>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>Answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>Answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+    </section>
+
+    <app-router slot="main">
+
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+        <h1 slot="title">Start a new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>Choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+
+      <app-route>home
+
+
+      </app-route>
+
+      <app-route id="game-route" hash="game">
+
+        <!-- This is new -->
+        <ui-data-sync trigger="#current-level" on="updated">
+          <h1>On level <span data-key="level">1</span></h1>
+        </ui-data-sync>
+
+        <ui-data-sync trigger="#current-username" on="updated">
+          <p>Welcome <span data-key="username">user</span></p>
+        </ui-data-sync>
+
+        <memory-flip-board-2 id="game-board" level="2"></memory-flip-board-2>
+
+        <data-store id="current-session">
+
+          <data-set id="current-level" visible trigger="#game-board" on="levelup">
+            <data-query id="get-current-level" type="get"></data-query>
+          </data-set>
+
+          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
+            <data-query id="clear-current-user" type="clear" trigger="#logout-btn" on="click"></data-query>
+          </data-set>
+
+        </data-store>
+
+        <data-store id="logs-store">
+
+          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+            <data-query id="list-game-logs" type="list"></data-query>
+          </data-set>
+
+        </data-store>
+
+      </app-route>
+
+      <app-route hash="leaderboard">
+        <h1>Game log</h1>
+        <hr>
+
+        <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
+
+          <template>
+            <plain-card>
+              <h2 slot="title" data-key="username">username</h2>
+
+              <section slot="main">
+                <b>Level:</b><span data-key="level"></span><br>
+                <b>Attempts:</b><span data-key="attempts"></span><br>
+              </section>
+
+            </plain-card>
+          </template>
+        </ui-data-repeat>
+
+
+      </app-route>
+
+    </app-router>
+
+    <footer slot="footer">Thank you.</footer>
+  </app-layout>
+
+
+</body>
+
+</html>
+```
+
+
 ![ui-data-repeat-1](./assets/ui-data-repeat-1.png)
 
 
@@ -2377,7 +2532,7 @@ We only need to refresh and win a couple of maches then navigate to the `leaderb
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
-Let's see some examples:
+Let's see some __examples__:
 
 **let's start with the basic**
 
@@ -2419,27 +2574,32 @@ Let's look at this scenario. We currently have a `data-set` and a `data-query`. 
 ```
 
 
-Introducing `event-source` and `event-group`.
+Introducing `event-source` and `event-group`! 🥳.
+
+
 With `event-source` we can listen to a trigger and it will emit a new `data` event. In other words, it is acting as the man in the middle in order to decouple the consumers from the producers of events.  
 
 
 Let's review the initial example with an `event-source`.
-Step 1, keep the current event flow, `data-set` is the one updating the `plain-card`.
-The only diference is that we are going to add an `event-source` in the middle:
+
+
+Step 1, add an `event-source` tag just above the `current-session` data store. Its trigger will be the `current-level` data set:
 ```html
-...
-<plain-card>
-  ...
-  <!-- update trigger and event to newly created event-source... -->
-  <ui-data-sync trigger="#level-updated" on="data">
-    ...
 ...
 
 <!-- add event source and set the trigger to data-set -->
 <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
 
-<!-- no change on data-set -->
-<data-set id="current-level" trigger="#game-board" on="levelup">
+...
+```
+
+Then lets update the `trigger` and `on` attributes on the `ui-data-sync` so it listen to `data` events from the `event-sourve` we just created:
+```html
+<plain-card>
+  ...
+  <!-- updating trigger and on attributes  -->
+  <ui-data-sync trigger="#level-updated" on="data">
+    ...
 ...
 ```
 
