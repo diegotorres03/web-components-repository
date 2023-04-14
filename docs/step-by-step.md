@@ -443,8 +443,8 @@ this.#modal.addEventListener('accepted', event => {
   const { secret } = event.detail
 
   // here we are reading the attribute value passed on index.html
-  if (secret === this.getAttribute('password'))
-      this.#flipCard.flip()
+  if (secret === thi?s.getAttribute('password'))
+      this.#flipCard?.flip()
 
 })
 ```
@@ -485,8 +485,8 @@ export default class SecretCarddComponent extends HTMLElement {
       const { secret } = event.detail
 
       // here we are reading the attrivute value passed on index.html
-      if (secret === this.getAttribute('password'))
-        this.#flipCard.flip()
+      if (secret === t?his.getAttribute('password'))
+        this.#flipCard?.flip()
 
     })
 
@@ -675,7 +675,11 @@ Let's add some placeholders for the score:
   <plain-card>
      <h2 slot="title">My Score</h2>
      <section slot="main">
-       <b>Best Score:</b><span>0</span>
+        <div>
+          <b>Level:</b><span data-key="level"></span><br>
+          <b>Attempts:</b><span data-key="attempts"></span><br>
+          <b>Username:</b><span data-key="username"></span><br>
+        </div>
      </section>
    </plain-card>
 ```
@@ -736,7 +740,11 @@ So far, this is our `index.html`
       <plain-card>
         <h2 slot="title">My Score</h2>
         <section slot="main">
-          <b>Best Score:</b><span>0</span>
+          <div>
+            <b>Level:</b><span data-key="level"></span><br>
+            <b>Attempts:</b><span data-key="attempts"></span><br>
+            <b>Username:</b><span data-key="username"></span><br>
+          </div>
         </section>
       </plain-card>
 
@@ -925,7 +933,11 @@ This is how our `index.html` should looks:
       <plain-card>
         <h2 slot="title">My Score</h2>
         <section slot="main">
-          <b>Best Score:</b><span>0</span>
+          <div>
+            <b>Level:</b><span data-key="level"></span><br>
+            <b>Attempts:</b><span data-key="attempts"></span><br>
+            <b>Username:</b><span data-key="username"></span><br>
+          </div>
         </section>
       </plain-card>
 
@@ -1144,7 +1156,11 @@ and the full `index.html`:
       <plain-card>
         <h2 slot="title">My Score</h2>
         <section slot="main">
-          <b>Best Score:</b><span>0</span>
+          <div>
+            <b>Level:</b><span data-key="level"></span><br>
+            <b>Attempts:</b><span data-key="attempts"></span><br>
+            <b>Username:</b><span data-key="username"></span><br>
+          </div>
         </section>
       </plain-card>
 
@@ -1562,8 +1578,8 @@ Now lets add the private method `#registerFlipCardListeners()`, here we want to 
         // 5. we will use the data-flipped to keep track of wich cards are flipped and wich one not
         if (flipCard.hasAttribute('data-flipped')) return
 
-        flipCard.setAttribute('data-flipped', '')
-        flipCard.flip()
+        flipCard?.setAttribute('data-flipped', '')
+        flipCard?.flip()
 
         // 6. if we flip the trap car, lets add 3 to the score as penalty
         if (flipCard.dataset.pairId === trapEmoji) {
@@ -1796,8 +1812,8 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
         // we will use the data-flipped to keep track of wich cards are flipped and wich one not
         if (flipCard.hasAttribute('data-flipped')) return
 
-        flipCard.setAttribute('data-flipped', '')
-        flipCard.flip()
+        flipCard?.setAttribute('data-flipped', '')
+        flipCard?.flip()
 
         // if we flip the trap car, lets add 3 to the score as penalty
         if (flipCard.dataset.pairId === trapEmoji) {
@@ -1926,7 +1942,7 @@ Create a `data-set` tag under the `memory-flip-board`, we will give it and id an
 ```html
    <memory-flip-board id="game-board" level="2"  preview></memory-flip-board>
    ...
-   <data-set id="game-current-level" visible trigger="#game-board" on="levelup"></data-set>
+   <data-set id="current-level" visible trigger="#game-board" on="levelup"></data-set>
 ```
 The `visible` attibute is for dev pourposes, it will allow us to see a changelog of the value.
 
@@ -1942,18 +1958,18 @@ the field `id` and `data-__id` is automatically added if none provided, this is 
 Data sets emit an `updated` event when something change.
 lets go back to the `app-route` for the `#games` route and lets dynamically update the level on the UI.
 ```html
-   change ...
+   change this ...
    <app-route id="game-route" hash="game">
      <h1>I'm Game</h1>
      <ui-data-sync trigger="#username-selection-modal" on="accepted" >
        <p>Welcome <span data-key="username"></span></p>
      </ui-data-sync>
    
-   for ...
+   for this ...
     <app-route id="game-route" hash="game">
 
         <!-- This is new -->
-        <ui-data-sync trigger="#game-current-level" on="updated">
+        <ui-data-sync trigger="#current-level" on="updated">
           <h1>On level <span data-key="level">1</span></h1>
         </ui-data-sync>
 
@@ -1985,7 +2001,7 @@ On the game route, the `ui-data-sync` that is listening to the same modal, lets 
 ```
 
 
-Lastly, lets add another `data-set` that will act as our game log, this time we will use the `append` attribute to let the data set know that all values should be stored.
+Lastly, lets add another `data-set` that will act as our game log, this time we will use the `append` attribute to let the data set know that `all` values should be stored.
 
 Think of a data-set without the append as a regular variable and with the append as an array.
 ```html
@@ -2040,12 +2056,12 @@ And lets add a logout button with the matching id. In the `app-layout` on the `h
 
 for `#get-current-level` data set, we are only using a get query, no trigger for now.
 ```html
-   <data-set id="game-current-level" trigger="#game-board" on="levelup">
+   <data-set id="current-level" trigger="#game-board" on="levelup">
 
     <!-- add this line -->
       <data-query id="get-current-level" type="get"></data-query>
 
-</data-set>
+  </data-set>
 ```
 
 and for `#game-log`, because this is is appending all events, the if we use `get` it will emit an event with an array of values, if we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now.
@@ -2057,6 +2073,11 @@ and for `#game-log`, because this is is appending all events, the if we use `get
 
   </data-set>
 ```
+
+If we interact with the application, provide a username, and win a level, we shold be able to see data points in all data-sets
+
+
+![data-set-1](./assets/data-set-1.png)
 
 
 ### Activity 2.3.3: Data store
@@ -2070,30 +2091,36 @@ Introducing... (>\*.\*)> `data-store` <(\*.\*<)
 This component will handle the heavy lifting of setting up IndexedDB and keeping datasets in sync after a refresh.
 
 Lets see it in action!
-Create a `data-store` tag with an id of `current-session` and move the `#current-username` and `#game-current-level` data sets inside.
+
+
+Create a `data-store` tag with an id of `current-session` and move the `current-username` and `current-level` data sets inside it. Data store will only interact with children data sets 
+
+
+and move the `#current-username` and `#current-level` data sets inside.
 ```html
 ...
 <data-store id="current-session">
 
-  <data-set id="game-current-level" trigger="#game-board" on="levelup">
+  <!-- current session dataset -->
+  <data-set id="current-level" trigger="#game-board" on="levelup">
     ...
-  </data-set>
 
+  <!-- current username dataset -->
   <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
     ...
-  </data-set>
 
 </data-store>
 ...
 ```
 
-And create another `data-store` for the `#game-log`
+And create another `data-store` for the `#game-log` remember this new component should wrap the desired `data-set`:
 ```html
 ...
 <data-store id="logs-store">
+
+  <!-- game log dataset -->
   <data-set id="game-log" visible append trigger="#game-board" on="levelup">
     ...
-  </data-set>
 </data-store>
 ...
 ```
@@ -2112,14 +2139,147 @@ _note: the IndexedDB key is composed from the data-store id and the data-set id_
 Also notice that datasets will keep their state when refresh
 ![dataset screenshoot](./assets/indexeddb-3.png)
 
+So far, this is how `index.html` looks like:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Cod1hhmpatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    /* this class is to hide routes */
+    .hidden {
+      display: none;
+    }
+
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+  </style>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <button id="logout-btn">logout</button>
+    </nav>
+
+    <section slot="left-content">
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <div>
+            <b>Level:</b><span data-key="level"></span><br>
+            <b>Attempts:</b><span data-key="attempts"></span><br>
+            <b>Username:</b><span data-key="username"></span><br>
+          </div>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>Answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>Answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+    </section>
+
+    <app-router slot="main">
+
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+        <h1 slot="title">Start a new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>Choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+
+      <app-route>home
+
+
+      </app-route>
+
+      <app-route id="game-route" hash="game">
+
+        <ui-data-sync trigger="#current-level" on="updated">
+          <h1>On level <span data-key="level">1</span></h1>
+        </ui-data-sync>
+
+        <ui-data-sync trigger="#current-username" on="updated">
+          <p>Welcome <span data-key="username">user</span></p>
+        </ui-data-sync>
+
+        <memory-flip-board-2 id="game-board" level="2"></memory-flip-board-2>
+
+        <data-store id="current-session">
+
+          <data-set id="current-level" visible trigger="#game-board" on="levelup">
+            <data-query id="get-current-level" type="get"></data-query>
+          </data-set>
+          
+          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible >
+            <data-query id="clear-current-user" type="clear" trigger="#logout-btn" on="click"></data-query>
+          </data-set>
+          
+        </data-store>
+
+        <data-store id="logs-store">
+
+          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+            <data-query id="list-game-logs" type="list"></data-query>
+          </data-set>
+          
+        </data-store>
+
+      </app-route>
+
+      <app-route hash="leaderboard">Leaderboard</app-route>
+
+    </app-router>
+
+    <footer slot="footer">Thank you.</footer>
+  </app-layout>
+
+
+</body>
+
+</html>
+```
+
 
 ### Activity 2.3.4: UI sync components
 
 We are already familiar with the `ui-data-sync`, we used a couple of time already, but there are other 2 components we can leverage to make this application interactive.
 
-But first lets warm up with the familiar `ui-data-sync`. Level, username and score are important pieces of information that we want to always keep up to date.
+But first lets warm up with the familiar `ui-data-sync`. 
 
-For username, lets update the existing `ui-data-sync`  so it uses the `data-set` as trigger instead of the `app-modal`
+There are 2 important values we always want to keep up to date,  `username` and `score`.
+For `username`, we currently have an `ui-data-sync` listening to an `app-modal` we want to change that for the  `current-username` data set: 
+the `app-modal`
 ```html
 from ...
 <ui-data-sync trigger="#username-selection-modal" on="accepted">
@@ -2132,51 +2292,63 @@ to...
 ...
 ```
 
-And last for this step is to reflect the current score on the `left-content` slot from `app-layout` component:
+And for `score` we already have a place on the UI for this, the `plain-card` on the left for this step is to reflect the current score on the `left-content` slot from `app-layout` component.
+Here we want to add the `ui-data-sync` component around the `div` that contain the labels and inputs for level and attempts:
 ```html
-update ...
 <plain-card>
-  <h2 slot="title">My Score</h2>
+  ...
   <section slot="main">
-    <b>Best Score:</b><span>0</span>
-  </section>
-</plain-card>
-with this...
-<plain-card>
-  <h2 slot="title">My Score</h2>
-  <section slot="main">
+    ...
 
-    <ui-data-sync trigger="#game-current-level" on="updated">
-      <section>
+    <!-- add ui-data-sync -->
+    <ui-data-sync trigger="#current-level" on="updated">
+      <div>
+        <!-- add <span data-key="xxx"> to let ui-data-sync know what value to replace -->
         <b>Level:</b><span data-key="level"></span><br>
         <b>Attempts:</b><span data-key="attempts"></span><br>
         <b>Username:</b><span data-key="username"></span><br>
-      </section>
+      </div>
     </ui-data-sync>
 
+
+  ...
   </section>
 </plain-card>
 ...
 ```
 
-This works great with single items, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat` to provide a template that will be used to create every instance of the items send by the dataset.
 
-On the leaderboard route lets create a list of plain cards, each one will represent a new game log from `#game-log` data set.
+
+On the leaderboard route, our goal is to display a list of plain cards, each one will represent a new game log from `#game-log` data set. `ui-data-sync` works great with a single item, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat`.
+
+This component will listen to an event, and it will create a new ui element for each event.
+
+We need to provide a the html that we want `ui-data-repeat` to use. To achieve this, we are going to usethe [template](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) tag
+
 The html that go inside the `template` tag will be cloned and used for each event.
 Remember `data-key` attribute or `name` attribute will be used to let the ui component know where to add the values of the event.
 
+On the leaderboard route, lets replace its content with this:
 ```html
-...
 <app-route hash="leaderboard">
-  <h1>Game log</h1>
+  ...
 
+
+
+  <h1>Game log</h1>
   <hr>
 
+
+  <!-- listening to gale log dataset fot the updated event -->
   <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
+
+    <!-- the content inside of a template tag won't be rendered by the browser -->
     <template>
       <plain-card>
         <h2 slot="title" data-key="username">username</h2>
         <section slot="main">
+
+          <!-- data-key let ui-data-repeat know where to add the values from the event -->
           <b>Level:</b><span data-key="level"></span><br>
           <b>Attempts:</b><span data-key="attempts"></span><br>
         </section>
@@ -2185,9 +2357,19 @@ Remember `data-key` attribute or `name` attribute will be used to let the ui com
   </ui-data-repeat>
 
 
-</app-route>
+
 ...
+</app-route>
 ```
+
+Lets test on the browser!!
+
+We only need to refresh and win a couple of maches then navigate to the `leaderboard` page and we should see our log.
+
+![ui-data-repeat-1](./assets/ui-data-repeat-1.png)
+
+
+---
 
 ## Section 2.4: Event components
 
@@ -2219,17 +2401,17 @@ Here we added a `data-modal` attribute and passed `[data-modal]` as the trigger.
 
 **Well! what if the other element emits a different event**
 
-Let's look at this scenario. We currently have a `data-set` and a `data-query`. The issue here is that we want to listen to the `data` event on the `data-set` and `get` on `data-query`.
+Let's look at this scenario. We currently have a `data-set` and a `data-query`. The issue here is that we want to listen to the `data` event on the `data-set` and `get` event on `data-query`.
 ```html
 ...
 <plain-card>
   ...
   <!-- this component should listen to... -->
-  <ui-data-sync trigger="#game-current-level" on="updated">
+  <ui-data-sync trigger="#current-level" on="updated">
     ...
 ...
 <!-- this data set and .... -->
-<data-set id="game-current-level" trigger="#game-board" on="levelup">
+<data-set id="current-level" trigger="#game-board" on="levelup">
   <!-- this data query. And both emit different events -->
   <data-query id="get-current-level" type="get"></data-query>
 </data-set>
@@ -2254,10 +2436,10 @@ The only diference is that we are going to add an `event-source` in the middle:
 ...
 
 <!-- add event source and set the trigger to data-set -->
-<event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
+<event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
 
 <!-- no change on data-set -->
-<data-set id="game-current-level" trigger="#game-board" on="levelup">
+<data-set id="current-level" trigger="#game-board" on="levelup">
 ...
 ```
 
@@ -2276,11 +2458,11 @@ Let's do the same for the `data-query`:
 ...
 <!-- add this new event-source and use the query as trigger -->
 <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
-<event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
+<event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
 
 <data-store id="current-session">
 
-<data-set id="game-current-level" trigger="#game-board" on="levelup">
+<data-set id="current-level" trigger="#game-board" on="levelup">
   <data-query id="get-current-level" type="get"></data-query>
 ...
 ```
@@ -2296,7 +2478,7 @@ Lets implement this change:
 
 ...
 
-<data-set id="game-current-level" trigger="#game-board" on="levelup">
+<data-set id="current-level" trigger="#game-board" on="levelup">
   <!-- set the new event source #on-load as trigger -->
   <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
 ...
@@ -2319,7 +2501,7 @@ Let use it to group the `data-query` and the `data-set` to always refresh the sc
 ...
 <event-group id="level-group">
   <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
-  <event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
+  <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
 </event-group>
 ...
 ```
