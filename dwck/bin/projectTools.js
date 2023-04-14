@@ -214,16 +214,19 @@ export async function createDwckProjectFolder(projectName) {
     const tempFolderPath = `./${projectName}_temp`;
     await cloneWebComponentsFolderFromRepo(tempFolderPath);
     updateProgressBar(progressBar, 30);
+
+
     await copyConfigFiles(
       folderPath,
-      `${tempFolderPath}/web-components`,
+      wcFolderPath,
+      docsFolderPath,
       projectName,
     );
     updateProgressBar(progressBar, 10);
-    await buildBundle(tempFolderPath);
+    await buildBundle(wcFolderPath);
     updateProgressBar(progressBar, 30);
-    await copyBundle(tempFolderPath, folderPath);
-    await fs.rm(tempFolderPath, { recursive: true });
+    await copyBundle(wcFolderPath, folderPath);
+    await fs.rm(wcFolderPath, { recursive: true });
     console.log('Project folder creation completed successfully!');
     updateProgressBar(progressBar, 20);
     return folderPath;
