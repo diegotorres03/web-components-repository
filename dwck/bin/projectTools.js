@@ -68,7 +68,7 @@ async function createFolderStructure(folderPath) {
 // Clone the web components folder from the repository
 async function cloneWebComponentsFolderFromRepo(tempFolderPath) {
   console.log('Cloning web components folder from repository...');
-  const sparsePath = 'web-components';
+  const sparsePath = ['web-components', 'docs'];
   try {
     await fs.mkdir(tempFolderPath);
     await gitSparseClone(REPO_URL, tempFolderPath, sparsePath);
@@ -99,37 +99,42 @@ async function buildBundle(tempFolderPath) {
 }
 
 // Copy the configuration files from the cloned repository to the project folder
-async function copyConfigFiles(folderPath, tempFolderPath, projectName) {
+async function copyConfigFiles(folderPath, wcFolderPath, docsFolderPath, projectName) {
   console.log('Copying configuration files...');
 
-  const packageJSONPath = `${tempFolderPath}/assets/configs/template_package.json`;
+  const packageJSONPath = `${wcFolderPath}/assets/configs/template_package.json`;
   const packageJSON = await fs.readJson(packageJSONPath);
 
   packageJSON.name = projectName;
 
   await fs.writeJson(`${folderPath}/package.json`, packageJSON, { spaces: 2 });
   await fs.copy(
-    `${tempFolderPath}/assets/configs/webpack.config.dwck.js`,
+    `${wcFolderPath}/assets/configs/webpack.config.dwck.js`,
     `${folderPath}/webpack.config.js`,
   );
   await fs.copy(
-    `${tempFolderPath}/assets/configs/index.js`,
+    `${wcFolderPath}/assets/configs/index.js`,
     `${folderPath}/src/index.js`,
   );
   await fs.copy(
-    `${tempFolderPath}/assets/configs/index.html`,
+    `${docsFolderPath}/docs`,
+    `${folderPath}/docs`,
+    { recursive: true },
+  );
+  await fs.copy(
+    `${wcFolderPath}/assets/configs/index.html`,
     `${folderPath}/index.html`,
   );
   await fs.copy(
-    `${tempFolderPath}/src/global/style-tools.css`,
+    `${wcFolderPath}/src/global/style-tools.css`,
     `${folderPath}/src/lib/style-tools.css`,
   );
   await fs.copy(
-    `${tempFolderPath}/src/global/themes`,
+    `${wcFolderPath}/src/global/themes`,
     `${folderPath}/src/lib/themes`,
   );
   await fs.copy(
-    `${tempFolderPath}/src/global/web-tools.js`,
+    `${wcFolderPath}/src/global/web-tools.js`,
     `${folderPath}/src/lib/web-tools.js`,
   );
 }
@@ -166,19 +171,24 @@ export async function createDwckProjectFolder(projectName) {
     await fs.mkdir(folderPath);
     await createFolderStructure(folderPath);
     updateProgressBar(progressBar, 10);
-    const tempFolderPath = `./${projectName}_temp`;
-    await cloneWebComponentsFolderFromRepo(tempFolderPath);
+    const wcFolderPath = `./${projectName}_temp/web-components`;
+    const docsFolderPath = `./${projectName}_temp/docs`;
+
+    await cloneWebComponentsFolderFromRepo(wcFolderPath);
     updateProgressBar(progressBar, 30);
+
+
     await copyConfigFiles(
       folderPath,
-      `${tempFolderPath}/web-components`,
+      wcFolderPath,
+      docsFolderPath,
       projectName,
     );
     updateProgressBar(progressBar, 10);
-    await buildBundle(tempFolderPath);
+    await buildBundle(wcFolderPath);
     updateProgressBar(progressBar, 30);
-    await copyBundle(tempFolderPath, folderPath);
-    await fs.rm(tempFolderPath, { recursive: true });
+    await copyBundle(wcFolderPath, folderPath);
+    await fs.rm(wcFolderPath, { recursive: true });
     console.log('Project folder creation completed successfully!');
     updateProgressBar(progressBar, 20);
     return folderPath;
