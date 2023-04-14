@@ -1,6 +1,6 @@
 {
   "name": "dwck",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is a set of scripts to create simple starter templates for the Diego Web Components Kit (DWCk)",
   "main": "index.js",
   "type": "module",
