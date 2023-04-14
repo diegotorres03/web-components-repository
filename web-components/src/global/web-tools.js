@@ -144,6 +144,19 @@ function selectAll(selector, scope = document) {
   return Array.from(scope.querySelectorAll(selector))
 }
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min)
+  max = Math.ceil(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+function getRandomItem(array) {
+  const randomInt = getRandomInt(0, array.length - 1)
+  const item = array.splice(randomInt, 1)
+  return item.pop()
+}
+
+
 module.exports = {
   html,
   mapComponentEvents,
@@ -154,4 +167,6 @@ module.exports = {
   registerTriggers,
   select,
   selectAll,
+  getRandomInt,
+  getRandomItem,
 }

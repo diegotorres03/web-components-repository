@@ -94,7 +94,7 @@ we can even use mutliple buttons if we select by class or attribute
 ...
 ```
 
-### Activity 1.1.3: Connect the flip-card component to the app-modal
+### Activity 1.1.3: Connect flip to the modal
 Link `flip-card` and `app-modal` with the `trigger` attribute:
 ```html
 ...
@@ -241,7 +241,7 @@ Copy all the HTML inside the `body` tag (not including the `body` tag itself) in
 ```
 
 
-### Activity 1.2.2: Create `SecretCardComponent` class
+### Activity 1.2.2: Create SecretCardComponent class
 In `secret-card.js` we will now provide the component definition and it's functionality.
 - First we want to import some dependencies. Add the following line to import the `html` stored in  `./web-components-app/src/lib/web-tools.js` amd create a class named `SecretCardComponent`. This class will extend the native `HTMLElement` class:
   ```js
@@ -332,7 +332,7 @@ Let's now we go back to `index.html` and use the new component we just created b
 
 
 
-### Activity 1.2.3: Get interactive elements from `secret-card.js`
+### Activity 1.2.3: Get interactive elements from secret-card.js
 Lets clean up a little bit our html, since we are going to use javascript to handle events, lets remove all `trigger` and `on` attributes, and lets also delete the buttons we created before.
 and for the back of the card, lets replace the `ui-data-sync` and its content for any secret HTML
 So, our `secret-card.js` should look like this:
@@ -616,7 +616,7 @@ your `index.html` should look like this:
 </html>
 ```
 
-### Activity 2.1.1: app-layout
+### Activity 2.1.1: App layout
 
 Inside the `body` tag on `index.html` lets use the `app-layout` tag to create an empty application layout 
 The slot name will be displayed in the browser:
@@ -832,7 +832,8 @@ Then let's add an `app-modal` and set the `trigger` and the `on` attributes:
 ```html
   ...
    <app-router slot="main">
-  
+
+      <!-- add this modal before all the app-route elements -->
       <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
         <h1 slot="title">Start a new match</h1>
         <section slot="main">
@@ -879,9 +880,108 @@ And lastly, lets log every route change in the console.
    ...
 ```
 
+This is how our `index.html` should looks:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Cod1hhmpatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    /* this class is to hide routes */
+    .hidden {
+      display: none;
+    }
+
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+  </style>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+    </nav>
+
+    <section slot="left-content">
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <b>Best Score:</b><span>0</span>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>Answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>Answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+    </section>
+
+    <app-router slot="main">
+
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+        <h1 slot="title">Start a new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>Choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+
+      <app-route>home</app-route>
+
+      <app-route id="game-route" hash="game">
+        <h1>I'm Game</h1>
+        <ui-data-sync trigger="#username-selection-modal" on="accepted">
+          <p>Welcome <span data-key="username"></span></p>
+        </ui-data-sync>
+      </app-route>
+      
+      <app-route hash="leaderboard">Leaderboard</app-route>
+    
+    </app-router>
+
+    <footer slot="footer">Thank you.</footer>
+  </app-layout>
 
 
-### Activity 2.1.3: grid-layout component
+</body>
+
+</html>
+```
+
+
+And on the broswer:
+![app-game-route](./assets/app-game-route.png)
+![app-game-route-with-username](./assets/app-game-route-with-username.png)
+
+### Activity 2.1.3: Grid layout
 on `web-components-app/src/components` create the `grid-layout` folder
 then create the `index.js` on `web-components-app/src/components/grid-layout` with the following content:
 ```js
@@ -909,22 +1009,50 @@ then lets create `grid-layout.js` on the same folder and let's initialize an emt
    window.customElements.define('grid-layout', GridLayoutComponent)
 ```
 
+And now lets add this new component on `src/components/index.js`
+```js 
+export * from './secret-card' // this is the one we already have
+
+export * from './grid-layout' // add this one
+```
+
 
 Now, in order to render the content that is passed between the `<grid-layout>this content </grid-layout>` we need to use a `slot` tag.
 Because for our use case, this component will only have one slot, there is no need to specify the slot name when consuming this `grid-layout`
 
-let's go back to the constructor function and add the slot tag
+lets go back to the constructor function and add the slot tag
 ```js
-   constructor() {
-      super()
-      const template = html`<slot></slot>` // here
-      this.attachShadow({ mode: 'open' })
-      this.shadowRoot.appendChild(template)
-   }
+// replace this...
+const template = html``
+
+// for this...
+const template = html`
+  <style>
+    /* here we will add some styles on the next step */      
+  </style>
+  <div id="grid-container">
+    <slot></slot>
+  </div>
+`
 ```
 
-this will be enogh to test our component,  no grid so far.
-On `index.html` lets add the following snippet:
+Now that we added the string template for our html, lets add some css to enable the grid.
+
+**Note:** _because we are using a template string from javascript, we will be getting some values dinamycally from js, this will only work on first load, if the value of the grid change we won't react to that change, we will cover those changes later on the lab_
+
+On the `style` tag lets add the css for a grid layout
+```css
+#grid-container {
+   display: grid;
+   grid-template-columns: repeat(${this.getAttribute('columns')}, 1fr);
+   grid-template-rows: repeat(${this.getAttribute('rows')}, 1fr);
+   grid-gap: ${ this.getAttribute('gap') || '20px'};
+}
+```
+
+
+This will be enogh to test our component,  no grid so far.
+On `index.html` lets add the following snippet on the `#game` route:
 
 ```html
    <grid-layout gap="1px" columns="2" rows="2">
@@ -934,11 +1062,161 @@ On `index.html` lets add the following snippet:
     <flip-card></flip-card>
    </grid-layout>
 ```
-And we should see a 4 by 4 grid of flip cards
 
 
-### Activity 2.1.4: Memory Flip component
+This is the full `grid-layout.js`:
+```js
+import { html, registerTriggers } from '../../lib/web-tools'
 
+export default class GridLayoutComponent2 extends HTMLElement {
+
+  constructor() {
+    super()
+    const template = html`
+      <style>
+        #grid-container {
+          display: grid;
+          grid-template-columns: repeat(${this.getAttribute('columns')}, 1fr);
+          grid-template-rows: repeat(${this.getAttribute('rows')}, 1fr);
+          grid-gap: ${ this.getAttribute('gap') || '20px'};
+        }
+      </style>
+
+      <div id="grid-container">
+        <slot></slot>
+      </div>
+    `
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template)
+  }
+
+  connectedCallback() {
+    registerTriggers(this, (event) => console.log(event))
+  }
+
+}
+
+window.customElements.define('grid-layout-2', GridLayoutComponent2)
+```
+
+and the full `index.html`:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Cod1hhmpatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    /* this class is to hide routes */
+    .hidden {
+      display: none;
+    }
+
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+  </style>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+    </nav>
+
+    <section slot="left-content">
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <b>Best Score:</b><span>0</span>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>Answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>Answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+    </section>
+
+    <app-router slot="main">
+
+      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+        <h1 slot="title">Start a new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>Choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+
+      <app-route>home
+
+        <grid-layout-2 gap="1px" columns="2" rows="2">
+          <flip-card></flip-card>
+          <flip-card></flip-card>
+          <flip-card></flip-card>
+          <flip-card></flip-card>
+        </grid-layout-2>
+
+      </app-route>
+
+      <app-route id="game-route" hash="game">
+        <h1>I'm Game</h1>
+        <ui-data-sync trigger="#username-selection-modal" on="accepted">
+          <p>Welcome <span data-key="username"></span></p>
+        </ui-data-sync>
+      </app-route>
+      
+      <app-route hash="leaderboard">Leaderboard</app-route>
+    
+    </app-router>
+
+    <footer slot="footer">Thank you.</footer>
+  </app-layout>
+
+
+</body>
+
+</html>
+```
+
+And we should see a 2 by 2 grid of flip cards
+![grid layout preview](./assets/grid-layout-1.png)
+
+
+## Section 2.2: Creating a statefull component
+
+### Activity 2.2.1: Memory flip game
+
+Here, we want to create a component that will draw the boar for our memory game.
+This componente will be used in this way, and every time we change the level attribute we want to update the component to reflect the new level.
+```html
+<memory-flip-board id="game-board" level="2"></memory-flip-board>
+```
 
 At this point, we are familiar with the process, create a `memory-flip-board` folder on `web-components-app/src/components`. And create the respective `index.js` file to export the component
 ```js
@@ -953,15 +1231,10 @@ At this point it should look like this:
    export * from './memory-flip-board' // add this line
 ```
 
-Now create `memori-flip-board.js` on `web-components-app/src/components/memory-flip-board`
-
-TODO: do the step by step of this js and at the end, a scritp tag on index and a console.log or a simple `app-modal` to test that `levelup` event is being emited
+Before the `export class ...` lets add an array full of emojist, they will be used as the images on our memory game:
 ```js
-import { html, registerTriggers, updateVars } from '../../lib/web-tools'
-
-
-// [ ] Alejo, meta copilit aca
-
+...
+// add this after the impors ...
 const emojiList = [
   '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒',
   '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🌭', '🍔', '🍟',
@@ -970,19 +1243,192 @@ const emojiList = [
   '⛸️', '🏂', '🎤', '🎼', '🎹', '🪘', '🥁', '🎷', '🎺', '🪗', '🎸', '🎻',
 ]
 
-const trapEmoji = '🔥🔥🔥'
+const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
+...
+```
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.ceil(max)
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-// .splice(getRandomInt(0, arr.length), 1)
-
+Now create `memory-flip-board.js` on `web-components-app/src/components/memory-flip-board` with an empty web component:
+```js
+import { 
+  html, 
+  registerTriggers, 
+  getRandomInt, 
+  getRandomItem, 
+  updateVars 
+} from '../../lib/web-tools'
 
 export default class MemoriFlipBoardComponent extends HTMLElement {
+  constructor() {
+    super()
+    const template = html`<main></main>`
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template)
+  }
 
-  static TRAP_PENALTY = 3
+}
+
+window.customElements.define('memory-flip-board', MemoriFlipBoardComponent)
+```
+
+Now, in order to detect changes on the `level` attribute, we will use the [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) api provided by the Web components standar.
+
+In this case, we will use the `attributeChangedCallback` to detect changes on some attributes. Wich attribute you might be asking...
+Well the ones we tell JavaScript to observe.
+On `memory-flip-board.js` lets add a static property to our class:
+```js
+  ...
+  // add this before class constructor
+  static get observedAttributes() {
+    return ['level', 'time', 'preview']
+  }
+  ...
+```
+
+and lets add the `attributeChangedCallback` method after the constructor and let add a `generateComponents` method after that. Every time the attribute change we want to call the `generateComponents` method
+```js
+  // name is the name of the attribute that changed
+  // oldValue represent the previous value
+  // new value represents the current value for the attribute
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name !== 'level') return // we are only interested on the level attribute
+    console.log(name, oldValue, newValue) // lets explore this values
+
+     this.generateComponents()
+  }
+
+  generateComponents() {
+    console.log(`generating components`)
+    // we will add more code here later
+  }
+  
+```
+
+on `index.html` lets replace the old `grid-layout` for the new `memory-flip-board`
+```html
+<!-- replace this -->
+<grid-layout gap="1px" columns="2" rows="2">
+   <flip-card></flip-card>
+   <flip-card></flip-card>
+   <flip-card></flip-card>
+   <flip-card></flip-card>
+</grid-layout>
+
+<!-- for this -->
+<memory-flip-board id="game-board" level="2"></memory-flip-board>
+```
+
+Now, if go to the browser, navigate to `#game` page and inspect the html, we should see our `memory-flip-board`:
+![memory-flip-board-1](./assets/memory-flip-board-1.png)
+
+lets go ahead and double click on the level attribute and lets change the value to `3`, we should se the console log with the new value:
+![memory-flip-board-2](./assets/memory-flip-board-2.png)
+
+
+### Activity 2.2.2: Generating content dynamically
+
+Because the value of the attribute `level` is very important, and it will be used many times, lets create a [getter property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#using_getters_in_classes) to avoid writing `this.getAttribute('level')` and having to convert this value from string to number. This will be done before the constructor:
+```js
+  ...
+  get level() {
+    const level = Number(this.getAttribute('level'))
+    return Number.isNaN(level) ? 2 : level // if level is not a number, set a defaul value of 2
+  }
+  ...
+```
+
+The way we will access this is by simply calling `this.level` as a regular property. We will see an example soon.
+
+
+Now that we see that change is detected, lets go ahead and implement the `drawGridElements` private method:
+```js
+...
+  #drawGridElements() {
+
+    // 1. get the main tag from this component and empty it
+    const gridContainer = this.shadowRoot.querySelector('main')
+    gridContainer.innerHTML = ''
+
+    // 2. let see how many pairs can we fit according to the level
+    const pairCount = Math.floor((this.level * this.level) / 2)
+
+    // 3. lets create an empty array to hold all the emojis that will be used this round
+    const pairArray = []
+
+    // 4. lets randomly select elements from the
+    for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
+      const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
+
+      pairArray.push(emoji)// adding the emoji at the end of the array
+      pairArray.unshift(emoji) // and at the begining, we want 2 cards with the same emoji
+    }
+
+    // 5. if level is odd, lets add a trap card, add the trap emoji to the list
+    const hasTrap = this.level % 2 === 1
+    if (hasTrap) pairArray.push(trapEmoji)
+
+    // 6. lets create the grid-layout that will hold the flip cards
+    const grid = html`
+     <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
+     </grid-layout>
+   `
+
+    // 7. we got all we need, lets loop and print
+    for (let colIndex = 1; colIndex <= this.level; colIndex++) {
+      for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
+
+        let pairEmoji = getRandomItem(pairArray) // getting a random emoji from array
+        // if (!pairEmoji) pairEmoji
+        const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
+        const flip = html`
+              <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
+                <span slot="front" style="font-size: 3em; user-select: none;">🃏</span>
+                <span slot="back" style="font-size: 3em; user-select: none;">${pairEmoji}</span>
+              </flip-card>
+          `
+        // console.log(flip)
+        grid.firstChild.appendChild(flip)
+        this.#flipMap.set(id, false)
+      }
+    }
+
+    // 9. last, lets append the grid to the main tag of this component
+    this.shadowRoot.querySelector('main').appendChild(grid)
+
+  }
+...
+```
+
+And lets call this method inside `generateComponents`
+```js
+  ...
+  generateComponents() {
+    console.log(`generating components`)
+    this.#drawGridElements()
+  }
+  ...
+```
+
+so far, our component code should look similar to this:
+`memory-flip-board.js`
+```js
+import {
+  html,
+  registerTriggers,
+  getRandomInt,
+  getRandomItem,
+  updateVars
+} from '../../lib/web-tools'
+const emojiList = [
+  '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒',
+  '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🌭', '🍔', '🍟',
+  '🍕', '🌮', '🍧', '🍦', '🥧', '⚽', '🏀', '🏈', '⚾', '🥎', '🏐', '🏉',
+  '🎱', '🏓', '🏸', '🏒', '🥅', '⛳', '🏹', '🎣', '🥊', '🥋', '🛹', '🛷',
+  '⛸️', '🏂', '🎤', '🎼', '🎹', '🪘', '🥁', '🎷', '🎺', '🪗', '🎸', '🎻',
+]
+
+const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
+
+export default class MemoriFlipBoardComponent2 extends HTMLElement {
 
   static get observedAttributes() {
     return ['level', 'time', 'preview']
@@ -993,179 +1439,469 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
     return Number.isNaN(level) ? 2 : level
   }
 
-  #flipMap = new Map()
-  #openCards = new WeakMap()
+  attempts
+  #waiting
   #currentCard
-  #waiting = false
-
-  attempts = 0
 
   constructor() {
     super()
-    const template = html`
-      <h1>({attempts})</h1>
-      <main>
-      
-      </main>
-    `
+    const template = html`<main></main>`
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
-
-    // this.generateComponents()
-  }
-
-  generateComponents() {
-
-    const gridContainer = this.shadowRoot.querySelector('main')
-    gridContainer.innerHTML = ''
-
-    const pairs = Math.floor((this.level * this.level) / 2)
-    const hasTrap = this.level % 2 === 1
-    console.log('generateComponents', pairs, hasTrap)
-
-    let pairArray = []
-
-
-    for (let pairIndex = 0; pairIndex < pairs; pairIndex++) {
-      const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
-      // console.log('emoji, pairArray', pairIndex, emoji, pairArray)
-      pairArray.push(emoji)
-      pairArray.unshift(emoji)
-    }
-
-    if (hasTrap) pairArray.push(trapEmoji)
-
-    const getRandomItem = (array) => {
-      const randomInt = getRandomInt(0, array.length - 1)
-      const item = array.splice(randomInt, 1)
-      return item.pop()
-    }
-
-    const grid = html`
-      <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
-      </grid-layout>
-    `
-
-    for (let colIndex = 1; colIndex <= this.level; colIndex++) {
-      for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
-        let pairEmoji = getRandomItem(pairArray)
-        if (!pairEmoji) pairEmoji
-        const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
-        const flip = html`
-            <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
-              <span slot="front" style="font-size: 3em; user-select: none;">🃏</span>
-              <span slot="back" style="font-size: 3em; user-select: none;">${pairEmoji}</span>
-            </flip-card>
-        `
-        // console.log(flip)
-        grid.firstChild.appendChild(flip)
-        this.#flipMap.set(id, false)
-      }
-    }
-
-    this.shadowRoot.querySelector('main').appendChild(grid)
-
-    Array.from(this.shadowRoot.querySelectorAll('flip-card'))
-      .map(flipItem => {
-        this.#openCards.set(flipItem, false)
-        return flipItem
-      })
-      .forEach(flipItem => flipItem.addEventListener('click', event => {
-        if (this.#waiting) return
-        const flipId = event.target.id
-        if (!flipId) return
-        const flipCard = this.shadowRoot.querySelector(`#${flipId}`)
-        // flipCard.flip()
-        if (!this.#openCards.has(flipCard)) return console.warn('flip card should be here')
-        if (this.#openCards.get(flipCard)) return
-        this.#openCards.set(flipCard, true)
-        flipCard.flip()
-        if (flipCard.dataset.pairId === trapEmoji) {
-          this.attempts += MemoriFlipBoardComponent.TRAP_PENALTY
-          return
-        }
-        if (!this.#currentCard) {
-          this.#currentCard = flipCard
-          return
-        }
-        this.#waiting = true
-        
-        setTimeout(() => {
-          if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
-            this.#currentCard.setAttribute('data-paired', '')
-            flipCard.setAttribute('data-paired', '')
-            console.log(this.#currentCard.dataset.pairId, flipCard.dataset.pairId)
-            this.#currentCard = null
-            this.#waiting = false
-            this.#didIWon()
-            return
-          }
-
-          this.#openCards.set(flipCard, false)
-          this.#openCards.set(this.#currentCard, false)
-          this.#currentCard.reset()
-          flipCard.reset()
-          this.#currentCard = null
-          this.#waiting = false
-        }, 1_000)
-        this.attempts += 1
-        updateVars(this)
-        return
-
-      }))
-
-  }
-
-
-  connectedCallback() {
-    updateVars(this)
-    registerTriggers(this, (event) => this.showAll(event))
-
-  }
-
-  #didIWon() {
-    console.log('#didIWon')
-    let yesYoyDid = true
-    const allItems = Array.from(this.shadowRoot.querySelectorAll('flip-card'))
-    console.log(allItems)
-    allItems
-      .filter(flipCard => flipCard.dataset.pairId !== trapEmoji)
-      .forEach(flipCard => {
-        console.log(flipCard, flipCard.dataset, flipCard.hasAttribute('data-paired'))
-        yesYoyDid = yesYoyDid && flipCard.hasAttribute('data-paired')
-      })
-
-    if (!yesYoyDid) return
-    const event = new CustomEvent('done', {
-      bubbles: true, composed: true,
-      detail: {
-        level: this.level,
-        attempts: this.attempts,
-        username: this.getAttribute('username'),
-        time: 0,
-      }
-    })
-    console.log(event)
-    this.dispatchEvent(event)
-    this.setAttribute('level', this.level + 1)
 
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (name !== 'level') return
-    // this.level = newValue
+    console.log(name, oldValue, newValue)
+
     this.generateComponents()
+  }
+
+  generateComponents() {
+    console.log(`generating components`)
+    this.#drawGridElements()
+  }
+
+  #drawGridElements() {
+    console.log('drawing', this.level)
+
+    const gridContainer = this.shadowRoot.querySelector('main')
+    gridContainer.innerHTML = ''
+
+    const pairCount = Math.floor((this.level * this.level) / 2)
+
+    const pairArray = []
+
+    for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
+      const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
+
+      pairArray.push(emoji)
+      pairArray.unshift(emoji)
+    }
+
+    const hasTrap = this.level % 2 === 1
+    if (hasTrap) pairArray.push(trapEmoji)
+
+    const grid = html`
+     <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
+     </grid-layout>
+   `
+
+    for (let colIndex = 1; colIndex <= this.level; colIndex++) {
+      for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
+
+        let pairEmoji = getRandomItem(pairArray) 
+        const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
+        const flip = html`
+              <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
+                <span slot="front" style="font-size: 3em; user-select: none;">🃏</span>
+                <span slot="back" style="font-size: 3em; user-select: none;">${pairEmoji}</span>
+              </flip-card>
+          `
+        console.log(flip)
+        grid.firstChild.appendChild(flip)
+      }
+    }
+
+    this.shadowRoot.querySelector('main').appendChild(grid)
   }
 
 }
 
-window.customElements.define('memory-flip-board', MemoriFlipBoardComponent)
+window.customElements.define('memory-flip-board-2', MemoriFlipBoardComponent2)
+```
+
+And with this, we should be able to see the grid of flip cards back on the game tag
+
+![memory-flip-board-3](./assets/memory-flip-board-3.png)
+
+Lets change the level attribute and we should see how the board increases or decreases flip cards accordingly.
+![memory-flip-board-4](./assets/memory-flip-board-4.png)
+
+
+### Activity 2.2.3: Registering event listeners
+
+Now, all the flipcards are in the board, but we can't interact with them.
+Lets proceed in this activity to add the require event listeners to flip cards and detect when a pair is found.
+
+First, lets add some properties before the constructor, we will use them later:
+```js
+  ...
+  attempts
+  #waiting
+  #currentCard
+  ...
+```
+
+Now lets add the private method `#registerFlipCardListeners()`, here we want to check if the user has found a pair (2 cards with the same emoji), if so, we want to mark those cards as paired, if not, just flip them back:
+```js
+  ...
+  #registerFlipCardListeners() {
+
+    // 1. get all the flip-card elements
+    const flipcards = Array.from(this.shadowRoot.querySelectorAll('flip-card'))
+
+    // 2. lets loop trough all the flip-card and add an event listener
+    flipcards
+      .forEach(flipItem => flipItem.addEventListener('click', event => {
+
+        // 3. if we are in the waitin stage, exit the function to prevent
+        // unexpected behaviour
+        if (this.#waiting) return
+
+        // 4. getting the flip-card from the event
+        const flipCard = event.target
+
+        // 5. we will use the data-flipped to keep track of wich cards are flipped and wich one not
+        if (flipCard.hasAttribute('data-flipped')) return
+
+        flipCard.setAttribute('data-flipped', '')
+        flipCard.flip()
+
+        // 6. if we flip the trap car, lets add 3 to the score as penalty
+        if (flipCard.dataset.pairId === trapEmoji) {
+          this.attempts += 3
+          return
+        }
+
+        // 7. if this.#currentCard doesn't exist, it means is the first move
+        // we will exit the function and wait for the second flip
+        if (!this.#currentCard) {
+          this.#currentCard = flipCard
+          return
+        }
+
+
+        // 8. this flag will help us prevent calling this method while the animation is running
+        this.#waiting = true
+
+        // 9. now lets wait 1s beforche checking if the first and second cards match.
+        // we want to wait so the user can keep track of what is happening on the browser
+        setTimeout(() => {
+
+          // 10. if the current card and the new flip card have the same pairId
+          // it means we found a pair =D
+          if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
+            this.#currentCard.setAttribute('data-paired', '')
+            flipCard.setAttribute('data-paired', '')
+
+            // 11. we can reset this values to move forward with the next pair
+            this.#waiting = false
+            this.#currentCard = null
+
+            // 12. check if you won the match with this move. 
+            // We will implement this method in the next activity
+            this.#checkIfWon()
+
+            return
+          }
+
+          // 13. if the cards didn't match, lets remove the data-flipped attribute
+          // so we know those cards still in play
+          flipCard.removeAttribute('data-flipped')
+          this.#currentCard.removeAttribute('data-flipped')
+
+          // 14. calling the reset() method, will take the flip-card to its original step
+          this.#currentCard.reset()
+          flipCard.reset()
+
+          // 15. we can reset this values to move forward with the next pair
+          this.#waiting = false
+          this.#currentCard = null
+        }, 1_000)
+
+        // 16 increasing attempt counter
+        this.attempts += 1
+        return
+
+      }))
+  }
+  ...
+```
+
+### Activity 2.2.4: Emiting event from within the component
+
+The last step we need in order to make our game playable, is identify when we won the match, in other words, when all the pairs have been found. Once this happend, we want to emit a [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent) with the scores for the current level.
+
+Lets implement this functionallity, lets create the `#checkIfWon()` method:
+```js
+  #checkIfWon() {
+    // 1. temporary variable
+    let yesYoyDid = true
+
+    // 2. get all flip cards as an array
+    Array.from(this.shadowRoot.querySelectorAll('flip-card'))
+      
+      // 3. removing trap card if present
+      .filter(flipCard => flipCard.dataset.pairId !== trapEmoji)
+    
+      // 4. updating the temporary variable, 
+      //if one item don't have the data-paired attribute this will return false and the game will continue
+      .forEach(flipCard => {
+        console.log(flipCard, flipCard.dataset, flipCard.hasAttribute('data-paired'))
+        yesYoyDid = yesYoyDid && flipCard.hasAttribute('data-paired')
+      })
+
+    // 5. if we didn't won, lets keep playing
+    if (!yesYoyDid) return
+
+    // 6. if we won. lets emit the levelup event, so other components
+    // can react to this change
+    const event = new CustomEvent('levelup', {
+      bubbles: true, composed: true,
+      detail: {
+        level: this.level,
+        attempts: this.attempts,
+      }
+    })
+    this.dispatchEvent(event)
+
+    // 7. and lets auto increase the level attribute
+    this.setAttribute('level', this.level + 1)
+  }
 
 ```
 
-## Section 2.2: Data components
+lets take a final look of the `memory-flip-board` files
+**memory-flip-board.js**
+```js
+import {
+  html,
+  getRandomInt,
+  getRandomItem,
+} from '../../lib/web-tools'
+const emojiList = [
+  '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒',
+  '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🌭', '🍔', '🍟',
+  '🍕', '🌮', '🍧', '🍦', '🥧', '⚽', '🏀', '🏈', '⚾', '🥎', '🏐', '🏉',
+  '🎱', '🏓', '🏸', '🏒', '🥅', '⛳', '🏹', '🎣', '🥊', '🥋', '🛹', '🛷',
+  '⛸️', '🏂', '🎤', '🎼', '🎹', '🪘', '🥁', '🎷', '🎺', '🪗', '🎸', '🎻',
+]
 
-### Activity 2.2.1: Data point and data set
+const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
+
+export default class MemoriFlipBoardComponent2 extends HTMLElement {
+
+  static get observedAttributes() {
+    return ['level', 'time', 'preview']
+  }
+
+  get level() {
+    const level = Number(this.getAttribute('level'))
+    return Number.isNaN(level) ? 2 : level // if level is not a number, set a defaul value of 2
+  }
+
+  attempts
+  #waiting
+  #currentCard
+
+  constructor() {
+    super()
+    const template = html`<main></main>`
+    this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template)
+
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name !== 'level') return // we are only interested on the level attribute
+    console.log(name, oldValue, newValue) // lets explore this values
+
+    this.generateComponents()
+  }
+
+  generateComponents() {
+    console.log(`generating components`)
+    this.#drawGridElements()
+    this.#registerFlipCardListeners()
+  }
+
+  #drawGridElements() {
+    console.log('drawing', this.level)
+
+    // 1. get the main tag from this component and empty it
+    const gridContainer = this.shadowRoot.querySelector('main')
+    gridContainer.innerHTML = ''
+
+    // 2. let see how many pairs can we fit according to the level
+    const pairCount = Math.floor((this.level * this.level) / 2)
+
+    // 3. lets create an empty array to hold all the emojis that will be used this round
+    const pairArray = []
+
+    // 4. lets randomly select elements from the
+    for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
+      const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
+
+      pairArray.push(emoji)// adding the emoji at the end of the array
+      pairArray.unshift(emoji) // and at the begining, we want 2 cards with the same emoji
+    }
+
+    // 5. if level is odd, lets add a trap card, add the trap emoji to the list
+    const hasTrap = this.level % 2 === 1
+    if (hasTrap) pairArray.push(trapEmoji)
+
+    // 6. lets create the grid-layout that will hold the flip cards
+    const grid = html`
+     <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
+     </grid-layout>
+   `
+
+    // 7. we got all we need, lets loop and print
+    for (let colIndex = 1; colIndex <= this.level; colIndex++) {
+      for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
+
+        let pairEmoji = getRandomItem(pairArray) // getting a random emoji from array
+        // if (!pairEmoji) pairEmoji
+        const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
+        const flip = html`
+              <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
+                <span slot="front" style="font-size: 3em; user-select: none;">🃏</span>
+                <span slot="back" style="font-size: 3em; user-select: none;">${pairEmoji}</span>
+              </flip-card>
+          `
+        console.log(flip)
+        grid.firstChild.appendChild(flip)
+      }
+    }
+
+    // 9. last, lets append the grid to the main tag of this component
+    this.shadowRoot.querySelector('main').appendChild(grid)
+
+  }
+
+  #registerFlipCardListeners() {
+
+    // 1. get all the flip-card elements
+    const flipcards = Array.from(this.shadowRoot.querySelectorAll('flip-card'))
+
+    // 2. lets loop trough all the flip-card and add an event listener
+    flipcards
+      .forEach(flipItem => flipItem.addEventListener('click', event => {
+
+        // if we are in the waitin stage, exit the function to prevent
+        // unexpected behaviour
+        if (this.#waiting) return
+
+        // getting the flip-card from the event
+        const flipCard = event.target
+
+        // we will use the data-flipped to keep track of wich cards are flipped and wich one not
+        if (flipCard.hasAttribute('data-flipped')) return
+
+        flipCard.setAttribute('data-flipped', '')
+        flipCard.flip()
+
+        // if we flip the trap car, lets add 3 to the score as penalty
+        if (flipCard.dataset.pairId === trapEmoji) {
+          this.attempts += 3
+          return
+        }
+
+        // if this.#currentCard doesn't exist, it means is the first move
+        // we will exit the function and wait for the second flip
+        if (!this.#currentCard) {
+          this.#currentCard = flipCard
+          return
+        }
+
+
+        // this flag will help us prevent calling this method while the animation is running
+        this.#waiting = true
+
+        // now lets wait 1s beforche checking if the first and second cards match.
+        // we want to wait so the user can keep track of what is happening on the browser
+        setTimeout(() => {
+
+          // if the current card and the new flip card have the same pairId
+          // it means we found a pair =D
+          if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
+            this.#currentCard.setAttribute('data-paired', '')
+            flipCard.setAttribute('data-paired', '')
+
+            // we can reset this values to move forward with the next pair
+            this.#waiting = false
+            this.#currentCard = null
+
+            // check if you won the match with this move. 
+            // We will implement this method in the next activity
+            this.#checkIfWon()
+
+            return
+          }
+
+          // if the cards didn't match, lets remove the data-flipped attribute
+          // so we know those cards still in play
+          flipCard.removeAttribute('data-flipped')
+          this.#currentCard.removeAttribute('data-flipped')
+
+          // calling the reset() method, will take the flip-card to its original step
+          this.#currentCard.reset()
+          flipCard.reset()
+
+          // we can reset this values to move forward with the next pair
+          this.#waiting = false
+          this.#currentCard = null
+        }, 1_000)
+
+        this.attempts += 1
+        // updateVars(this)
+        return
+
+      }))
+  }
+
+  #checkIfWon() {
+    // temporary variable
+    let yesYoyDid = true
+
+    // get all flip cards as an array
+    Array.from(this.shadowRoot.querySelectorAll('flip-card'))
+      
+      // removing trap card if present
+      .filter(flipCard => flipCard.dataset.pairId !== trapEmoji)
+    
+      // updating the temporary variable, 
+      //if one item don't have the data-paired attribute this will return false and the game will continue
+      .forEach(flipCard => {
+        console.log(flipCard, flipCard.dataset, flipCard.hasAttribute('data-paired'))
+        yesYoyDid = yesYoyDid && flipCard.hasAttribute('data-paired')
+      })
+
+    // if we didn't won, lets keep playing
+    if (!yesYoyDid) return
+
+    // if we won. lets emit the levelup event, so other components
+    // can react to this change
+    const event = new CustomEvent('levelup', {
+      bubbles: true, composed: true,
+      detail: {
+        level: this.level,
+        attempts: this.attempts,
+      }
+    })
+    this.dispatchEvent(event)
+
+    // and lets auto increase the level attribute
+    this.setAttribute('level', this.level + 1)
+  }
+
+}
+
+window.customElements.define('memory-flip-board-2', MemoriFlipBoardComponent2)
+```
+
+This is how it should be looking:
+![memory-flip-board-5](./assets/memory-flip-board-5.png)
+
+And if we won this match, we should automatically see the next level:
+![memory-flip-board-6](./assets/memory-flip-board-6.png)
+
+
+## Section 2.3: Data components
+
+### Activity 2.3.1: Data point and data set
 
 A `data-point` tag represents a single data entry. Imagine this as a record in a SQL table.
 
@@ -1245,7 +1981,7 @@ Think of a data-set without the append as a regular variable and with the append
 ```
 No extra UI changes for this one just yet
 
-### Activity 2.2.2: Data query
+### Activity 2.3.2: Data query
 
 Great! Now we can store data, but we can only create data-points.
 In order to delete, update or append we can use the `data-query` component.
@@ -1302,7 +2038,7 @@ and for `#game-log`, because this is is appending all events, the if we use `get
 ```
 
 
-### Activity 2.2.3: Data store
+### Activity 2.3.3: Data store
 
 Data sets are great! they help us to store state and share it accros our webapp.
 The only issue is, they are not persistent, if we refresh the browsers, that data is gone.
@@ -1356,7 +2092,7 @@ Also notice that datasets will keep their state when refresh
 ![dataset screenshoot](./assets/indexeddb-3.png)
 
 
-### Activity 2.2.4: ui sync components
+### Activity 2.3.4: UI sync components
 
 We are already familiar with the `ui-data-sync`, we used a couple of time already, but there are other 2 components we can leverage to make this application interactive.
 
@@ -1432,9 +2168,9 @@ Remember `data-key` attribute or `name` attribute will be used to let the ui com
 ...
 ```
 
-## Section 2.3: Event components
+## Section 2.4: Event components
 
-### Activity 2.3.1: basic event handling
+### Activity 2.4.1: Basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
 This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
@@ -1551,7 +2287,7 @@ You should see the highest level achieve there.
 
 
 
-### Activity 2.3.2: working with multiple event flows
+### Activity 2.4.2: working with multiple event flows
 
 As we learned in the previous activity, the `event-source` tag acts as a mediator. It listens to events from a source and then immediately emits a data event with the values passed from the previous event.
 
@@ -1612,32 +2348,8 @@ Then, on the `leaderboard` route, lets go to the `ui-data-repeat` and change the
 Now you can play all you want and you will see how many matches have you played on that browser.
 
 
-### Activity 2.3.3: 
+### Activity 2.4.3: 
 
-
-
-
-
-
-
----
-
-end chapter 1
-
----
-
-
-```html
-
-```
-
-```html
-
-```
-
-```html
-
-```
 
 
 ---

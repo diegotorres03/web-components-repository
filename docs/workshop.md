@@ -10,9 +10,6 @@ The goal of this lab is to showcase web components as an option when creating we
 3. [NodeJS](https://nodejs.org/en)
 4. Basic understanding of HTML, JavaScript and CSS
 
-
-## steps
-
 ## Stage link url
 [js lib](https://d1hhjlyh3vlkqr.cloudfront.net/main.js)
 
@@ -20,33 +17,34 @@ The goal of this lab is to showcase web components as an option when creating we
 
 ---
 
-1. [**Introduction to Web Components**](./step-by-step.md#chapter-1-intro-to-web-components)
+1. [**Introduction to Web Components**](./step-by-step.md#chapter-1-introduction-to-web-components)
     1. [Using our first web component](./step-by-step.md#section-11-using-our-first-components)
-        1. [add a flip card](./step-by-step.md#activity-111-add-a-flip-card)
-        2. [create a button and modal](./step-by-step.md#activity-121-create-a-button-and-a-modal)
-        3. [connect flip to the modal](./step-by-step.md#activity-123-connect-the-flip-card-component-to-the-app-modal)
-    2. [Creating our first web component](step-by-step.md#section-13-creating-our-first-web-component)
-        1. [create required files](./step-by-step.md#activity-131-create-required-files)
-        2. [create `SecretCardComponent` class](./step-by-step.md#activity-133-create-secretcardcomponent-class)
-        3. [remove the `button` and all the `trigger` and `on` attributes from `secret-card.html`](./step-by-step.md#activity-141-remove-the-button-ui-data-sync-and-all-the-trigger-and-on-attributes-from-secret-cardhtml)
-        4. [get interactive elements from `secret-card.js`](./step-by-step.md#activity-142-get-interactive-elements-from-secret-cardjs)
-        5. [add event listeners](./step-by-step.md#activity-143-add-event-listeners)
-        6. [get a value from an attribute](step-by-step.md#activity-144-get-a-value-from-an-attribute)
-        7. [implement the `trigger` and `on` attributes](./step-by-step.md#activity-145-implement-the-trigger-and-on-attributes)
-    <!-- 1. Let's share our component -->
+        1. [Add a flip card](./step-by-step.md#activity-111-add-a-flip-card)
+        2. [Create a button and modal](./step-by-step.md#activity-112-create-a-button-and-a-modal)
+        3. [Connect flip to the modal](./step-by-step.md#activity-113-connect-flip-to-the-modal)
+    2. [Creating our first web component](step-by-step.md#section-12-creating-our-first-web-component)
+        1. [Create required files](./step-by-step.md#activity-121-create-required-files)
+        2. [ Create SecretCardComponent class](./step-by-step.md#activity-122-create-secretcardcomponent-class)
+        3. [Get interactive elements from secret-card.js](./step-by-step.md#activity-123-get-interactive-elements-from-secret-cardjs)
+        4. [Get a value from an attribute](./step-by-step.md#activity-124-get-a-value-from-an-attribute)
+        5. [Implement the `trigger` and `on` attributes](./step-by-step.md#activity-125-implement-the-trigger-and-on-attributes)
 2. **Composing apps with Web Components**
     1. [Layout components](step-by-step.md#section-21-layout-components) 
-        1. [app-layout](step-by-step.md#activity-211-app-layout)
-        2. [hash routing](step-by-step.md#activity-212-hash-routing)
-        3. [grid-layout component](step-by-step.md#activity-213-grid-layout-component)
-        4. [mind-flip component](step-by-step.md#activity-214-memory-flip-component)
-    2. [Data components](step-by-step.md#)
-        1. [Data point and data set](step-by-step.md#activity-221-data-point-and-data-set)
-        2. [data query](step-by-step.md#activity-222-data-query)
-        3. [data store](step-by-step.md#activity-223-data-store)
-        4. [ui sync components](step-by-step.md#activity-224-ui-sync-components)
-    3. [Event components](step-by-step.md#)
-        1. [basic event handling](step-by-step.md#)
+        1. [App layout](step-by-step.md#activity-211-app-layout)
+        2. [Hash routing](step-by-step.md#activity-212-hash-routing)
+        3. [Grid layout](step-by-step.md#activity-213-grid-layout)
+    2. [Creating a statefull component](step-by-step.md#section-22-creating-a-statefull-component)
+        1. [Memory flip game](step-by-step.md#activity-221-memory-flip-game)
+        2. [Generating content dynamically](step-by-step.md#activity-222-generating-content-dynamically)
+        3. [Registering event listeners](step-by-step.md#activity-223-registering-event-listeners)
+        4. [Emiting event from within the component](step-by-step.md#activity-224-emiting-event-from-within-the-component)
+    3. [Data components](step-by-step.md#section-23-data-components)
+        1. [Data point and data set](step-by-step.md#activity-231-data-point-and-data-set)
+        2. [Data query](step-by-step.md#activity-232-data-query)
+        3. [Data store](step-by-step.md#activity-233-data-store)
+        4. [UI sync components](step-by-step.md#activity-234-ui-sync-components)
+    4. [Event components](step-by-step.md#section-24-event-components)
+        1. [Basic event handling](step-by-step.md#)
         2. [working with multiple event flows](step-by-step.md#)
         3. [transforms and filters](step-by-step.md#)
         4. [challenge?](step-by-step.md#)

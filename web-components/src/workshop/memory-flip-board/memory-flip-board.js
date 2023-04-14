@@ -18,8 +18,12 @@ function getRandomInt(min, max) {
   max = Math.ceil(max)
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
-// .splice(getRandomInt(0, arr.length), 1)
 
+function getRandomItem(array) {
+  const randomInt = getRandomInt(0, array.length - 1)
+  const item = array.splice(randomInt, 1)
+  return item.pop()
+}
 
 export default class MemoriFlipBoardComponent extends HTMLElement {
 
@@ -34,7 +38,7 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
     return Number.isNaN(level) ? 2 : level
   }
 
-  #flipMap = new Map()
+  // #flipMap = new Map()
   #openCards = new WeakMap()
   #currentCard
   #waiting = false
@@ -56,31 +60,37 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
   }
 
   generateComponents() {
+    this.#drawGridElements()
+    this.#registerFlipCardListeners()
+  }
+
+
+  connectedCallback() {
+    updateVars(this)
+    registerTriggers(this, (event) => this.showAll(event))
+  }
+
+  #drawGridElements() {
 
     const gridContainer = this.shadowRoot.querySelector('main')
     gridContainer.innerHTML = ''
 
-    const pairs = Math.floor((this.level * this.level) / 2)
+    const pairCount = Math.floor((this.level * this.level) / 2)
     const hasTrap = this.level % 2 === 1
-    console.log('generateComponents', pairs, hasTrap)
+    console.log('generateComponents', pairCount, hasTrap)
 
     let pairArray = []
 
 
-    for (let pairIndex = 0; pairIndex < pairs; pairIndex++) {
+    for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
       const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
-      // console.log('emoji, pairArray', pairIndex, emoji, pairArray)
       pairArray.push(emoji)
       pairArray.unshift(emoji)
     }
 
     if (hasTrap) pairArray.push(trapEmoji)
 
-    const getRandomItem = (array) => {
-      const randomInt = getRandomInt(0, array.length - 1)
-      const item = array.splice(randomInt, 1)
-      return item.pop()
-    }
+
 
     const grid = html`
       <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
@@ -90,7 +100,7 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
     for (let colIndex = 1; colIndex <= this.level; colIndex++) {
       for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
         let pairEmoji = getRandomItem(pairArray)
-        if (!pairEmoji) pairEmoji
+        // if (!pairEmoji) pairEmoji
         const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
         const flip = html`
             <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
@@ -100,12 +110,15 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
         `
         // console.log(flip)
         grid.firstChild.appendChild(flip)
-        this.#flipMap.set(id, false)
+        // this.#flipMap.set(id, false)
       }
     }
 
     this.shadowRoot.querySelector('main').appendChild(grid)
 
+  }
+
+  #registerFlipCardListeners() {
     Array.from(this.shadowRoot.querySelectorAll('flip-card'))
       .map(flipItem => {
         this.#openCards.set(flipItem, false)
@@ -130,45 +143,43 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
           return
         }
         this.#waiting = true
-        
-        setTimeout(() => {
-          if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
-            this.#currentCard.setAttribute('data-paired', '')
-            flipCard.setAttribute('data-paired', '')
-            console.log(this.#currentCard.dataset.pairId, flipCard.dataset.pairId)
-            this.#currentCard = null
-            this.#waiting = false
-            this.#didIWon()
-            return
-          }
 
-          this.#openCards.set(flipCard, false)
-          this.#openCards.set(this.#currentCard, false)
-          this.#currentCard.reset()
-          flipCard.reset()
-          this.#currentCard = null
-          this.#waiting = false
+        setTimeout(() => {
+          this.#checkPair()
         }, 1_000)
+
         this.attempts += 1
         updateVars(this)
         return
 
       }))
-
   }
 
+  #checkPair() {
+    // pair was found
+    if (this.#currentCard.dataset.pairId === flipCard.dataset.pairId) {
+      this.#currentCard.setAttribute('data-paired', '')
+      flipCard.setAttribute('data-paired', '')
+      console.log(this.#currentCard.dataset.pairId, flipCard.dataset.pairId)
+      this.#currentCard = null
+      this.#waiting = false
+      this.#didIWon()
+      return
+    }
 
-  connectedCallback() {
-    updateVars(this)
-    registerTriggers(this, (event) => this.showAll(event))
-
+    // pair wasn't found
+    this.#openCards.set(flipCard, false)
+    this.#openCards.set(this.#currentCard, false)
+    this.#currentCard.reset()
+    flipCard.reset()
+    this.#currentCard = null
+    this.#waiting = false
   }
 
   #didIWon() {
     console.log('#didIWon')
     let yesYoyDid = true
     const allItems = Array.from(this.shadowRoot.querySelectorAll('flip-card'))
-    console.log(allItems)
     allItems
       .filter(flipCard => flipCard.dataset.pairId !== trapEmoji)
       .forEach(flipCard => {
@@ -186,10 +197,8 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
         time: 0,
       }
     })
-    console.log(event)
     this.dispatchEvent(event)
     this.setAttribute('level', this.level + 1)
-
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
