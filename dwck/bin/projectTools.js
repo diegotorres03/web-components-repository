@@ -53,10 +53,10 @@ async function gitSparseClone(rurl, localdir, ...sparsePaths) {
 async function createFolderStructure(folderPath) {
   console.log('Creating folder structure...');
   const srcFolder = `${folderPath}/src`;
-  const elementsFolder = `${srcFolder}/elements`;
+  const componentsFolder = `${srcFolder}/components`;
   const libFolder = `${srcFolder}/lib`;
 
-  for (const folder of [srcFolder, elementsFolder, libFolder]) {
+  for (const folder of [srcFolder, componentsFolder, libFolder]) {
     try {
       await fs.access(folder);
     } catch {
@@ -111,6 +111,14 @@ async function copyConfigFiles(folderPath, tempFolderPath, projectName) {
   await fs.copy(
     `${tempFolderPath}/assets/configs/webpack.config.dwck.js`,
     `${folderPath}/webpack.config.js`,
+  );
+  await fs.copy(
+    `${tempFolderPath}/assets/configs/index.js`,
+    `${folderPath}/src/index.js`,
+  );
+  await fs.copy(
+    `${tempFolderPath}/assets/configs/index.html`,
+    `${folderPath}/index.html`,
   );
   await fs.copy(
     `${tempFolderPath}/src/global/style-tools.css`,

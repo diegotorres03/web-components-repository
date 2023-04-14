@@ -34,12 +34,12 @@ const plugins = [
 const moduleRules = [
   {
     test: /\.css$/i,
-    include: [path.resolve(__dirname, 'src/elements')],
+    include: [path.resolve(__dirname, 'src/components')],
     use: ['raw-loader'],
   },
   {
     test: /\.css$/i,
-    exclude: [path.resolve(__dirname, 'src/elements')],
+    exclude: [path.resolve(__dirname, 'src/components')],
     include: [path.resolve(__dirname, 'src/lib')],
     use: ['style-loader', 'css-loader'],
   },
