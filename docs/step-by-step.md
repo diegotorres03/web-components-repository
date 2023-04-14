@@ -1445,7 +1445,7 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
     return Number.isNaN(level) ? 2 : level
   }
 
-  attempts
+  attempts = 0
   #waiting
   #currentCard
 
@@ -1534,7 +1534,7 @@ Lets proceed in this activity to add the require event listeners to flip cards a
 First, lets add some properties before the constructor, we will use them later:
 ```js
   ...
-  attempts
+  attempts = 0
   #waiting
   #currentCard
   ...
@@ -1698,7 +1698,7 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
     return Number.isNaN(level) ? 2 : level // if level is not a number, set a defaul value of 2
   }
 
-  attempts
+  attempts = 0
   #waiting
   #currentCard
 
@@ -1907,22 +1907,26 @@ And if we won this match, we should automatically see the next level:
 
 ## Section 2.3: Data components
 
+This are web components created to help us store and query data on html as oposed to create variables in JavaScript.
+
 ### Activity 2.3.1: Data point and data set
 
 A `data-point` tag represents a single data entry. Imagine this as a record in a SQL table.
 
-Data sets are a collection of data points.
+A `data-set` is a collection of data points.
 
-We can make the `data-set` listen for events and add the content of `event.detail` or the data attributes from the `event.target`.
+We can make the `data-set` listen for events and add its content as a data point.
+Inside an event, data will live either on `event.detail` or `event.target.dataset`.
+
 
 Let's see this in action.
 When we pass a level, `memory-flip-board` will emit the `levelup` event, we can capture the data from that event to use it later in other parts of the UI.
-Create a `data-set` tag under the `memory-flip-board`
+
+Create a `data-set` tag under the `memory-flip-board`, we will give it and id and we will set up the `trigger` to the `memory-flip-board` id, and the `on` attribute will be `levelup`:
 ```html
    <memory-flip-board id="game-board" level="2"  preview></memory-flip-board>
    ...
-   <data-set id="game-current-level
-game-current-level" visible trigger="#game-board" on="levelup"></data-set>
+   <data-set id="game-current-level" visible trigger="#game-board" on="levelup"></data-set>
 ```
 The `visible` attibute is for dev pourposes, it will allow us to see a changelog of the value.
 
@@ -1932,6 +1936,8 @@ If you inspect the html of the page, you will see a new `data-point` every time 
 ```
 
 the field `id` and `data-__id` is automatically added if none provided, this is the id of the record and shoudl be unique in the page.
+![data-set-1](./assets/data-set-1.png)
+
 
 Data sets emit an `updated` event when something change.
 lets go back to the `app-route` for the `#games` route and lets dynamically update the level on the UI.
@@ -1952,7 +1958,7 @@ lets go back to the `app-route` for the `#games` route and lets dynamically upda
         </ui-data-sync>
 
         <ui-data-sync trigger="#username-selection-modal" on="accepted">
-          <p>Welcome <span data-key="username"></span></p>
+          <p>Welcome <span data-key="username">user</span></p>
         </ui-data-sync>
   ...
 ```
@@ -2003,11 +2009,14 @@ operations like:
 When a query is perfomed, the result will be delivered as an event, the type of the event will be the same as the type of operation, like the ones in the previous list.
 
 Lets add a query to clear the current username. Inside the `data-set` for `current-username`
-lets add a `data-query`
+lets add a `data-query` inside the `data-set#current-username`
 ```html
   ...
   <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
+
+    <!-- add this line -->
     <data-query id="clear-current-user" type="clear" trigger="#logout-btn" on="click">
+
   </data-set>
   ...
 ```
@@ -2032,14 +2041,20 @@ And lets add a logout button with the matching id. In the `app-layout` on the `h
 for `#get-current-level` data set, we are only using a get query, no trigger for now.
 ```html
    <data-set id="game-current-level" trigger="#game-board" on="levelup">
+
+    <!-- add this line -->
       <data-query id="get-current-level" type="get"></data-query>
-    </data-set>
+
+</data-set>
 ```
 
 and for `#game-log`, because this is is appending all events, the if we use `get` it will emit an event with an array of values, if we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now.
 ```html
   <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+
+    <!-- add this line -->
     <data-query id="list-game-logs" type="list"></data-query>
+
   </data-set>
 ```
 

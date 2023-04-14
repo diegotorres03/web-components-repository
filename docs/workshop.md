@@ -17,7 +17,7 @@ The goal of this lab is to showcase web components as an option when creating we
 
 ---
 
-1. [**Introduction to Web Components**](./step-by-step.md#chapter-1-introduction-to-web-components)
+1. [**Introduction to Web Components**](./step-by-step.md#lesson-1-introduction-to-web-components)
     1. [Using our first web component](./step-by-step.md#section-11-using-our-first-components)
         1. [Add a flip card](./step-by-step.md#activity-111-add-a-flip-card)
         2. [Create a button and modal](./step-by-step.md#activity-112-create-a-button-and-a-modal)
@@ -28,7 +28,7 @@ The goal of this lab is to showcase web components as an option when creating we
         3. [Get interactive elements from secret-card.js](./step-by-step.md#activity-123-get-interactive-elements-from-secret-cardjs)
         4. [Get a value from an attribute](./step-by-step.md#activity-124-get-a-value-from-an-attribute)
         5. [Implement the `trigger` and `on` attributes](./step-by-step.md#activity-125-implement-the-trigger-and-on-attributes)
-2. **Composing apps with Web Components**
+2. [**Composing apps with Web Components**](step-by-step.md#lesson-2-composing-apps-with-web-components)
     1. [Layout components](step-by-step.md#section-21-layout-components) 
         1. [App layout](step-by-step.md#activity-211-app-layout)
         2. [Hash routing](step-by-step.md#activity-212-hash-routing)
