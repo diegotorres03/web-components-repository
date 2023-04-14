@@ -702,6 +702,76 @@ Here let's add the instructions for our game:
    </app-accordion>
 ```
 
+So far, this is our `index.html`
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Cod1hhmpatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+  </style>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#leaderboard">Leaderboard</a>
+    </nav>
+
+    <section slot="left-content">
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <b>Best Score:</b><span>0</span>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>Answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>Answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+
+    </section>
+
+    <footer slot="footer">Thank you.</footer>
+  </app-layout>
+
+
+</body>
+
+</html>
+```
+
+And this is how it should look on the browser
+![app-layout with left menu](./assets/app-layout-2.png)
+
+
 So, the `main` slot is the last one to fill, but before doing it, let's talk about routing.
 
 
@@ -744,14 +814,17 @@ Let's add `app-route` for the 3 routes we have:
   ...
 ```
 
-and let's add a `hidden` css class"
+This router componet is adding the class `.hidden`
 ```css
     .hidden {
       display: none;
     }
 ```
 
-Now, if you test in your browser, you should be able to navigate and see page changes on your app.
+Now, if you test in your browser, you should be able to navigate and see page changes on your app. Note the hash part on the url match the route you are seeing.
+
+![app-layout-home](.assets/../assets/app-layout-home.png)
+![app-layout-game](.assets/../assets/app-layout-game.png)
 
 `app-router` emits a `navigated` event when there is a change in the url and it will activate the proper `app-route`.
 This `app-route`, when the hash is matched, it will display its content and it will emit the `activated` event.
