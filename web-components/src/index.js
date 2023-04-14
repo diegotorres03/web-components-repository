@@ -6,5 +6,4 @@ import './global/themes/theme-mono.css'
 export * from './components'
 export * from './layouts'
 export * from './services'
-export * from './workshop'
 // import FlipCard from './components/flip-card';
