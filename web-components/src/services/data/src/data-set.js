@@ -63,7 +63,9 @@ export default class DataSetComponent extends HTMLElement {
         } else if(eventName === DataQueryComponent.EVENT_TYPES.delete) {
           const id = event.detail.__id
           this.removeItem(id)
-        // } else if() {
+        } else if(eventName === DataQueryComponent.EVENT_TYPES.clear) {
+          const id = event.detail.__id
+          this.clear(id)
         // } else if() {
         // } else if() {
 
@@ -86,6 +88,11 @@ export default class DataSetComponent extends HTMLElement {
       .find(item => console.log('data-point', item))
   }
 
+  clear() {
+    Array.from(this.shadowRoot.querySelectorAll('data-point'))
+      .forEach(dataPoint => dataPoint && dataPoint.remove())
+  }
+
   /**
    * Save an object on IndexedDB under a given key (this key will be prefixed with the store name)
    * @param {string} key data store key to be used
@@ -104,7 +111,7 @@ export default class DataSetComponent extends HTMLElement {
    * @returns {*}
    */
   getItem(key) {
-    return localforage.getItem(`${this.id}_${key}`)
+    return this.shadowRoot.querySelector('data-point')
   }
 
   hasItem(key) {

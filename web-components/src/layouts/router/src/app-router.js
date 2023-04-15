@@ -87,11 +87,9 @@ export default class RouterComponent extends HTMLElement {
     this.#updateRoutes()
 
     window.addEventListener('hashchange', ev => {
-      console.log('=>', window.location.hash)
       this.#updateRoutes()
-      const searchParms = new URLSearchParams(window.location.search)
-      console.log(searchParms)
-      console.log(searchParms.has('test'))
+      // const searchParms = new URLSearchParams(window.location.search)
+      // console.log(searchParms.has('test'))
       this.shadowRoot.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
         bubbles: true, composed: true,
         detail: {

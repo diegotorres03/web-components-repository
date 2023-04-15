@@ -27,7 +27,7 @@ export default class EventSourceComponent extends HTMLElement {
   get #eventSource() {
     return {
       trigger: this.getAttribute('trigger'),
-      triggerEvent: this.getAttribute('trigger-event') || this.getAttribute('event'),
+      triggerEvent: this.getAttribute('on'),
       dataset: { ...this.dataset }
     }
   }
@@ -68,9 +68,20 @@ export default class EventSourceComponent extends HTMLElement {
   }
 
   emit(event) {
-    const filterResult = runFilters(event, this.getAttribute('filter'))
-    console.log('filterResult', filterResult)
-    if (!filterResult) return
+
+    let shouldPass = true
+    this.#fitlerNames
+      .map(filterName => runFilters(event, filterName))
+      .forEach(res => {
+        shouldPass = shouldPass && res
+        console.log('dataPoints shouldPass: ', shouldPass, res)
+      })
+    console.log('dataPoints shouldPass', shouldPass)
+
+    if(!shouldPass) return
+
+    // const filterResult = runFilters(event, this.getAttribute('filters'))
+    // if (!filterResult || filterResult.length === 0) return
 
 
     console.log('attr transfrom', this.getAttribute('transform'))

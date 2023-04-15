@@ -73,7 +73,7 @@
 
     <app-router slot="main">
 
-      <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+      <app-modal id="username-selection-modal" trigger="#prompt-authentication" on="data">
         <h1 slot="title">Start new match</h1>
         <section slot="main">
           <p>Ready to start a new match?</p>
@@ -83,6 +83,22 @@
           </form>
         </section>
       </app-modal>
+
+      <script>
+        const filters = {
+          sessionPresent(event) {
+            const sessionDataset = document.querySelector('#current-username')
+            const dataPoint = sessionDataset.getItem('current-username')
+            if(!dataPoint) return true
+            // const dataPoints = Array.from(sessionDataset.children).filter(tag => tag.tagName === 'data-point')
+            const username = dataPoint.dataset.username
+            return !username
+          },
+        }
+      </script>
+
+      <!-- <event-source id="prompt-authentication" trigger="#game-route" on="activated" ></event-source> -->
+      <event-source id="prompt-authentication" trigger="#game-route" on="activated" filters="sessionPresent"></event-source>
 
       <script>
         document
@@ -97,11 +113,11 @@
 
       <app-route id="game-route" hash="game">
 
-        <ui-data-sync trigger="#game-current-level" on="updated">
+        <ui-data-sync trigger="#current-level" on="updated">
           <h1>On level <span data-key="level">1</span></h1>
         </ui-data-sync>
 
-        <ui-data-sync trigger="#current-username" on="updated">
+        <ui-data-sync trigger="#current-session" on="data">
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
 
@@ -129,16 +145,23 @@
         
         <event-group id="level-group">
           <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
-          <event-source id="level-updated" trigger="#game-current-level" on="updated"></event-source>
+          <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
         </event-group>
 
-        <data-store id="current-session">
 
-          <data-set id="game-current-level" trigger="#game-board" on="levelup">
+        <event-group id="current-session">
+          <event-source id="" trigger="#current-username" on="updated" ></event-source>
+          <event-source id="" trigger="#get-current-username" on="get" ></event-source>
+        </event-group>
+
+        <data-store id="session-store">
+
+          <data-set id="current-level" trigger="#game-board" on="levelup">
             <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
           </data-set>
 
           <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
+            <data-query id="get-current-username" type="get" trigger="#on-load" on="data"></data-query>
             <data-query id="clear-current-user" type="clear" trigger="#log-out-btn" on="click">
           </data-set>
 

@@ -34,13 +34,22 @@ export function runTransforms(event, transformSelector, __eventSource = {}) {
   return { ...currentData, __eventSource }
 }
 
-export function runFilters(event, filterSelector) {
+export function runFilters(event, filterName) {
+  if (!filterName) return true
+  
+  console.log(`filterName runFilters`, filterName, filters)
+  const filterFn = filters[filterName]
+  if(!filterFn) return true
 
-  if (!filterSelector) return true
-  const filters = selectAll(filterSelector)
-  if (filters.length === 0) return false
-  let res = true
-  filters.forEach(filter => res = filter.run(event) && res)
+  const res = filterFn(event)
+
   return res
+
+
+  // const filters = selectAll(filterName)
+  // if (filters.length === 0) return false
+  // let res = true
+  // filters.forEach(filter => res = filter.run(event) && res)
+  // return res
 
 }

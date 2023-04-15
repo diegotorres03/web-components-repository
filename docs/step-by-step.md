@@ -205,7 +205,7 @@ If you have been following along so far, here is what your `index.html` should l
 In this section we are going to create a component we will call our `secret-card` component. This component will be like our flip-card component, however it will be password protected, so in order to see what is on the other side of the card the user will need to provide an accepted password.
 
 ### Activity 1.2.1: Create required files
-TO get started we will need to create some new files and folders. Inside the `src/components` folder create an `index.js` which will be the index for all components created in this lab. And add the following `export` statement to it:
+To get started we will need to create some new files and folders. Inside the `src/components` folder create an `index.js` which will be the index for all components created in this lab. And add the following `export` statement to it:
   ```js
   export * from './secret-card'
   ```
@@ -1573,10 +1573,12 @@ Now lets add the private method `#registerFlipCardListeners()`, here we want to 
         if (this.#waiting) return
 
         // 4. getting the flip-card from the event
-        const flipCard = event.target
+        let flipCard = event.target.tagName === 'FLIP-CARD' ? event.target : event.target.parentElement
+
 
         // 5. we will use the data-flipped to keep track of wich cards are flipped and wich one not
         if (flipCard.hasAttribute('data-flipped')) return
+
 
         flipCard?.setAttribute('data-flipped', '')
         flipCard?.flip()
@@ -1807,10 +1809,12 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
         if (this.#waiting) return
 
         // getting the flip-card from the event
-        const flipCard = event.target
+                let flipCard = event.target.tagName === 'FLIP-CARD' ? event.target : event.target.parentElement
+
 
         // we will use the data-flipped to keep track of wich cards are flipped and wich one not
         if (flipCard.hasAttribute('data-flipped')) return
+
 
         flipCard?.setAttribute('data-flipped', '')
         flipCard?.flip()
@@ -2093,13 +2097,13 @@ This component will handle the heavy lifting of setting up IndexedDB and keeping
 Lets see it in action!
 
 
-Create a `data-store` tag with an id of `current-session` and move the `current-username` and `current-level` data sets inside it. Data store will only interact with children data sets 
+Create a `data-store` tag with an id of `session-store` and move the `current-username` and `current-level` data sets inside it. Data store will only interact with children data sets 
 
 
 and move the `#current-username` and `#current-level` data sets inside.
 ```html
 ...
-<data-store id="current-session">
+<data-store id="session-store">
 
   <!-- current session dataset -->
   <data-set id="current-level" trigger="#game-board" on="levelup">
@@ -2125,7 +2129,7 @@ And create another `data-store` for the `#game-log` remember this new component 
 ...
 ```
 
-After this, go to the browser refresh the app, provide a username and open [devtools]() go to storage, and indexeddb. There you should see an entry with the key `current-session_current-username` the value is a json wich contains the username you provided.
+After this, go to the browser refresh the app, provide a username and open [devtools]() go to storage, and indexeddb. There you should see an entry with the key `session-store_current-username` the value is a json wich contains the username you provided.
 ![indexeddb screenshot](./assets/indexeddb-1.png)
 
 
@@ -2235,7 +2239,7 @@ So far, this is how `index.html` looks like:
 
         <memory-flip-board-2 id="game-board" level="2"></memory-flip-board-2>
 
-        <data-store id="current-session">
+        <data-store id="session-store">
 
           <data-set id="current-level" visible trigger="#game-board" on="levelup">
             <data-query id="get-current-level" type="get"></data-query>
@@ -2465,7 +2469,7 @@ The final version should look like this:
 
         <memory-flip-board-2 id="game-board" level="2"></memory-flip-board-2>
 
-        <data-store id="current-session">
+        <data-store id="session-store">
 
           <data-set id="current-level" visible trigger="#game-board" on="levelup">
             <data-query id="get-current-level" type="get"></data-query>
@@ -2583,7 +2587,7 @@ With `event-source` we can listen to a trigger and it will emit a new `data` eve
 Let's review the initial example with an `event-source`.
 
 
-Step 1, add an `event-source` tag just above the `current-session` data store. Its trigger will be the `current-level` data set:
+Step 1, add an `event-source` tag just above the `session-store` data store. Its trigger will be the `current-level` data set:
 ```html
 ...
 
@@ -2620,7 +2624,7 @@ Let's do the same for the `data-query`:
 <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
 <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
 
-<data-store id="current-session">
+<data-store id="session-store">
 
 <data-set id="current-level" trigger="#game-board" on="levelup">
   <data-query id="get-current-level" type="get"></data-query>
@@ -2635,12 +2639,19 @@ Lets implement this change:
 ...
 <!-- add this new event-source and use the query as trigger -->
 <event-source id="on-load" trigger="window" on="load"></event-source>
-
 ...
-
-<data-set id="current-level" trigger="#game-board" on="levelup">
-  <!-- set the new event source #on-load as trigger -->
-  <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
+```
+```html
+...
+...
+<!-- set the new event source #on-load as trigger -->
+<data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
+...
+```
+```html
+...
+<!-- set the new event source #on-load as trigger -->
+<data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
 ...
 ```
 
@@ -2682,7 +2693,9 @@ and lets update the `plain-card` for current score and we should be able to see 
 That was easy, right!
 Lets do it again, this time, lets keep the game log up to date with each score emmited by the `memory-flip-board`.
 
-First, locate the `data-store` with id=`logs-store`. Here we will se the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the leaderboard page. And we also want the query to be executed on page load.
+First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the leaderboard page. And we also want the query to be executed on page load.
+
+To achieve this, we will require an `event-source` tag for the `data-query` and one for the `data-set` and we want both of them inside an `event-group` so we can capture its value:
 ```html
 ...
 <!-- create event-group with event-source for data-set and data-query -->
@@ -2690,14 +2703,6 @@ First, locate the `data-store` with id=`logs-store`. Here we will se the `data-s
   <event-source trigger="#list-game-logs" on="list" ></event-source>
   <event-source trigger="#game-log" on="updated" ></event-source>
 </event-group>
-
-<!-- this is what we already have -->
-<data-store id="logs-store">
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup">
-    <!-- Add on-load trigger so query execute on page load -->
-    <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
-  </data-set>
-</data-store>
 ...
 ```
 
