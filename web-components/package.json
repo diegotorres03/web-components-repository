@@ -17,7 +17,8 @@
     "aws-amplify": "^5.0.9",
     "aws-crt": "^1.15.5",
     "chart.js": "^4.2.0",
-    "localforage": "^1.10.0"
+    "localforage": "^1.10.0",
+    "vis-network": "^9.1.6"
   },
   "devDependencies": {
     "@webpack-cli/generators": "^3.0.1",

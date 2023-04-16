@@ -6,218 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    nav a {
-      color: var(--main-tone);
-      padding: 2px 4px;
-    }
+  <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script>
 
-    .hidden {
-      display: none;
-    }
-
-    app-router {
-      width: 100%;
-      display: block;
-    }
-  </style>
 </head>
 
 <body>
 
   <app-layout>
-
-    <header slot="header">Welcome to our memory flip game</header>
-    <b slot="left-header">Game stats</b>
-    <nav slot="top-menu" class="">
-      <a href="#">Home</a>
-      <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
-
-      <button id="log-out-btn">logout</button>
-    </nav>
-
-    <section slot="left-content">
-
-      <plain-card>
-        <h2 slot="title">My Score</h2>
-        <section slot="main">
-
-          <ui-data-sync trigger="#level-group" on="data">
-            <section>
-              <b>Level:</b><span data-key="level">1</span><br>
-              <b>Attempts:</b><span data-key="attempts">0</span><br>
-              <b>Username:</b><span data-key="username">Guest</span><br>
-            </section>
-          </ui-data-sync>
-        </section>
-      </plain-card>
-
-      <app-accordion>
-        <section>
-          <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
-          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
-        </section>
-        <section>
-          <h5>FAQs</h5>
-          <b>Question 1:</b>
-          <p>answer 1</p>
-          <hr>
-          <b>Question 2:</b>
-          <p>answer 2</p>
-          <hr>
-        </section>
-      </app-accordion>
-    </section>
-
-    <app-router slot="main">
-
-      <app-modal id="username-selection-modal" trigger="#prompt-authentication" on="data">
-        <h1 slot="title">Start new match</h1>
-        <section slot="main">
-          <p>Ready to start a new match?</p>
-          <p>choose a username and let's play</p>
-          <form>
-            <label>Username:</label><input type="text" name="username">
-          </form>
-        </section>
-      </app-modal>
-
-      <script>
-        const filters = {
-          sessionPresent(event) {
-            const sessionDataset = document.querySelector('#current-username')
-            const dataPoint = sessionDataset.getItem('current-username')
-            if(!dataPoint) return true
-            // const dataPoints = Array.from(sessionDataset.children).filter(tag => tag.tagName === 'data-point')
-            const username = dataPoint.dataset.username
-            return !username
-          },
-        }
-      </script>
-
-      <!-- <event-source id="prompt-authentication" trigger="#game-route" on="activated" ></event-source> -->
-      <event-source id="prompt-authentication" trigger="#game-route" on="activated" filters="sessionPresent"></event-source>
-
-      <script>
-        document
-          .querySelector('app-router')
-          .addEventListener('navigated', event =>
-            console.log(`navigated to ${event.detail.hash || 'home'}`))
-      </script>
-
-      <app-route>
-        <h1>I'm Home</h1>
-      </app-route>
-
-      <app-route id="game-route" hash="game">
-
-        <ui-data-sync trigger="#current-level" on="updated">
-          <h1>On level <span data-key="level">1</span></h1>
-        </ui-data-sync>
-
-        <ui-data-sync trigger="#current-session" on="data">
-          <p>Welcome <span data-key="username"></span></p>
-        </ui-data-sync>
-
-        <!-- <button id="change-level-btn">change level</button>
-        <app-modal id="change-level-modal" trigger="#change-level-btn" on="click">
-          <form slot="main">
-            <input type="number" name="level">
-          </form>
-        </app-modal>
-        <data-store id="game-store">
-          <data-set id="current-level" trigger="#change-level-modal" on="accepted" visible>
-            <data-query id="get-current-level" type="get" trigger="#load-current-level" on="click"></data-query>
-          </data-set>
-        </data-store>
-        <button id="load-current-level" >load</button> -->
-
-        <!-- <ui-data-sync trigger="#get-current-level" on="get">
-          <section> -->
-        <memory-flip-board id="game-board" username="diegotrs" data-key="level" data-attribute="level" level="2"
-          time="30s" preview></memory-flip-board>
-        <!-- </section>
-        </ui-data-sync> -->
-
-        <event-source id="on-load" trigger="window" on="load"></event-source>
-        
-        <event-group id="level-group">
-          <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
-          <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
-        </event-group>
+    <h2 slot="header">Web Component composer</h2>
 
 
-        <event-group id="current-session">
-          <event-source id="" trigger="#current-username" on="updated" ></event-source>
-          <event-source id="" trigger="#get-current-username" on="get" ></event-source>
-        </event-group>
-
-        <data-store id="session-store">
-
-          <data-set id="current-level" trigger="#game-board" on="levelup">
-            <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
-          </data-set>
-
-          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
-            <data-query id="get-current-username" type="get" trigger="#on-load" on="data"></data-query>
-            <data-query id="clear-current-user" type="clear" trigger="#log-out-btn" on="click">
-          </data-set>
-
-        </data-store>
-        
-        <event-group id="all-game-logs">
-          <event-source trigger="#list-game-logs" on="list" ></event-source>
-          <event-source trigger="#game-log" on="updated" ></event-source>
-        </event-group>
-
-        <data-store id="logs-store">
-          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
-            <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
-          </data-set>
-        </data-store>
 
 
-        <app-modal trigger="#game-board" on="levelup">
-          <ui-data-sync slot="title" trigger="#scores" on="data">
-            <h1>You did it <span name="username"></span>!!</h1>
-          </ui-data-sync>
-          <ui-data-sync slot="main" trigger="#scores" on="data">
-            <section>
-              <b>Level:</b><span data-key="level"></span><br>
-              <b>Attempts:</b><span data-key="attempts"></span><br>
-            </section>
-          </ui-data-sync>
-        </app-modal>
+    <main slot="main">
+      <code-editor language="html" width="400px" tab="4">
+        <template>
+          <flip-card>
+            <h1 slot="fromt">front</h1>
+          </flip-card>
+        </template>
+      </code-editor>
+    </main>
 
-      </app-route>
-
-      <app-route hash="leaderboard">
-        <h1>I'm Leaderboard</h1>
-
-        <hr>
-
-        <ui-data-repeat id="game-log-cards" trigger="#all-game-logs" on="data">
-          <template>
-            <plain-card>
-              <h2 slot="title" data-key="username">username</h2>
-              <section slot="main">
-                <b>Level:</b><span data-key="level"></span><br>
-                <b>Attempts:</b><span data-key="attempts"></span><br>
-              </section>
-            </plain-card>
-          </template>
-        </ui-data-repeat>
-
-
-      </app-route>
-
-    </app-router>
-
-    <footer slot="footer">Thank you.</footer>
 
   </app-layout>
+
+
 
 </body>
 

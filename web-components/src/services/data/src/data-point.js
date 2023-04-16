@@ -38,14 +38,15 @@ export default class DataPointComponent extends HTMLElement {
 
 
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
     registerTriggers(this, (event) => console.log(event))
     const addedEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: true, composed: true,
       detail: this.dataset,
     })
     this.dispatchEvent(addedEvent)
+
+    const children = Array.from(this.querySelectorAll('data-rel'))
+    children.forEach(child => child.setAttribute('from', `#${this.id}`))
   }
 
 
