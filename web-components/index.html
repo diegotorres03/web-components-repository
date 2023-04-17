@@ -108,22 +108,22 @@
         </app-accordion>
 
         <code-editor id="app-accordion-sample-code" language="html">
-<template>
+          <template>
 
-<app-accordion>
-  <section>
-    <h3>this will became the tab title</h3>
-    <p>here you can add any html, remember to alwas add an h* tag</p>
-  </section>
+            <app-accordion>
+              <section>
+                <h3>this will became the tab title</h3>
+                <p>here you can add any html, remember to alwas add an h* tag</p>
+              </section>
 
-  <section>
-    <h3>important note</h3>
-    <p>every section on the accordion should be wrapped on a tag, like section or div</p>
-  </section>
+              <section>
+                <h3>important note</h3>
+                <p>every section on the accordion should be wrapped on a tag, like section or div</p>
+              </section>
 
-</app-accordion>
+            </app-accordion>
 
-</template>
+          </template>
         </code-editor>
 
       </app-route>
@@ -197,30 +197,31 @@
           </section>
         </plain-card>
 
-        <br><hr><br>
+        <br>
+        <hr><br>
 
         <code-editor language="html">
-<template>
-<!-- empty card -->
-<plain-card></plain-card>
+          <template>
+            <!-- empty card -->
+            <plain-card></plain-card>
 
 
-<br>
+            <br>
 
 
-<plain-card>
-  <span slot="title">this is the title</span>
-  <section slot="main" style="display: flex; flex-direction: row;">
-    <div style="font-size: 4em; margin: 20px;">🍻</div>
-    <div>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis delectus consequatur impedit enim
-        neque vitae illum deleniti dolorum laudantium ea nesciunt aspernatur distinctio quos, cum unde.
-        Molestias minus ipsa asperiores.</p>
-    </div>
-  </section>
-</plain-card>
+            <plain-card>
+              <span slot="title">this is the title</span>
+              <section slot="main" style="display: flex; flex-direction: row;">
+                <div style="font-size: 4em; margin: 20px;">🍻</div>
+                <div>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis delectus consequatur impedit enim
+                    neque vitae illum deleniti dolorum laudantium ea nesciunt aspernatur distinctio quos, cum unde.
+                    Molestias minus ipsa asperiores.</p>
+                </div>
+              </section>
+            </plain-card>
 
-</template>
+          </template>
         </code-editor>
       </app-route>
 
@@ -228,7 +229,7 @@
         <h1>flip-card</h1>
         <em>This component have 2 faces, hover the card to reveal its back.</em>
 
-        
+
         <br>
         <hr>
         <ul>
@@ -237,7 +238,8 @@
           <li>
             <b>Attributes:</b>
             <ul>
-              <li><b>disabled</b> to prevent the card from flipping on hover, it can flip if you call the method flip on the component</li>
+              <li><b>disabled</b> to prevent the card from flipping on hover, it can flip if you call the method flip on
+                the component</li>
             </ul>
           </li>
         </ul>
@@ -253,27 +255,30 @@
           </section>
 
           <section slot="back">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta voluptas eveniet! Veritatis enim voluptatum fugiat hic quas nisi porro! Error distinctio eaque est odio neque, illum iste esse vel.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta voluptas eveniet! Veritatis enim
+              voluptatum fugiat hic quas nisi porro! Error distinctio eaque est odio neque, illum iste esse vel.</p>
           </section>
         </flip-card>
 
-        <br><hr><br>
+        <br>
+        <hr><br>
 
         <code-editor language="html">
-<template>
+          <template>
 
-  <flip-card>
-    <section slot="front">
-      <h1>this is the front</h1>
-      <small>add your awesome content here</small>
-    </section>
+            <flip-card>
+              <section slot="front">
+                <h1>this is the front</h1>
+                <small>add your awesome content here</small>
+              </section>
 
-    <section slot="back">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta voluptas eveniet! Veritatis enim voluptatum fugiat hic quas nisi porro! Error distinctio eaque est odio neque, illum iste esse vel.</p>
-    </section>
-  </flip-card>
-  
-</template>
+              <section slot="back">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta voluptas eveniet! Veritatis enim
+                  voluptatum fugiat hic quas nisi porro! Error distinctio eaque est odio neque, illum iste esse vel.</p>
+              </section>
+            </flip-card>
+
+          </template>
         </code-editor>
       </app-route>
 
@@ -512,11 +517,65 @@
         <hr>
         <br>
 
+
+        <data-graph id="cities" context="air tickets">
+
+          <data-point id="medellin" name="medellin">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="chicago" name="chicago">
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="cartagena" name="cartagena">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="miami" name="miami">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+          </data-point>
+
+        </data-graph>
+
         <code-editor language="html">
           <template>
-            <flip-card>
-              <h1 slot="fromt">front</h1>
-            </flip-card>
+            
+        <data-graph id="cities" context="air tickets">
+
+          <data-point id="medellin" name="medellin">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="chicago" name="chicago">
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="cartagena" name="cartagena">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="miami" name="miami">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+          </data-point>
+
+        </data-graph>
           </template>
         </code-editor>
       </app-route>

@@ -34,6 +34,11 @@ export default class DataPointComponent extends HTMLElement {
     `
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
+
+    const children = Array.from(this.querySelectorAll('data-rel'))
+    children.forEach(child => child.setAttribute('from', `#${this.id}`))
+    console.log(children)
+
   }
 
 
@@ -45,8 +50,9 @@ export default class DataPointComponent extends HTMLElement {
     })
     this.dispatchEvent(addedEvent)
 
-    const children = Array.from(this.querySelectorAll('data-rel'))
-    children.forEach(child => child.setAttribute('from', `#${this.id}`))
+    // const children = Array.from(this.querySelectorAll('data-rel'))
+    // children.forEach(child => child.setAttribute('from', `#${this.id}`))
+    // console.log(children)
   }
 
 

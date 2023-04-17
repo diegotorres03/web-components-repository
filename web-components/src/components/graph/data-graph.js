@@ -2,6 +2,7 @@ import {
   html,
   mapComponentEvents,
   updateVars,
+  sleep,
   registerTriggers,
 } from '../../global/web-tools'
 
@@ -32,7 +33,7 @@ export default class DataGraph extends HTMLElement {
 
 
 
-  connectedCallback() {
+ async connectedCallback() {
     registerTriggers(this, (event) => console.log(event))
     // create a new MutationObserver instance
     const observer = new MutationObserver(mutationsList => {
@@ -52,6 +53,7 @@ export default class DataGraph extends HTMLElement {
       console.log('[item node]:', node)
     })
 
+    await sleep(10) // [ ] Fix this, is loading before the data-point adds the from attr
     const jsonEdges = []
     edges.forEach(edge => {
       let item = {}
@@ -72,7 +74,8 @@ export default class DataGraph extends HTMLElement {
       jsonNodes.push(item)
     })
 
-    console.log(JSON.stringify(jsonNodes, null, 2))
+    // console.log(JSON.stringify(jsonNodes, null, 2))
+    // console.log(JSON.stringify(jsonEdges, null, 2))
 
 
     var container = this.shadowRoot.getElementById('graph');
@@ -81,7 +84,7 @@ export default class DataGraph extends HTMLElement {
       edges: jsonEdges,
     };
     var options = {
-      directed: true, // set the graph to be directed
+      // directed: true, // set the graph to be directed
       edges: {
         arrows: {
           to: true // show arrows on the edges pointing to their target nodes
