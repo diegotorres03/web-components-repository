@@ -347,8 +347,8 @@ window.customElements.define('secret-cardd', SecretCarddComponent)
 
 
 Now, lets go to the browser. If we refresh it, we should be able to provide our password to the modal, click `Accept` and the flipcard should reveal its content!
-![opening modal on click](../assets/secret-card-2.png)
-![flip card revealing its secret](../assets/secret-card-3.png)
+![opening modal on click](../../assets/secret-card-2.png)
+![flip card revealing its secret](../../assets/secret-card-3.png)
 
 
 ## Activity 1.2.5: Implement the `trigger` and `on` attributes
