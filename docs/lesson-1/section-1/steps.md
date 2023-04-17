@@ -241,4 +241,4 @@ If you have been following along so far, here is what your `index.html` should l
 
 ---
 
-[Back](../lesson-1.md)  |  [Lesson 1 index](../lesson-1.md) | [Nexts](../lesson-1.md)
+[index](../../workshop.md) | [Next](../section-2/steps.md#)

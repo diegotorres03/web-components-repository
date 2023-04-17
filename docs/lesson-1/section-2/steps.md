@@ -364,9 +364,9 @@ import { html, registerTriggers } from '../../lib/web-tools'
 Our goal is to register event listeners when the component is mounted on the DOM.
 Then call the `registerTriggers` function which, internally, will get all the elements that match the [css selector](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors). Then register a listener for the event specified in the `on` attribute.
 We only need to pass a callback function to handle those events.
-Here we are using the [connectedCallback](link to doc) life cycle event. This will be called when the component is mounted on the DOM.
+Here we are using the [connectedCallback](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements#using_the_lifecycle_callbacks) life cycle event. This will be called when the component is mounted on the DOM.
 
-So add the following to the end of the `SecretCardComponent`:
+So add the following to the end of the `SecretCardComponent` after the constructor, the name of this method must be `connectedCallback`:
 ```js
   ...
   // this is one of multiple lifecycle callbacks we have for web components
@@ -389,8 +389,4 @@ Finally, let's test it in `index.html` by adding a button and configuring `trigg
 ...
 ```
 
-<Add a line or two to recap what has be show>
-
-
----
-
+[Back](../section-2/steps.md)  |  [index](../../workshop.md) | [Nexts](../lesson-1.md)
