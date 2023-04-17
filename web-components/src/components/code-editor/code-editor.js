@@ -46,7 +46,6 @@ export default class CodeEditorComponent extends HTMLElement {
                 height: ${this.hasAttribute('height') ? this.getAttribute('height') : '100%'};
               }
           </style>
-          <h1>code editor</h1>
           <div id="editor">${this.textContent}</div>
       
   
