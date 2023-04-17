@@ -37,7 +37,6 @@ export default class DataPointComponent extends HTMLElement {
 
     const children = Array.from(this.querySelectorAll('data-rel'))
     children.forEach(child => child.setAttribute('from', `#${this.id}`))
-    console.log(children)
 
   }
 
