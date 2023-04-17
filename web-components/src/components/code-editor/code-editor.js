@@ -38,7 +38,7 @@ export default class CodeEditorComponent extends HTMLElement {
           <!DOCTYPE html>
           <link href=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/css/ace.min.css " rel="stylesheet">
           <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/emmet/2.4.2/emmet.es.min.js" integrity="sha512-xnvghbYeHFVuenouvPOKVQzADrDxuYxvqiFlmd3mu88ZwwDLEWvgex+6tnWkyW2Sgtj4yfNBizMlyp1z0iNU9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
-          <!-- <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script> -->
+          <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script>
    
           <style type="text/css" media="screen">
               #editor { 
@@ -85,6 +85,8 @@ export default class CodeEditorComponent extends HTMLElement {
     console.log('editorContainer', editorContainer)
     this.#editor = ace.edit(editorContainer);
     this.#editor.setTheme("ace/theme/monokai");
+    // alert(`ace/mode/${this.getAttribute('language')}`)
+    // this.#editor.session.setMode(`ace/mode/javascript`); // javascript html and so on
     this.#editor.session.setMode(`ace/mode/${this.getAttribute('language')}`); // javascript html and so on
     //   this.#editor.setOption("enableEmmet", true);
 
@@ -97,7 +99,7 @@ export default class CodeEditorComponent extends HTMLElement {
 
 
     this.#editor.setOptions({
-      enableEmmet: true,
+      // enableEmmet: true,
       useWorkers: true,
       enableBasicAutocompletion: true, // the editor completes the statement when you hit Ctrl + Space
       enableLiveAutocompletion: true, // the editor completes the statement while you are typing

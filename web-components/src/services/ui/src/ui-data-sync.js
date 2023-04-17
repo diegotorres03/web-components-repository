@@ -87,7 +87,7 @@ export default class UIDataSyncComponent extends HTMLElement {
           console.log(key, '=>', fields)
 
           fields.forEach(field => {
-            if(!field.dataset.attribute) {
+            if(!field.dataset.attribute || field.dataset.attribute.toLowerCase() === 'textcontent') {
               field.textContent = data[key]
               // field[attr] = data[key]
             }

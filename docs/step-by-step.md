@@ -21,7 +21,19 @@
 ```
 7. Finally, run `npm run serve`. This will open a browser with the contents of the `index.html` file you just created (which is actually an empty page).
 
-**Note:** In Lessons 1 and 2, unless explicitly directed otherwise, we will be working in the `index.html` file we just created above.
+**Notes:** 
+1. In Lessons 1 and 2, unless explicitly directed otherwise, we will be working in the `index.html` file we just created above.
+2. If we see a reference like this `tag-name#id-for-this-element`, this measn you should look to add your code in the element that match and has the respective id. Example, if we are told to add a `h1` on `flip-card#main-card`:
+   ```html
+    <flip-card id="third-card"></flip-card>
+    <flip-card id="second-card"></flip-card>
+
+    <!-- this is the one you want to use -->
+    <flip-card id="main-card"></flip-card>
+
+   ```
+   the format will be `<component tag>#<id for the component>`
+
 
 
 
@@ -2716,8 +2728,8 @@ Then, on the `leaderboard` route, lets go to the `ui-data-repeat` and change the
 Now you can play all you want and you will see how many matches have you played on that browser.
 
 
-### Activity 2.4.3: 
-
+### Activity 2.4.3: event-source filter and transforms
+TODO transform and filter part
 
 
 ---

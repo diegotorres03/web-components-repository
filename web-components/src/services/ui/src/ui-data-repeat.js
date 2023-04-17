@@ -29,6 +29,8 @@ export default class UIDataRepeatComponent extends HTMLElement {
 
 
   connectedCallback() {
+
+    
     mapComponentEvents(this)
     updateVars(this)
     this.#mapChildren()
@@ -81,6 +83,7 @@ export default class UIDataRepeatComponent extends HTMLElement {
     const copy = this.#cloneTemplate()
     const editBtn = copy.querySelector('button[name="edit"]')
     const deleteBtn = copy.querySelector('button[name="delete"]')
+
     if (editBtn) {
       Object.keys(event.detail).forEach(key => {
         if (key === '__eventSource') return // || key === '__id'
@@ -100,6 +103,7 @@ export default class UIDataRepeatComponent extends HTMLElement {
     this.appendChild(dataSync)
     console.log(dataSync, copy)
     this.#emit(event, dataSyncId)
+    console.log(dataSync.innerHTML)
   }
 
   #emit(event, eventName = 'data') {
