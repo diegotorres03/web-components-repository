@@ -2,7 +2,7 @@
 # Lesson 1: Introduction to Web Components
 In this lesson we are going to work with some pre-created components to get you familiar with how to use and interact with components. 
 
-To achieve this, we are goint to start by using some pre-created components, just to undestand from the consumer point of view how they work, then we will get our hands dirty and start creating our own componets.
+To achieve this, we are goint to start by using some pre-created components, just to undestand from the consumer point of view how they work, then we are going to get our hands dirty and start creating our own componets.
 
 
 

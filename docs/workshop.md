@@ -15,7 +15,7 @@ The goal of this lab is to showcase web components as an option when creating we
 
 
 # SetUp
-1. Run the following command - `npx dwck project web-components-app` - and hit `y` when asked to confirm. This will deploy the project structure for our lab into this folder and it will create the `web-components-app (feel free to change the name of the project). 
+1. Run the following command - `npx dwck project web-components-app` - and hit `y` when asked to confirm. This will deploy the project structure for our lab into this folder and it will create the `web-components-app` (feel free to change the name of the project). 
 2. Now change directory into the `web-components-app` folder and run `npm install -D`
 3. Open the `web-components-app` folder in your code editor of choice.
 <!-- 4. Create an `index.html` file in the root of this folder, add the following contents and save: -->

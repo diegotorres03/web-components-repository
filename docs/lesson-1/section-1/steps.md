@@ -8,7 +8,7 @@ Before we begin, in this lesson we want to understand how to get data from a com
 
 ### **passing data to a component:**
 
-1. The ideal mechanism to pass data to a component is by using `attributes`, in this case we are constricted to a simple values (no comples json objects the way you migth do it when using a framework)
+1. The ideal mechanism to pass data to a component is by using `attributes`, in this case we are constricted to a simple values (no complex json objects the way you migth do it when using a framework)
    ```html
     <user-card username="Diego" alias="diegotrs" photo="https://path-to.photo"></user-card>
    ```
@@ -46,6 +46,8 @@ Before we begin, in this lesson we want to understand how to get data from a com
     </script>
     
    ``` 
+
+   ![btn-dataset](../assets/../../assets/btn-dataset.png)
 
 
 ---
@@ -87,7 +89,7 @@ Additionally, lets prevent the card from flipping when we move our mouse over it
 
 
 ## Activity 1.1.2: Create a button and a modal
-Lets build on this now by adding a `button` and a `modal` to our web page. 
+Now by add a `button` and a `modal` to our web page. 
 
 For the modal content, we are going to use the slots `title` and `main`. (**Note**: at this stage the button and the modal are not connected. We will come to that later). Add the following `button` and `app-modal` html under the `<flip-card>` section of our index.html file, save and refresh our browser page:
 ```html
@@ -106,8 +108,16 @@ For the modal content, we are going to use the slots `title` and `main`. (**Note
 Our click button should now appear on the page. Notice however that when you click it it does nothing. Lets change that so when we click on it our modal will appear. The idea here is that the `button`, when clicked, will emit a `click` event. We are going to listen for this event by using the `trigger` and `on` attributes in `app-modal`, which act as the listener for the click event.
 
 The `trigger` attribute is the CSS query the `app-modal` component will be listening for.
+```js
+// the trigger attribute will be the same value used for a querySelector or querySelectorAll
+const element = document.querySelector(cssSelector)
+```
 
 The `on` attribute is the event type the `app-modal` component is listening for.
+```js
+// the eventName will be the same value used on the on attribute
+element.addEventListener(eventName, callback)
+```
 
 So lets update our `app-modal` definition to include `trigger` and `on` attributes as follows: 
 
@@ -116,6 +126,12 @@ So lets update our `app-modal` definition to include `trigger` and `on` attribut
 <app-modal trigger="button" on="click">
 ...
 ```
+
+This will internally create a call similar to this:
+```js
+document.querySelector(/*<value passed on trigger>*/).addEventListener(/* on value */, ...)
+```
+
 
 Now if you click on the button again, this time our modal should appear!
 
@@ -131,7 +147,7 @@ Update our `button` and `app-modal` component definitions as follows:
 ...
 ```
 
-However, if we want multiple different buttons to trigger the same action, we can accomplish this using data attributes as follows. Go ahead and try it:
+However, if we want multiple different buttons to trigger the same action, we can accomplish this using data attributes or css classes as follows. Go ahead and try it:
 ```html
 ...
 <button id="open-modal-btn" data-attribute="you can use data attributes too">open</button>
@@ -164,7 +180,7 @@ Inside the back slot section, lets replace the `<p>..</p>` section with the foll
    ...
    <section slot="back">
 
-     <!-- adding this ui-data-sync and listening to the accepted event from app-modal -->
+     <!-- adding this ui-data-sync where the <p> was, and listen to the accepted event from app-modal -->
      <ui-data-sync trigger="app-modal" on="accepted">
        <h1>Hello <span name="alias"></span></h1>
      </ui-data-sync>
@@ -225,3 +241,4 @@ If you have been following along so far, here is what your `index.html` should l
 
 ---
 
+[Back](../lesson-1.md)  |  [Lesson 1 index](../lesson-1.md) | [Nexts](../lesson-1.md)

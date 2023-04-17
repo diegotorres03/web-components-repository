@@ -35,10 +35,10 @@ When finished, your folder structure should look like this:
 
 Finally, add the following line to `./src/index.js`:
   ```js
-  export * from './components/secret-card'
+  export * from './components'
   ```
 
-Now that our file and folder structure is ready, copy all the HTML inside the `body` tags from our `index.html` from session 1 and paste it into `secret-card.html`. Do not including the `body`, `html` or `header` tags themselves. Save the file.
+Now that our file and folder structure is ready, move all the HTML inside the `body` tags from our `index.html` from session 1 and paste it into `secret-card.html`. Do not including the `body`, `html` or `header` tags themselves. Save the file.
 
 When we are finished, our `secret-card.html` should look like this:
 ```html
@@ -92,7 +92,7 @@ Also add the following two import statements to import any HTML and CSS from our
   ...
   ```
 
-Let's use the imported assets in our component by creating a template and attaching it to the shadow root of the component. We will achieve this by adding the following lines to our `SecretCardComponent` class:
+Let's use the imported assets in our component by creating a template and attaching it to the shadow root of the component. We will achieve this by adding the following lines to our `SecretCardComponent` constructor after calling `super()`:
   ```js
       const template = html`
         <style>${componentStyle}</style>
@@ -105,7 +105,7 @@ Let's use the imported assets in our component by creating a template and attach
       this.shadowRoot.appendChild(template)
   ```
 
-Finally, register the web component on the browser by calling:
+Finally, register the web component on the browser by calling `window.customElements.define(..., ...)` outside the class:
   ```js
   // here we are registering our component on the browser
   // first argument is how you will use the tag <secret-card>
@@ -149,7 +149,9 @@ The web page should look exactly the same, however if you click either of the bu
 
 
 ## Activity 1.2.3: Get interactive elements from `secret-card.js`
-Lets first clean up the HTML in our `secret-card.html` a little. Since we are going to use JavaScript to handle events, lets remove all `trigger` and `on` attributes, and lets also delete the buttons we created before. Additionally, for the back of the card, lets replace the `ui-data-sync` and its content with our secret. In our example below we are adding a 💰 favicon as our secret, but you can add whatever you want. Finally, lets update out `app-modal`. Update the title for something more meaningful such as "Enter password", and we can remove the `<p>..</p>` line completely.
+Lets first clean up the HTML in our `secret-card.html` a little. Since we are going to use JavaScript to handle events, lets remove all `trigger` and `on` attributes, and lets also delete the buttons we created before. Additionally, for the back of the card, lets replace the `ui-data-sync` and its content with our secret. In our example below we are adding a 💰 favicon as our secret, but you can feel free to use your imagination. 
+
+Finally, lets update out `app-modal`. Update the title for something more meaningful such as "Enter password", and we can remove the `<p>..</p>` line completely.
 Our `secret-card.html` should now look something like this:
 ```html
 <flip-card disabled style="width: 500px;">
@@ -173,7 +175,8 @@ Our `secret-card.html` should now look something like this:
 ```
 
 
-Now we want to select and store a reference for the `flip-card` and `app-modal` elements. Lets do this by adding the following two small chunks of code to our `secret-card.js`:
+Now we want to select and store a reference for the `flip-card` and `app-modal` elements. Lets do this by adding the following two small chunks of code to our `secret-card.js`.
+Fisrt we need 2 [private variables](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields), we will later store references to `app-modal` and `flip-card`:
 ```js
 ...
 export default class SecretCardComponent extends HTMLElement {
@@ -192,7 +195,8 @@ export default class SecretCardComponent extends HTMLElement {
       this.attachShadow({ mode: 'open' })
       this.shadowRoot.appendChild(template)
 
-      // 2. Selecting elements from shadow dom
+      // 2. Selecting elements from shadow dom, because the content is inside the shadow root, thats why we select
+      // from this.shadowRoot, for slotted content, is just this.querySelector ...
       this.#flipCard = this.shadowRoot.querySelector('flip-card')
       this.#modal = this.shadowRoot.querySelector('app-modal')
       //
@@ -234,7 +238,7 @@ In `index.html`, let's add this property (**Note** You can add whatever string y
 ```
 
 
-Now, let's use this value inside the `secret-card.js` file and save our changes:
+Now, let's use this value inside the `secret-card.js` file on the handler for the `accepted event` and save our changes:
 ```js
 ...
 this.#modal.addEventListener('accepted', event => {
@@ -244,7 +248,7 @@ this.#modal.addEventListener('accepted', event => {
   const { secret } = event.detail
 
   // here we are reading the attribute value passed on index.html
-  if (secret === thi?s.getAttribute('password'))
+  if (secret === this.getAttribute('password'))
       this.#flipCard?.flip()
 
 })
@@ -343,8 +347,8 @@ window.customElements.define('secret-cardd', SecretCarddComponent)
 
 
 Now, lets go to the browser. If we refresh it, we should be able to provide our password to the modal, click `Accept` and the flipcard should reveal its content!
-![opening modal on click](./assets/secret-card-2.png)
-![flip card revealing its secret](./assets/secret-card-3.png)
+![opening modal on click](../assets/secret-card-2.png)
+![flip card revealing its secret](../assets/secret-card-3.png)
 
 
 ## Activity 1.2.5: Implement the `trigger` and `on` attributes
