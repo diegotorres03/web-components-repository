@@ -606,14 +606,14 @@ Finally, let's test it in `index.html` by adding a button and configuring `trigg
 
 In this Lesson, we are going to create an amazing game using only web components, some provided by the lab, some that we are about to create.
 
-here is a sample of our end goal:
+Here is a sample of our end goal:
 ![awesome game screenshot](./assets/game-preview-1.png)
 
 ## Section 2.1: Layout components
 
-Before we begin, lets start with a brand new `index.html`
-lets delete everything we added inside the `body` tag.
-your `index.html` should look like this:
+Before we begin, lets start with a brand new `index.html`.
+Lets delete everything we added inside the `body` tag.
+Your `index.html` should look like this:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -636,13 +636,13 @@ your `index.html` should look like this:
 
 ### Activity 2.1.1: App layout
 
-Inside the `body` tag on `index.html` lets use the `app-layout` tag to create an empty application layout 
+Inside the `body` tag on `index.html` lets use the `app-layout` tag to create an empty application layout. 
 The slot name will be displayed in the browser:
 ```html
    <app-layout></app-layout>
 ```
 
-By using this tag, we should be able to see in the browser, an empty shell for a web application, the names you see in each section is the name of the corresponding slot.
+By using this tag, we should be able to see in the browser, an empty shell for a web application. The names you see in each section are the names of the corresponding slot.
 ![empty app layout screenshot](./assets/app-layout-1.png)
 
 Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. Here we are adding some titles and a navigation bar on top with 3 routes:
@@ -667,7 +667,7 @@ Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slo
   </app-layout>
 ```
 
-Now, on the left-content, lets add some components - a `plain-card` on top and an `app-accordion` below:  
+Now, on the left-content panel, lets add some components - a `plain-card` on top and an `app-accordion` below:  
 ```html
    ...
     </nav>
@@ -697,13 +697,13 @@ Let's add some placeholders for the score:
 ```
 
 For the accordion, we only use one slot, so it's not require to specify the slot attribute. Everything passed to this component will be added inside the accordion.
-Every item on the accordion should be wrapped on a tag, like `section`, `article` or `div`. Also, the first item should be a <h*> like `h1`, `h2` and so on. This will be adopted as the title on the accordion tab.
+Every item on the accordion should be wrapped in a tag, like `section`, `article` or `div`. Also, the first item should be a <h*> like `h1`, `h2` and so on. This will be adopted as the title on the accordion tab.
 Here let's add the instructions for our game:
 ```html
    <app-accordion>
       <section>
        <h5>Game instructions</h5>
-       <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+       <p>This is a memory game where you have to find pairs in a set of cards.</p>
        <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
       </section>
       <section>
@@ -718,7 +718,7 @@ Here let's add the instructions for our game:
    </app-accordion>
 ```
 
-So far, this is our `index.html`
+So far, this is our `index.html`:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -763,7 +763,7 @@ So far, this is our `index.html`
       <app-accordion>
         <section>
           <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>This is a memory game where you have to find pairs in a set of cards.</p>
           <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
         </section>
         <section>
@@ -788,7 +788,7 @@ So far, this is our `index.html`
 </html>
 ```
 
-And this is how it should look on the browser
+And this is how it should look on the browser:
 ![app-layout with left menu](./assets/app-layout-2.png)
 
 
@@ -796,7 +796,7 @@ So, the `main` slot is the last one to fill, but before doing it, let's talk abo
 
 
 ### Activity 2.1.2: Hash routing
-In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `game-log`.
+In the previous lesson we added 3 links at the top of the page - `home`, `game` and `game-log`.
 In order to handle them we'll make use of hash routing. In other words, we will display different content with different hashes (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
 
 To detect and handle these hash changes, we have the `app-router` and `app-route` components.
@@ -834,7 +834,7 @@ Let's add `app-route` for the 3 routes we have:
   ...
 ```
 
-This router componet is adding the class `.hidden`
+This router componet is adding the class `.hidden`:
 ```css
     .hidden {
       display: none;
@@ -850,7 +850,7 @@ Now, if you test in your browser, you should be able to navigate and see page ch
 This `app-route`, when the hash is matched, it will display its content and it will emit the `activated` event.
 
 Let's see this in action by adding an `app-modal` that asks for a username every time we navigate to the `Game` page.
-fFrst, let's add an `id` attribute to the game route:
+First, let's add an `id` attribute to the game route:
 ```html
   <app-route id="game-route" hash="game">
 ```
@@ -876,7 +876,7 @@ Then let's add an `app-modal` and set the `trigger` and the `on` attributes:
 ```
 
 On the game route, let's reflect the username.
-Let's add an `ui-data-sync` to get the `username` input from `app-modal` and place it inside a `span` tag. 
+Let's add a `ui-data-sync` to get the `username` input from `app-modal` and place it inside a `span` tag. 
 **Note:** The input name must match the data-key attribute on the desired target element.
 
 ```html
@@ -890,7 +890,7 @@ Let's add an `ui-data-sync` to get the `username` input from `app-modal` and pla
    ...
 ```
 
-And lastly, lets log every route change in the console.
+And lastly, lets log every route change in the console:
 ```html
    ...
    </app-modal>
@@ -956,7 +956,7 @@ This is how our `index.html` should looks:
       <app-accordion>
         <section>
           <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>This is a memory game where you have to find pairs in a set of cards.</p>
           <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
         </section>
         <section>
@@ -1007,17 +1007,17 @@ This is how our `index.html` should looks:
 ```
 
 
-And on the broswer:
+And on the browser:
 ![app-game-route](./assets/app-game-route.png)
 ![app-game-route-with-username](./assets/app-game-route-with-username.png)
 
 ### Activity 2.1.3: Grid layout
-on `web-components-app/src/components` create the `grid-layout` folder
-then create the `index.js` on `web-components-app/src/components/grid-layout` with the following content:
+On `web-components-app/src/components` create the `grid-layout` folder.
+Then create the `index.js` on `web-components-app/src/components/grid-layout` with the following content:
 ```js
   export * from './grid-layout'
 ```
-then lets create `grid-layout.js` on the same folder and let's initialize an emtpy component
+Then lets create `grid-layout.js` on the same folder and let's initialize an empty component:
 ```js
    import { html, registerTriggers } from '../../lib/web-tools'
 
@@ -1039,7 +1039,7 @@ then lets create `grid-layout.js` on the same folder and let's initialize an emt
    window.customElements.define('grid-layout', GridLayoutComponent)
 ```
 
-And now lets add this new component on `src/components/index.js`
+Finally, lets add this new component on `src/components/index.js`:
 ```js 
 export * from './secret-card' // this is the one we already have
 
@@ -1048,9 +1048,9 @@ export * from './grid-layout' // add this one
 
 
 Now, in order to render the content that is passed between the `<grid-layout>this content </grid-layout>` we need to use a `slot` tag.
-Because for our use case, this component will only have one slot, there is no need to specify the slot name when consuming this `grid-layout`
+Because for our use case, this component will only have one slot, there is no need to specify the slot name when consuming this `grid-layout`.
 
-lets go back to the constructor function and add the slot tag
+Lets go back to the constructor function and add the slot tag:
 ```js
 // replace this...
 const template = html``
@@ -1066,11 +1066,11 @@ const template = html`
 `
 ```
 
-Now that we added the string template for our html, lets add some css to enable the grid.
+Now that we added the string template for our html, lets add some CSS to enable the grid.
 
-**Note:** _because we are using a template string from javascript, we will be getting some values dinamycally from js, this will only work on first load, if the value of the grid change we won't react to that change, we will cover those changes later on the lab_
+**Note:** _because we are using a template string from JavaScript, we will be getting some values dynamically from JavaScript. This will only work on first load. If the value of the grid changes we won't react to that change. We will cover those changes later on the lab_
 
-On the `style` tag lets add the css for a grid layout
+On the `style` tag lets add the CSS for a grid layout:
 ```css
 #grid-container {
    display: grid;
@@ -1081,7 +1081,7 @@ On the `style` tag lets add the css for a grid layout
 ```
 
 
-This will be enogh to test our component,  no grid so far.
+This will be enough to test our component. No grid so far.
 On `index.html` lets add the following snippet on the `#game` route:
 
 ```html
@@ -1179,7 +1179,7 @@ and the full `index.html`:
       <app-accordion>
         <section>
           <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>This is a memory game where you have to find pairs in a set of cards.</p>
           <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
         </section>
         <section>
@@ -1238,7 +1238,7 @@ and the full `index.html`:
 </html>
 ```
 
-And we should see a 2 by 2 grid of flip cards
+And we should see a 2 by 2 grid of flip cards:
 ![grid layout preview](./assets/grid-layout-1.png)
 
 
@@ -1246,13 +1246,12 @@ And we should see a 2 by 2 grid of flip cards
 
 ### Activity 2.2.1: Memory flip game
 
-Here, we want to create a component that will draw the boar for our memory game.
-This componente will be used in this way, and every time we change the level attribute we want to update the component to reflect the new level.
+Here, we want to create a component that will draw the board for our memory game, and every time we change the level attribute we want to update the component to reflect the new level:
 ```html
 <memory-flip-board id="game-board" level="2"></memory-flip-board>
 ```
 
-At this point, we are familiar with the process, create a `memory-flip-board` folder on `web-components-app/src/components`. And create the respective `index.js` file to export the component
+At this point, we are familiar with the process, so create a `memory-flip-board` folder in `web-components-app/src/components` and create the respective `index.js` file to export the component:
 ```js
   export * from './memory-flip-board'
 ```
@@ -1265,7 +1264,7 @@ At this point it should look like this:
    export * from './memory-flip-board' // add this line
 ```
 
-Before the `export class ...` lets add an array full of emojist, they will be used as the images on our memory game:
+Before the `export class ...` lets add an array full of emojis. They will be used as the images on our memory game:
 ```js
 ...
 // add this after the impors ...
@@ -1304,9 +1303,9 @@ export default class MemoriFlipBoardComponent extends HTMLElement {
 window.customElements.define('memory-flip-board', MemoriFlipBoardComponent)
 ```
 
-Now, in order to detect changes on the `level` attribute, we will use the [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) api provided by the Web components standar.
+In order to detect changes on the `level` attribute, we will use the [lifecycle callbacks](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#using_the_lifecycle_callbacks) api provided by the Web components standard.
 
-In this case, we will use the `attributeChangedCallback` to detect changes on some attributes. Wich attribute you might be asking...
+In this case, we will use the `attributeChangedCallback` to detect changes on some attributes. Which attribute you might be asking?
 Well the ones we tell JavaScript to observe.
 On `memory-flip-board.js` lets add a static property to our class:
 ```js
@@ -1337,7 +1336,7 @@ and lets add the `attributeChangedCallback` method after the constructor and let
   
 ```
 
-on `index.html` lets replace the old `grid-layout` for the new `memory-flip-board`
+On `index.html` lets replace the old `grid-layout` with the new `memory-flip-board`:
 ```html
 <!-- replace this -->
 <grid-layout gap="1px" columns="2" rows="2">
@@ -1351,10 +1350,10 @@ on `index.html` lets replace the old `grid-layout` for the new `memory-flip-boar
 <memory-flip-board id="game-board" level="2"></memory-flip-board>
 ```
 
-Now, if go to the browser, navigate to `#game` page and inspect the html, we should see our `memory-flip-board`:
+Now, if you go to the browser, navigate to `#game` page and inspect the HTML. We should see our `memory-flip-board`:
 ![memory-flip-board-1](./assets/memory-flip-board-1.png)
 
-lets go ahead and double click on the level attribute and lets change the value to `3`, we should se the console log with the new value:
+Lets go ahead and double click on the level attribute and change the value to `3`. We should see the console log with the new value:
 ![memory-flip-board-2](./assets/memory-flip-board-2.png)
 
 
@@ -1432,7 +1431,7 @@ Now that we see that change is detected, lets go ahead and implement the `drawGr
 ...
 ```
 
-And lets call this method inside `generateComponents`
+Lets call this method inside `generateComponents`:
 ```js
   ...
   generateComponents() {
@@ -1442,7 +1441,7 @@ And lets call this method inside `generateComponents`
   ...
 ```
 
-so far, our component code should look similar to this:
+So far, our component code should look similar to this:
 `memory-flip-board.js`
 ```js
 import {
@@ -1546,20 +1545,20 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
 window.customElements.define('memory-flip-board-2', MemoriFlipBoardComponent2)
 ```
 
-And with this, we should be able to see the grid of flip cards back on the game tag
+And with this, we should be able to see the grid of flip cards back on the game tag:
 
 ![memory-flip-board-3](./assets/memory-flip-board-3.png)
 
-Lets change the level attribute and we should see how the board increases or decreases flip cards accordingly.
+Lets change the level attribute and we should see how the board increases or decreases the number of cards accordingly.
 ![memory-flip-board-4](./assets/memory-flip-board-4.png)
 
 
 ### Activity 2.2.3: Registering event listeners
 
-Now, all the flipcards are in the board, but we can't interact with them.
-Lets proceed in this activity to add the require event listeners to flip cards and detect when a pair is found.
+At this point, all the flipcards are in the board, but we can't interact with them.
+So in this activity, lets proceed to add the required event listeners to flip cards and detect when a pair is found.
 
-First, lets add some properties before the constructor, we will use them later:
+First, lets add some properties before the constructor. We will use them later:
 ```js
   ...
   attempts = 0
@@ -1568,7 +1567,7 @@ First, lets add some properties before the constructor, we will use them later:
   ...
 ```
 
-Now lets add the private method `#registerFlipCardListeners()`, here we want to check if the user has found a pair (2 cards with the same emoji), if so, we want to mark those cards as paired, if not, just flip them back:
+Now, lets add the private method `#registerFlipCardListeners()`. Here we want to check if the user has found a pair (2 cards with the same emoji). If so, we want to mark those cards as paired. If not, just flip them back:
 ```js
   ...
   #registerFlipCardListeners() {
@@ -1658,9 +1657,9 @@ Now lets add the private method `#registerFlipCardListeners()`, here we want to 
 
 ### Activity 2.2.4: Emiting event from within the component
 
-The last step we need in order to make our game playable, is identify when we won the match, in other words, when all the pairs have been found. Once this happend, we want to emit a [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent) with the scores for the current level.
+The last step we need in order to make our game playable is identify when we won the match. In other words, when all the pairs have been found. Once this happens, we want to emit a [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent) with the scores for the current level.
 
-Lets implement this functionallity, lets create the `#checkIfWon()` method:
+To implement this functionality, lets create a `#checkIfWon()` method:
 ```js
   #checkIfWon() {
     // 1. temporary variable
@@ -1699,7 +1698,7 @@ Lets implement this functionallity, lets create the `#checkIfWon()` method:
 
 ```
 
-lets take a final look of the `memory-flip-board` files
+Lets take a final look of the `memory-flip-board` files:
 **memory-flip-board.js**
 ```js
 import {
@@ -1933,13 +1932,13 @@ window.customElements.define('memory-flip-board-2', MemoriFlipBoardComponent2)
 This is how it should be looking:
 ![memory-flip-board-5](./assets/memory-flip-board-5.png)
 
-And if we won this match, we should automatically see the next level:
+And if we win a match, we should automatically see the next level:
 ![memory-flip-board-6](./assets/memory-flip-board-6.png)
 
 
 ## Section 2.3: Data components
 
-This are web components created to help us store and query data on html as oposed to create variables in JavaScript.
+Data components are web components created to help us store and query data in HTML as opposed to creating variables in JavaScript.
 
 ### Activity 2.3.1: Data point and data set
 
@@ -1952,27 +1951,27 @@ Inside an event, data will live either on `event.detail` or `event.target.datase
 
 
 Let's see this in action.
-When we pass a level, `memory-flip-board` will emit the `levelup` event, we can capture the data from that event to use it later in other parts of the UI.
+When we pass a level, `memory-flip-board` will emit the `levelup` event. We can capture the data from that event to use it later in other parts of the UI.
 
-Create a `data-set` tag under the `memory-flip-board`, we will give it and id and we will set up the `trigger` to the `memory-flip-board` id, and the `on` attribute will be `levelup`:
+Create a `data-set` tag under the `memory-flip-board`. We will give it and id and set up the `trigger` to the `memory-flip-board` id, and the `on` attribute will be `levelup`:
 ```html
    <memory-flip-board id="game-board" level="2"  preview></memory-flip-board>
    ...
    <data-set id="current-level" visible trigger="#game-board" on="levelup"></data-set>
 ```
-The `visible` attibute is for dev pourposes, it will allow us to see a changelog of the value.
+The `visible` attribute is for dev purposes. It will allow us to see a changelog of the value.
 
-If you inspect the html of the page, you will see a new `data-point` every time the there is an event on `data-set`
+If you inspect the HTML of the page, you will see a new `data-point` every time there is an event on `data-set`:
 ```html
    <data-point id="data-point-1681247878649" visible="" data-level="5" data-__id="data-point-1681246258858"></data-point>
 ```
 
-the field `id` and `data-__id` is automatically added if none provided, this is the id of the record and shoudl be unique in the page.
+The field `id` and `data-__id` are automatically added if none is provided. This is the id of the record and should be unique in the page.
 ![data-set-1](./assets/data-set-1.png)
 
 
-Data sets emit an `updated` event when something change.
-lets go back to the `app-route` for the `#games` route and lets dynamically update the level on the UI.
+Data sets emit an `updated` event when something changes.
+Lets go back to the `app-route` for the `#games` route and dynamically update the level on the UI.
 ```html
    change this ...
    <app-route id="game-route" hash="game">
@@ -1996,17 +1995,17 @@ lets go back to the `app-route` for the `#games` route and lets dynamically upda
 ```
 
 
-Now that we have this new tool, lets save all the important information so we don't have to promt the user for it.
+Now that we have this new tool, lets save all the important information so we don't have to prompt the user for it.
 
-First, lets save the username, the one we get when the navigation to game page happends, [on step 2.1.2](#activity-212-hash-routing)
+First, lets save the username, the one we get when the navigation to the game page happens, [in step 2.1.2](#activity-212-hash-routing).
 
-Under our previous `data-set`, lets create a new one, we are going to use the `#username-selection-modal` the one that opens when the #game page is activated
+Under our previous `data-set`, lets create a new one. We are going to use the `#username-selection-modal`, the one that opens when the #game page is activated:
 ```html
-  // username-selection-modal is the modal that pop up every time we navigate to #game
+  // username-selection-modal is the modal that pops up every time we navigate to #game
   <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible ></data-set>
 ```
 
-On the game route, the `ui-data-sync` that is listening to the same modal, lets switch it to listen to the new `data-set`. Our goal here is to link that UI change to the dataset instead of the modal. (for decoupling)
+On the game route, the `ui-data-sync` that is listening to the same modal, lets switch it to listen to the new `data-set`. Our goal here is to link that UI change to the dataset instead of the modal (for decoupling):
 ```html
      change ...    
      <ui-data-sync trigger="#username-selection-modal" on="accepted">
@@ -2017,19 +2016,19 @@ On the game route, the `ui-data-sync` that is listening to the same modal, lets 
 ```
 
 
-Lastly, lets add another `data-set` that will act as our game log, this time we will use the `append` attribute to let the data set know that `all` values should be stored.
+Lastly, lets add another `data-set` that will act as our game log. This time we will use the `append` attribute to let the data set know that `all` values should be stored.
 
-Think of a data-set without the append as a regular variable and with the append as an array.
+Think of a data-set without the append as a regular variable and with the append as an array:
 ```html
   <data-set id="game-log" visible append trigger="#game-board" on="levelup"></data-set>
 ```
-No extra UI changes for this one just yet
+No extra UI changes for this one just yet.
 
 ### Activity 2.3.2: Data query
 
-Great! Now we can store data, but we can only create data-points.
+Great! Now we can store data, but we can only created data-points.
 In order to delete, update or append we can use the `data-query` component.
-This component provide an easy way to perfrom crud operation on data sets.
+This component provides an easy way to perform crud operation on data sets.
 
 operations like:
 - `get` an item
@@ -2038,7 +2037,7 @@ operations like:
 - `delete` an item
 - `clear` all the items
 
-When a query is perfomed, the result will be delivered as an event, the type of the event will be the same as the type of operation, like the ones in the previous list.
+When a query is performed, the result will be delivered as an event. The type of the event will be the same as the type of operation, like the ones in the previous list.
 
 Lets add a query to clear the current username. Inside the `data-set` for `current-username`
 lets add a `data-query` inside the `data-set#current-username`
@@ -2052,7 +2051,7 @@ lets add a `data-query` inside the `data-set#current-username`
   </data-set>
   ...
 ```
-And lets add a logout button with the matching id. In the `app-layout` on the `header` slot, lets add the button inside the nav tag
+Lets also add a logout button with the matching id. In the `app-layout` on the `header` slot, lets add the button inside the `nav` tag:
 ```html
   ...
   <app-layout>
@@ -2070,7 +2069,7 @@ And lets add a logout button with the matching id. In the `app-layout` on the `h
  ...
 ```
 
-for `#get-current-level` data set, we are only using a get query, no trigger for now.
+For `#get-current-level` data set, we are only using a get query, no trigger for now.
 ```html
    <data-set id="current-level" trigger="#game-board" on="levelup">
 
@@ -2080,7 +2079,7 @@ for `#get-current-level` data set, we are only using a get query, no trigger for
   </data-set>
 ```
 
-and for `#game-log`, because this is is appending all events, the if we use `get` it will emit an event with an array of values, if we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now.
+For `#game-log`, because this is appending all events, if we use `get` it will emit an event with an array of values. If we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now:
 ```html
   <data-set id="game-log" visible append trigger="#game-board" on="levelup">
 
@@ -2090,7 +2089,7 @@ and for `#game-log`, because this is is appending all events, the if we use `get
   </data-set>
 ```
 
-If we interact with the application, provide a username, and win a level, we shold be able to see data points in all data-sets
+If we interact with the application, provide a username, and win a level, we should be able to see data points in all data-sets:
 
 
 ![data-set-1](./assets/data-set-1.png)
@@ -2098,21 +2097,21 @@ If we interact with the application, provide a username, and win a level, we sho
 
 ### Activity 2.3.3: Data store
 
-Data sets are great! they help us to store state and share it accros our webapp.
-The only issue is, they are not persistent, if we refresh the browsers, that data is gone.
-would it be nice if we just have a magic tag, that by only wraping our data sets on it, it will store all of it on [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) or [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and it magically integrates with all the `data-query` we alreary wrote...
+Data sets are great! They help us to store state and share it across our webapp.
+The only issue is, they are not persistent. If we refresh the browsers, that data is gone.
+Wouldn't it be nice if we just have a magic tag, that by simply wrapping our data sets in it, it will store all of it on [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) or [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) and it magically integrates with all the `data-query` we already wrote?...
 
 
-Introducing... (>\*.\*)> `data-store` <(\*.\*<) 
+Introducing... (>\*.\*)> `data-store` <(\*.\*<). 
 This component will handle the heavy lifting of setting up IndexedDB and keeping datasets in sync after a refresh.
 
 Lets see it in action!
 
 
-Create a `data-store` tag with an id of `session-store` and move the `current-username` and `current-level` data sets inside it. Data store will only interact with children data sets 
+Create a `data-store` tag with an id of `session-store` and move the `current-username` and `current-level` data sets inside it. Data store will only interact with children data sets.
 
 
-and move the `#current-username` and `#current-level` data sets inside.
+Move the `#current-username` and `#current-level` data sets inside:
 ```html
 ...
 <data-store id="session-store">
@@ -2129,7 +2128,7 @@ and move the `#current-username` and `#current-level` data sets inside.
 ...
 ```
 
-And create another `data-store` for the `#game-log` remember this new component should wrap the desired `data-set`:
+Create another `data-store` for the `#game-log`. Remember, this new component should wrap the desired `data-set`:
 ```html
 ...
 <data-store id="logs-store">
@@ -2141,21 +2140,21 @@ And create another `data-store` for the `#game-log` remember this new component 
 ...
 ```
 
-After this, go to the browser refresh the app, provide a username and open [devtools]() go to storage, and indexeddb. There you should see an entry with the key `session-store_current-username` the value is a json wich contains the username you provided.
+After this, go to the browser, refresh the app, provide a username and open [devtools]() go to storage, and IndexedDB. There you should see an entry with the key `session-store_current-username`. The value is a JEON which contains the username you provided:
 ![indexeddb screenshot](./assets/indexeddb-1.png)
 
 
-Play the first level and refresh indexeddb again
+Play the first level and refresh IndexedDB again
 ![indexeddb screenshot 2](./assets/indexeddb-2.png)
 
 And now we see both data stores and all the data-sets.
 
-_note: the IndexedDB key is composed from the data-store id and the data-set id_
+_Note: the IndexedDB key is composed from the data-store id and the data-set id._
 
-Also notice that datasets will keep their state when refresh
+Also notice that datasets will keep their state when refresh:
 ![dataset screenshoot](./assets/indexeddb-3.png)
 
-So far, this is how `index.html` looks like:
+So far, this is how `index.html` looks:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -2206,7 +2205,7 @@ So far, this is how `index.html` looks like:
       <app-accordion>
         <section>
           <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>This is a memory game where you have to find pairs in a set of cards.</p>
           <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
         </section>
         <section>
@@ -2289,18 +2288,18 @@ So far, this is how `index.html` looks like:
 
 ### Activity 2.3.4: UI sync components
 
-We are already familiar with the `ui-data-sync`, we used a couple of time already, but there are other 2 components we can leverage to make this application interactive.
+We are already familiar with the `ui-data-sync`, we used a couple of time already. But there are 2 other components we can leverage to make this application interactive.
 
 But first lets warm up with the familiar `ui-data-sync`. 
 
 There are 2 important values we always want to keep up to date,  `username` and `score`.
-For `username`, we currently have an `ui-data-sync` listening to an `app-modal` we want to change that for the  `current-username` data set: 
-the `app-modal`
+For `username`, we currently have a `ui-data-sync` listening to an `app-modal`. we want to change that for the  `current-username` data set: 
 ```html
 from ...
 <ui-data-sync trigger="#username-selection-modal" on="accepted">
   <p>Welcome <span data-key="username"></span></p>
 </ui-data-sync>
+
 to...
 <ui-data-sync trigger="#current-username" on="updated">
   <p>Welcome <span data-key="username"></span></p>
@@ -2308,8 +2307,8 @@ to...
 ...
 ```
 
-And for `score` we already have a place on the UI for this, the `plain-card` on the left for this step is to reflect the current score on the `left-content` slot from `app-layout` component.
-Here we want to add the `ui-data-sync` component around the `div` that contain the labels and inputs for level and attempts:
+For `score` we already have a place on the UI for this. The `plain-card` on the left for this step is to reflect the current score on the `left-content` slot from `app-layout` component.
+Here we want to add the `ui-data-sync` component around the `div` that contains the labels and inputs for level and attempts:
 ```html
 <plain-card>
   ...
@@ -2335,14 +2334,14 @@ Here we want to add the `ui-data-sync` component around the `div` that contain t
 
 
 
-On the game-log route, our goal is to display a list of plain cards, each one will represent a new game log from `#game-log` data set. `ui-data-sync` works great with a single item, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat`.
+On the game-log route, our goal is to display a list of plain cards. Each one will represent a new game log from `#game-log` data set. `ui-data-sync` works great with a single item, but how do we handle when a `data-set` has the `append` attribute? In this case, we can use the `ui-data-repeat`.
 
 This component will listen to an event, and it will create a new ui element for each event.
 
-We need to provide a the html that we want `ui-data-repeat` to use. To achieve this, we are going to usethe [template](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) tag
+We need to provide the HTML that we want `ui-data-repeat` to use. To achieve this, we are going to use the [template](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template) tag.
 
-The html that go inside the `template` tag will be cloned and used for each event.
-Remember `data-key` attribute or `name` attribute will be used to let the ui component know where to add the values of the event.
+The HTML that goes inside the `template` tag will be cloned and used for each event.
+Remember, `data-key` attribute or `name` attribute will be used to let the UI component know where to add the values of the event.
 
 On the game-log route, lets replace its content with this:
 ```html
@@ -2380,7 +2379,7 @@ On the game-log route, lets replace its content with this:
 
 Lets test on the browser!!
 
-We only need to refresh and win a couple of maches then navigate to the `game-log` page and we should see our log.
+We only need to refresh and win a couple of matches, then navigate to the `game-log` page and we should see our log.
 
 The final version should look like this:
 ```html
@@ -2435,7 +2434,7 @@ The final version should look like this:
       <app-accordion>
         <section>
           <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>This is a memory game where you have to find pairs in a set of cards.</p>
           <p>You will have X minutes to solve multiple challenges and the score will be based on how far you get.</p>
         </section>
         <section>
@@ -2547,10 +2546,10 @@ The final version should look like this:
 ### Activity 2.4.1: Basic event handling
 Here we want to discover different ways we can listen and group events. So far we have done direct connections between an event emitter (like a button) and an event listener (like a modal using the `trigger` attribute).
 
-This is a good approach on simple cases, but sometimes we want the same modal to react to multiple event emitters.
+This is a good approach in simple cases, but sometimes we want the same modal to react to multiple event emitters.
 Let's see some __examples__:
 
-**let's start with the basic**
+**Let's start with the basic**
 
 In this example, we have one `button` and `app-modal`. As a trigger we are passing the id of the button (note the `#`) an the event will be `click`.
 ```html
@@ -2570,9 +2569,9 @@ Not an issue! `trigger` accepts any valid CSS selector, so we can do something l
 ```
 Here we added a `data-modal` attribute and passed `[data-modal]` as the trigger. By doing this, `app-modal` will listen to any element that has `data-modal` and emits a click event.
 
-**Well! what if the other element emits a different event**
+**What if the other element emits a different event?**
 
-Let's look at this scenario. We currently have a `data-set` and a `data-query`. The issue here is that we want to listen to the `data` event on the `data-set` and `get` event on `data-query`.
+Let's look at this scenario. We currently have a `data-set` and a `data-query`. The issue here is that we want to listen to the `data` event on the `data-set` and the `get` event on `data-query`:
 ```html
 ...
 <plain-card>
@@ -2609,7 +2608,7 @@ Step 1, add an `event-source` tag just above the `session-store` data store. Its
 ...
 ```
 
-Then lets update the `trigger` and `on` attributes on the `ui-data-sync` so it listen to `data` events from the `event-sourve` we just created:
+Then lets update the `trigger` and `on` attributes on the `ui-data-sync` so it listens to `data` events from the `event-sourve` we just created:
 ```html
 <plain-card>
   ...
@@ -2619,8 +2618,8 @@ Then lets update the `trigger` and `on` attributes on the `ui-data-sync` so it l
 ...
 ```
 
-Now is just a matter of testing in the browser. Test also the functionallity, if you win a match you sould see the updated score.
-If we inspect the html, we should see the `event-source`
+Now its just a matter of testing in the browser. Test also the functionality; if you win a match you should see the updated score.
+If we inspect the HTML we should see the `event-source`:
 ![event-source tag on html](./assets/event-source-1.png)
 
 Let's do the same for the `data-query`: 
@@ -2643,8 +2642,8 @@ Let's do the same for the `data-query`:
 ...
 ```
 
-In this case, our score won't be updated when we clear a level, because we are no longer listening to the `memory-flip-board`. Instead we are waiting on the `data-query` to react to an event. 
-Ideally, we want this query to execute when the page loads, so we can get the data saved by `data-store` on [IndexedDB](). Luckly for us, `event-source` tags can react to a `load` even on `window`.
+In this case, our score won't be updated when we clear a level because we are no longer listening to the `memory-flip-board`. Instead we are waiting on the `data-query` to react to an event. 
+Ideally, we want this query to execute when the page loads so we can get the data saved by `data-store` on [IndexedDB](). Luckily for us, `event-source` tags can react to a `load` even on `window`.
 
 Lets implement this change:
 ```html
@@ -2667,8 +2666,8 @@ Lets implement this change:
 ...
 ```
 
-To test this, lets refresh the browser play a couple of levels and then refresh again.
-You should see the highest level achieve there.
+To test this, lets refresh the browser, play a couple of levels and then refresh again.
+You should see the highest level achieved there.
 ![updated ui screenshot](./assets/event-source-2.png)
 
 
@@ -2679,7 +2678,7 @@ As we learned in the previous activity, the `event-source` tag acts as a mediato
 
 If you need to group multiple events and capture them, you can use the `event-group`. This element automatically subscribes to all children event sources and emits a `data` event for each event received from the `event-source`.
 
-Let use it to group the `data-query` and the `data-set` to always refresh the score
+Let use it to group the `data-query` and the `data-set` to always refresh the score:
 ```html
 ...
 <event-group id="level-group">
@@ -2689,7 +2688,7 @@ Let use it to group the `data-query` and the `data-set` to always refresh the sc
 ...
 ```
 
-and lets update the `plain-card` for current score and we should be able to see changes while we play and also that change should still be there if we refresh:
+Lets also update the `plain-card` for current score and we should be able to see changes while we play and also that change should still be there if we refresh:
 ```html
 ...
 <plain-card>
@@ -2699,15 +2698,15 @@ and lets update the `plain-card` for current score and we should be able to see 
 ...
 ```
 
-**Note:** _if you need to delete items on IndexedDB, on devtools, go to storage then IndexedDB then look for the item you want to delete, right click, then delete_
+**Note:** _if you need to delete items on IndexedDB, on devtools, go to storage then IndexedDB, then look for the item you want to delete, right click, then delete:_
 ![delete item from idexeddb](./assets/indexeddb-4.png)
 
 That was easy, right!
-Lets do it again, this time, lets keep the game log up to date with each score emmited by the `memory-flip-board`.
+Lets do it again, this time, lets keep the game log up to date with each score emitted by the `memory-flip-board`.
 
-First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the game-log page. And we also want the query to be executed on page load.
+First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the game-log page. We also want the query to be executed on page load.
 
-To achieve this, we will require an `event-source` tag for the `data-query` and one for the `data-set` and we want both of them inside an `event-group` so we can capture its value:
+To achieve this, we will require an `event-source` tag for the `data-query` and one for the `data-set`, and we want both of them inside an `event-group` so we can capture its value:
 ```html
 ...
 <!-- create event-group with event-source for data-set and data-query -->
@@ -2725,7 +2724,7 @@ Then, on the `game-log` route, lets go to the `ui-data-repeat` and change the tr
 ...
 ```
 
-Now you can play all you want and you will see how many matches have you played on that browser.
+Now you can play all you want and you will be able to see how many matches have you played on that browser!
 
 
 ### Activity 2.4.3: event-source filter and transforms
