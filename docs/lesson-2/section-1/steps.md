@@ -33,7 +33,7 @@ The slot name will be displayed in the browser:
 ```
 
 By using this tag, we should be able to see in the browser, an empty shell for a web application, the names you see in each section is the name of the corresponding slot.
-![empty app layout screenshot](./assets/app-layout-1.png)
+![empty app layout screenshot](../../assets/app-layout-1.png)
 
 Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slots. Here we are adding some titles and a navigation bar on top with 3 routes:
 ```html
@@ -50,7 +50,7 @@ Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slo
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
     </nav>
 
     <footer slot="footer">Thank you.</footer>
@@ -135,7 +135,7 @@ So far, this is our `index.html`
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -186,7 +186,7 @@ So, the `main` slot is the last one to fill, but before doing it, let's talk abo
 
 
 ### Activity 2.1.2: Hash routing
-In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `leaderboard`.
+In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `game-log`.
 In order to handle them we'll make use of hash routing. In other words, we will display different content with different hashes (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
 
 To detect and handle these hash changes, we have the `app-router` and `app-route` components.
@@ -218,7 +218,7 @@ Let's add `app-route` for the 3 routes we have:
 
       <app-route>I'm Home</app-route>
       <app-route hash="game" >I'm Game</app-route>
-      <app-route hash="leaderboard" >I'm Leaderboard</app-route>
+      <app-route hash="game-log" >I'm Game Log</app-route>
 
    </app-router>
   ...
@@ -328,7 +328,7 @@ This is how our `index.html` should looks:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -383,7 +383,7 @@ This is how our `index.html` should looks:
         </ui-data-sync>
       </app-route>
       
-      <app-route hash="leaderboard">Leaderboard</app-route>
+      <app-route hash="game-log">Game Log</app-route>
     
     </app-router>
 
@@ -551,7 +551,7 @@ and the full `index.html`:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -615,7 +615,7 @@ and the full `index.html`:
         </ui-data-sync>
       </app-route>
       
-      <app-route hash="leaderboard">Leaderboard</app-route>
+      <app-route hash="game-log">Game Log</app-route>
     
     </app-router>
 

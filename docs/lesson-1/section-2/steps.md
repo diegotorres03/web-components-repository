@@ -389,4 +389,4 @@ Finally, let's test it in `index.html` by adding a button and configuring `trigg
 ...
 ```
 
-[Back](../section-2/steps.md)  |  [index](../../workshop.md) | [Nexts](../lesson-1.md)
+[Back](../section-2/steps.md)  |  [index](../../workshop.md) | [Next](../../lesson-2/lesson-2.md)

@@ -124,7 +124,7 @@ And lets add a logout button with the matching id. In the `app-layout` on the `h
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
 
       <!-- add this button -->
       <button id="logout-btn">logout</button>
@@ -249,7 +249,7 @@ So far, this is how `index.html` looks like:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
       <button id="logout-btn">logout</button>
     </nav>
 
@@ -335,7 +335,7 @@ So far, this is how `index.html` looks like:
 
       </app-route>
 
-      <app-route hash="leaderboard">Leaderboard</app-route>
+      <app-route hash="game-log">Game Log</app-route>
 
     </app-router>
 
@@ -397,7 +397,7 @@ Here we want to add the `ui-data-sync` component around the `div` that contain t
 
 
 
-On the leaderboard route, our goal is to display a list of plain cards, each one will represent a new game log from `#game-log` data set. `ui-data-sync` works great with a single item, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat`.
+On the game-log route, our goal is to display a list of plain cards, each one will represent a new game log from `#game-log` data set. `ui-data-sync` works great with a single item, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat`.
 
 This component will listen to an event, and it will create a new ui element for each event.
 
@@ -406,9 +406,9 @@ We need to provide a the html that we want `ui-data-repeat` to use. To achieve t
 The html that go inside the `template` tag will be cloned and used for each event.
 Remember `data-key` attribute or `name` attribute will be used to let the ui component know where to add the values of the event.
 
-On the leaderboard route, lets replace its content with this:
+On the game-log route, lets replace its content with this:
 ```html
-<app-route hash="leaderboard">
+<app-route hash="game-log">
   ...
 
 
@@ -442,7 +442,7 @@ On the leaderboard route, lets replace its content with this:
 
 Lets test on the browser!!
 
-We only need to refresh and win a couple of maches then navigate to the `leaderboard` page and we should see our log.
+We only need to refresh and win a couple of maches then navigate to the `game-log` page and we should see our log.
 
 The final version should look like this:
 ```html
@@ -476,7 +476,7 @@ The final version should look like this:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#game-log">Game Log</a>
       <button id="logout-btn">logout</button>
     </nav>
 
@@ -565,7 +565,7 @@ The final version should look like this:
 
       </app-route>
 
-      <app-route hash="leaderboard">
+      <app-route hash="game-log">
         <h1>Game log</h1>
         <hr>
 

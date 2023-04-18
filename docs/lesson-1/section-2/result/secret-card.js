@@ -1,4 +1,4 @@
-import { html } from '../../lib/web-tools'
+import { html, registerTriggers } from '../../lib/web-tools'
 
 import componentStyle from './secret-card.css'
 import componentHtml from './secret-card.html'
@@ -26,6 +26,10 @@ export default class SecretCardComponent extends HTMLElement {
             const { secret } = event.detail
             if (secret === this.getAttribute('password')) this.#flipCard?.flip()
         })
+    }
+
+    connectedCallback() {
+        registerTriggers(this, () => this.#modal.show())
     }
 }
 

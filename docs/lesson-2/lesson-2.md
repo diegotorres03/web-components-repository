@@ -10,7 +10,7 @@ Here we will explore diferent type of components based on their use and function
 
 **Data components** help up represent, store, query and visualize data with HTML.
 
-**Event components** help us route and direct events so we can conbine, filter, transform and listen to multiple events.
+**Event components** help us route and direct events so we can combine, filter, transform and listen to multiple events.
 
 As part of this chapter we will be creating the main component for our game.
 
