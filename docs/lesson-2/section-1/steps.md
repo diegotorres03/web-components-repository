@@ -50,17 +50,16 @@ Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slo
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <footer slot="footer">Thank you.</footer>
   </app-layout>
 ```
 
-Now, on the left-content, lets add some components - a `plain-card` on top and an `app-accordion` below:  
+Now, on the left-content, lets add some components inside the `app-layout` - a `plain-card` on top and an `app-accordion` below:  
 ```html
    ...
-    </nav>
 
     <section slot="left-content">
       <plain-card></plain-card>
@@ -80,7 +79,6 @@ Let's add some placeholders for the score:
         <div>
           <b>Level:</b><span data-key="level"></span><br>
           <b>Attempts:</b><span data-key="attempts"></span><br>
-          <b>Username:</b><span data-key="username"></span><br>
         </div>
      </section>
    </plain-card>
@@ -135,7 +133,7 @@ So far, this is our `index.html`
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -145,7 +143,6 @@ So far, this is our `index.html`
           <div>
             <b>Level:</b><span data-key="level"></span><br>
             <b>Attempts:</b><span data-key="attempts"></span><br>
-            <b>Username:</b><span data-key="username"></span><br>
           </div>
         </section>
       </plain-card>
@@ -186,24 +183,19 @@ So, the `main` slot is the last one to fill, but before doing it, let's talk abo
 
 
 ### Activity 2.1.2: Hash routing
-In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `game-log`.
+In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `score-log`.
 In order to handle them we'll make use of hash routing. In other words, we will display different content with different hashes (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
 
 To detect and handle these hash changes, we have the `app-router` and `app-route` components.
 The first one, `app-router`, is the parent element, and is the one that listens for changes in the url and allows the child `app-route` to activate or not.
 
-Lets add an `app-router` as the main slot:
+Lets add an `app-router` as the main slot (remember, this is inside `app-layout`):
 ```html
   ...
-         </section>
-      </app-accordion>
-    </section>
-
     <app-router slot="main">
       <!-- routes will be here -->
     </app-router>
 
-    <footer slot="footer">Thank you.</footer>
   ...
 ```
 
@@ -216,16 +208,18 @@ Let's add `app-route` for the 3 routes we have:
   ...
    <app-router slot="main">
 
-      <app-route>I'm Home</app-route>
-      <app-route hash="game" >I'm Game</app-route>
-      <app-route hash="game-log" >I'm Game Log</app-route>
+      <app-route>Home</app-route>
+      <app-route hash="game" >Game</app-route>
+      <app-route hash="score-log" >Game Log</app-route>
 
    </app-router>
   ...
 ```
 
-This router componet is adding the class `.hidden`
+This router componet is adding the class `.hidden`, is up to us to decide what that class should do.
+For now, just using display none is good, no fancy effect as of now, but feel free to sparkle some css magic here:
 ```css
+    /* this can be added within the style tag on index.html  */
     .hidden {
       display: none;
     }
@@ -233,8 +227,8 @@ This router componet is adding the class `.hidden`
 
 Now, if you test in your browser, you should be able to navigate and see page changes on your app. Note the hash part on the url match the route you are seeing.
 
-![app-layout-home](.assets/../assets/app-layout-home.png)
-![app-layout-game](.assets/../assets/app-layout-game.png)
+![app-layout-home](../../assets/app-layout-home.png)
+![app-layout-game](../../assets/app-layout-game.png)
 
 `app-router` emits a `navigated` event when there is a change in the url and it will activate the proper `app-route`.
 This `app-route`, when the hash is matched, it will display its content and it will emit the `activated` event.
@@ -242,15 +236,15 @@ This `app-route`, when the hash is matched, it will display its content and it w
 Let's see this in action by adding an `app-modal` that asks for a username every time we navigate to the `Game` page.
 fFrst, let's add an `id` attribute to the game route:
 ```html
+  <!-- add an id -->
   <app-route id="game-route" hash="game">
 ```
 Then let's add an `app-modal` and set the `trigger` and the `on` attributes:
 ```html
   ...
-   <app-router slot="main">
-
-      <!-- add this modal before all the app-route elements -->
+      <!-- add this modal after the app-router and before all the app-route elements -->
       <app-modal id="username-selection-modal" trigger="#game-route" on="activated">
+
         <h1 slot="title">Start a new match</h1>
         <section slot="main">
           <p>Ready to start a new match?</p>
@@ -259,31 +253,28 @@ Then let's add an `app-modal` and set the `trigger` and the `on` attributes:
             <label>Username:</label><input type="text" name="username">
           </form>
         </section>
-      </app-modal>
-  
-      <app-route>
+      </app-modal>  
   ...
 ```
 
-On the game route, let's reflect the username.
+On `app-route#game-route`, let's reflect the username.
 Let's add an `ui-data-sync` to get the `username` input from `app-modal` and place it inside a `span` tag. 
 **Note:** The input name must match the data-key attribute on the desired target element.
 
 ```html
-   ...
-   <app-route id="game-route" hash="game">
-     <h1>I'm Game</h1>
+     ...
+    <!-- add this content inside <app-route id="game-route" hash="game"> -->
+     
+     <h1>Game</h1>
      <ui-data-sync trigger="#username-selection-modal" on="accepted" >
        <p>Welcome <span data-key="username"></span></p>
      </ui-data-sync>
-   </app-route>
    ...
 ```
 
-And lastly, lets log every route change in the console.
+And lastly, lets log every route change in the console. You can add this snippet at the end of the page before closing the `body` tag:
 ```html
    ...
-   </app-modal>
 
       <script>
         document
@@ -292,9 +283,13 @@ And lastly, lets log every route change in the console.
             console.log(`navigated to ${event.detail.hash || 'home'}`))
       </script>
 
-      <app-route>
+    <!-- </body> -->
    ...
 ```
+This is how this is reflected on the console.
+![app-router-1](../../assets/app-router-1.png)
+
+This is only to test, we can go ahead and delete this script tag and all its content.
 
 This is how our `index.html` should looks:
 ```html
@@ -328,7 +323,7 @@ This is how our `index.html` should looks:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -377,13 +372,13 @@ This is how our `index.html` should looks:
       <app-route>home</app-route>
 
       <app-route id="game-route" hash="game">
-        <h1>I'm Game</h1>
+        <h1>Game</h1>
         <ui-data-sync trigger="#username-selection-modal" on="accepted">
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
       </app-route>
       
-      <app-route hash="game-log">Game Log</app-route>
+      <app-route hash="score-log">Game Log</app-route>
     
     </app-router>
 
@@ -398,12 +393,13 @@ This is how our `index.html` should looks:
 
 
 And on the broswer:
-![app-game-route](./assets/app-game-route.png)
-![app-game-route-with-username](./assets/app-game-route-with-username.png)
+![app-game-route](../../assets/app-game-route.png)
+![app-game-route-with-username](../../assets/app-game-route-with-username.png)
 
 ### Activity 2.1.3: Grid layout
-on `web-components-app/src/components` create the `grid-layout` folder
-then create the `index.js` on `web-components-app/src/components/grid-layout` with the following content:
+
+On `web-components-app/src/components` create the `grid-layout` folder.
+Then create the `index.js` on `web-components-app/src/components/grid-layout` with the following content:
 ```js
   export * from './grid-layout'
 ```
@@ -475,7 +471,7 @@ This will be enogh to test our component,  no grid so far.
 On `index.html` lets add the following snippet on the `#game` route:
 
 ```html
-   <grid-layout gap="1px" columns="2" rows="2">
+   <grid-layout columns="2" rows="2">
     <flip-card></flip-card>
     <flip-card></flip-card>
     <flip-card></flip-card>
@@ -551,7 +547,7 @@ and the full `index.html`:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -609,13 +605,13 @@ and the full `index.html`:
       </app-route>
 
       <app-route id="game-route" hash="game">
-        <h1>I'm Game</h1>
+        <h1>Game</h1>
         <ui-data-sync trigger="#username-selection-modal" on="accepted">
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
       </app-route>
       
-      <app-route hash="game-log">Game Log</app-route>
+      <app-route hash="score-log">Game Log</app-route>
     
     </app-router>
 
@@ -629,5 +625,10 @@ and the full `index.html`:
 ```
 
 And we should see a 2 by 2 grid of flip cards
-![grid layout preview](./assets/grid-layout-1.png)
+![grid layout preview](../../assets/grid-layout-1.png)
+
+---
+
+[Back](../lesson-2.md)  |  [index](../../workshop.md) | [Next](../../lesson-2/section-2/steps.md)
+
 

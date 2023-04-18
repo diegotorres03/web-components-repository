@@ -32,10 +32,10 @@ export default class RouteComponent extends HTMLElement {
     if (!this.getAttribute('src')) return
 
     const src = this.getAttribute('src')
-    console.log(src)
+    // console.log(src)
 
     const rawHtml = await (await fetch(src)).text()
-    console.log(rawHtml)
+    // console.log(rawHtml)
     this.appendChild(html`${rawHtml}`)
   }
 
@@ -66,7 +66,7 @@ export default class RouteComponent extends HTMLElement {
         route: currentHash
       }
     })
-    console.log(event)
+    // console.log(event)
     this.dispatchEvent(event)
   }
 

@@ -660,7 +660,7 @@ Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slo
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <footer slot="footer">Thank you.</footer>
@@ -745,7 +745,7 @@ So far, this is our `index.html`
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -796,7 +796,7 @@ So, the `main` slot is the last one to fill, but before doing it, let's talk abo
 
 
 ### Activity 2.1.2: Hash routing
-In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `game-log`.
+In the previous Lesson we added 3 links at the top of the page - `home`, `game` and `score-log`.
 In order to handle them we'll make use of hash routing. In other words, we will display different content with different hashes (#users, #orders and so on) of the url. https://subdomain.domain.tld/route#hash.
 
 To detect and handle these hash changes, we have the `app-router` and `app-route` components.
@@ -828,7 +828,7 @@ Let's add `app-route` for the 3 routes we have:
 
       <app-route>I'm Home</app-route>
       <app-route hash="game" >I'm Game</app-route>
-      <app-route hash="game-log" >I'm Game Log</app-route>
+      <app-route hash="score-log" >I'm Game Log</app-route>
 
    </app-router>
   ...
@@ -938,7 +938,7 @@ This is how our `index.html` should looks:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -993,7 +993,7 @@ This is how our `index.html` should looks:
         </ui-data-sync>
       </app-route>
       
-      <app-route hash="game-log">Game Log</app-route>
+      <app-route hash="score-log">Game Log</app-route>
     
     </app-router>
 
@@ -1161,7 +1161,7 @@ and the full `index.html`:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -1225,7 +1225,7 @@ and the full `index.html`:
         </ui-data-sync>
       </app-route>
       
-      <app-route hash="game-log">Game Log</app-route>
+      <app-route hash="score-log">Game Log</app-route>
     
     </app-router>
 
@@ -2021,7 +2021,7 @@ Lastly, lets add another `data-set` that will act as our game log, this time we 
 
 Think of a data-set without the append as a regular variable and with the append as an array.
 ```html
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup"></data-set>
+  <data-set id="score-log" visible append trigger="#game-board" on="levelup"></data-set>
 ```
 No extra UI changes for this one just yet
 
@@ -2062,7 +2062,7 @@ And lets add a logout button with the matching id. In the `app-layout` on the `h
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
 
       <!-- add this button -->
       <button id="logout-btn">logout</button>
@@ -2080,9 +2080,9 @@ for `#get-current-level` data set, we are only using a get query, no trigger for
   </data-set>
 ```
 
-and for `#game-log`, because this is is appending all events, the if we use `get` it will emit an event with an array of values, if we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now.
+and for `#score-log`, because this is is appending all events, the if we use `get` it will emit an event with an array of values, if we use `list` instead, it will emit an event for each `data-point`. This is great, so each item will be handled individually. No trigger for now.
 ```html
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+  <data-set id="score-log" visible append trigger="#game-board" on="levelup">
 
     <!-- add this line -->
     <data-query id="list-game-logs" type="list"></data-query>
@@ -2129,13 +2129,13 @@ and move the `#current-username` and `#current-level` data sets inside.
 ...
 ```
 
-And create another `data-store` for the `#game-log` remember this new component should wrap the desired `data-set`:
+And create another `data-store` for the `#score-log` remember this new component should wrap the desired `data-set`:
 ```html
 ...
 <data-store id="logs-store">
 
   <!-- game log dataset -->
-  <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+  <data-set id="score-log" visible append trigger="#game-board" on="levelup">
     ...
 </data-store>
 ...
@@ -2187,7 +2187,7 @@ So far, this is how `index.html` looks like:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
       <button id="logout-btn">logout</button>
     </nav>
 
@@ -2265,7 +2265,7 @@ So far, this is how `index.html` looks like:
 
         <data-store id="logs-store">
 
-          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+          <data-set id="score-log" visible append trigger="#game-board" on="levelup">
             <data-query id="list-game-logs" type="list"></data-query>
           </data-set>
           
@@ -2273,7 +2273,7 @@ So far, this is how `index.html` looks like:
 
       </app-route>
 
-      <app-route hash="game-log">Game Log</app-route>
+      <app-route hash="score-log">Game Log</app-route>
 
     </app-router>
 
@@ -2335,7 +2335,7 @@ Here we want to add the `ui-data-sync` component around the `div` that contain t
 
 
 
-On the game-log route, our goal is to display a list of plain cards, each one will represent a new game log from `#game-log` data set. `ui-data-sync` works great with a single item, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat`.
+On the score-log route, our goal is to display a list of plain cards, each one will represent a new game log from `#score-log` data set. `ui-data-sync` works great with a single item, but how can we handle when a `data-set` has the `append` attribute. In this case, we can use the `ui-data-repeat`.
 
 This component will listen to an event, and it will create a new ui element for each event.
 
@@ -2344,9 +2344,9 @@ We need to provide a the html that we want `ui-data-repeat` to use. To achieve t
 The html that go inside the `template` tag will be cloned and used for each event.
 Remember `data-key` attribute or `name` attribute will be used to let the ui component know where to add the values of the event.
 
-On the game-log route, lets replace its content with this:
+On the score-log route, lets replace its content with this:
 ```html
-<app-route hash="game-log">
+<app-route hash="score-log">
   ...
 
 
@@ -2356,7 +2356,7 @@ On the game-log route, lets replace its content with this:
 
 
   <!-- listening to gale log dataset fot the updated event -->
-  <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
+  <ui-data-repeat id="score-log-cards" trigger="#score-log" on="updated">
 
     <!-- the content inside of a template tag won't be rendered by the browser -->
     <template>
@@ -2380,7 +2380,7 @@ On the game-log route, lets replace its content with this:
 
 Lets test on the browser!!
 
-We only need to refresh and win a couple of maches then navigate to the `game-log` page and we should see our log.
+We only need to refresh and win a couple of maches then navigate to the `score-log` page and we should see our log.
 
 The final version should look like this:
 ```html
@@ -2414,7 +2414,7 @@ The final version should look like this:
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
       <button id="logout-btn">logout</button>
     </nav>
 
@@ -2495,7 +2495,7 @@ The final version should look like this:
 
         <data-store id="logs-store">
 
-          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+          <data-set id="score-log" visible append trigger="#game-board" on="levelup">
             <data-query id="list-game-logs" type="list"></data-query>
           </data-set>
 
@@ -2503,11 +2503,11 @@ The final version should look like this:
 
       </app-route>
 
-      <app-route hash="game-log">
+      <app-route hash="score-log">
         <h1>Game log</h1>
         <hr>
 
-        <ui-data-repeat id="game-log-cards" trigger="#game-log" on="updated">
+        <ui-data-repeat id="score-log-cards" trigger="#score-log" on="updated">
 
           <template>
             <plain-card>
@@ -2705,7 +2705,7 @@ and lets update the `plain-card` for current score and we should be able to see 
 That was easy, right!
 Lets do it again, this time, lets keep the game log up to date with each score emmited by the `memory-flip-board`.
 
-First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the game-log page. And we also want the query to be executed on page load.
+First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the score-log page. And we also want the query to be executed on page load.
 
 To achieve this, we will require an `event-source` tag for the `data-query` and one for the `data-set` and we want both of them inside an `event-group` so we can capture its value:
 ```html
@@ -2713,15 +2713,15 @@ To achieve this, we will require an `event-source` tag for the `data-query` and 
 <!-- create event-group with event-source for data-set and data-query -->
 <event-group id="all-game-logs">
   <event-source trigger="#list-game-logs" on="list" ></event-source>
-  <event-source trigger="#game-log" on="updated" ></event-source>
+  <event-source trigger="#score-log" on="updated" ></event-source>
 </event-group>
 ...
 ```
 
-Then, on the `game-log` route, lets go to the `ui-data-repeat` and change the trigger to the `event-group`:
+Then, on the `score-log` route, lets go to the `ui-data-repeat` and change the trigger to the `event-group`:
 ```html
 ...
-<ui-data-repeat id="game-log-cards" trigger="#all-game-logs" on="data">
+<ui-data-repeat id="score-log-cards" trigger="#all-game-logs" on="data">
 ...
 ```
 

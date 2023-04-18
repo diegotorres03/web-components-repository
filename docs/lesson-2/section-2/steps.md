@@ -1,14 +1,18 @@
 ## Section 2.2: Creating a statefull component
 
+With a statefull web component, we mean, a webcomponent that will hold state internally and its behaviour is affected by its internal state. Unlike a flip card, that pretty much all information is given and is not holding state internally.
+
+---
+
 ### Activity 2.2.1: Memory flip game
 
-Here, we want to create a component that will draw the boar for our memory game.
+Here, we want to create a component that will draw the board for our memory game.
 This componente will be used in this way, and every time we change the level attribute we want to update the component to reflect the new level.
 ```html
 <memory-flip-board id="game-board" level="2"></memory-flip-board>
 ```
 
-At this point, we are familiar with the process, create a `memory-flip-board` folder on `web-components-app/src/components`. And create the respective `index.js` file to export the component
+At this point, we are familiar with the process. Create a `memory-flip-board` folder on `web-components-app/src/components`. And create the respective `index.js` file to export the component
 ```js
   export * from './memory-flip-board'
 ```
@@ -21,21 +25,6 @@ At this point it should look like this:
    export * from './memory-flip-board' // add this line
 ```
 
-Before the `export class ...` lets add an array full of emojist, they will be used as the images on our memory game:
-```js
-...
-// add this after the impors ...
-const emojiList = [
-  '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒',
-  '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🌭', '🍔', '🍟',
-  '🍕', '🌮', '🍧', '🍦', '🥧', '⚽', '🏀', '🏈', '⚾', '🥎', '🏐', '🏉',
-  '🎱', '🏓', '🏸', '🏒', '🥅', '⛳', '🏹', '🎣', '🥊', '🥋', '🛹', '🛷',
-  '⛸️', '🏂', '🎤', '🎼', '🎹', '🪘', '🥁', '🎷', '🎺', '🪗', '🎸', '🎻',
-]
-
-const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
-...
-```
 
 Now create `memory-flip-board.js` on `web-components-app/src/components/memory-flip-board` with an empty web component:
 ```js
@@ -46,6 +35,18 @@ import {
   getRandomItem, 
   updateVars 
 } from '../../lib/web-tools'
+
+// this will be the images on the cards
+const emojiList = [
+  '🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐', '🍈', '🍒',
+  '🍑', '🥭', '🍍', '🥥', '🥝', '🍅', '🍆', '🥑', '🥦', '🌭', '🍔', '🍟',
+  '🍕', '🌮', '🍧', '🍦', '🥧', '⚽', '🏀', '🏈', '⚾', '🥎', '🏐', '🏉',
+  '🎱', '🏓', '🏸', '🏒', '🥅', '⛳', '🏹', '🎣', '🥊', '🥋', '🛹', '🛷',
+  '⛸️', '🏂', '🎤', '🎼', '🎹', '🪘', '🥁', '🎷', '🎺', '🪗', '🎸', '🎻',
+]
+
+const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
+
 
 export default class MemoriFlipBoardComponent extends HTMLElement {
   constructor() {
@@ -74,7 +75,7 @@ On `memory-flip-board.js` lets add a static property to our class:
   ...
 ```
 
-and lets add the `attributeChangedCallback` method after the constructor and let add a `generateComponents` method after that. Every time the attribute change we want to call the `generateComponents` method
+and lets add the `attributeChangedCallback` method after the constructor and also add a `generateComponents` method after that. Every time the attribute change we want to call the `generateComponents` method
 ```js
   // name is the name of the attribute that changed
   // oldValue represent the previous value
@@ -108,10 +109,10 @@ on `index.html` lets replace the old `grid-layout` for the new `memory-flip-boar
 ```
 
 Now, if go to the browser, navigate to `#game` page and inspect the html, we should see our `memory-flip-board`:
-![memory-flip-board-1](./assets/memory-flip-board-1.png)
+![memory-flip-board-1](../../assets/memory-flip-board-1.png)
 
 lets go ahead and double click on the level attribute and lets change the value to `3`, we should se the console log with the new value:
-![memory-flip-board-2](./assets/memory-flip-board-2.png)
+![memory-flip-board-2](../../assets/memory-flip-board-2.png)
 
 
 ### Activity 2.2.2: Generating content dynamically
@@ -201,6 +202,7 @@ And lets call this method inside `generateComponents`
 so far, our component code should look similar to this:
 `memory-flip-board.js`
 ```js
+
 import {
   html,
   registerTriggers,
@@ -218,7 +220,7 @@ const emojiList = [
 
 const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
 
-export default class MemoriFlipBoardComponent2 extends HTMLElement {
+export default class MemoriFlipBoardComponent extends HTMLElement {
 
   static get observedAttributes() {
     return ['level', 'time', 'preview']
@@ -228,10 +230,6 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
     const level = Number(this.getAttribute('level'))
     return Number.isNaN(level) ? 2 : level
   }
-
-  attempts = 0
-  #waiting
-  #currentCard
 
   constructor() {
     super()
@@ -251,63 +249,64 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
   generateComponents() {
     console.log(`generating components`)
     this.#drawGridElements()
-  }
 
-  #drawGridElements() {
-    console.log('drawing', this.level)
 
-    const gridContainer = this.shadowRoot.querySelector('main')
-    gridContainer.innerHTML = ''
+    #drawGridElements() {
+      console.log('drawing', this.level)
 
-    const pairCount = Math.floor((this.level * this.level) / 2)
+      const gridContainer = this.shadowRoot.querySelector('main')
+      gridContainer.innerHTML = ''
 
-    const pairArray = []
+      const pairCount = Math.floor((this.level * this.level) / 2)
 
-    for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
-      const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
+      const pairArray = []
 
-      pairArray.push(emoji)
-      pairArray.unshift(emoji)
-    }
+      for (let pairIndex = 0; pairIndex < pairCount; pairIndex++) {
+        const emoji = emojiList.splice(getRandomInt(0, emojiList.length), 1).pop()
 
-    const hasTrap = this.level % 2 === 1
-    if (hasTrap) pairArray.push(trapEmoji)
-
-    const grid = html`
-     <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
-     </grid-layout>
-   `
-
-    for (let colIndex = 1; colIndex <= this.level; colIndex++) {
-      for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
-
-        let pairEmoji = getRandomItem(pairArray) 
-        const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
-        const flip = html`
-              <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
-                <span slot="front" style="font-size: 3em; user-select: none;">🃏</span>
-                <span slot="back" style="font-size: 3em; user-select: none;">${pairEmoji}</span>
-              </flip-card>
-          `
-        console.log(flip)
-        grid.firstChild.appendChild(flip)
+        pairArray.push(emoji)
+        pairArray.unshift(emoji)
       }
+
+      const hasTrap = this.level % 2 === 1
+      if (hasTrap) pairArray.push(trapEmoji)
+
+      const grid = html`
+       <grid-layout gap="1px" columns="${this.level}" rows="${this.level}">
+       </grid-layout>
+     `
+
+      for (let colIndex = 1; colIndex <= this.level; colIndex++) {
+        for (let rowIndex = 1; rowIndex <= this.level; rowIndex++) {
+
+          let pairEmoji = getRandomItem(pairArray)
+          const id = `flip-${rowIndex + ((colIndex - 1) * this.level)}`
+          const flip = html`
+                <flip-card disabled id="${id}" data-pair-id="${pairEmoji}">
+                  <span slot="front" style="font-size: 3em; user-select: none;">🃏</span>
+                  <span slot="back" style="font-size: 3em; user-select: none;">${pairEmoji}</span>
+                </flip-card>
+            `
+          console.log(flip)
+          grid.firstChild.appendChild(flip)
+        }
+      }
+
+      this.shadowRoot.querySelector('main').appendChild(grid)
     }
 
-    this.shadowRoot.querySelector('main').appendChild(grid)
   }
-
 }
 
-window.customElements.define('memory-flip-board-2', MemoriFlipBoardComponent2)
+window.customElements.define('memory-flip-board', MemoriFlipBoardComponent)
 ```
 
 And with this, we should be able to see the grid of flip cards back on the game tag
 
-![memory-flip-board-3](./assets/memory-flip-board-3.png)
+![memory-flip-board-3](../../assets/memory-flip-board-3.png)
 
 Lets change the level attribute and we should see how the board increases or decreases flip cards accordingly.
-![memory-flip-board-4](./assets/memory-flip-board-4.png)
+![memory-flip-board-4](../../assets/memory-flip-board-4.png)
 
 
 ### Activity 2.2.3: Registering event listeners
@@ -324,7 +323,7 @@ First, lets add some properties before the constructor, we will use them later:
   ...
 ```
 
-Now lets add the private method `#registerFlipCardListeners()`, here we want to check if the user has found a pair (2 cards with the same emoji), if so, we want to mark those cards as paired, if not, just flip them back:
+Now lets add the private method `#registerFlipCardListeners()`, here we want to check if the user has found a pair (2 cards with the same emoji), if so, we want to mark those cards as paired, if not, just flip them back
 ```js
   ...
   #registerFlipCardListeners() {
@@ -412,6 +411,17 @@ Now lets add the private method `#registerFlipCardListeners()`, here we want to 
   ...
 ```
 
+Now, lets call the `registerFlipCardListeners` from the `generateComponents` method:
+```js
+  ...
+  generateComponents() {
+    console.log(`generating components`)
+    this.#drawGridElements()
+    this.#registerFlipCardListeners() // add this line
+  }
+  ...
+```
+
 ### Activity 2.2.4: Emiting event from within the component
 
 The last step we need in order to make our game playable, is identify when we won the match, in other words, when all the pairs have been found. Once this happend, we want to emit a [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent) with the scores for the current level.
@@ -473,7 +483,7 @@ const emojiList = [
 
 const trapEmoji = '🔥🔥🔥' // this will be used when odd number of cards are present
 
-export default class MemoriFlipBoardComponent2 extends HTMLElement {
+export default class MemoriFlipBoardComponent extends HTMLElement {
 
   static get observedAttributes() {
     return ['level', 'time', 'preview']
@@ -502,7 +512,6 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
 
     this.generateComponents()
   }
-
   generateComponents() {
     console.log(`generating components`)
     this.#drawGridElements()
@@ -683,12 +692,16 @@ export default class MemoriFlipBoardComponent2 extends HTMLElement {
 
 }
 
-window.customElements.define('memory-flip-board-2', MemoriFlipBoardComponent2)
+window.customElements.define('memory-flip-board', MemoriFlipBoardComponent)
 ```
 
 This is how it should be looking:
-![memory-flip-board-5](./assets/memory-flip-board-5.png)
+![memory-flip-board-5](../../assets/memory-flip-board-5.png)
 
 And if we won this match, we should automatically see the next level:
-![memory-flip-board-6](./assets/memory-flip-board-6.png)
+![memory-flip-board-6](../../assets/memory-flip-board-6.png)
 
+
+---
+
+[Back](../section-1/steps.md)  |  [index](../../workshop.md) | [Next](../section-3/steps.md)

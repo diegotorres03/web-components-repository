@@ -32,7 +32,7 @@
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#game-log">Game Log</a>
+      <a href="#score-log">Game Log</a>
     </nav>
 
     <section slot="left-content">
@@ -41,7 +41,7 @@
         <h2 slot="title">My Score</h2>
         <section slot="main">
 
-          <ui-data-sync trigger="#game-log" on="updated">
+          <ui-data-sync trigger="#score-log" on="updated">
             <section>
               <b>Level:</b><span data-key="level"></span><br>
               <b>Attempts:</b><span data-key="attempts"></span><br>
@@ -139,7 +139,7 @@
 
 
         <!-- <event-source id="scores" trigger="#game-board" on="levelup"></event-source> -->
-        <data-set id="game-log" visible trigger="#game-board" on="levelup"></data-set>
+        <data-set id="score-log" visible trigger="#game-board" on="levelup"></data-set>
 
         <app-modal trigger="#game-board" on="levelup">
           <ui-data-sync slot="title" trigger="#scores" on="data">
@@ -155,7 +155,7 @@
 
       </app-route>
 
-      <app-route hash="game-log">
+      <app-route hash="score-log">
         <h1>I'm Game Log</h1>
       </app-route>
 

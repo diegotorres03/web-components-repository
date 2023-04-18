@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production'
 
@@ -21,6 +22,11 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/sw.js', to: 'sw.js' },
+      ],
     }),
   ],
   module: {

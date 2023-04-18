@@ -74,7 +74,7 @@
           <data-set id="file-store" trigger="#create-new-file-modal" on="accepted" visible>
             <data-query id="list-files-and-folders" type="list" trigger="#on-load" on="data"></data-query>
           </data-set>
-        
+
         </data-store>
 
 
@@ -84,14 +84,50 @@
 
     <main slot="main">
       <!-- some bar here -->
-      asdasd
-      <!-- <code-editor language="javascript">
-console.log('test')
-      </code-editor> -->
-
+      <button id="get-file">save</button>
+      <code-editor language="javascript">
+        console.log('test')
+      </code-editor>
     </main>
 
+
   </app-layout>
+
+  <script>
+
+    setTimeout(() => {
+      document.querySelector('#get-file').addEventListener('click', ev => {
+        console.log(ev)
+
+
+        fetch('/code/assets', {
+          method: 'post',
+          body: 'esto es un string the test, pues la idea es q voy a guardar archivos'
+        })
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .catch((error) => console.error(error));
+
+        // fetch('/code/assets')
+        //   .then((response) => response.text())
+        //   .then((data) => console.log(data))
+        //   .catch((error) => console.error(error));
+
+      })
+
+      document.querySelector('code-editor').addEventListener(onchange, event => {
+        console.log(event)
+      })
+    }, 1000)
+
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js');
+    }
+  </script>
+
 
 </body>
 

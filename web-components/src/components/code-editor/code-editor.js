@@ -25,7 +25,7 @@ function removeSpacesAtBeginning(str, numSpaces) {
 export default class CodeEditorComponent extends HTMLElement {
 
   static EVENT_NAMES = [
-    'onchange',
+    'change',
     'changeSelection',
     'changeCursor',
   ]
@@ -150,22 +150,30 @@ export default class CodeEditorComponent extends HTMLElement {
   }
 
   #registerListeners() {
-    // this.#editor.session.on('change', (delta) => {
-    //   // delta.start, delta.end, delta.lines, delta.action
-    //   console.log(delta)
-    // })
+    this.#editor.session.on('change', (delta) => {
+      // delta.start, delta.end, delta.lines, delta.action
+      // console.log(delta)
+      this.#emit('change', delta)
+    })
 
     this.#editor.session.selection.on('changeSelection', (event) => {
       const selection = this.#editor.session.getSelection()
       const lines = selection.doc.$lines
       const text = lines.join('\n')
-      console.log('changeSelection', selection.doc.$lines, text)
+      // console.log('changeSelection', selection.doc.$lines, text)
     });
 
     this.#editor.session.selection.on('changeCursor', (event) => {
-      console.log('changeCursor', event)
+      // console.log('changeCursor', event)
     });
 
+  }
+
+  #emit(eventName, data) {
+    const event = new CustomEvent(eventName, {
+      bubbles: true, composed: true,
+      detail: data
+    })
   }
 
   disconnectedCallback() { }

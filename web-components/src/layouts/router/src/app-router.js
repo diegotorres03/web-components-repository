@@ -67,7 +67,7 @@ export default class RouterComponent extends HTMLElement {
     routes
       .filter(route => (route.getAttribute('hash') && !window.location.hash.includes(route.getAttribute('hash'))))
       .filter(route => {
-        console.log(route, route.hasAttribute('hash'), window.location.hash)
+        // console.log(route, route.hasAttribute('hash'), window.location.hash)
         return !route.hasAttribute('hash') && window.location.hash === ''
       })
       .forEach(route => {
@@ -75,13 +75,12 @@ export default class RouterComponent extends HTMLElement {
         routeSet.delete(route)
       })
 
-    console.log('remaining routes', routeSet)
 
     routeSet.forEach(route => route.activated())
   }
 
   connectedCallback() {
-    registerTriggers(this, (event) => console.log(event))
+    // registerTriggers(this, (event) => console.log(event))
 
 
     this.#updateRoutes()

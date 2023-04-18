@@ -162,7 +162,7 @@ and lets update the `plain-card` for current score and we should be able to see 
 That was easy, right!
 Lets do it again, this time, lets keep the game log up to date with each score emmited by the `memory-flip-board`.
 
-First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the game-log page. And we also want the query to be executed on page load.
+First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the score-log page. And we also want the query to be executed on page load.
 
 To achieve this, we will require an `event-source` tag for the `data-query` and one for the `data-set` and we want both of them inside an `event-group` so we can capture its value:
 ```html
@@ -170,15 +170,15 @@ To achieve this, we will require an `event-source` tag for the `data-query` and 
 <!-- create event-group with event-source for data-set and data-query -->
 <event-group id="all-game-logs">
   <event-source trigger="#list-game-logs" on="list" ></event-source>
-  <event-source trigger="#game-log" on="updated" ></event-source>
+  <event-source trigger="#score-log" on="updated" ></event-source>
 </event-group>
 ...
 ```
 
-Then, on the `game-log` route, lets go to the `ui-data-repeat` and change the trigger to the `event-group`:
+Then, on the `score-log` route, lets go to the `ui-data-repeat` and change the trigger to the `event-group`:
 ```html
 ...
-<ui-data-repeat id="game-log-cards" trigger="#all-game-logs" on="data">
+<ui-data-repeat id="score-log-cards" trigger="#all-game-logs" on="data">
 ...
 ```
 
