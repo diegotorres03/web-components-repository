@@ -3,7 +3,7 @@ import { exec } from 'child_process';
 import ProgressBar from 'progress';
 import readline from 'readline';
 
-const BRANCH = 'feature/template_cli';
+const BRANCH = process.env.DWCK_BRANCH || 'main' // 'feature/template_cli';
 const REPO_URL =
   'https://github.com/diegotorres03/web-components-repository.git';
 
