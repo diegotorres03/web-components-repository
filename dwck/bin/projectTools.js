@@ -158,7 +158,7 @@ export async function createDwckProjectFolder(projectName) {
   });
 
   try {
-    const folderPath = `./${projectName}`;
+    const folderPath = `./${projectName}_temp`;
 
     if (await fs.pathExists(folderPath)) {
       throw new Error(`Folder '${folderPath}' already exists.`);
