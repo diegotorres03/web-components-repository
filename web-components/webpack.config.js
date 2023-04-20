@@ -30,16 +30,18 @@ const config = {
         test: /\.css$/i,
         include: [
           path.resolve(__dirname, 'src/components'),
-          path.resolve(__dirname, 'src/layout'),
-        ],
+          path.resolve(__dirname, 'src/layouts'),
+          !isProduction ? path.resolve(__dirname, 'src/workshop') : undefined,
+        ].filter(Boolean),
         use: ['raw-loader'],
       },
       {
         test: /\.css$/i,
         exclude: [
           path.resolve(__dirname, 'src/components'),
-          path.resolve(__dirname, 'src/layout'),
-        ],
+          path.resolve(__dirname, 'src/layouts'),
+          !isProduction ? path.resolve(__dirname, 'src/workshop') : undefined,
+        ].filter(Boolean),
         include: [path.resolve(__dirname, 'src/global')],
         use: ['style-loader', 'css-loader'],
       },
