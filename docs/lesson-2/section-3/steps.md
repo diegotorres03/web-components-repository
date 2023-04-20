@@ -585,3 +585,5 @@ The final version should look like this:
 
 
 ---
+
+[Back](../section-2/steps.md)  |  [index](../../workshop.md) | [Next](../section-4/steps.md)
