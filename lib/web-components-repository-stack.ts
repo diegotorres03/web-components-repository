@@ -25,9 +25,9 @@ export class WebComponentsRepositoryStack extends Stack {
 
     const webapp = new WebAppConstruct(this, 'wc-repo-webapp')
     webapp
-      // .run('./web-components', 'npm i')
-      // .run('./web-components', 'npx webpack')
-      // .run('./web-components', 'rm -rf ./node_modules')
+      .run('./web-components', 'npm i')
+      .run('./web-components', 'npm run build')
+      .run('./web-components', 'rm -rf ./node_modules')
       .addAssets('./web-components')
 
     // webapp.onOriginRequest('auth/*', ((ev) => {console.log(ev); return ev.request}).toString())

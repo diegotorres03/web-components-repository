@@ -32,7 +32,7 @@
     <nav slot="top-menu" class="">
       <a href="#">Home</a>
       <a href="#game">Game</a>
-      <a href="#leaderboard">Leaderboard</a>
+      <a href="#score-log">Game Log</a>
 
       <button id="log-out-btn">logout</button>
     </nav>
@@ -108,7 +108,7 @@
       </script>
 
       <app-route>
-        <h1>I'm Home</h1>
+        <h1>Welcome</h1>
       </app-route>
 
       <app-route id="game-route" hash="game">
@@ -121,25 +121,8 @@
           <p>Welcome <span data-key="username"></span></p>
         </ui-data-sync>
 
-        <!-- <button id="change-level-btn">change level</button>
-        <app-modal id="change-level-modal" trigger="#change-level-btn" on="click">
-          <form slot="main">
-            <input type="number" name="level">
-          </form>
-        </app-modal>
-        <data-store id="game-store">
-          <data-set id="current-level" trigger="#change-level-modal" on="accepted" visible>
-            <data-query id="get-current-level" type="get" trigger="#load-current-level" on="click"></data-query>
-          </data-set>
-        </data-store>
-        <button id="load-current-level" >load</button> -->
-
-        <!-- <ui-data-sync trigger="#get-current-level" on="get">
-          <section> -->
         <memory-flip-board id="game-board" username="diegotrs" data-key="level" data-attribute="level" level="2"
           time="30s" preview></memory-flip-board>
-        <!-- </section>
-        </ui-data-sync> -->
 
         <event-source id="on-load" trigger="window" on="load"></event-source>
         
@@ -160,7 +143,7 @@
             <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
           </data-set>
 
-          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
+          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" >
             <data-query id="get-current-username" type="get" trigger="#on-load" on="data"></data-query>
             <data-query id="clear-current-user" type="clear" trigger="#log-out-btn" on="click">
           </data-set>
@@ -173,7 +156,7 @@
         </event-group>
 
         <data-store id="logs-store">
-          <data-set id="game-log" visible append trigger="#game-board" on="levelup">
+          <data-set id="game-log" append trigger="#game-board" on="levelup">
             <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
           </data-set>
         </data-store>
@@ -193,8 +176,8 @@
 
       </app-route>
 
-      <app-route hash="leaderboard">
-        <h1>I'm Leaderboard</h1>
+      <app-route hash="score-log">
+        <h1>Game Log</h1>
 
         <hr>
 
