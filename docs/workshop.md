@@ -40,6 +40,8 @@ The goal of this lab is to showcase web components as an option when creating we
 
    ```
    the format will be `<component tag>#<id for the component>`
+3. If you want to speed up you html development, I recommend using [emmet](https://docs.emmet.io/).
+   ![emmet-demo](./assets/emmet-super-power.gif)
 
 ---
 
@@ -80,20 +82,6 @@ The goal of this lab is to showcase web components as an option when creating we
         1. [Basic event handling](./lesson-2/section-4/steps.md#activity-241-basic-event-handling)
         2. [working with multiple event flows](./lesson-2/section-4/steps.md#activity-242-working-with-multiple-event-flows)
         3. [transforms and filters](./lesson-2/section-4/steps.md#activity-243-event-source-filter-and-transforms)
-3. **Deploy webapps to AWS**
-    1. Introduction to [AWS CDK](https://aws.amazon.com/cdk/)
-        1. install CDK
-        2. initialize CDK project
-        3. install reusable constructs for the lab
-    2. Deploy webapp using CDK
-        1. use `WebappConstruct`to deploy the webapp
-        2. lambda@edge??
-    3. Create and deploy a rest api using CDK
-        1. create `RestApiContruct`
-        2. greate some routes
-        3. deploy api
-
-
 
 
 

@@ -40,6 +40,7 @@ export function runFilters(event, filterName) {
   console.log(`filterName runFilters`, filterName, filters)
   const filterFn = filters[filterName]
   if(!filterFn) return true
+  console.log(filterFn.toString())
 
   const res = filterFn(event)
 

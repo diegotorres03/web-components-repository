@@ -56,7 +56,7 @@ With `event-source` we can listen to a trigger and it will emit a new `data` eve
 Let's review the initial example with an `event-source`.
 
 
-Step 1, add an `event-source` tag just above the `session-store` data store. Its trigger will be the `current-level` data set:
+Step 1, add an `event-source` tag just above the `data-store#session-store` . Its trigger will be the `current-level` data set:
 ```html
 ...
 
@@ -78,7 +78,7 @@ Then lets update the `trigger` and `on` attributes on the `ui-data-sync` so it l
 
 Now is just a matter of testing in the browser. Test also the functionallity, if you win a match you sould see the updated score.
 If we inspect the html, we should see the `event-source`
-![event-source tag on html](./assets/event-source-1.png)
+![event-source tag on html](../../assets/event-source-1.png)
 
 Let's do the same for the `data-query`: 
 ```html
@@ -106,7 +106,7 @@ Ideally, we want this query to execute when the page loads, so we can get the da
 Lets implement this change:
 ```html
 ...
-<!-- add this new event-source and use the query as trigger -->
+<!-- add this new event-source, here we are listening to a load event on window -->
 <event-source id="on-load" trigger="window" on="load"></event-source>
 ...
 ```
@@ -126,7 +126,7 @@ Lets implement this change:
 
 To test this, lets refresh the browser play a couple of levels and then refresh again.
 You should see the highest level achieve there.
-![updated ui screenshot](./assets/event-source-2.png)
+![updated ui screenshot](../../assets/event-source-2.png)
 
 
 
@@ -157,12 +157,12 @@ and lets update the `plain-card` for current score and we should be able to see 
 ```
 
 **Note:** _if you need to delete items on IndexedDB, on devtools, go to storage then IndexedDB then look for the item you want to delete, right click, then delete_
-![delete item from idexeddb](./assets/indexeddb-4.png)
+![delete item from idexeddb](../../assets/indexeddb-4.png)
 
 That was easy, right!
 Lets do it again, this time, lets keep the game log up to date with each score emmited by the `memory-flip-board`.
 
-First, locate the `data-store` with id=`logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the score-log page. And we also want the query to be executed on page load.
+First, locate the `data-store#logs-store`. Here we will see the `data-set` and `data-query`. We want both events to activate the `ui-data-repeat` on the score-log page. And we also want the query to be executed on page load.
 
 To achieve this, we will require an `event-source` tag for the `data-query` and one for the `data-set` and we want both of them inside an `event-group` so we can capture its value:
 ```html
@@ -187,4 +187,40 @@ Now you can play all you want and you will see how many matches have you played 
 
 
 ### Activity 2.4.3: event-source filter and transforms
-TODO transform and filter part
+The last remaining step, is to prevent asking the username if is already stored, to achieve this, we will need the hability to prevent an `event-source` to re-emit a message if a condition is not met.
+
+Here we will require some Javascript to add the filter logic. In order to achieve this lets create a `script` tag:
+```html
+      <script>
+        // this global object is important, event-source will be expecting it
+        const filters = {
+          shouldLogin(event) {
+            const sessionDataset = document.querySelector('#current-username') // geting the dataset that holds the username
+            const dataPoint = sessionDataset.getItem('current-username') // checking if the dataset contains a data-point
+            if (!dataPoint) return true // if is not present, sure, we need to ask for login info.
+            const username = dataPoint.dataset.username
+            return !username
+          },
+        }
+      </script>
+```
+
+
+Now, all is left is to let the event-source wich filters to use, you can pass multiple filters (separated by `,`) to an event source.
+Lets create `event-source#prompt-authentication` and lets add the filters attibute with the name of the function, `shouldLogin`:
+```html
+  ...
+    <event-source id="prompt-authentication" trigger="#game-route" on="activated"
+        filters="shouldLogin"></event-source>
+  ...
+```
+
+And now lets use this event-source as the trigger for the `app-modal#username-selection-modal`:
+```html
+  <!-- lets update this -->
+  <app-modal id="username-selection-modal" trigger="#game-route" on="activated">...
+
+  <!-- for this -->
+  <app-modal id="username-selection-modal" trigger="#prompt-authentication" on="data">...
+
+```
