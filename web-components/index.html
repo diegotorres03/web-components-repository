@@ -5,175 +5,706 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reimagine The Web With Native Web Components</title>
-  <style>
-    nav a {
-      color: var(--main-tone);
-      padding: 2px 4px;
-    }
+  <title>Document</title>
+  <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script>
 
+  <style>
     .hidden {
       display: none;
     }
 
-  </style>
-  <script>
-    const filters = {
-      shouldLogin(event) {
-        const sessionDataset = document.querySelector('#current-username') // geting the dataset that holds the username
-        const dataPoint = sessionDataset.getItem('current-username') // checking if the dataset contains a data-point
-        if (!dataPoint) return true // if is not present, sure, we need to ask for login info.
-        const username = dataPoint.dataset.username
-        return !username
-      },
+    app-router {
+      width: 100%;
     }
-  </script>
+  </style>
 </head>
 
 <body>
+
   <app-layout>
-    <header slot="header">Welcome to our memory flip game</header>
-    <b slot="left-header">Game stats</b>
-
-    <nav slot="top-menu" class="">
-      <a href="#">Home</a>
-      <a href="#game">Game</a>
-      <a href="#score-log">Game Log</a>
-
-      <button id="logout-btn">logout</button>
-    </nav>
-
-
-
+    <h2 slot="header">Web Component composer</h2>
 
     <section slot="left-content">
-      <plain-card>
-        <h2 slot="title">My Score</h2>
-        <section slot="main">
-          <ui-data-sync trigger="#level-group" on="data">
-            <div>
-              <!-- add <span data-key="xxx"> to let ui-data-sync know what value to replace -->
-              <b>Level:</b><span data-key="level"></span><br>
-              <b>Attempts:</b><span data-key="attempts"></span><br>
-            </div>
-          </ui-data-sync>
-        </section>
-      </plain-card>
 
       <app-accordion>
         <section>
-          <h5>Game instructions</h5>
-          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
-          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you
-            get.</p>
+          <h3>UI Components</h3>
+          <ol>
+            <li><a href="#app-accordion">app-accordion</a></li>
+            <li><a href="#app-modal">app-modal</a></li>
+            <li><a href="#plain-card">plain-card</a></li>
+            <li><a href="#flip-card">flip-card</a></li>
+            <li><a href="#code-editor">code-editor</a></li>
+          </ol>
         </section>
+
         <section>
-          <h5>FAQs</h5>
-          <b>Question 1:</b>
-          <p>Answer 1</p>
-          <hr>
-          <b>Question 2:</b>
-          <p>Answer 2</p>
-          <hr>
+          <h3>Layout Components</h3>
+          <ol>
+            <li><a href="#app-layout">app-layout</a></li>
+            <li><a href="#deck-reader">deck-reader</a></li>
+            <li><a href="#grid-layout">grid-layout</a></li>
+          </ol>
         </section>
+
+        <section>
+          <h3>Event Components</h3>
+          <ol>
+            <li><a href="#event-source">event-source</a></li>
+            <li><a href="#event-group">event-group</a></li>
+            <li><a href="#event-source">event-source</a></li>
+          </ol>
+        </section>
+
+
+        <section>
+          <h3>Data Components</h3>
+          <ol>
+            <li><a href="#data-point">data-point</a></li>
+            <li><a href="#data-set">data-set</a></li>
+            <li><a href="#data-store">data-store</a></li>
+            <li><a href="#data-rel">data-rel</a></li>
+            <li><a href="#data-chart">data-chart</a></li>
+            <li><a href="#data-graph">data-graph</a></li>
+          </ol>
+        </section>
+
       </app-accordion>
+
+
 
     </section>
 
+
+
     <app-router slot="main">
 
-      <app-modal id="username-selection-modal" trigger="#prompt-authentication" on="data">
+      <app-route>
+        <h1>Welcome and getting started</h1>
+      </app-route>
 
-        <h1 slot="title">Start a new match</h1>
-        <section slot="main">
-          <p>Ready to start a new match?</p>
-          <p>Choose a username and let's play</p>
-          <form>
-            <label>Username:</label><input type="text" name="username">
-          </form>
-        </section>
-      </app-modal>
+      <app-route hash="app-accordion">
+        <h1>app-accordion</h1>
 
-      <app-route>Home</app-route>
+        <br>
+        <hr>
+        <p><b>Slots:</b>only default slot used, no need to use slot name.</p>
+        <p><b>Events:</b>Not defined yet</p>
+        <p><b>Attributes:</b>Not defined yet.</p>
+        <hr>
+        <br>
+        <!-- <code-run for=""></code-run> -->
+        <app-accordion>
+          <section>
+            <h3>this will became the tab title</h3>
+            <p>here you can add any html, remember to alwas add an h* tag</p>
+          </section>
 
-      <app-route id="game-route" hash="game">
-        <h1>Game</h1>
-        <!-- This is new -->
-        <ui-data-sync trigger="#current-level" on="updated">
-          <h1>On level <span data-key="level">1</span></h1>
-        </ui-data-sync>
+          <section>
+            <h3>important note</h3>
+            <p>every section on the accordion should be wrapped on a tag, like section or div</p>
+          </section>
 
-        <ui-data-sync trigger="#current-username" on="updated">
-          <p>Welcome <span data-key="username">user</span></p>
-        </ui-data-sync>
+        </app-accordion>
 
-        <memory-flip-board id="game-board" level="2"></memory-flip-board>
+        <code-editor id="app-accordion-sample-code" language="html">
+          <template>
 
+            <app-accordion>
+              <section>
+                <h3>this will became the tab title</h3>
+                <p>here you can add any html, remember to alwas add an h* tag</p>
+              </section>
 
-        <event-source id="on-load" trigger="window" on="load"></event-source>
+              <section>
+                <h3>important note</h3>
+                <p>every section on the accordion should be wrapped on a tag, like section or div</p>
+              </section>
 
-        <event-source id="prompt-authentication" trigger="#game-route" on="activated"
-          filters="shouldLogin"></event-source>
+            </app-accordion>
 
-        <event-group id="level-group">
-          <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
-          <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
-        </event-group>
-
-        <event-group id="all-game-logs">
-          <event-source trigger="#list-game-logs" on="list"></event-source>
-          <event-source trigger="#score-log" on="updated"></event-source>
-        </event-group>
-
-        <data-store id="session-store">
-          <data-set id="current-level" visible trigger="#game-board" on="levelup">
-            <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
-          </data-set>
-
-          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
-            <data-query id="clear-current-user" type="clear" trigger="#logout-btn" on="click">
-          </data-set>
-        </data-store>
-
-        <data-store id="logs-store">
-          <data-set id="score-log" visible append trigger="#game-board" on="levelup">
-            <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
-          </data-set>
-        </data-store>
+          </template>
+        </code-editor>
 
       </app-route>
-      <app-route hash="score-log">
 
-        <h1>Game log</h1>
+      <app-route hash="app-modal">
+        <h1>app-modal</h1>
+
+
+        <br>
+        <p>This tag create an app modal</p>
         <hr>
+        <b>Slots:</b> <em>title</em> and <em>main</em><br>
+        <b>Events:</b> <em>accepted</em> and <em>declined</em><br>
+        <b>Attributes:</b> <em>open</em><br>
+        <hr>
+        <br>
 
+        <button id="open-modal-btn">open modal</button>
 
-        <!-- listening to gale log dataset fot the updated event -->
-        <ui-data-repeat id="score-log-cards" trigger="#all-game-logs" on="data">
+        <app-modal trigger="#open-modal-btn">
+          <h1 slot="title">this is the title</h1>
+          <section slot="main">
+            <p>Here you can add al the html required for the modal</p>
+          </section>
+        </app-modal>
 
-          <!-- the content inside of a template tag won't be rendered by the browser -->
+        <code-editor language="html">
           <template>
-            <plain-card>
-              <h2 slot="title" data-key="username">username</h2>
-              <section slot="main">
+            <button id="open-modal-btn">open modal</button>
 
-                <!-- data-key let ui-data-repeat know where to add the values from the event -->
-                <b>Level:</b><span data-key="level"></span><br>
-                <b>Attempts:</b><span data-key="attempts"></span><br>
+            <app-modal id="sample-modal" trigger="#open-modal-btn">
+              <h1 slot="title">this is the title</h1>
+              <section slot="main">
+                <p>Here you can add al the html required for the modal</p>
+              </section>
+            </app-modal>
+
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="plain-card">
+        <h1>plain-card</h1>
+
+        <em>Use this component when you want to display simple card, or extend it and create your own type of card.</em>
+        <br>
+        <hr>
+        <p><b>Slots:</b> <em>title</em> and <em>main</em></p>
+        <p><b>Events:</b> none yet.</p>
+        <p><b>Attributes:</b> </p>
+        <hr>
+        <br>
+
+        <h3>Example:</h3>
+
+        <!-- empty card -->
+        <plain-card></plain-card>
+        <br>
+        <plain-card>
+          <div slot="title" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <span>this is the title</span>
+            <button>x</button>
+          </div>
+          <section slot="main" style="display: flex; flex-direction: row;">
+            <div style="font-size: 4em; margin: 20px;">🍻</div>
+            <div>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis delectus consequatur impedit enim
+                neque vitae illum deleniti dolorum laudantium ea nesciunt aspernatur distinctio quos, cum unde.
+                Molestias minus ipsa asperiores.</p>
+            </div>
+          </section>
+        </plain-card>
+
+        <br>
+        <hr><br>
+
+        <code-editor language="html">
+          <template>
+            <!-- empty card -->
+            <plain-card></plain-card>
+
+
+            <br>
+
+
+            <plain-card>
+              <span slot="title">this is the title</span>
+              <section slot="main" style="display: flex; flex-direction: row;">
+                <div style="font-size: 4em; margin: 20px;">🍻</div>
+                <div>
+                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis delectus consequatur impedit enim
+                    neque vitae illum deleniti dolorum laudantium ea nesciunt aspernatur distinctio quos, cum unde.
+                    Molestias minus ipsa asperiores.</p>
+                </div>
               </section>
             </plain-card>
+
           </template>
-        </ui-data-repeat>
-
-
+        </code-editor>
       </app-route>
+
+      <app-route hash="flip-card">
+        <h1>flip-card</h1>
+        <em>This component have 2 faces, hover the card to reveal its back.</em>
+
+
+        <br>
+        <hr>
+        <ul>
+          <li><b>Slots:</b> <em>front</em> and <em>back</em></li>
+          <li><b>Events:</b> <em>flipped</em></li>
+          <li>
+            <b>Attributes:</b>
+            <ul>
+              <li><b>disabled</b> to prevent the card from flipping on hover, it can flip if you call the method flip on
+                the component</li>
+            </ul>
+          </li>
+        </ul>
+
+        <hr>
+        <br>
+
+
+        <flip-card>
+          <section slot="front">
+            <h1>this is the front</h1>
+            <small>add your awesome content here</small>
+          </section>
+
+          <section slot="back">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta voluptas eveniet! Veritatis enim
+              voluptatum fugiat hic quas nisi porro! Error distinctio eaque est odio neque, illum iste esse vel.</p>
+          </section>
+        </flip-card>
+
+        <br>
+        <hr><br>
+
+        <code-editor language="html">
+          <template>
+
+            <flip-card>
+              <section slot="front">
+                <h1>this is the front</h1>
+                <small>add your awesome content here</small>
+              </section>
+
+              <section slot="back">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem soluta voluptas eveniet! Veritatis enim
+                  voluptatum fugiat hic quas nisi porro! Error distinctio eaque est odio neque, illum iste esse vel.</p>
+              </section>
+            </flip-card>
+
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="code-editor">
+        <h1>code-editor</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="app-layout">
+        <h1>app-layout</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="deck-reader">
+        <h1>deck-reader</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="grid-layout">
+        <h1>grid-layout</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+
+
+      <app-route hash="event-group">
+        <h1>event-group</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="event-source">
+        <h1>event-source</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="data-point">
+        <h1>data-point</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="data-set">
+        <h1>data-set</h1>
+
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="data-store">
+        <h1>data-store</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="data-rel">
+        <h1>data-rel</h1>
+
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+        <code-editor language="html">
+          <template>
+            <flip-card>
+              <h1 slot="fromt">front</h1>
+            </flip-card>
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="data-chart">
+        <h1>data-chart</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+
+ 
+
+        <data-chart type="line">
+
+          <data-set name="cat_1" label="yearly stuff 1">
+              <data-point other="szs" year="2010" count="110" ></data-point>
+              <data-point year="2011" count="120" ></data-point>
+              <data-point year="2012" count="115" ></data-point>
+              <data-point year="2013" count="125" ></data-point>
+              <data-point year="2014" count="122" ></data-point>
+              <data-point year="2015" count="130" ></data-point>
+              <data-point year="2016" count="128" ></data-point>
+              <data-point year="2017" count="128" ></data-point>
+              <data-point year="2018" count="115" ></data-point>
+              <data-point year="2019" count="123" ></data-point>
+              <data-point year="2020" count="128" ></data-point>
+              <data-point year="2021" count="128" ></data-point>
+              <data-point year="2022" count="128" ></data-point>
+          </data-set>
+        
+          <data-set name="cat_2" label="yearly stuff 2">
+              <data-point other="szs" year="2010" count="10" ></data-point>
+              <data-point year="2011" count="20" ></data-point>
+              <data-point year="2012" count="15" ></data-point>
+              <data-point year="2013" count="25" ></data-point>
+              <data-point year="2014" count="22" ></data-point>
+              <data-point year="2015" count="30" ></data-point>
+              <data-point year="2016" count="28" ></data-point>
+              <data-point year="2017" count="28" ></data-point>
+              <data-point year="2018" count="15" ></data-point>
+              <data-point year="2019" count="23" ></data-point>
+              <data-point year="2020" count="28" ></data-point>
+              <data-point year="2021" count="28" ></data-point>
+              <data-point year="2022" count="28" ></data-point>
+          </data-set>
+        
+          <data-set name="cat_3" label="third category">
+              <data-point other="szs" year="2010" count="57" ></data-point>
+              <data-point year="2011" count="62" ></data-point>
+              <data-point year="2012" count="68" ></data-point>
+              <data-point year="2013" count="69" ></data-point>
+              <data-point year="2014" count="71" ></data-point>
+              <data-point year="2015" count="75" ></data-point>
+              <data-point year="2016" count="79" ></data-point>
+              <data-point year="2017" count="89" ></data-point>
+              <data-point year="2018" count="101" ></data-point>
+              <data-point year="2019" count="120" ></data-point>
+              <data-point year="2020" count="140" ></data-point>
+              <data-point year="2021" count="145" ></data-point>
+              <data-point year="2022" count="160" ></data-point>
+          </data-set>
+        
+        </data-chart>
+        
+        
+
+        <code-editor language="html">
+          <template>
+            
+        <data-chart type="line">
+
+          <data-set name="cat_1" label="yearly stuff 1">
+              <data-point other="szs" year="2010" count="110" ></data-point>
+              <data-point year="2011" count="120" ></data-point>
+              <data-point year="2012" count="115" ></data-point>
+              <data-point year="2013" count="125" ></data-point>
+              <data-point year="2014" count="122" ></data-point>
+              <data-point year="2015" count="130" ></data-point>
+              <data-point year="2016" count="128" ></data-point>
+              <data-point year="2017" count="128" ></data-point>
+              <data-point year="2018" count="115" ></data-point>
+              <data-point year="2019" count="123" ></data-point>
+              <data-point year="2020" count="128" ></data-point>
+              <data-point year="2021" count="128" ></data-point>
+              <data-point year="2022" count="128" ></data-point>
+          </data-set>
+        
+          <data-set name="cat_2" label="yearly stuff 2">
+              <data-point other="szs" year="2010" count="10" ></data-point>
+              <data-point year="2011" count="20" ></data-point>
+              <data-point year="2012" count="15" ></data-point>
+              <data-point year="2013" count="25" ></data-point>
+              <data-point year="2014" count="22" ></data-point>
+              <data-point year="2015" count="30" ></data-point>
+              <data-point year="2016" count="28" ></data-point>
+              <data-point year="2017" count="28" ></data-point>
+              <data-point year="2018" count="15" ></data-point>
+              <data-point year="2019" count="23" ></data-point>
+              <data-point year="2020" count="28" ></data-point>
+              <data-point year="2021" count="28" ></data-point>
+              <data-point year="2022" count="28" ></data-point>
+          </data-set>
+        
+          <data-set name="cat_3" label="third category">
+              <data-point other="szs" year="2010" count="57" ></data-point>
+              <data-point year="2011" count="62" ></data-point>
+              <data-point year="2012" count="68" ></data-point>
+              <data-point year="2013" count="69" ></data-point>
+              <data-point year="2014" count="71" ></data-point>
+              <data-point year="2015" count="75" ></data-point>
+              <data-point year="2016" count="79" ></data-point>
+              <data-point year="2017" count="89" ></data-point>
+              <data-point year="2018" count="101" ></data-point>
+              <data-point year="2019" count="120" ></data-point>
+              <data-point year="2020" count="140" ></data-point>
+              <data-point year="2021" count="145" ></data-point>
+              <data-point year="2022" count="160" ></data-point>
+          </data-set>
+        
+        </data-chart>
+        
+        
+          </template>
+        </code-editor>
+      </app-route>
+
+      <app-route hash="data-graph">
+        <h1>data-graph</h1>
+
+        <br>
+        <hr>
+        <b>Slots:</b><br>
+        <b>Events:</b><br>
+        <b>Attributes:</b><br>
+        <hr>
+        <br>
+
+
+        <data-graph id="cities" context="air tickets">
+
+          <data-point id="medellin" name="medellin">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="chicago" name="chicago">
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="cartagena" name="cartagena">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="miami" name="miami">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+          </data-point>
+
+        </data-graph>
+
+        <code-editor language="html">
+          <template>
+            
+        <data-graph id="cities" context="air tickets">
+
+          <data-point id="medellin" name="medellin">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="chicago" name="chicago">
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="cartagena" name="cartagena">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+            <data-rel distance="xx" to="#miami"></data-rel>
+          </data-point>
+
+          <data-point id="miami" name="miami">
+            <data-rel distance="xx" to="#chicago"></data-rel>
+            <data-rel distance="xx" to="#cartagena"></data-rel>
+            <data-rel distance="xx" to="#medellin"></data-rel>
+          </data-point>
+
+        </data-graph>
+          </template>
+        </code-editor>
+      </app-route>
+
     </app-router>
 
 
-    <footer slot="footer">Thank you.</footer>
+
+
+    <!-- <main>
+      <code-editor language="html" >
+        <template>
+          <flip-card>
+            <h1 slot="fromt">front</h1>
+          </flip-card>
+        </template>
+      </code-editor>
+    </main> -->
+
 
   </app-layout>
-
 
 
 
