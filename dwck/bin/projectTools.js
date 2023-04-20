@@ -68,7 +68,7 @@ async function createFolderStructure(folderPath) {
 // Clone the web components folder from the repository
 async function cloneWebComponentsFolderFromRepo(tempFolderPath) {
   console.log('Cloning web components folder from repository...');
-  const sparsePath = ['web-components', 'docs'];
+  const sparsePath = ['web-components'];
   try {
     await fs.mkdir(tempFolderPath);
     await gitSparseClone(REPO_URL, tempFolderPath, sparsePath);
@@ -99,7 +99,7 @@ async function buildBundle(tempFolderPath) {
 }
 
 // Copy the configuration files from the cloned repository to the project folder
-async function copyConfigFiles(folderPath, wcFolderPath, docsFolderPath, projectName) {
+async function copyConfigFiles(folderPath, wcFolderPath, projectName) {
   console.log('Copying configuration files...');
 
   const packageJSONPath = `${wcFolderPath}/assets/configs/template_package.json`;
@@ -115,11 +115,6 @@ async function copyConfigFiles(folderPath, wcFolderPath, docsFolderPath, project
   await fs.copy(
     `${wcFolderPath}/assets/configs/index.js`,
     `${folderPath}/src/index.js`,
-  );
-  await fs.copy(
-    `${docsFolderPath}/docs`,
-    `${folderPath}/docs`,
-    { recursive: true },
   );
   await fs.copy(
     `${wcFolderPath}/assets/configs/index.html`,
@@ -163,32 +158,31 @@ export async function createDwckProjectFolder(projectName) {
   });
 
   try {
-    const folderPath = `./${projectName}_temp`;
+    const folderPath = `./${projectName}`;
 
     if (await fs.pathExists(folderPath)) {
       throw new Error(`Folder '${folderPath}' already exists.`);
     }
     await fs.mkdir(folderPath);
+    await fs.mkdir(`${folderPath}_temp`);
     await createFolderStructure(folderPath);
     updateProgressBar(progressBar, 10);
-    const wcFolderPath = `./${projectName}_temp/web-components`;
-    const docsFolderPath = `./${projectName}_temp/docs`;
+    const tempFolderPath = `./${projectName}_temp/web-components`;
 
-    await cloneWebComponentsFolderFromRepo(wcFolderPath);
+    await cloneWebComponentsFolderFromRepo(tempFolderPath);
     updateProgressBar(progressBar, 30);
 
 
     await copyConfigFiles(
       folderPath,
-      wcFolderPath,
-      docsFolderPath,
+      `${tempFolderPath}/web-components`,
       projectName,
     );
     updateProgressBar(progressBar, 10);
-    await buildBundle(wcFolderPath);
+    await buildBundle(tempFolderPath);
     updateProgressBar(progressBar, 30);
-    await copyBundle(wcFolderPath, folderPath);
-    await fs.rm(wcFolderPath, { recursive: true });
+    await copyBundle(tempFolderPath, folderPath);
+    await fs.rm(tempFolderPath, { recursive: true });
     console.log('Project folder creation completed successfully!');
     updateProgressBar(progressBar, 20);
     return folderPath;
