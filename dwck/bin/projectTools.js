@@ -3,7 +3,7 @@ import { exec } from 'child_process';
 import ProgressBar from 'progress';
 import readline from 'readline';
 
-const BRANCH = 'feature/template_cli';
+const BRANCH = 'development';
 const REPO_URL =
   'https://github.com/diegotorres03/web-components-repository.git';
 
@@ -146,96 +146,6 @@ async function copyBundle(tempFolderPath, projectFolderPath) {
     }
   }
 }
-
-// Main function to create a new Dwck project folder
-export async function createDwckProjectFolder(projectName) {
-  clearTerminal();
-  const progressBar = new ProgressBar('[:bar] :percent :etas', {
-    total: 100,
-    width: 40,
-    complete: '=',
-    incomplete: ' ',
-  });
-
-  try {
-    const folderPath = `./${projectName}_temp`;
-
-    if (await fs.pathExists(folderPath)) {
-      throw new Error(`Folder '${folderPath}' already exists.`);
-    }
-    await fs.mkdir(folderPath);
-    await fs.mkdir(`${folderPath}_temp`);
-    await createFolderStructure(folderPath);
-    updateProgressBar(progressBar, 10);
-    const tempFolderPath = `./${projectName}_temp/web-components`;
-
-    await cloneWebComponentsFolderFromRepo(tempFolderPath);
-    updateProgressBar(progressBar, 30);
-
-
-    await copyConfigFiles(
-      folderPath,
-      `${tempFolderPath}/web-components`,
-      projectName,
-    );
-    updateProgressBar(progressBar, 10);
-    await buildBundle(tempFolderPath);
-    updateProgressBar(progressBar, 30);
-    await copyBundle(tempFolderPath, folderPath);
-    await fs.rm(tempFolderPath, { recursive: true });
-    console.log('Project folder creation completed successfully!');
-    updateProgressBar(progressBar, 20);
-    return folderPath;
-  } catch (error) {
-    console.error(`Failed to create project folder: ${error.message}`);
-    throw error;
-  }
-}
-
-// Main function to create a new Dwck project folder
-export async function createDwckProjectFolder(projectName) {
-  clearTerminal();
-  const progressBar = new ProgressBar('[:bar] :percent :etas', {
-    total: 100,
-    width: 40,
-    complete: '=',
-    incomplete: ' ',
-  });
-
-  try {
-    const folderPath = `./${projectName}`;
-
-    if (await fs.pathExists(folderPath)) {
-      throw new Error(`Folder '${folderPath}' already exists.`);
-    }
-    await fs.mkdir(folderPath);
-    await createFolderStructure(folderPath);
-    updateProgressBar(progressBar, 10);
-    const tempFolderPath = `./${projectName}_temp`;
-    await cloneWebComponentsFolderFromRepo(tempFolderPath);
-    updateProgressBar(progressBar, 30);
-
-
-    await copyConfigFiles(
-      folderPath,
-      wcFolderPath,
-      docsFolderPath,
-      projectName,
-    );
-    updateProgressBar(progressBar, 10);
-    await buildBundle(wcFolderPath);
-    updateProgressBar(progressBar, 30);
-    await copyBundle(wcFolderPath, folderPath);
-    await fs.rm(wcFolderPath, { recursive: true });
-    console.log('Project folder creation completed successfully!');
-    updateProgressBar(progressBar, 20);
-    return folderPath;
-  } catch (error) {
-    console.error(`Failed to create project folder: ${error.message}`);
-    throw error;
-  }
-}
-
 // Main function to create a new Dwck project folder
 export async function createDwckProjectFolder(projectName) {
   clearTerminal();
