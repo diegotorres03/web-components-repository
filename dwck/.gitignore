@@ -1,0 +1,4 @@
+node_modules
+
+# Ignore all folders starting with test-
+test-*/

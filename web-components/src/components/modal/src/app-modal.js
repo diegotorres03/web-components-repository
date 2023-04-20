@@ -77,7 +77,7 @@ export default class ModalComponent extends HTMLElement {
     console.log('on modal show', event)
     this.setAttribute('open', '')
     if(!event.detail) return
-    Object.keys(event.detail).forEach(key => 
+    Object.keys(event.detail).forEach(key =>
       this.setAttribute(`data-${key}`, event.detail[key]))
   }
 
@@ -100,4 +100,3 @@ export default class ModalComponent extends HTMLElement {
 }
 
 customElements.define('app-modal', ModalComponent);
-

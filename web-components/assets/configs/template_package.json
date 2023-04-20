@@ -1,8 +1,8 @@
 {
-  "name": "web-components",
-  "version": "1.2.1",
+  "name": "",
+  "version": "1.0.0",
   "description": "",
-  "main": "package-index.js",
+  "main": "index.js",
   "scripts": {
     "build:prod": "webpack --mode production --node-env production",
     "build:dev": "webpack --mode development --node-env development",
@@ -10,30 +10,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --mode development --watch"
   },
-  "author": "Diego Torres",
+  "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.245.0",
-    "ace-builds": "^1.17.0",
-    "aws-amplify": "^5.0.9",
-    "aws-crt": "^1.15.5",
-    "chart.js": "^4.2.0",
-    "localforage": "^1.10.0",
-    "vis-network": "^9.1.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@webpack-cli/generators": "^3.0.1",
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
-    "prettier": "^2.8.4",
     "raw-loader": "^4.0.2",
     "style-loader": "^3.3.2",
     "webpack": "^5.76.1",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.12.0",
-    "workbox-webpack-plugin": "^6.5.4"
+    "webpack-dev-server": "^4.12.0"
   }
 }
