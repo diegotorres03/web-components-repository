@@ -3,17 +3,6 @@
 The goal of this lab is to showcase web components as an option when creating web application, with a focus on simplicity and reusability. 
 
 
-## Prerequisites
----
-1. [AWS Account](https://aws.amazon.com/free/)
-2. [Text editor or IDE - like Cloud9 ](https://aws.amazon.com/cloud9/)
-3. [NodeJS](https://nodejs.org/en)
-4. Basic understanding of HTML, JavaScript and CSS
-
-## Stage link url
-[js lib](https://d1hhjlyh3vlkqr.cloudfront.net/main.js)
-
-
 # SetUp
 1. Run the following command - `npx dwck project web-components-app` - and hit `y` when asked to confirm. This will deploy the project structure for our lab into this folder and it will create the `web-components-app` (feel free to change the name of the project). 
 2. Now change directory into the `web-components-app` folder and run `npm install -D`

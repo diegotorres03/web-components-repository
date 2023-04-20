@@ -3,7 +3,9 @@
 
 Before we begin, lets start with a brand new `index.html`
 lets delete everything we added inside the `body` tag.
-your `index.html` should look like this:
+
+
+Your `index.html` should look like this:
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +59,7 @@ Let's fill the `header`, `left-header`, `left-menu`, `top-menu` and `footer` slo
   </app-layout>
 ```
 
-Now, on the left-content, lets add some components inside the `app-layout` - a `plain-card` on top and an `app-accordion` below:  
+Now, on the left-content, lets add some components inside the `app-layout` - a `plain-card` on top and an `app-accordion` below, lets wrap it in a `section` tag and lets assign the `left-content` slot:  
 ```html
    ...
 
@@ -66,7 +68,6 @@ Now, on the left-content, lets add some components inside the `app-layout` - a `
       <app-accordion></app-accordion>
     </section>
 
-    <footer slot="foother">Thank you.</footer>
     ...
 ```
 
@@ -234,7 +235,7 @@ Now, if you test in your browser, you should be able to navigate and see page ch
 This `app-route`, when the hash is matched, it will display its content and it will emit the `activated` event.
 
 Let's see this in action by adding an `app-modal` that asks for a username every time we navigate to the `Game` page.
-fFrst, let's add an `id` attribute to the game route:
+First, let's add an `id` attribute to the game route:
 ```html
   <!-- add an id -->
   <app-route id="game-route" hash="game">

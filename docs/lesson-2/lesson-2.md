@@ -1,6 +1,6 @@
 # Lesson 2: Composing apps with Web Components
 
-In this Lesson, we are going to create [an amazing game](https://TODO url to end version of game) using only web components. Some provided by the lab, some that we are about to create.
+In this Lesson, we are going to create [an amazing game](https://d1hhjlyh3vlkqr.cloudfront.net/#game) using only web components. Some provided by the lab, some that we are about to create.
 
 
 Here we will explore diferent type of components based on their use and functionallity.

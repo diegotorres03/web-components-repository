@@ -18,8 +18,8 @@ When we pass a level, `memory-flip-board` will emit the `levelup` event, we can 
 
 Create a `data-set` tag under the `memory-flip-board`, we will give it and id and we will set up the `trigger` to the `memory-flip-board` id, and the `on` attribute will be `levelup`:
 ```html
-   <memory-flip-board id="game-board" level="2"  preview></memory-flip-board>
-   ...
+   <!-- add dataset under this tag <memory-flip-board id="game-board" level="2"  preview></memory-flip-board> -->
+
    <data-set id="current-level" visible trigger="#game-board" on="levelup"></data-set>
 ```
 The `visible` attibute is for dev pourposes, it will allow us to see a changelog of the value.
@@ -35,25 +35,12 @@ the field `id` and `data-__id` is automatically added if none provided, this is 
 
 Data sets emit an `updated` event when something change.
 lets go back to the `app-route` for the `#games` route and lets dynamically update the level on the UI.
+
+Inside `app-route#game-route`, lets add a new `ui-data-sync` to keep track of the current level:
 ```html
-   change this ...
-   <app-route id="game-route" hash="game">
-     <h1>I'm Game</h1>
-     <ui-data-sync trigger="#username-selection-modal" on="accepted" >
-       <p>Welcome <span data-key="username"></span></p>
-     </ui-data-sync>
-   
-   for this ...
-    <app-route id="game-route" hash="game">
-
-        <!-- This is new -->
-        <ui-data-sync trigger="#current-level" on="updated">
-          <h1>On level <span data-key="level">1</span></h1>
-        </ui-data-sync>
-
-        <ui-data-sync trigger="#username-selection-modal" on="accepted">
-          <p>Welcome <span data-key="username">user</span></p>
-        </ui-data-sync>
+  <ui-data-sync trigger="#current-level" on="updated">
+    <h1>On level <span data-key="level">1</span></h1>
+  </ui-data-sync>
   ...
 ```
 
@@ -171,19 +158,18 @@ This component will handle the heavy lifting of setting up IndexedDB and keeping
 Lets see it in action!
 
 
-Create a `data-store` tag with an id of `session-store` and move the `current-username` and `current-level` data sets inside it. Data store will only interact with children data sets 
+Create a `data-store` tag with an id of `session-store` and move the `#current-username` and `#current-level` data sets inside it. Data store will only interact with children data sets 
 
 
-and move the `#current-username` and `#current-level` data sets inside.
 ```html
 ...
 <data-store id="session-store">
 
-  <!-- current session dataset -->
+  <!-- existing session dataset -->
   <data-set id="current-level" trigger="#game-board" on="levelup">
     ...
 
-  <!-- current username dataset -->
+  <!-- existing username dataset -->
   <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
     ...
 
@@ -203,7 +189,7 @@ And create another `data-store` for the `#score-log` remember this new component
 ...
 ```
 
-After this, go to the browser refresh the app, provide a username and open [devtools]() go to storage, and indexeddb. There you should see an entry with the key `session-store_current-username` the value is a json wich contains the username you provided.
+After this, go to the browser refresh the app, provide a username and open devtools go to storage, and indexeddb. There you should see an entry with the key `session-store_current-username` the value is a json wich contains the username you provided.
 ![indexeddb screenshot](../../assets/indexeddb-1.png)
 
 
@@ -384,7 +370,6 @@ Here we want to add the `ui-data-sync` component around the `div` that contain t
         <!-- add <span data-key="xxx"> to let ui-data-sync know what value to replace -->
         <b>Level:</b><span data-key="level"></span><br>
         <b>Attempts:</b><span data-key="attempts"></span><br>
-        <b>Username:</b><span data-key="username"></span><br>
       </div>
     </ui-data-sync>
 
@@ -408,10 +393,8 @@ Remember `data-key` attribute or `name` attribute will be used to let the ui com
 
 On the score-log route, lets replace its content with this:
 ```html
-<app-route hash="score-log">
+<!--  add the ui-data-repeat inside <app-route hash="score-log"> tag -->
   ...
-
-
 
   <h1>Game log</h1>
   <hr>
@@ -435,9 +418,8 @@ On the score-log route, lets replace its content with this:
   </ui-data-repeat>
 
 
-
 ...
-</app-route>
+<!-- </app-route> -->
 ```
 
 Lets test on the browser!!

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>[demo] Reimagine The Web With Native Web Components</title>
   <style>
     nav a {
       color: var(--main-tone);
@@ -89,7 +89,7 @@
           sessionPresent(event) {
             const sessionDataset = document.querySelector('#current-username')
             const dataPoint = sessionDataset.getItem('current-username')
-            if(!dataPoint) return true
+            if (!dataPoint) return true
             // const dataPoints = Array.from(sessionDataset.children).filter(tag => tag.tagName === 'data-point')
             const username = dataPoint.dataset.username
             return !username
@@ -98,7 +98,8 @@
       </script>
 
       <!-- <event-source id="prompt-authentication" trigger="#game-route" on="activated" ></event-source> -->
-      <event-source id="prompt-authentication" trigger="#game-route" on="activated" filters="sessionPresent"></event-source>
+      <event-source id="prompt-authentication" trigger="#game-route" on="activated"
+        filters="sessionPresent"></event-source>
 
       <script>
         document
@@ -125,7 +126,7 @@
           time="30s" preview></memory-flip-board>
 
         <event-source id="on-load" trigger="window" on="load"></event-source>
-        
+
         <event-group id="level-group">
           <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
           <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
@@ -133,8 +134,8 @@
 
 
         <event-group id="current-session">
-          <event-source id="" trigger="#current-username" on="updated" ></event-source>
-          <event-source id="" trigger="#get-current-username" on="get" ></event-source>
+          <event-source id="" trigger="#current-username" on="updated"></event-source>
+          <event-source id="" trigger="#get-current-username" on="get"></event-source>
         </event-group>
 
         <data-store id="session-store">
@@ -143,16 +144,16 @@
             <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
           </data-set>
 
-          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" >
+          <data-set id="current-username" trigger="#username-selection-modal" on="accepted">
             <data-query id="get-current-username" type="get" trigger="#on-load" on="data"></data-query>
             <data-query id="clear-current-user" type="clear" trigger="#log-out-btn" on="click">
           </data-set>
 
         </data-store>
-        
+
         <event-group id="all-game-logs">
-          <event-source trigger="#list-game-logs" on="list" ></event-source>
-          <event-source trigger="#game-log" on="updated" ></event-source>
+          <event-source trigger="#list-game-logs" on="list"></event-source>
+          <event-source trigger="#game-log" on="updated"></event-source>
         </event-group>
 
         <data-store id="logs-store">
@@ -160,19 +161,6 @@
             <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
           </data-set>
         </data-store>
-
-
-        <app-modal trigger="#game-board" on="levelup">
-          <ui-data-sync slot="title" trigger="#scores" on="data">
-            <h1>You did it <span name="username"></span>!!</h1>
-          </ui-data-sync>
-          <ui-data-sync slot="main" trigger="#scores" on="data">
-            <section>
-              <b>Level:</b><span data-key="level"></span><br>
-              <b>Attempts:</b><span data-key="attempts"></span><br>
-            </section>
-          </ui-data-sync>
-        </app-modal>
 
       </app-route>
 
@@ -202,6 +190,15 @@
 
   </app-layout>
 
+  <!-- <style>
+    :root {
+      --main-tone: #d1e68c;
+      --back-tone: #2C3333;
+      --second-tone: #2E4F4F;
+      --third-tone: #CBE4DE;
+      --text-tone: #f4f4ff;
+    }
+  </style> -->
 </body>
 
 </html>
