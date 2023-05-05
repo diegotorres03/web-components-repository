@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reimagine The Web With Native Web Components</title>
+  <style>
+    nav a {
+      color: var(--main-tone);
+      padding: 2px 4px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+  </style>
+  <script>
+    const filters = {
+      shouldLogin(event) {
+        const sessionDataset = document.querySelector('#current-username') // geting the dataset that holds the username
+        const dataPoint = sessionDataset.getItem('current-username') // checking if the dataset contains a data-point
+        if (!dataPoint) return true // if is not present, sure, we need to ask for login info.
+        const username = dataPoint.dataset.username
+        return !username
+      },
+    }
+  </script>
+</head>
+
+<body>
+  <app-layout>
+    <header slot="header">Welcome to our memory flip game</header>
+    <b slot="left-header">Game stats</b>
+
+    <nav slot="top-menu" class="">
+      <a href="#">Home</a>
+      <a href="#game">Game</a>
+      <a href="#score-log">Game Log</a>
+
+      <button id="logout-btn">logout</button>
+    </nav>
+
+
+
+
+    <section slot="left-content">
+      <plain-card>
+        <h2 slot="title">My Score</h2>
+        <section slot="main">
+          <ui-data-sync trigger="#level-group" on="data">
+            <div>
+              <!-- add <span data-key="xxx"> to let ui-data-sync know what value to replace -->
+              <b>Level:</b><span data-key="level"></span><br>
+              <b>Attempts:</b><span data-key="attempts"></span><br>
+            </div>
+          </ui-data-sync>
+        </section>
+      </plain-card>
+
+      <app-accordion>
+        <section>
+          <h5>Game instructions</h5>
+          <p>This is a memory game, where you have to find pairs in a set of cards.</p>
+          <p>You will have X minutes to solve multiple challenges and the score will be based on how far you
+            get.</p>
+        </section>
+        <section>
+          <h5>FAQs</h5>
+          <b>Question 1:</b>
+          <p>Answer 1</p>
+          <hr>
+          <b>Question 2:</b>
+          <p>Answer 2</p>
+          <hr>
+        </section>
+      </app-accordion>
+
+    </section>
+
+    <app-router slot="main">
+
+      <app-modal id="username-selection-modal" trigger="#prompt-authentication" on="data">
+
+        <h1 slot="title">Start a new match</h1>
+        <section slot="main">
+          <p>Ready to start a new match?</p>
+          <p>Choose a username and let's play</p>
+          <form>
+            <label>Username:</label><input type="text" name="username">
+          </form>
+        </section>
+      </app-modal>
+
+      <app-route>Home</app-route>
+
+      <app-route id="game-route" hash="game">
+        <h1>Game</h1>
+        <!-- This is new -->
+        <ui-data-sync trigger="#current-level" on="updated">
+          <h1>On level <span data-key="level">1</span></h1>
+        </ui-data-sync>
+
+        <ui-data-sync trigger="#current-username" on="updated">
+          <p>Welcome <span data-key="username">user</span></p>
+        </ui-data-sync>
+
+        <memory-flip-board id="game-board" level="2"></memory-flip-board>
+
+
+        <event-source id="on-load" trigger="window" on="load"></event-source>
+
+        <event-source id="prompt-authentication" trigger="#game-route" on="activated"
+          filters="shouldLogin"></event-source>
+
+        <event-group id="level-group">
+          <event-source id="query-level" trigger="#get-current-level" on="get"></event-source>
+          <event-source id="level-updated" trigger="#current-level" on="updated"></event-source>
+        </event-group>
+
+        <event-group id="all-game-logs">
+          <event-source trigger="#list-game-logs" on="list"></event-source>
+          <event-source trigger="#score-log" on="updated"></event-source>
+        </event-group>
+
+        <data-store id="session-store">
+          <data-set id="current-level" visible trigger="#game-board" on="levelup">
+            <data-query id="get-current-level" type="get" trigger="#on-load" on="data"></data-query>
+          </data-set>
+
+          <data-set id="current-username" trigger="#username-selection-modal" on="accepted" visible>
+            <data-query id="clear-current-user" type="clear" trigger="#logout-btn" on="click">
+          </data-set>
+        </data-store>
+
+        <data-store id="logs-store">
+          <data-set id="score-log" visible append trigger="#game-board" on="levelup">
+            <data-query id="list-game-logs" type="list" trigger="#on-load" on="data"></data-query>
+          </data-set>
+        </data-store>
+
+      </app-route>
+      <app-route hash="score-log">
+
+        <h1>Game log</h1>
+        <hr>
+
+
+        <!-- listening to gale log dataset fot the updated event -->
+        <ui-data-repeat id="score-log-cards" trigger="#all-game-logs" on="data">
+
+          <!-- the content inside of a template tag won't be rendered by the browser -->
+          <template>
+            <plain-card>
+              <h2 slot="title" data-key="username">username</h2>
+              <section slot="main">
+
+                <!-- data-key let ui-data-repeat know where to add the values from the event -->
+                <b>Level:</b><span data-key="level"></span><br>
+                <b>Attempts:</b><span data-key="attempts"></span><br>
+              </section>
+            </plain-card>
+          </template>
+        </ui-data-repeat>
+
+
+      </app-route>
+    </app-router>
+
+
+    <footer slot="footer">Thank you.</footer>
+
+  </app-layout>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <style>
+        :root {
+            --target-width: 55px;
+            --target-height: 60px;
+            --target-top: 0px;
+            --target-left: 0px;
+            --target-bottom: 0px;
+            --target-right: 0px;
+            --target-x: 0px;
+            --target-y: 0px;
+
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+
+        }
+
+        html,
+        body {
+            height: 100%;
+            display: grid;
+            place-items: center;
+            background-color: grey;
+
+        }
+
+        .transition-container {
+            width: 600px;
+            height: 420px;
+            background-color: ghostwhite;
+            padding: 24px;
+            /* position: relative; */
+
+        }
+
+        .transition-btn {
+            /* padding: 8px 12px; */
+            z-index: 100;
+            border-radius: 4px;
+            background-color: purple;
+            color: ghostwhite;
+            border: none;
+            animation-name: transition-step-1;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-direction: normal;
+
+        }
+
+        .transition-target {
+            z-index: -100;
+            background-color: purple;
+            padding: 24px;
+            list-style: none;
+            color: ghostwhite;
+            opacity: 0;
+            width: 300px;
+            height: 200px;
+            animation-name: transition-step-2;
+            animation-delay: .5s;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-direction: normal;
+        }
+
+        @keyframes transition-step-1 {
+            0% {
+                transform: translate(0px, 0px); /* scale(1);*/
+                opacity: 1;
+
+            }
+
+            50% {
+                transform: translate(var(--target-left), var(--target-top)); /* scale(4);*/
+                opacity: .75;
+            }
+
+            100% {
+                transform: translate(var(--target-left), var(--target-top)); /* scale(4);*/
+                opacity: 0;
+            }
+        }
+
+        @keyframes transition-step-2 {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+
+    <section class="transition-container">
+        <button class="" style="width: 100px;" transition="#target">click me</button>
+
+
+        <div id="target" class="">
+            <ul>
+                <li>UYYY parce-1</li>
+                <li>UYYY parce-2</li>
+                <li>UYYY parce-3</li>
+                <li>UYYY parce-4</li>
+                <li>UYYY parce-5</li>
+            </ul>
+        </div>
+
+    </section>
+
+
+
+    <script>
+        function registerTransitions() {
+            const transitionSources = Array.from(document.querySelectorAll('[transition]'))
+            console.log(transitionSources)
+
+            transitionSources.map(source => {
+                const target = document.querySelector(source.getAttribute('transition'))
+                console.log(target, ' is target for', source)
+
+                // getting info of size, position and opacity
+                const { height, width, top, bottom, left, right, x, y } = target.getBoundingClientRect()
+
+                console.table(target.getBoundingClientRect().toJSON())
+
+                source.addEventListener('click', () => source.classList.add('transition-btn'))
+                target.classList.add('transition-target')
+
+                document.documentElement.style.setProperty('--target-top', `${top}px`)
+                document.documentElement.style.setProperty('--target-left', `${left}px`)
+                document.documentElement.style.setProperty('--target-height', `${height}px`)
+                document.documentElement.style.setProperty('--target-width', `${width}px`)
+                document.documentElement.style.setProperty('--target-bottom', `${bottom}px`)
+                document.documentElement.style.setProperty('--target-right', `${right}px`)
+                document.documentElement.style.setProperty('--target-x', `${x}px`)
+                document.documentElement.style.setProperty('--target-y', `${y}px`)
+                // source.style.position = `absolute`
+                // source.style.width = `${width}px`
+                // source.style.height = `${height}px`
+                // source.style.top = `${top}px`
+                // source.style.left = `${left}px`
+
+            })
+        }
+
+        window.addEventListener('load', registerTransitions)
+
+
+
+    </script>
+
+</body>
+
+</html>
