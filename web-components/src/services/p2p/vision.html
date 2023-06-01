@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    function generateIceCandidates() {
+      console.log('test')
+      return new Promise((resolve, reject) => {
+        const configuration = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+        const pc = new RTCPeerConnection(configuration);
+        console.log(pc)
+
+        pc.onicecandidate = (event) => {
+          console.log(event)
+          if (event.candidate) {
+            resolve(event.candidate);
+          } else {
+            resolve(null); // All candidates have been gathered
+          }
+        };
+
+        pc.createDataChannel(''); // Create a dummy data channel to trigger ICE gathering
+
+        setTimeout(() => {
+          pc.close(); // Close the PeerConnection after a short delay
+        }, 500);
+      });
+    }
+
+    generateIceCandidates()
+      .then((candidate) => {
+        if (candidate) {
+          // Do something with the ICE candidate
+          console.log('Generated ICE candidate:', candidate);
+        } else {
+          // ICE gathering completed
+          console.log('ICE gathering completed.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error generating ICE candidates:', error);
+      });
+
+
+  </script>
+</body>
+
+</html>

@@ -21,121 +21,50 @@
 
 <body>
 
-  <style>
-    * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
+  <landing-layout>
 
-    }
+    <section slot="header">
+      <h1>header</h1>
+    </section>
 
-    html,
-    body {
-        height: 100%;
-        display: grid;
-        place-items: center;
-        background-color: grey;
+    <section slot="hero">
+      <h3>this is the hero side</h3>
+    </section>
 
-    }
+    <section slot="benefits">
 
-    .transition-container {
-        width: 600px;
-        height: 420px;
-        background-color: ghostwhite;
-        padding: 24px;
-        /* position: relative; */
+      <div>
+        <plain-card></plain-card>
+        <span>asdasd</span>
+      </div>
 
-    }
+      <div>
+        <plain-card></plain-card>
+        <span>asdasd</span>
+      </div>
 
-    .transition-btn {
-        padding: 8px 12px;
-        border-radius: 4px;
-        background-color: purple;
-        color: ghostwhite;
-        border: none;
-        animation-name: transition-step-1;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-direction: normal;
+    </section>
 
-    }
+    <section slot="testimonials">
+      <h3>testimonials</h3>
+      <deck-reader>
+        <flip-card></flip-card>
+        <flip-card></flip-card>
+        <flip-card></flip-card>
+        <flip-card></flip-card>
+        <flip-card></flip-card>
+      </deck-reader>
+    </section>
 
-    .transition-target {
-        background-color: purple;
-        padding: 24px;
-        list-style: none;
-        color: ghostwhite;
-        opacity: 0;
-        width: 300px;
-        height: 200px;
-        animation-name: transition-step-2;
-        animation-delay: .5s;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-direction: normal;
-    }
+    <section slot="cta">
+      <h3>Call To Action</h3>
+      <form>
 
-    @keyframes transition-step-1 {
-        0% {
-            transform: translate(0px, 0px) scale(1);
-            opacity: 1;
-            
-        }
-        
-        50% {
-            transform: translate(110px, 120px) scale(4);
-            opacity: .75;
-        }
-        
-        100% {
-            transform: translate(110px, 120px) scale(4);
-            opacity: 0;
-        }
-    }
+      </form>
+    </section>
 
-    @keyframes transition-step-2 {
-        0% {
-            opacity: 0;
-        }
+  </landing-layout>
 
-        100% {
-            opacity: 1;
-        }
-    }
-</style>
-
-
-  <button id="move-me" transition="flip-card">touch me</button>
-
-
-  <flip-card disabled></flip-card>
-
-  <script>
-    function registerTransitions() {
-      const transitionSources = Array.from(document.querySelectorAll('[transition]'))
-      console.log(transitionSources)
-      transitionSources.map(source => {
-        const target = document.querySelector(source.getAttribute('transition'))
-        console.log(target, ' is target for', source)
-
-        // getting info of size, position and opacity
-        const { height, width, top, bottom, left, right, x, y } = target.getBoundingClientRect()
-
-        console.table(target.getBoundingClientRect().toJSON())
-
-        source.style.position = `absolute`
-        source.style.width = `${width}px`
-        source.style.height = `${height}px`
-        source.style.top = `${top}px`
-        source.style.left = `${left}px`
-      })
-    }
-
-    window.addEventListener('load', registerTransitions)
-
-
-
-  </script>
 
 </body>
 
