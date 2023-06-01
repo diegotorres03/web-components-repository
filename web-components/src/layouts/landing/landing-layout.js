@@ -5,13 +5,14 @@ import {
 
 
 import componentHtml from './landing-layout.html'
-//import componentStyle from './flip-card.css'
+import componentStyle from './landing-layout.css'
 
 export default class LandingLayoutComponent extends HTMLElement {
 
   constructor() {
     super()
     const template = html`
+      ${componentStyle}
       ${componentHtml}
     `
     this.attachShadow({ mode: 'open' })
