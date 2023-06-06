@@ -1,38 +1,31 @@
-import {
-  html,
-  registerTriggers,
-} from '../../global/web-tools'
+import { html, registerTriggers } from '../../global/web-tools';
 
-
-import componentHtml from './landing-layout.html'
-import componentStyle from './landing-layout.css'
+import componentHtml from './landing-layout.html';
+import componentStyle from './landing-layout.css';
 
 export default class LandingLayoutComponent extends HTMLElement {
-
   constructor() {
-    super()
+    super();
     const template = html`
-      ${componentStyle}
-      ${componentHtml}
-    `
-    this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(template)
-  }
+      <style>
+        ${componentStyle}
+      </style>
 
+      ${componentHtml}
+    `;
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template);
+  }
 
   connectedCallback() {
-    registerTriggers(this, (event) => console.log(event))
+    registerTriggers(this, (event) => console.log(event));
   }
 
-  disconnectedCallback() { }
+  disconnectedCallback() {}
 
-  attributeChangedCallback(name, oldValue, newValue) { }
+  attributeChangedCallback(name, oldValue, newValue) {}
 
-  adoptedCallback() { }
-
+  adoptedCallback() {}
 }
 
-
-
-
-window.customElements.define('landing-layout', LandingLayoutComponent)
+window.customElements.define('landing-layout', LandingLayoutComponent);

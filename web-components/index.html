@@ -9,12 +9,66 @@
   <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script>
 
   <style>
+    :root {
+      --color-primary: #252f3d;
+      /* Color principal */
+      --color-secondary: #48506a;
+      /* Color secundario */
+      --color-tertiary: #6f8092;
+      /* Color terciario */
+      --color-text: #000;
+      /* Color de texto */
+      --color-background: #fff;
+      /* Color de fondo */
+    }
+
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+
+      /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+
+      background-color: var(--color-background);
+    }
+
     .hidden {
       display: none;
     }
 
     app-router {
       width: 100%;
+    }
+
+    .nav__link {
+      display: flex;
+      align-items: center;
+
+      width: 100%;
+      height: 100%;
+      padding: 12px 16px;
+
+      border-radius: 2px;
+
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .nav__link--cta {
+      background-color: var(--color-background);
+      color: var(--color-primary);
+    }
+
+    .nav__logo-img {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
@@ -23,15 +77,27 @@
 
   <landing-layout>
 
-    <section slot="header" type="logo-center">
-      <h1>header</h1>
-    </section>
+    <!-- HEADER -->
+
+    <img class="nav__logo-img"
+      src="https://images.unsplash.com/photo-1659259540528-0240ad70e92a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
+      alt="LOGOSLOT" slot="header-logo">
+
+    <li class="nav__link-box" slot="header-link-list"><a href="#" class="nav__link">TAKATA</a></li>
+    <li class="nav__link-box" slot="header-link-list"><a href="#" class="nav__link ">TEKETE</a></li>
+    <li class="nav__link-box" slot="header-link-list"><a href="#" class="nav__link">TIKITI</a></li>
+    <li class="nav__link-box" slot="header-link-list"><a href="#" class="nav__link">TOKOTO</a></li>
+    <li class="nav__link-box" slot="header-link-list"><a href="#" class="nav__link nav__link--cta">TUKUTU</a></li>
+
+    <!-- HERO -->
 
     <section slot="hero">
       <h3>this is the hero side</h3>
     </section>
 
-    <section slot="benefits">
+
+
+    <!-- <section slot="benefits">
 
       <h1>TAKATA</h1>
 
@@ -43,7 +109,7 @@
 
     <section slot="cta">
       <h3>Call To Action</h3>
-    </section>
+    </section> -->
 
   </landing-layout>
 

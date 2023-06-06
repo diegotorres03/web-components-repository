@@ -1,8 +1,33 @@
-<header>
+<header class="header">
 
-    <slot name="header"></slot>
+    <nav class="nav">
+
+        <div class="nav__logo">
+
+            <slot name="header-logo">
+
+                <span class="nav__logo-img">LOGO</span>
+
+            </slot>
+
+        </div>
+
+        <ul class="nav__link-container">
+
+            <slot name="header-link-list">
+
+                <li class="nav__link-box"><a href="#" class="nav__link">About us</a></li>
+                <li class="nav__link-box"><a href="#" class="nav__link">Services</a></li>
+                <li class="nav__link-box"><a href="#" class="nav__link nav__link--cta">Subscribe</a></li>
+
+            </slot>
+
+        </ul>
+
+    </nav>
 
 </header>
+
 <article>
 
     <slot name="hero"></slot>
