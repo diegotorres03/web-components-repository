@@ -113,7 +113,7 @@ body {
   gap: 12px;
 
   width: 80%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 88px);
 
   padding: 16px;
 
@@ -138,4 +138,17 @@ body {
   width: auto;
   height: 100%;
   object-fit: cover;
+}
+
+/* BENEFITS */
+
+.benefits {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+
+  padding: 64px 16px;
+
+  background-color: var(--color-background-2);
 }

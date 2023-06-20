@@ -16,7 +16,7 @@
 
   /* Color de fondo */
   --color-background-1: ghostwhite;
-  --color-background-2: #dedee6;
+  --color-background-2: #e9f0f7;
   --color-background-3: #cbcbd3;
 }
 
@@ -165,4 +165,28 @@ app-router {
   object-fit: cover;
 
   mix-blend-mode: darken;
+}
+
+/* benefits */
+
+.benefits__container {
+  width: 100%;
+  max-width: 80%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 16px;
+}
+
+.benefit-card {
+  width: calc((100% / 3) - 32px);
+  height: auto;
+
+  padding: 16px;
+  border-radius: 4px;
+
+  border: 1px solid var(--color-main-3);
+  background-color: var(--color-background-1);
 }
