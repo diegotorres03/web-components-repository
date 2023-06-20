@@ -23,10 +23,10 @@ body {
   width: 100%;
   height: auto;
 
-  padding: 16px;
+  padding: 24px 0;
 
-  background-color: var(--color-main-1);
-  color: var(--color-text-i);
+  /* background-color: var(--color-main-1); */
+  color: var(--color-text-n);
 }
 
 .nav {
