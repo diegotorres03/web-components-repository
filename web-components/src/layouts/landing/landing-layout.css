@@ -146,7 +146,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 64px;
+  gap: 32px;
 
   width: 100%;
   height: auto;
@@ -154,4 +154,17 @@ body {
   padding: 64px 16px;
 
   background-color: var(--color-background-2);
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  height: auto;
+
+  padding: 64px 16px;
+
+  background-color: var(--color-background-1);
 }
