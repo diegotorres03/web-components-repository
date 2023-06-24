@@ -176,7 +176,7 @@ app-router {
 .benefit__title-box {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   width: 25%;
 
   /* outline: 1px solid red; */
@@ -186,6 +186,9 @@ app-router {
 
 .benefit__title {
   font-size: 32px;
+  line-height: 26px;
+
+  color: var(--color-main-1);
 }
 .benefit__description {
   font-size: 16px;
@@ -270,7 +273,9 @@ app-router {
 
 .feedback__title {
   font-size: 32px;
-  line-height: 28px;
+  line-height: 26px;
+
+  color: var(--color-main-1);
 }
 
 .feedback__description {
@@ -346,3 +351,72 @@ app-router {
 }
 
 /* CTA */
+
+.cta__container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 30%;
+  min-width: 400px;
+
+  padding: 24px;
+  border-radius: 4px;
+
+  border: 1px solid var(--color-main-3);
+  background-color: var(--color-background-1);
+}
+
+.cta__title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  text-align: center;
+}
+
+.cta__title {
+  font-size: 28px;
+  line-height: 26px;
+
+  color: var(--color-main-1);
+}
+
+.cta__description {
+  font-size: 14px;
+  /* line-height: 14px; */
+  color: var(--color-text-n-lo);
+}
+
+.cta__input-box {
+  display: flex;
+  align-items: center;
+  /* gap: 4px; */
+
+  /* outline: 1px solid red; */
+}
+
+.cta__cta-input {
+  width: 70%;
+  height: 34px;
+
+  padding: 8px;
+  border-radius: 2px 0px 0px 2px;
+
+  border: 1px solid var(--color-main-3);
+  border-width: 1px 0px 1px 1px;
+  background-color: var(--color-background-4);
+}
+
+.cta__submit-btn {
+  width: 30%;
+  height: 34px;
+  border: none;
+  border-radius: 0px 2px 2px 0px;
+
+  font-family: inherit;
+  font-weight: 600;
+
+  background-color: var(--color-main-2);
+  color: var(--color-background-1);
+}
