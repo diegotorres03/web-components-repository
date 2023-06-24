@@ -1,9 +1,9 @@
 :root {
   /* Color de brand */
-  --color-main-1: #632c60;
-  --color-main-2: #d267cc;
-  --color-main-3: #d8afe4;
-  --color-main-4: #fdcfff;
+  --color-main-1: hsl(300, 40%, 30%);
+  --color-main-2: hsl(300, 50%, 60%);
+  --color-main-3: hsl(300, 60%, 90%);
+  --color-main-4: hsl(300, 100%, 90%);
   /* Color principal */
   --color-secondary: #a3a7b5;
   /* Color secundario */
@@ -19,7 +19,7 @@
   --color-background-1: ghostwhite;
   --color-background-2: #e9f0f7;
   --color-background-3: #cbcbd3;
-  --color-background-4: #fef6ff;
+  --color-background-4: hsl(300, 100%, 98%);
 }
 
 * {
@@ -34,6 +34,8 @@ body {
   height: 100%;
 
   background-color: var(--color-background-1);
+
+  scroll-behavior: smooth;
 }
 
 .hidden {
@@ -342,3 +344,5 @@ app-router {
   font-weight: 600;
   color: var(--color-main-1);
 }
+
+/* CTA */
