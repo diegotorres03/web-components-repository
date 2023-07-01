@@ -18,51 +18,56 @@
   <landing-layout>
 
     <!-- HEADER -->
-    <nav class="nav" slot="header-content">
+    <nav class="header-nav" slot="header-content">
 
-      <div class="nav__logo">
+      <div class="header-nav__logo">
 
-        <img alt="LOGO" src="./src/layouts/landing/landing-site/assets/crown.svg" class="nav__logo-img">
+        <img alt="LOGO" src="./src/layouts/landing/landing-site/assets/crown.svg" class="header-nav__logo-img">
 
       </div>
+      <ul class="header-nav__link-container">
 
-      <ul class="nav__link-container">
-
-        <li class="nav__link-box"><a href="#benefit" class="nav__link">Benefits</a></li>
-        <li class="nav__link-box"><a href="#" class="nav__link">Pricing</a></li>
-        <li class="nav__link-box"><a href="#" class="nav__link">About us</a></li>
-        <li class="nav__link-box"><a href="#cta" class="nav__link nav__link--cta">Subscribe</a> </li>
+        <li class="header-nav__link-box"><a href="#benefit" class="header-nav__link">Benefits</a></li>
+        <li class="header-nav__link-box"><a href="#" class="header-nav__link">Pricing</a></li>
+        <li class="header-nav__link-box"><a href="#" class="header-nav__link">About us</a></li>
+        <li class="header-nav__link-box"><a href="#cta" class="header-nav__link header-nav__link--cta">Subscribe</a>
+        </li>
 
       </ul>
 
     </nav>
 
-    <!-- HERO -->
-    <div class="hero__left-content" slot="hero-left-content">
+    <!-- HERO-SECTION -->
+    <section class="hero__container" slot="hero">
 
-      <h1 class="hero__title">Welcome to our landing page.</h1>
-      <p class="hero__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati ea facilis
-        praesentium ipsam debitis dolores voluptatum sequi corrupti esse nobis?
-      </p>
-      <a href="#productos"><button class="hero__button">Subscribe</button></a>
+      <div class="hero__left-content">
 
-    </div>
+        <h1 class="hero__title">Welcome to our landing page.</h1>
+        <p class="hero__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati ea facilis
+          praesentium ipsam debitis dolores voluptatum sequi corrupti esse nobis?
+        </p>
+        <a href="#productos"><button class="hero__button">Subscribe</button></a>
 
-    <div class="hero__right-content" slot="hero-right-content">
+      </div>
 
-      <img class="hero__img" width="100%" src="./landing-assets/4610157.jpg" alt="">
+      <div class="hero__right-content">
 
-    </div>
+        <img class="hero__img" width="100%" src="./landing-assets/4610157.jpg" alt="">
 
-    <!-- BENEFITS -->
-    <div id="benefit" class="benefit__title-box" slot="benefit">
+      </div>
 
-      <h2 class="benefit__title">With us</h2>
+    </section>
+
+    <!-- BENEFIT-SECTION-TITLE -->
+    <div id="benefit" class="main__title-box main__title-box--benefit" slot="benefit">
+
+      <h2 class="main__title-box-title main__title-box-title--benefit">With us</h2>
       <p class="benefit__description">You will have the following benefits Lorem ipsum dolor sit, amet consectetur
         adipisicing elit..</p>
 
     </div>
 
+    <!-- BENEFIT-SECTION-CONTENT -->
     <div class="benefit__container" slot="benefit">
 
       <div class="benefit-card">
@@ -73,7 +78,6 @@
           <h4 class="benefit-card__title">Security</h4>
 
         </div>
-
         <p class="benefit-card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea recusandae,
           impedit eligendi officia hic nostrum?</p>
 
@@ -86,7 +90,6 @@
           <h4 class="benefit-card__title">Speed</h4>
 
         </div>
-
         <p class="benefit-card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea recusandae,
           impedit eligendi officia hic nostrum?</p>
 
@@ -99,7 +102,6 @@
           <h4 class="benefit-card__title">Parental Control</h4>
 
         </div>
-
         <p class="benefit-card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea recusandae,
           impedit eligendi officia hic nostrum?</p>
 
@@ -112,7 +114,6 @@
           <h4 class="benefit-card__title">Wireless</h4>
 
         </div>
-
         <p class="benefit-card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea recusandae,
           impedit eligendi officia hic nostrum?</p>
 
@@ -125,7 +126,6 @@
           <h4 class="benefit-card__title">Backup Restore</h4>
 
         </div>
-
         <p class="benefit-card__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea recusandae,
           impedit eligendi officia hic nostrum?</p>
 
@@ -133,17 +133,18 @@
 
     </div>
 
-    <!-- FEEDBACK -->
+    <!-- TESTIMONIAL-SECTION-TITLE -->
+    <div class="main__title-box main__title-box--testimonial" slot="testimonial">
+
+      <h2 class="main__title-box-title main__title-box-title--testimonial">Feedback</h2>
+      <p class="testimonial__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic obcaecati
+        quaerat
+        aut inventore soluta.</p>
+
+    </div>
+
+    <!-- TESTIMONIAL-SECTION-CONTENT -->
     <div class="testimonial__container" slot="testimonial">
-
-      <div class="testimonial__title-box">
-
-        <h2 class="testimonial__title">Feedback</h2>
-        <p class="testimonial__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic obcaecati
-          quaerat
-          aut inventore soluta.</p>
-
-      </div>
 
       <div class="testimonial__content">
 
@@ -235,12 +236,12 @@
 
     </div>
 
-
+    <!-- CALL-TO-ACTION-SECTION -->
     <div id="cta" class="cta__container" slot="cta">
 
-      <div class="cta__title-box">
+      <div class="main__title-box main__title-box--cta">
 
-        <h1 class="cta__title">Subscribe</h1>
+        <h1 class="main__title-box-title main__title-box-title--cta">Subscribe</h1>
         <p class="cta__description">Lorem ipsum dolor sit amet consectetur adipisicing <br>elit. Hic obcaecati fugit
           eius facere, <br> slaboriosam aperiam.</p>
 
@@ -253,6 +254,40 @@
 
       </div>
 
+    </div>
+
+    <!-- FOOTER-CONTAINER -->
+    <div id="footer" class="footer__container" slot="footer">
+
+      <nav class="footer__nav">
+
+        <div class="footer-nav__logo">
+
+          <img alt="LOGO" src="./src/layouts/landing/landing-site/assets/crown.svg" class="footer-nav__logo-img">
+
+        </div>
+        <ul class="footer-nav__link-container">
+
+          <li class="footer-nav__link-box"><a href="#" class="footer-nav__link">Acerca de</a></li>
+          <li class="footer-nav__link-box"><a href="#" class="footer-nav__link">Servicios</a></li>
+          <li class="footer-nav__link-box"><a href="#" class="footer-nav__link">Contacto</a></li>
+
+        </ul>
+
+      </nav>
+      <div class="footer__company-info">
+
+        <p class="footer__copyright">&copy; 2023 Landing Crown. All right reserved.</p>
+        <div class="footer__social-media">
+
+          <a class="footer-social__link" href="#">Facebook</a>
+          <a class="footer-social__link" href="#">Instagram</a>
+          <a class="footer-social__link" href="#">Twitter</a>
+
+        </div>
+
+
+      </div>
 
     </div>
 
