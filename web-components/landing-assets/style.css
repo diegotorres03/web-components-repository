@@ -1,9 +1,9 @@
 :root {
   /* Color de brand */
-  --color-main-1: hsl(300, 40%, 30%);
-  --color-main-2: hsl(300, 50%, 60%);
-  --color-main-3: hsl(300, 60%, 90%);
-  --color-main-4: hsl(300, 80%, 94%);
+  --color-main-1: hsl(500, 40%, 30%);
+  --color-main-2: hsl(500, 50%, 60%);
+  --color-main-3: hsl(500, 60%, 90%);
+  --color-main-4: hsl(500, 80%, 94%);
   /* Color principal */
   --color-secondary: #a3a7b5;
   /* Color secundario */
@@ -19,7 +19,7 @@
   --color-background-1: ghostwhite;
   --color-background-2: #e9f0f7;
   --color-background-3: #cbcbd3;
-  --color-background-4: hsl(300, 100%, 98%);
+  --color-background-4: hsl(100, 100%, 98%);
 }
 
 * {
