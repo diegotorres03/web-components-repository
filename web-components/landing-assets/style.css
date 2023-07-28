@@ -1,9 +1,9 @@
 :root {
   /* Color de brand */
-  --color-main-1: hsl(500, 40%, 30%);
-  --color-main-2: hsl(500, 50%, 60%);
-  --color-main-3: hsl(500, 60%, 90%);
-  --color-main-4: hsl(500, 80%, 94%);
+  --color-main-1: hsl(100, 40%, 30%);
+  --color-main-2: hsl(100, 50%, 60%);
+  --color-main-3: hsl(100, 60%, 90%);
+  --color-main-4: hsl(100, 80%, 94%);
   /* Color principal */
   --color-secondary: #a3a7b5;
   /* Color secundario */

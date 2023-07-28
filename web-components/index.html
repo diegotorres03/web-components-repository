@@ -25,7 +25,42 @@
         <img alt="LOGO" src="./src/layouts/landing/landing-site/assets/crown.svg" class="header-nav__logo-img">
 
       </div>
+      <draggable-item>
+        <drag-area>
+          <button>btn</button>
+          <hr>
+          <flip-card></flip-card>
+          <hr>
+          <plain-card></plain-card>
+          <hr>
+          <input type="text">
+          <plain-card class="benefit-card">
+            <h1 slot="title">test</h1>
+            <p slot="main">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt cupiditate commodi praesentium
+              voluptate corrupti. Illum, libero. Aspernatur fugiat quas dolor quis dolores commodi dicta rerum provident
+              cumque placeat, modi ullam.</p>
+          </plain-card>
+    
+          <flip-card class="benefit-card">
+            <h1 slot="front">test</h1>
+            <p slot="back">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt cupiditate commodi praesentium
+              voluptate corrupti. Illum, libero. Aspernatur fugiat quas dolor quis dolores commodi dicta rerum provident
+              cumque placeat, modi ullam.</p>
+          </flip-card>
+        </drag-area>
+      </draggable-item>
       <ul class="header-nav__link-container">
+
+        <device-acceleration></device-acceleration>
+
+        <drag-area>
+          <span>drag me 1</span>
+          <span>drag me 2</span>
+          <span>drag me 3</span>
+          <span>drag me 4</span>
+          <span>drag me 5</span>
+        </drag-area>
+
 
         <li class="header-nav__link-box"><a href="#benefit" class="header-nav__link">Benefits</a></li>
         <li class="header-nav__link-box"><a href="#" class="header-nav__link">Pricing</a></li>
@@ -42,11 +77,26 @@
 
       <div class="hero__left-content">
 
+        <app-modal trigger="#drop-area-1" on="dropped"></app-modal>
+        <drop-area clone id="drop-area-1">
+
+        </drop-area>
+        <!-- <script>
+          const area1 = document.querySelector('#drop-area-1')
+          console.log('area1',area1)
+          area1.addEventListener('dropped', ev => alert('eso carajo'))
+        </script> -->
+
         <h1 class="hero__title">Welcome to our landing page.</h1>
         <p class="hero__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati ea facilis
           praesentium ipsam debitis dolores voluptatum sequi corrupti esse nobis?
         </p>
         <a href="#productos"><button class="hero__button">Subscribe</button></a>
+
+
+        <drop-area clone>
+
+        </drop-area>
 
       </div>
 
@@ -59,7 +109,7 @@
     </section>
 
     <!-- BENEFIT-SECTION-TITLE -->
-    <div id="benefit" class="main__title-box main__title-box--benefit" slot="benefit">
+    <div slot="benefit" id="benefit" class="main__title-box main__title-box--benefit">
 
       <h2 class="main__title-box-title main__title-box-title--benefit">With us</h2>
       <p class="benefit__description">You will have the following benefits Lorem ipsum dolor sit, amet consectetur
@@ -68,7 +118,12 @@
     </div>
 
     <!-- BENEFIT-SECTION-CONTENT -->
-    <div class="benefit__container" slot="benefit">
+    <div slot="benefit" class="benefit__container">
+
+      <drop-area clone>
+        
+      </drop-area>
+
 
       <div class="benefit-card">
 
