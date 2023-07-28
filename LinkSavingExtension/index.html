@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Saving Extension</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://dev.iconly.io/public/g7Vp40cOBAZx/iconly.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <article class="lse-container toggle-up">
+
+        <header class="lse-header">
+
+            <div class="lse-header__title-box">
+
+                <!-- Título encima de la extensión, no debe afectar la experiencia -->
+                <h1 class="lse-header__title">Link Saving Extension v1</h1>
+
+            </div>
+            <nav class="lse-header__nav">
+
+                <ul class="lse-header__link-list">
+
+                    <!-- Este será el acceso rápido de los links -->
+                    <li class="lse-header__link-box">
+                        <a draggable="true" title="crunchyroll" href="#" class="lse-header__link">cr</a>
+                    </li>
+                    <li class="lse-header__link-box"></li>
+                    <li class="lse-header__link-box"></li>
+                    <li class="lse-header__link-box"></li>
+                    <li class="lse-header__link-box"></li>
+                    <li class="lse-header__link-box"></li>
+
+                </ul>
+
+            </nav>
+
+        </header>
+        <section class="lse-settings  disabled">
+
+            <div class="lse-settings__url-box  ">
+
+                <button id="setting-toggle" class="lse-settings__setting-btn lse-settings__setting-btn--url"><i
+                        class="icon-url"></i></button>
+                <input class="lse-input lse-input--url" placeholder="Insert url here" type="text">
+
+            </div>
+
+            <input class="lse-input lse-input--name" type="text" placeholder="Insert name here">
+            <button class="lse-settings__setting-btn save"> <i class="icon-save"></i></button>
+
+            <button class="lse-settings__setting-btn settings"><i class="icon-setting"></i></button>
+
+        </section>
+        <section class="lse-folder">
+
+            <div class="lse-folder__container">
+
+                <div class="lse-folder__folder">
+
+                    <h2 class="lse-folder__folder-title">Folder-1</h2>
+                    <div class="folder__folder-items">
+
+                        <a href="#" title="facebook" class="lse-header__link">fb</a>
+                        <a href="#" class="lse-header__link">cr</a>
+                        <a href="#" class="lse-header__link">fc</a>
+                        <a href="#" class="lse-header__link">fb</a>
+                        <a href="#" class="lse-header__link">fb</a>
+                        <a href="#" class="lse-header__link">fb</a>
+
+                    </div>
+
+                </div>
+                <div class="lse-folder__folder">
+
+                    <h2 class="lse-folder__folder-title">Folder-2</h2>
+                    <div class="folder__folder-items">
+
+                    </div>
+
+                </div>
+                <div class="lse-folder__folder">
+
+                    <h2 class="lse-folder__folder-title">Folder-2</h2>
+                    <div class="folder__folder-items">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <section id="toggle" class="lse-dropdown">
+
+            <button class="lse-dropdown__btn"><span class="icon-dropdown"></span></button>
+
+        </section>
+
+
+    </article>
+
+    <script>
+
+        const toggleBtn = document.querySelector('#toggle')
+        const container = document.querySelector('.lse-container')
+
+        toggleBtn.addEventListener('click', e => {
+
+            container.classList.toggle("toggle-up")
+            console.log("o")
+
+        })
+
+        const settingToggleBtn = document.querySelector('#setting-toggle')
+        const settingContainer = document.querySelector('.lse-settings')
+
+        settingToggleBtn.addEventListener('click', e => {
+
+            settingContainer.classList.toggle("disabled")
+            console.log("o")
+
+        })
+
+    </script>
+
+</body>
+
+</html>
