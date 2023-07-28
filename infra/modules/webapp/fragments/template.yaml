@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Resources:
+
+  webappBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: Private
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders: [Authorization]
+          - AllowedMethods: [GET]
+          - AllowedOrigins: ['*']
+        UpdateReplacePolicy: 'Delete'
+        DeletionPolicy: Delete
+
+  webappBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref webappBucket
+      PolicyDocument:
+        Statements:
+          - Action: ['s3:GetBuckets*', 's3:GetObjec*', 's3:List*']
+            Efect: Allow
+            Principal:
+              CanonicalUser: !GetAtt [webappOriginAccessIdentity, S3CanonicalUserId]
+              Resource:
+                - !GetAtt [webappBucket, Arn]
+                  'Fn::Join':
+                    - ''
+                    - - 'Fn::GetAtt': [webappBucket, Arn]
+                      - '/*'
+          - Action: 's3:GetObject'
+            Effect: Allow
+            Principal:
+              CanonicalUser: !GetAtt [webappOriginAccessIdentity, S3CanonicalUserId]
+            Resource:
+              'Fn::Join':
+                - ''
+                - - !GetAtt [webappBucket, Arn]
+                  - '/*'
+        Version: 2012-10-17
+      
+  webappOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfiguration:
+        Comment: Allows Cloudfront to reach the bucket
+
+  webappDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        DefaultBehaviour:
+          Compress: true

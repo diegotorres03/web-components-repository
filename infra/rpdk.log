@@ -1,0 +1,3 @@
+[2023-07-26T21:07:43Z] DEBUG    - Logging set up successfully
+[2023-07-26T21:07:43Z] DEBUG    - Running None: Namespace(version=True, subparser_name=None, command=<function main.<locals>.no_command at 0x7f986c5dd090>, verbose=0)
+[2023-07-26T21:07:43Z] DEBUG    - Finished None

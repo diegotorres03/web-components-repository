@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #movableDiv {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: lightblue;
+            padding: 10px;
+            cursor: move;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="movableDiv"></div>
+
+
+    <script>
+
+        var draggableDiv = document.getElementById('movableDiv');
+        var isDragging = false;
+        var dragOffset = { x: 0, y: 0 };
+
+        draggableDiv.addEventListener('mousedown', function (event) {
+            isDragging = true;
+            dragOffset.x = event.clientX - draggableDiv.offsetLeft;
+            dragOffset.y = event.clientY - draggableDiv.offsetTop;
+        });
+
+        document.addEventListener('mousemove', function (event) {
+            if (isDragging) {
+                draggableDiv.style.left = (event.clientX - dragOffset.x) + 'px';
+                draggableDiv.style.top = (event.clientY - dragOffset.y) + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', function () {
+            isDragging = false;
+        });
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+
+            font-family: monospace;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+
+        }
+
+        .drop-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 10px;
+
+
+            padding: 8px;
+            border-radius: 8px;
+
+            /* outline: 1px solid #fbb94d; */
+            background-color: #57401a !important;
+        }
+
+        .drag-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            padding: 8px;
+            border-radius: 8px;
+
+            /* outline: 1px solid #317435; */
+            background-color: #1f3521;
+        }
+
+        .puzzle-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 4px;
+        }
+
+        .drop {
+
+            background-color: #fbb94d;
+
+            width: 135px;
+            height: 135px;
+
+            transition: all .4s ease;
+
+            z-index: 1;
+            position: relative;
+        }
+
+        .drag {
+            padding: 4px;
+            background-color: #317435;
+            width: 120px;
+            height: 120px;
+
+            background-size: cover;
+            background-position: 50% 50%;
+            outline: 1px solid #96eb9b;
+
+            z-index: 3;
+        }
+
+        .drag {}
+
+        .hover {
+            background-color: #fcddac;
+            transition: all .4s ease;
+        }
+
+        .win-message {
+            color: #fcddac;
+            padding: 12px;
+        }
+
+        .placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <section class="drop-container">
+
+        <!-- <div class="puzzle-item drop">
+            <p>Bear</p>
+        </div>
+        <div class="puzzle-item drop">
+            <p>Elephant</p>
+        </div>
+        <div class="puzzle-item drop">
+            <p>Zebra</p>
+        </div>
+        <div class="puzzle-item drop">
+            <p>Horse</p>
+        </div> -->
+
+    </section>
+
+    <section class="drag-container">
+
+        <!-- <div class="puzzle-item drag">
+            <img src="https://images.pexels.com/photos/3608263/pexels-photo-3608263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="animals">
+        </div>
+        <div class="puzzle-item drag">
+            <img src="https://images.pexels.com/photos/2295744/pexels-photo-2295744.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="animals">
+        </div>
+        <div class="puzzle-item drag">
+            <img src="https://images.pexels.com/photos/704454/pexels-photo-704454.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="animals">
+        </div>
+        <div class="puzzle-item drag">
+            <img src="https://images.pexels.com/photos/2313396/pexels-photo-2313396.jpeg?auto=compress&cs=tinysrgb&w=600"
+                alt="animals">
+        </div> -->
+
+    </section>
+    <img src="assets/" alt="">
+
+
+
+    <script>
+        const images = ['img-0', 'img-1', 'img-2', 'img-3']
+
+        const dropContainer = document.querySelector('.drop-container')
+        const dragContainer = document.querySelector('.drag-container')
+
+        let finish = images.length;
+
+
+        let safeCounter = 1000
+
+        while (images.length && safeCounter > 0) {
+
+            const index = Math.floor(Math.random() * images.length)
+
+            const div = document.createElement('div')
+            div.className = 'puzzle-item drag'
+            div.id = images[index];
+            div.style.backgroundImage = `url("assets/${images[index]}.jpg")`
+            div.draggable = true
+            dragContainer.appendChild(div)
+
+            console.log(index);
+            images.splice(index, 1)
+            safeCounter -= 1
+
+        }
+
+        // images.forEach()
+
+
+        let placeholder
+
+        for (let i = 0; i < finish; i++) {
+
+            const div = document.createElement('div')
+            div.className = 'puzzle-item drop'
+            div.dataset.id = i
+
+            const p = document.createElement('p')
+            p.className = 'placeholder'
+
+            if (i === 0) {
+                placeholder = 'Zebra'
+            }
+            else if (i === 1) {
+                placeholder = 'Bear'
+            }
+            else if (i === 2) {
+                placeholder = 'Horse'
+            }
+            else {
+                placeholder = 'Elephant'
+            }
+            console.log(placeholder)
+
+            p.textContent = placeholder
+
+            div.appendChild(p)
+            dropContainer.appendChild(div)
+        }
+
+        dragContainer.addEventListener('dragstart', e => {
+            e.dataTransfer.setData('id', e.target.id)
+        })
+
+        dropContainer.addEventListener('dragover', e => {
+            e.preventDefault()
+            e.target.classList.add('hover')
+        })
+
+        dropContainer.addEventListener('dragleave', e => {
+            e.target.classList.remove('hover')
+        })
+
+        dropContainer.addEventListener('drop', event => {
+            event.target.classList.remove('hover')
+
+            const id = event.dataTransfer.getData('id')
+            const num = id.split('-')[1]
+
+            console.log('Drag: ' + num)
+
+            console.log('Drop: ' + event.target.dataset.id);
+
+            if (event.target.dataset.id === num) {
+
+                event.target.appendChild(document.getElementById(id))
+
+
+                finish--;
+
+                if (finish === 0) {
+
+                    const message = document.createElement('h1')
+                    message.className = 'win-message'
+                    message.textContent = "Has ganado"
+
+
+                    dragContainer.appendChild(message);
+                }
+
+            }
+        })
+
+    </script>
+
+
+</body>
+
+</html>
