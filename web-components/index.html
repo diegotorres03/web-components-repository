@@ -11,13 +11,65 @@
   <link rel="stylesheet" href="landing-assets/style.css">
   <link href="https://dev.iconly.io/public/jTeQl2K6iXoI/iconly.css" rel="stylesheet" />
 
+
+  <style>
+    :root {
+
+      /* DARK-THEME */
+      /* --bg-0: hsl(250, 0%, 10%);
+  --bg-1: hsl(250, 0%, 20%);
+  --bg-2: hsl(250, 0%, 30%);
+  --bg-3: hsl(250, 0%, 40%);
+  --bg-4: hsl(250, 0%, 50%);
+
+  --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
+
+  --tx-1: hsl(250, 0%, 90%);
+  --tx-2: hsl(250, 0%, 80%);
+  --tx-2: hsl(250, 0%, 70%); */
+
+      /* LIGHT-THEME */
+      --bg-0: hsl(250, 0%, 98%);
+      --bg-1: hsl(250, 0%, 90%);
+      --bg-2: hsl(250, 0%, 82%);
+      --bg-3: hsl(250, 0%, 74%);
+      --bg-4: hsl(250, 0%, 66%);
+
+
+      --mc-1: hsl(50, 40%, 52%);
+      --mc-2: hsl(50, 40%, 64%);
+      --mc-3: hsl(50, 40%, 90%);
+      --mc-4: hsl(50, 40%, 90%);
+
+      --tx-1: hsl(0, 0%, 16%);
+      --tx-2: hsl(0, 0%, 26%);
+      --tx-3: hsl(0, 0%, 36%);
+
+      --gr-1: linear-gradient(60deg, var(--bg-0) 0%, var(--mc-4) 100%);
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
 </head>
 
 <body>
 
+  <testimonial-card>
+
+
+  </testimonial-card>
+
+  <!-- 
+
+
   <landing-layout>
 
-    <!-- HEADER -->
+   
     <nav class="header-nav" slot="header-content">
 
       <div class="header-nav__logo">
@@ -72,7 +124,7 @@
 
     </nav>
 
-    <!-- HERO-SECTION -->
+
     <section class="hero__container" slot="hero">
 
       <div class="hero__left-content">
@@ -108,8 +160,8 @@
 
     </section>
 
-    <!-- BENEFIT-SECTION-TITLE -->
-    <div slot="benefit" id="benefit" class="main__title-box main__title-box--benefit">
+  
+    <div id="benefit" class="main__title-box main__title-box--benefit" slot="benefit">
 
       <h2 class="main__title-box-title main__title-box-title--benefit">With us</h2>
       <p class="benefit__description">You will have the following benefits Lorem ipsum dolor sit, amet consectetur
@@ -117,8 +169,8 @@
 
     </div>
 
-    <!-- BENEFIT-SECTION-CONTENT -->
-    <div slot="benefit" class="benefit__container">
+
+    <div class="benefit__container" slot="benefit">
 
       <drop-area clone>
         
@@ -188,7 +240,7 @@
 
     </div>
 
-    <!-- TESTIMONIAL-SECTION-TITLE -->
+
     <div class="main__title-box main__title-box--testimonial" slot="testimonial">
 
       <h2 class="main__title-box-title main__title-box-title--testimonial">Feedback</h2>
@@ -198,10 +250,16 @@
 
     </div>
 
-    <!-- TESTIMONIAL-SECTION-CONTENT -->
+  
     <div class="testimonial__container" slot="testimonial">
 
       <div class="testimonial__content">
+
+        <testimonial-card position="SuperDeveloper" company="Apple" name="Marco Del Boccio"
+          testimonial="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam ab nobis architecto ipsum ratione.">
+
+
+        </testimonial-card>
 
         <div class="testimonial-card">
 
@@ -291,7 +349,7 @@
 
     </div>
 
-    <!-- CALL-TO-ACTION-SECTION -->
+
     <div id="cta" class="cta__container" slot="cta">
 
       <div class="main__title-box main__title-box--cta">
@@ -311,7 +369,7 @@
 
     </div>
 
-    <!-- FOOTER-CONTAINER -->
+
     <div id="footer" class="footer__container" slot="footer">
 
       <nav class="footer__nav">
@@ -346,8 +404,7 @@
 
     </div>
 
-  </landing-layout>
-
+  </landing-layout> -->
 
 </body>
 
