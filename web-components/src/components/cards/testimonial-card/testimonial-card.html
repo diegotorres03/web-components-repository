@@ -8,7 +8,13 @@
     </div>
     <div class='testimonial-card__content'>
 
-        <p class="testimonial-card__testimonial">({testimonial})</p>
+        <!-- <p class="testimonial-card__testimonial">({testimonial})</p> -->
+        <slot class="testimonial-card__testimonial">
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, nulla nemo. Distinctio sequi quidem
+                omnis. Provident, fugit equi quidem nisi!'
+            </p>
+        </slot>
         <div class="testimonial-card__user-info">
 
             <strong class="testimonial-card__user-name">({name})</strong>

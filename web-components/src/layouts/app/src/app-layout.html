@@ -1,28 +1,59 @@
-<article class="super-container flex-column">
-  <header class="header-container flex-row align-items-center justify-content-center">
-    <slot name="header">HEADER</slot>
+<div class="al-container">
+
+  <header class="al-header">
+
+    <slot name="header">Header</slot>
+
   </header>
-  <section class="top-container flex-row">
-    <div class="left-header flex-row align-items-center">
-      <slot name="left-header">LEFT-HEADER</slot>
+  <div class="al-split">
+
+    <div class="al-split__left">
+
+      <section class="left__header">
+
+        <slot name="left-header">Left header</slot>
+
+      </section>
+      <section class="left__menu">
+
+        <div class="left__menu-content">
+
+          <slot name="left-content">Left menu</slot>
+
+        </div>
+
+      </section>
+
     </div>
-    <div class="top-menu flex-row align-items-center scroll">
-      <slot name="top-menu">TOP-MENU</slot>
-    </div>
-  </section>
-  <section class="main-container flex-row">
-    <div class="left-menu flex-column">
-      <div class="left-content">
-        <slot name="left-content">LEFT-CONTENT</slot>
+    <div class="al-split__right">
+
+      <section class="right__header ">
+
+        <slot name="right-header">
+
+          <span class="right-header__link-box">Right header</span>
+          <span class="right-header__link-box">tab-1</span>
+          <span class="right-header__link-box">tab-2</span>
+          <span class="right-header__link-box">tab-3</span>
+
+        </slot>
+
+      </section>
+      <div class="right__display">
+
+        <slot name="display">Display</slot>
+
       </div>
+
     </div>
-    <div class="right-container flex-column">
-      <div class="display-container flex-column justify-content-start align-items-center">
-        <slot name="main">MAIN</slot>
-      </div>
-      <footer class="footer flex-row align-items-center">
-        <slot name="footer">FOOTER</slot>
-      </footer>
-    </div>
-  </section>
-</article>
+
+  </div>
+
+  <footer class="al-footer">
+
+    <slot name="footer">Footer</slot>
+
+  </footer>
+
+
+</div>

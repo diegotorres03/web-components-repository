@@ -35,11 +35,10 @@
       --bg-3: hsl(250, 0%, 74%);
       --bg-4: hsl(250, 0%, 66%);
 
-
-      --mc-1: hsl(50, 40%, 52%);
-      --mc-2: hsl(50, 40%, 64%);
-      --mc-3: hsl(50, 40%, 90%);
-      --mc-4: hsl(50, 40%, 90%);
+      --mc-1: hsl(150, 40%, 52%);
+      --mc-2: hsl(150, 40%, 64%);
+      --mc-3: hsl(150, 40%, 84%);
+      --mc-4: hsl(150, 40%, 90%);
 
       --tx-1: hsl(0, 0%, 16%);
       --tx-2: hsl(0, 0%, 26%);
@@ -48,24 +47,34 @@
       --gr-1: linear-gradient(60deg, var(--bg-0) 0%, var(--mc-4) 100%);
     }
 
+    /* 
     body {
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+    } */
   </style>
 
 </head>
 
 <body>
 
-  <testimonial-card>
+  <app-layout></app-layout>
 
+  <!-- <testimonial-card name="Jake Hazard" position='Secret Agent' company="The Secret Service">
 
-  </testimonial-card>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio aliquid blanditiis sed ullam laboriosam animi
+      vitae quasi, veritatis eos dolor repellendus nihil, ipsam in quisquam recusandae doloribus mollitia, molestias
+      rem!</p>
+
+  </testimonial-card> -->
 
   <!-- 
-
+ testimonial =
+    'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, nulla nemo. Distinctio sequi quidem omnis. Provident, fugit equi quidem nisi!';
+  name = 'Jake Hazard';
+  position = 'Secret Agent';
+  company = 'The Secret Service';
 
   <landing-layout>
 
@@ -133,11 +142,11 @@
         <drop-area clone id="drop-area-1">
 
         </drop-area>
-        <!-- <script>
+        <script>
           const area1 = document.querySelector('#drop-area-1')
           console.log('area1',area1)
           area1.addEventListener('dropped', ev => alert('eso carajo'))
-        </script> -->
+        </script> 
 
         <h1 class="hero__title">Welcome to our landing page.</h1>
         <p class="hero__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati ea facilis
