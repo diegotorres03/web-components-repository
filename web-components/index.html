@@ -15,79 +15,41 @@
 
   <style>
     :root {
-      /* 👺 DARK-MONO-PALLETE */
 
-      --bg-0: hsl(250, 0%, 8%);
-      --bg-1: hsl(250, 0%, 14%);
-      --bg-2: hsl(250, 0%, 20%);
-      --bg-3: hsl(250, 0%, 26%);
-      --bg-4: hsl(250, 0%, 56%);
+      /* DARK-THEME */
+      /* --bg-0: hsl(250, 0%, 10%);
+  --bg-1: hsl(250, 0%, 20%);
+  --bg-2: hsl(250, 0%, 30%);
+  --bg-3: hsl(250, 0%, 40%);
+  --bg-4: hsl(250, 0%, 50%);
 
-      --gr-1: linear-gradient(0deg, hsl(250, 0%, 28%) 0%, hsl(250, 0%, 36%) 100%);
+  --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
 
-      --tx-1: hsl(250, 0%, 94%);
-      --tx-2: hsl(250, 0%, 64%);
+  --tx-1: hsl(250, 0%, 90%);
+  --tx-2: hsl(250, 0%, 80%);
+  --tx-2: hsl(250, 0%, 70%); */
 
-      /* 👺 DARK-COLOR-PALLETE */
+      /* LIGHT-THEME */
+      --bg-0: hsl(250, 0%, 98%);
+      --bg-1: hsl(250, 0%, 90%);
+      --bg-2: hsl(250, 0%, 82%);
+      --bg-3: hsl(250, 0%, 74%);
+      --bg-4: hsl(250, 0%, 66%);
 
-      /* --bg-0: hsl(450, 20%, 8%);
-    --bg-1: hsl(450, 10%, 14%);
-    --bg-2: hsl(450, 10%, 20%);
-    --bg-3: hsl(450, 20%, 26%);
-    --bg-4: hsl(450, 20%, 60%);
-  
-    --gr-1: linear-gradient(0deg, hsl(450, 20%, 28%) 0%, hsl(450, 20%, 36%) 100%);
-  
-    --tx-1: hsl(450, 10%, 94%);
-    --tx-2: hsl(450, 10%, 64%); */
+      --mc-1: hsl(150, 40%, 52%);
+      --mc-2: hsl(150, 40%, 64%);
+      --mc-3: hsl(150, 40%, 84%);
+      --mc-4: hsl(150, 40%, 90%);
 
-      /* 👺 DARK-MULTICOLOR-PALLETE */
+      --tx-1: hsl(0, 0%, 16%);
+      --tx-2: hsl(0, 0%, 26%);
+      --tx-3: hsl(0, 0%, 36%);
 
-      /* --bg-0: hsl(180, 40%, 8%);
-  --bg-1: hsl(180, 10%, 14%);
-  --bg-2: hsl(180, 10%, 20%);
-  --bg-3: hsl(100, 20%, 26%);
-  --bg-4: hsl(100, 30%, 60%);
-
-  --gr-1: linear-gradient(0deg, hsl(100, 20%, 28%) 0%, hsl(100, 20%, 36%) 100%);
-
-  --tx-1: hsl(100, 70%, 88%);
-  --tx-2: hsl(180, 10%, 64%); */
-
-      /* 👺 LIGHT-MONO-PALLETE */
-
-      /* --bg-0: hsl(550, 0%, 48%);
-    --bg-1: hsl(550, 0%, 76%);
-    --bg-2: hsl(550, 0%, 88%);
-    --bg-3: hsl(550, 0%, 80%);
-    --bg-4: hsl(550, 0%, 78%);
-  
-    --gr-1: linear-gradient(0deg, hsl(550, 0%, 54%) 0%, hsl(550, 0%, 62%) 100%);
-  
-    --tx-1: hsl(550, 0%, 24%);
-    --tx-2: hsl(550, 0%, 32%); */
-
-      /* 👺 LIGHT-COLOR-PALLETE */
-
-      /* --bg-0: hsl(319, 65%, 38%);
-      --bg-1: hsl(319, 20%, 86%);
-      --bg-2: hsl(319, 20%, 72%);
-      --bg-3: hsl(200, 20%, 60%);
-      --bg-4: hsl(200, 80%, 90%);
-
-      --gr-1: linear-gradient(0deg, hsl(200, 30%, 64%) 0%, hsl(200, 30%, 72%) 100%);
-
-      --tx-1: hsl(200, 30%, 28%);
-      --tx-2: hsl(319, 30%, 36%); */
+      --gr-1: linear-gradient(60deg, var(--bg-0) 0%, var(--mc-4) 100%);
     }
 
-    html,
+    /* 
     body {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* body {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -98,72 +60,7 @@
 <body>
 
 
-  
-  
-  <app-layout>
-
-    <shortcut-panel slot="main" >
-      <header>
-        <a title="crunchyroll" href="https://www.crunchyroll.com/" class="lse-header__link">cr</a>
-        <a title="github" href="https://github.com/" class="lse-header__link">gh</a>
-        <a title="duckduckgo" href="#" class="lse-header__link">dd</a>
-      
-        <a title="crunchyroll" href="#" class="lse-header__link">cr</a>
-        <a title="github" href="#" class="lse-header__link">gh</a>
-        <a title="duckduckgo" href="#" class="lse-header__link">dd</a>
-      </header>
-  
-      <main>
-        <nav name="folder-1">
-          <a href="#https://page.com/1">page1</a>
-          <a href="#https://page.com/2">page2</a>
-          <a href="#https://page.com/3">page3</a>
-          <a href="#https://page.com/4">page4</a>
-          <a href="#https://page.com/5">page5</a>
-        </nav>
-        <nav name="folder-2">
-          <a href="#https://page.com/3">page3</a>
-          <a href="#https://page.com/4">page4</a>
-        </nav>
-        <nav name="folder-3">
-          <a href="#https://page.com/4">page4</a>
-        </nav>
-      </main>
-  
-      <script>
-        const shortcutPanel = document.querySelector('shortcut-panel')
-        shortcutPanel.addEventListener('expandToggled', event => {
-          console.log('expandToggled', event.detail.value)
-        })
-  
-        shortcutPanel.addEventListener('linkClicked', event => {
-          console.log('linkClicked', event)
-        })
-      </script>
-  
-    </shortcut-panel>
-
-  </app-layout>
-
-  <!-- <ui-data-sync trigger="shortcut-panel" on="linkClicked">
-    <section>
-      <span data-key="url"></span>
-      <iframe data-key="url" data-attribute="src" src="" frameborder="0"></iframe>
-    </section>
-  </ui-data-sync> -->
-
-  <data-set trigger="shortcut-panel" on="linkClicked" visible></data-set>
-  
-  
-  
-  <!-- 
-  <app-modal trigger="#open-settings" on="click">
-
-  </app-modal>
-
-  <button id="open-settings">settings</button> -->
-
-  <!-- <app-layout></app-layout> -->
+  <app-layout></app-layout>
 
 </body>
 

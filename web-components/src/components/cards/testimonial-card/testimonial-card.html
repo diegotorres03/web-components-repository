@@ -1,0 +1,29 @@
+<div class='testimonial-card'>
+
+    <div class="quote-open">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="16 16 32 32">
+            <path style="fill: var(--mc-3, hsl(40, 90%, 40%));" class="quote-open__svg"
+                d="m26.668 18.668-5.336 10.664h8v16h-16v-16l5.336-10.664h8m21.332 0-5.332 10.664h8v16h-16v-16L40 18.668Zm0 0" />
+        </svg>
+    </div>
+    <div class='testimonial-card__content'>
+
+        <!-- <p class="testimonial-card__testimonial">({testimonial})</p> -->
+        <slot class="testimonial-card__testimonial">
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius, nulla nemo. Distinctio sequi quidem
+                omnis. Provident, fugit equi quidem nisi!'
+            </p>
+        </slot>
+        <div class="testimonial-card__user-info">
+
+            <strong class="testimonial-card__user-name">({name})</strong>
+            <p class="testimonial-card__user-position">({position}) in <strong
+                    class='testimonial-card__user-company'>({company})</strong></p>
+
+        </div>
+
+    </div>
+    <img class="testimonial-card__img" src="assets/testimonial-img-1.png" alt="" />
+
+</div>
