@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
 
-  width: 100%;
+  min-width: 100%;
   height: 100vh;
 
   color: var(--tx-1);
@@ -30,7 +30,7 @@
 .al-split {
   display: flex;
 
-  width: 100%;
+  min-width: 100%;
   height: 92%;
 }
 
@@ -40,6 +40,9 @@
 
   width: 25%;
   height: 100%;
+
+  resize: horizontal; /* Permite la redimensión en horizontal y vertical */
+  overflow: auto; /* Muestra las barras de desplazamiento si el contenido excede las dimensiones */
 }
 
 .left__header {
@@ -70,7 +73,7 @@
   display: flex;
   flex-direction: column;
 
-  width: 75%;
+  min-width: 75%;
   height: 100%;
 }
 

@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap");
+
+:root {
+  --dark-1: #1b1c1e;
+  --dark-2: #1f1f1f;
+  --dark-3: #2b2b2b;
+  --dark-4: #303030;
+  --dark-5: #3d3d3d;
+  --main: #a4b274;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--dark-5);
+
+  font-family: "Work Sans", monospace;
+}
+
+/* Contenedor supremo */
+
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: clamp(280px, 50%, 600px);
+  height: 50px;
+
+  padding: 0 12px;
+  border-radius: 4px;
+
+  border: 1px solid var(--dark-2);
+  background-color: var(--dark-1);
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.261);
+}
+
+/* Contenedor dentro de menu-container que alberga el logo */
+
+.menu-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  color: ghostwhite;
+}
+
+/* Logo */
+
+.menu-logo .logo {
+  font-size: 24px;
+  color: var(--main);
+}
+
+.menu-logo .logo-text {
+  font-size: 14px;
+}
+
+/* Contenedor dentro del menu-container que alberga los botones */
+
+.menu-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Botones dentro del nav */
+
+.menu-buttons .btn {
+  width: max-content;
+  height: auto;
+
+  font-size: 20px;
+
+  color: var(--main);
+  border: none;
+  background-color: transparent;
+
+  /*  */
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.25);
+}
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Contenedor de los elementos que activan el popover */
+
+.popover {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  /* El tamaño total del nav */
+  height: 50px;
+}
+
+/* Menú que contiene las opciones del popovers */
+
+.popover-menu {
+  position: absolute;
+  top: calc(100% - 4px);
+  right: -8px;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 150px;
+
+  padding: 0px;
+
+  /*  */
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.222);
+
+  transition: 0.3s;
+}
+
+.popover-menu::before {
+  content: "";
+
+  position: absolute;
+  top: -4px;
+  right: 8px;
+  z-index: -1;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 2px;
+
+  background-color: var(--dark-3);
+
+  transform: rotate(45deg);
+}
+
+.popover-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+
+  padding: 8px 12px;
+
+  font-family: inherit;
+  font-weight: 400;
+
+  border: none;
+  background-color: var(--dark-3);
+  color: var(--main);
+}
+
+.popover-btn:first-of-type {
+  border-radius: 4px 4px 0 0;
+}
+.popover-btn:last-of-type {
+  border-radius: 0 0 4px 4px;
+}
+
+.popover-btn:hover {
+  filter: brightness(1.05) contrast(95%);
+  cursor: pointer;
+}
+
+.popover-btn .icon {
+  font-size: 17px;
+}
+
+/* Hover que hace aparecer el popover menu */
+.popover:hover > .popover-menu {
+  transform: translateY(2px);
+  opacity: 1;
+  visibility: visible;
+}
