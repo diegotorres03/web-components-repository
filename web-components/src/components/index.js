@@ -8,3 +8,4 @@ export * from './graph';
 export * from './chart';
 export * from './cards';
 export * from './drag-drop'
+export * from './pop-over-menu'
