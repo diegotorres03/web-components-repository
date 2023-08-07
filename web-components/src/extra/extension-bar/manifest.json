@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "LinkSaver2",
+  "version": "1.0.1",
+
+  "description": "save and organize links",
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+
+  "permissions": [
+    "activeTab",
+    "tabs", 
+    "webRequest",
+    "webNavigation",
+    "clipboardRead"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["*://*.easyarchery.net/*"],
+      "js": ["main.js"]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<article class="lse-container toggle-up power-bar_container">
+
+    <header class="lse-header">
+  
+      <div class="lse-header__title-box">
+  
+        <!-- Título encima de la extensión, no debe afectar la experiencia -->
+        <h1 class="lse-header__title">Link Saving Extension v1</h1>
+  
+      </div>
+      <nav id="header-nav" data-dragdrop class="lse-header__nav">
+        <!-- 
+              <slot name="header">
+                <a draggable="true" title="crunchyroll" href="#" class="lse-header__link">cr</a>       
+              </slot> -->
+  
+  
+  
+        <!-- Este será el acceso rápido de los links -->
+        <ul data-dragdrop class="lse-header__link-list">
+          <!-- 🤖 Autofilled -->
+  
+          <!-- <button>+</button> -->
+        </ul>
+  
+      </nav>
+  
+    </header>
+    <section class="lse-settings  disabled">
+  
+      <div class="lse-settings__url-box">
+  
+        <button id="setting-toggle" class="lse-settings__setting-btn lse-settings__setting-btn--url"><i
+            class="icon-url"></i></button>
+        <input class="lse-input lse-input--url" placeholder="Insert url here" type="text">
+  
+      </div>
+  
+      <input name="linkName" class="lse-input lse-input--name" type="text" placeholder="Insert name here">
+      <button id="saveLink-btn" class="lse-settings__setting-btn save">💾<i class="icon-save"></i></button>
+  
+      <button class="lse-settings__setting-btn settings"><i class="icon-setting"></i></button>
+  
+    </section>
+    <section class="lse-folder">
+  
+      <!-- 🤖 Autofilled -->
+      <div id="main-list-section" class="lse-folder__container"></div>
+  
+    </section>
+    <!-- 🖊️ TODO: hover on bar expand it so when not in use, size is minimal -->
+    <section id="expandToggle-btn" class="lse-dropdown">
+  
+      <button class="lse-dropdown__btn"></button>
+      <!-- <button>⚙️</button> -->
+  
+    </section>
+  
+  
+  </article>

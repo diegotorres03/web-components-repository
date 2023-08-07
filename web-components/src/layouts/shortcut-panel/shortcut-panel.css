@@ -1,0 +1,401 @@
+/* @import 'node_modules/dragula/dragula'; */
+/* @import '../../../node_modules/dragula/dragula'; */
+
+.lse-container * {
+  box-sizing: border-box;
+
+  padding: 0;
+  margin: 0;
+}
+
+.selected-folder {
+  border: 1px solid red;
+}
+
+.lse-container {
+  position: relative;
+  z-index: 450;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 360px;
+
+  font-family: monospace;
+}
+
+.lse-container::before {
+  position: absolute;
+  z-index: -1;
+
+  content: '';
+  width: 100%;
+  height: 100%;
+
+  border-radius: 18px;
+
+  background-color: var(--bg-1);
+
+  transition: all 0.2s ease;
+}
+
+.toggle-up.lse-container::before {
+  border: 0.5px solid var(--bg-0);
+  width: 359px;
+}
+
+
+/* HEADER */
+
+.lse-header {}
+
+.lse-header__title-box {
+  /* height: 27px; */
+
+  padding: 8px 12px;
+  border-radius: 8px 8px 0 0;
+
+  background-color: var(--bg-1);
+}
+
+.toggle-up .lse-header__title-box {
+  height: 0;
+  padding: 0;
+  opacity: 0;
+
+  transition: all 0.2s ease 0s, opacity 0s ease;
+}
+
+.lse-header__title {
+  font-size: 10px;
+  font-weight: 300;
+  text-transform: lowercase;
+  color: var(--tx-2);
+}
+
+.lse-header__nav {
+  padding: 12px;
+  border-radius: 0;
+
+  background-color: var(--bg-2);
+}
+
+.toggle-up .lse-header__nav {
+  width: 100%;
+  border-radius: 16px;
+  border: 0.5px solid var(--bg-0);
+}
+
+.lse-header__link-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  list-style: none;
+}
+
+.lse-header__link-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* width: calc(100% / 6); */
+  width: 49.33px;
+  height: 32px;
+
+  border-radius: 4px;
+
+  background-color: var(--bg-1);
+}
+
+.lse-header__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 8px;
+  border-radius: 4px;
+
+  font-size: 14px;
+  color: var(--tx-1);
+  text-decoration: none;
+
+  border: solid var(--bg-4);
+  border-width: 0.5px 0 0 0;
+  outline: 0.5px solid var(--bg-0);
+
+  background: var(--gr-1);
+}
+
+.lse-header__link:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.lse-header__link:active {
+  filter: brightness(0.8);
+
+  transition: all 0s ease;
+}
+
+/* SETTINGS */
+
+.lse-settings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  height: 58px;
+
+  padding: 12px;
+
+  border: 1px solid var(--bg-3);
+  border-width: 1px 0;
+
+  background: var(--bg-2);
+
+  transition: all 0.2s ease, opacity 0.4s ease 0.2s;
+}
+
+/* UNIVERSAL */
+
+.lse-settings__setting-btn {
+  min-width: 32px;
+  height: 32px;
+
+  border-radius: 4px;
+
+  font-size: 20px;
+  color: var(--tx-1);
+
+  border: solid var(--bg-4);
+  border-width: 0.5px 0 0 0;
+  outline: 0.5px solid var(--bg-0);
+
+  background: var(--gr-1);
+
+  transition: all 0.2s ease;
+}
+
+.lse-settings__setting-btn:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.lse-settings__setting-btn:active {
+  filter: brightness(0.8);
+
+  transition: all 0s ease;
+}
+
+.lse-input {
+  width: 100%;
+  height: 32px;
+
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  font-size: 12px;
+  color: var(--tx-2);
+
+  border: none;
+  outline: 0.5px solid var(--bg-0);
+
+  background-color: var(--bg-1);
+}
+
+input:focus {
+  outline: 0.5px solid var(--bg-0);
+
+  filter: brightness(1.2);
+}
+
+.lse-settings__url-box {
+  width: 130%;
+  display: flex;
+  align-items: center;
+
+  height: 32px;
+}
+
+.lse-settings__setting-btn--url {
+  z-index: 1000;
+
+  border-radius: 4px 0 0 4px;
+}
+
+.disabled .lse-settings__setting-btn--url {
+  border-radius: 4px;
+}
+
+.lse-input--url {
+  width: 100%;
+  border-radius: 0 4px 4px 0;
+  z-index: 500;
+
+  transition: all 0.2s ease, opacity 0.2s ease 0.2s;
+}
+
+/* Clase activadora */
+
+.disabled .lse-input--url {
+  width: 0%;
+  padding: 0;
+
+  opacity: 0;
+
+  transition: all 0.2s ease 0.2s, opacity 0.2s ease;
+}
+
+.lse-input--name {
+  width: 100%;
+
+  transition: all 0.2s ease;
+}
+
+/* Clase activadora */
+
+.disabled .lse-input--name {
+  width: 1000%;
+
+  transition: all 0.2s ease 0.2s;
+}
+
+/* FOLDER */
+
+.lse-folder {
+  height: 203.86px;
+  /* height: 100%; */
+  padding: 12px;
+
+  border: 1px solid var(--bg-3);
+  border-width: 0px 0px 1px;
+
+  background: var(--bg-2);
+
+  border-radius: 0 0 12px 12px;
+
+  transition: all 0.2s ease, opacity 0.4s ease 0.2s;
+}
+
+.lse-folder__container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lse-folder__folder {
+  width: calc(100% / 3);
+  padding: 8px;
+  border-radius: 4px;
+
+  outline: 0.5px solid var(--bg-0);
+  background-color: var(--bg-1);
+}
+
+.lse-folder__folder-title {
+  text-transform: lowercase;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 10px;
+  margin: 0 0px 8px;
+  color: var(--tx-2);
+}
+
+.folder__folder-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1px;
+  gap: 4px;
+
+  width: 100%;
+  height: 148px;
+
+  overflow-y: auto;
+}
+
+.folder__folder-items * {
+  height: calc(100% / 7);
+  /* height: 20.8px; */
+
+  border-radius: 2px;
+  font-size: 10px;
+}
+
+/* FOOTER */
+
+.lse-dropdown {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 18px;
+
+  border-radius: 0 0 18px 18px;
+
+  cursor: pointer;
+}
+
+.lse-container:hover.lse-container::before {
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+.lse-dropdown__btn {
+  position: absolute;
+  top: -5px;
+
+  border: none;
+  font-size: 24px;
+  background-color: transparent;
+
+  color: var(--tx-1);
+
+  cursor: pointer;
+
+  transform: rotate(180deg);
+
+  transition: all 0.4s ease 0.2s;
+}
+
+.toggle-up .lse-settings {
+  height: 0px;
+  padding: 0 8px;
+  border: none;
+  overflow: hidden;
+
+  opacity: 0;
+
+  transition: all 0.2s ease 0.2s, opacity 0.2s ease;
+}
+
+.toggle-up .lse-folder {
+  height: 0px;
+  padding: 0 8px;
+  border: none;
+  overflow: hidden;
+
+  opacity: 0;
+
+  transition: all 0.2s ease 0.2s, opacity 0.2s ease;
+}
+
+.toggle-up .lse-dropdown__btn {
+  /* top: -4px; */
+  color: var(--tx-1);
+
+  transform: rotate(0deg);
+
+  transition: all 0.4s ease 0.2s;
+}

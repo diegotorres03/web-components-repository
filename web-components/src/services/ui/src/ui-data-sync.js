@@ -53,7 +53,7 @@ export default class UIDataSyncComponent extends HTMLElement {
   updateValues(event) {
     const data = event.detail || event.target && event.target.dataset
     console.time('ui-data-sync updateValues')
-
+console.table(data)
     if (!Array.isArray(this.#children) || this.#children.length === 0) return
 
     // const firstItem = this.#children[0]
@@ -68,7 +68,7 @@ export default class UIDataSyncComponent extends HTMLElement {
 
 
     this.#children.forEach(firstItem => {
-      // console.log('firstItem', firstItem)
+      console.log('firstItem', firstItem, keys)
 
       // firstItem.querySelector
       keys
@@ -92,8 +92,8 @@ export default class UIDataSyncComponent extends HTMLElement {
               // field[attr] = data[key]
             }
             const attr = field.dataset.attribute
-            console.log('attr', attr)
             field.setAttribute(attr, data[key])
+            console.log('attr', attr,field.getAttribute(attr))
           })
 
         })

@@ -1,0 +1,87 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "LinkSavingExtension": {
+      "name": "LinkSavingExtension",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "bin": {
+      "name": "bin",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "cdk.out": {
+      "name": "cdk.out",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "docs": {
+      "name": "docs",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "dwck": {
+      "name": "dwck",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "infra": {
+      "name": "infra",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "lambda": {
+      "name": "lambda",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "lib": {
+      "name": "lib",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "test": {
+      "name": "test",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "wc-demo-page": {
+      "name": "wc-demo-page",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "web-components": {
+      "name": "web-components",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "web-test": {
+      "name": "web-test",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "workshop": {
+      "name": "workshop",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {
+    "README": 0
+  }
+}
