@@ -1,25 +1,19 @@
-
-<div class="popover">
-
+<div class="popover__container">
     <!-- <button class="btn"><span class="icon-menu"></span></button> -->
+    <div class="popover">
 
-    <div class="popover-menu">
-        <slot>
-            
-                    <button class="popover-btn">
-                        <span class="icon icon-music-note-2"></span><span>Jazz</span>
-                    </button>
-                    <button class="popover-btn">
-                        <span class="icon icon-music-note-2"></span><span>Hip-hop</span>
-                    </button>
-                    <button class="popover-btn"><span class="icon icon-music-note-2">
-                        </span><span>Blues</span>
-                    </button>
-                    <button class="popover-btn">
-                        <span class="icon icon-music-note-2"></span><span>Pop</span>
-                    </button>
+        <div class="popover__options">
 
-        </slot>
+            <slot class="popover__slot">
+
+                <button class="popover__btn">btn-1</button>
+                <button class="popover__btn">btn-2</button>
+                <button class="popover__btn">btn-3</button>
+                <button class="popover__btn">btn-4</button>
+
+            </slot>
+
+        </div>
 
     </div>
 

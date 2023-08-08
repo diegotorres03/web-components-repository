@@ -14,122 +14,6 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* 🧰 tools 🧰 */
-/* flex display */
-
-.flex-row {
-  display: flex;
-}
-.flex-row-reverse {
-  display: flex;
-  flex-flow: row-reverse;
-}
-.flex-column {
-  display: flex;
-  flex-flow: column;
-}
-.flex-column-reverse {
-  display: flex;
-  flex-flow: column-reverse;
-}
-
-/* justify-content */
-
-.justify-content-center {
-  justify-content: center;
-}
-.justify-content-end {
-  justify-content: flex-end;
-}
-.justify-content-between {
-  justify-content: space-between;
-}
-.justify-content-around {
-  justify-content: space-around;
-}
-.justify-content-evenly {
-  justify-content: space-evenly;
-}
-
-/* align-content */
-
-.align-content-center {
-  align-content: center;
-}
-.align-content-end {
-  align-content: flex-end;
-}
-.align-content-between {
-  align-content: space-between;
-}
-.align-content-around {
-  align-content: space-around;
-}
-
-.align-content-evenly {
-  align-content: space-evenly;
-}
-
-/* justify-items */
-
-.justify-items-center {
-  justify-items: center;
-}
-.justify-items-end {
-  justify-items: flex-end;
-}
-
-/* align-items */
-
-.align-items-center {
-  align-items: center;
-}
-.align-items-end {
-  align-items: flex-end;
-}
-.align-items-stretch {
-  align-items: stretch;
-}
-.align-items-baseline {
-  align-items: baseline;
-}
-
-/* grid */
-
-/* position */
-
-.absolute {
-  position: absolute;
-}
-
-.relative {
-  position: relative;
-}
-
-.fixed {
-  position: fixed;
-}
-
-/* text position */
-
-.text-center {
-  text-align: center;
-}
-
-.text-end {
-  text-align: end;
-}
-
-.text-justify {
-  text-align: justify;
-}
-
-/* List Styles */
-
-.list-style-none {
-  list-style: none;
-}
-
 /* Presets */
 
 a {
@@ -139,14 +23,16 @@ a {
 button {
   padding: 8px 24px;
   border: none;
+  border-radius: 0.4em;
 
-  background-color: silver;
+  color: var(--tx-1);
+  background-color: var(--bg-2);
 
   cursor: pointer;
 }
 
 .clickable {
-  display: block;
+  /* display: block; */
   transition: all 0.2s ease;
 }
 .clickable:hover {
@@ -156,7 +42,3 @@ button {
   filter: brightness(0.95);
   transform: scale(0.95);
 }
-
-/* flip-card {
-  display: block;
-} */

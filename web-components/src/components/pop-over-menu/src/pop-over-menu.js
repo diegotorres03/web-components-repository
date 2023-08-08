@@ -23,7 +23,7 @@ export default class PopOverMenuComponent extends HTMLElement {
    */
   
   get #isOpened() {
-    return this.shadowRoot.querySelector('.popover-menu').classList.contains('open')
+    return this.shadowRoot.querySelector('.popover').classList.contains('open')
   }
   
   /**
@@ -33,8 +33,8 @@ export default class PopOverMenuComponent extends HTMLElement {
    * @memberof PopOverMenuComponent
    */
   set #isOpened(value) {
-    if(value) this.shadowRoot.querySelector('.popover-menu').classList.add('open')
-    else this.shadowRoot.querySelector('.popover-menu').classList.remove('open')
+    if(value) this.shadowRoot.querySelector('.popover').classList.add('open')
+    else this.shadowRoot.querySelector('.popover').classList.remove('open')
   }
 
   constructor() {
@@ -50,10 +50,10 @@ export default class PopOverMenuComponent extends HTMLElement {
 
   toggle() {
     if(this.#isOpened) {
-      this.shadowRoot.querySelector('.popover-menu').classList.remove('open')
+      this.shadowRoot.querySelector('.popover').classList.remove('open')
       return 
     }
-    this.shadowRoot.querySelector('.popover-menu').classList.add('open')
+    this.shadowRoot.querySelector('.popover').classList.add('open')
 
   }
 
