@@ -5,13 +5,18 @@ import { Command } from 'commander'
 
 import * as CreateProjectFolder from './bin/projectTools.js'
 import { exec } from 'child_process'
+// import {version} from './package.json'
+import {readFileSync} from 'fs'
+
+
+const { version } = JSON.parse(readFileSync('./package.json'))
 
 const program = new Command()
 
 program
   .name('dwck')
   .description("A CLI for Diego's Web Components Kit (DWCK)")
-  .version('0.0.1')
+  .version(version)
 
 program
   .command('project')
