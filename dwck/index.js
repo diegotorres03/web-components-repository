@@ -36,9 +36,10 @@ program
 
 
 async function selectIndexFile(name) {
-  const indexHtml = await readFile(`./index.${name}.html`, 'utf-8')
-  console.log(indexHtml)
-  await writeFile(`./index.html`, indexHtml)
+  await exec(`ln -s ./index.${name}.html ./index.html`)
+  // const indexHtml = await readFile(`./index.${name}.html`, 'utf-8')
+  // console.log(indexHtml)
+  // await writeFile(`./index.html`, indexHtml)
 }
 
 program
