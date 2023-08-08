@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile } from 'fs/promises'
+import { readFile, writeFile,rm } from 'fs/promises'
 import { Command } from 'commander'
 
 import * as CreateProjectFolder from './bin/projectTools.js'
@@ -36,16 +36,19 @@ program
 
 
 async function selectIndexFile(name) {
+  await rm('./index.html', { force: true })
   await exec(`ln -s ./index.${name}.html ./index.html`)
-  // const indexHtml = await readFile(`./index.${name}.html`, 'utf-8')
-  // console.log(indexHtml)
-  // await writeFile(`./index.html`, indexHtml)
 }
 
 program
   .command('serve')
   .argument('<name>', 'Name of the index file to run, like index.app1.html')
-  .description('run a specific index.<name>.html so you can have multiple versions in a single file')
+  .description(`run a specific index.<name>.html
+so you can have multiple versions of your application 
+runnung single index.html.
+They way it works is when a file is selected, an ln -s
+command run to create a link to the selected file.
+`)
   .action(async (name, options) => {
     console.log('name, options', name, options)
     await selectIndexFile(name)
