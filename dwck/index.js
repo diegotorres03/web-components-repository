@@ -9,7 +9,8 @@ import { exec } from 'child_process'
 import {readFileSync} from 'fs'
 
 
-const { version } = JSON.parse(readFileSync('./package.json'))
+const version = '1.1.3'
+// const { version } = JSON.parse(readFileSync('./package.json'))
 
 const program = new Command()
 

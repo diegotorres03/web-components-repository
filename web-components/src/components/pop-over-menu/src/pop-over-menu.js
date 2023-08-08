@@ -67,9 +67,16 @@ export default class PopOverMenuComponent extends HTMLElement {
         // this is the same button indicated in the for attribute
         event.target.addEventListener('mouseout', () => this.#isOpened = false)
       }
-  
+      
       if(eventName === 'click') {
         this.toggle()
+        // this.#isOpened = true
+        // const close = () => {
+        //   this.#isOpened = false
+        //   document.removeEventListener('click', close)
+        // }
+        // document.addEventListener('click', close)
+      
       }
     })
   }
