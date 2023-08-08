@@ -10,6 +10,7 @@ const REPO_URL =
 function clearTerminal() {
   process.stdout.write('\x1Bc');
 }
+
 function updateProgressBar(progressBar, tickValue) {
   readline.clearLine(process.stdout, 0);
   readline.cursorTo(process.stdout, 0);

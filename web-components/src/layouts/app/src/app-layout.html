@@ -29,19 +29,39 @@
 
       <section class="right__header ">
 
-        <slot name="right-header">
+        <!-- <slot name="right-header"> -->
+        <!-- REVIEW @marco:
+          parce, me gusta mas la nomenclaruta top aca, q pensas?
+          por ejemplo, top-menu, top-nav o solo top
+        -->
+        <slot name="top-menu">
 
-          <span class="right-header__link-box">Right header</span>
+          <!-- <span class="right-header__link-box">Right header</span>
           <span class="right-header__link-box">tab-1</span>
           <span class="right-header__link-box">tab-2</span>
-          <span class="right-header__link-box">tab-3</span>
+          <span class="right-header__link-box">tab-3</span> -->
 
         </slot>
 
       </section>
       <div class="right__display">
 
-        <slot name="display">Display</slot>
+        <!-- <slot name="display">Display</slot> -->
+        <slot name="main">
+          <h1>Main</h1>
+          <p>To call this element, use the slot <b>main</b>.</p>
+
+          <pre>
+            <code>
+              &lt;app-layout&gt;
+
+                &lt;section slot="main"&gt;&lt;/section&gt;
+
+              &lt;/app-layout&gt;
+            </code>
+          </pre>
+
+        </slot>
 
       </div>
 

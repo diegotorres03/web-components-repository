@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script>
+  <link rel="stylesheet" href="landing-assets/style.css">
+  <link href="https://dev.iconly.io/public/jTeQl2K6iXoI/iconly.css" rel="stylesheet" />
+  <link href="https://dev.iconly.io/public/g7Vp40cOBAZx/iconly.css" rel="stylesheet" />
+
+
+  <style>
+    :root {
+
+      /* DARK-THEME */
+      /* --bg-0: hsl(250, 0%, 10%);
+  --bg-1: hsl(250, 0%, 20%);
+  --bg-2: hsl(250, 0%, 30%);
+  --bg-3: hsl(250, 0%, 40%);
+  --bg-4: hsl(250, 0%, 50%);
+
+  --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
+
+  --tx-1: hsl(250, 0%, 90%);
+  --tx-2: hsl(250, 0%, 80%);
+  --tx-2: hsl(250, 0%, 70%); */
+
+      /* LIGHT-THEME */
+      --bg-0: hsl(250, 0%, 98%);
+      --bg-1: hsl(250, 0%, 90%);
+      --bg-2: hsl(250, 0%, 82%);
+      --bg-3: hsl(250, 0%, 74%);
+      --bg-4: hsl(250, 0%, 66%);
+
+      --mc-1: hsl(150, 40%, 52%);
+      --mc-2: hsl(150, 40%, 64%);
+      --mc-3: hsl(150, 40%, 84%);
+      --mc-4: hsl(150, 40%, 90%);
+
+      --tx-1: hsl(0, 0%, 16%);
+      --tx-2: hsl(0, 0%, 26%);
+      --tx-3: hsl(0, 0%, 36%);
+
+      --gr-1: linear-gradient(60deg, var(--bg-0) 0%, var(--mc-4) 100%);
+    }
+
+    /* 
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    } */
+    a {
+      color: azure;
+    }
+
+    .flex-row {
+      display: flex;
+      width: 100%;
+    }
+
+    .space-around {
+      justify-content: space-around;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <app-layout>
+
+    <nav slot="top-menu" class="flex-row space-around">
+      <span><a href="#">home</a></span>
+      <a href="#track">Track</a>
+      <a href="#team">Team</a>
+    </nav>
+
+    <nav slot="left-content">
+
+      <button id="pop1">parent1</button>
+      <!-- <button id="pop1">parent1</button>
+      <button id="pop1">parent1</button> -->
+
+
+      <pop-over-menu for="pop1" on="click">
+        <button>parent</button>
+        <a href="">parent</a>
+        <button>parent</button>
+        <span>parent</span>
+      </pop-over-menu>
+
+    </nav>
+
+    <app-router slot="main">
+
+      <style>
+        .hidden {
+          display: none;
+        }
+      </style>
+
+      <!-- <app-route>default</app-route> -->
+
+      <app-route class="flex-row">
+        <h1>Home</h1>
+      </app-route>
+
+      <app-route hash="track" class="flex-row">
+        <h1>Track</h1>
+      </app-route>
+
+      <app-route hash="team" class="flex-row">
+        <h1>Team</h1>
+      </app-route>
+
+
+    </app-router>
+
+  </app-layout>
+
+</body>
+
+</html>
