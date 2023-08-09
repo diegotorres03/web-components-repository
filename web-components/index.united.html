@@ -12,8 +12,16 @@
       color: azure;
     }
 
+
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
     .flex-row {
       display: flex;
+      flex-direction: row;
       width: 100%;
     }
 
@@ -32,29 +40,185 @@
 <body>
 
 
-  <app-layout>
+  <app-layout hide-left>
     <h1 slot="header">United</h1>
     <span slot="left-header"></span>
 
-    <div slot="left-content" hidden>left</div>
+    <div slot="left-content">left</div>
 
-    <nav slot="top-menu">
-      <a id="home" href="#home">home</a>
-      <pop-over-menu for="home" on="click">
-        <button>dashboard</button>
-      </pop-over-menu>
+    <nav slot="top-menu" style="width: 100%;">
+      <div class="flex-row space-around">
 
-      <a id="delays" href="#delays">delays</a>
-      <pop-over-menu for="delays" on="click">
-        <button>current delays</button>
-        <button>risk of delay</button>
-        <button>other</button>
-      </pop-over-menu>
+        <button id="hide-left">hide left</button>
 
-      
+        <div>
+          <a id="home" href="#home">home</a>
+          <pop-over-menu for="home" on="click">
+            <button>dashboard</button>
+          </pop-over-menu>
+        </div>
+
+        <div>
+          <a id="delays" href="#delays">delays</a>
+          <pop-over-menu for="delays" on="click">
+            <button>current delays</button>
+            <button>risk of delay</button>
+            <button>other</button>
+          </pop-over-menu>
+        </div>
+      </div>
+
     </nav>
+
+
+    <section slot="main" class="flex-column">
+
+      <div class="flex-row space-around">
+        <label for="">something</label>
+        <select name="" id="">
+          <option value="">option 1</option>
+          <option value="">option 2</option>
+          <option value="">option 3</option>
+        </select>
+
+        <label for="">other thing</label>
+        <input type="text" placeholder="🔍">
+        <button>submit</button>
+      </div>
+
+      <table border="1">
+        <thead>
+          <tr>
+            <th>field 1</th>
+            <th>field 2</th>
+            <th>field 3</th>
+            <th>field 4</th>
+            <th>field 5</th>
+            <th>field 6</th>
+            <th>field 7</th>
+            <th>field 8</th>
+            <th>field 9</th>
+            <th>field 10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>field 1</td>
+            <td>field 2</td>
+            <td>field 3</td>
+            <td>field 4</td>
+            <td>field 5</td>
+            <td>field 6</td>
+            <td>field 7</td>
+            <td>field 8</td>
+            <td>field 9</td>
+            <td>field 10</td>
+          </tr>
+
+          <tr>
+            <td>field 1</td>
+            <td>field 2</td>
+            <td>field 3</td>
+            <td>field 4</td>
+            <td>field 5</td>
+            <td>field 6</td>
+            <td>field 7</td>
+            <td>field 8</td>
+            <td>field 9</td>
+            <td>field 10</td>
+          </tr>
+
+          <tr>
+            <td>field 1</td>
+            <td>field 2</td>
+            <td>field 3</td>
+            <td>field 4</td>
+            <td>field 5</td>
+            <td>field 6</td>
+            <td>field 7</td>
+            <td>field 8</td>
+            <td>field 9</td>
+            <td>field 10</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
   </app-layout>
 
+
+  <app-modal trigger="table" on="click">
+    <h3 slot="title">Customer Story</h3>
+    <section slot="main" class="flex-column">
+      <div class="flex-row space-around" style="width: 100%;">
+        <span>item 1</span>
+        <span>item 2</span>
+        <span>item 3</span>
+      </div>
+      <div class="flex-row space-around" style="width: 100%;">
+        <div>
+          <input type="checkbox" name="" id=" ">
+          <label for="">Template</label>
+        </div>
+        <div>
+          <b>IOM Partial Control Enabled</b>
+        </div>
+      </div>
+      <textarea name="" id="" cols="30" rows="5"></textarea>
+      <small>233/400</small>
+      <div class="flex-row space-around" style="width: 100%;">
+        <label>ETA UPLINE</label>
+        <label>ETA DOWNLINE</label>
+        <label>ETD</label>
+        <label>UPLINE DEP</label>
+        <label>CURR DEP</label>
+        <label>CURR ARR</label>
+        <label>GATE NO</label>
+      </div>
+      <hr>
+      <div class="flex-row space-around" style="width: 100%;">
+        <div class="flex-column">
+          <div>
+            <input type="checkbox" name="" id="">
+            <label for="">Remind me in:</label>
+          </div>
+          <div>
+            <input type="checkbox" name="" id="">
+            <label for="">Remind me if ETD extended By:</label>
+          </div>
+        </div>
+        
+        <div class="flex-column">
+          <input type="time" name="" id="">
+          <select name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
+        </div>
+
+      </div>
+
+    </section>
+  </app-modal>
+
+  <script>
+    const btn = document.querySelector('#hide-left')
+    const left = document.querySelector('app-layout')
+    let hidden = true
+    console.log(left, btn)
+    btn.addEventListener('click', event => {
+      console.log(event, hidden)
+      if (hidden) left.removeAttribute('hide-left')
+      else left.setAttribute('hide-left', '')
+      hidden = !hidden
+      // left.setAttribute('hidden','')
+      // if(!left.isHidden) left.setAttribute('hidden','')
+      // else left.removeAttribute('hidden')
+
+    })
+  </script>
 
 </body>
 

@@ -11,6 +11,15 @@ import globalStyles from '../../../global/style-tools.css'
 
 export default class AppLayoutComponent extends HTMLElement {
 
+  static get observedAttributes() {
+    return ['hide-left']
+  }
+
+  get isHidden() {
+    //
+    return this.shadowRoot.querySelector('[data-left-content-hide]').style.display === 'none'
+  }
+
   constructor() {
     super()
     const template = html`
@@ -20,6 +29,11 @@ export default class AppLayoutComponent extends HTMLElement {
     `
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
+  }
+
+  showLeftContent() {
+    const leftContent = this.shadowRoot.querySelector('[data-left-content-hide]')
+    leftContent.style.display = 'flex'
   }
 
   hideLeftContent() { 
@@ -36,14 +50,22 @@ export default class AppLayoutComponent extends HTMLElement {
     console.log(globalStyles)
     const leftContent = this.querySelector('[slot="left-content"]')
     console.log('leftContent', leftContent)
-    if(leftContent.hasAttribute('hidden')) {
+    if(leftContent.hasAttribute('hide-left')) {
       this.hideLeftContent()
     }
   }
 
   disconnectedCallback() { }
 
-  attributeChangedCallback(name, oldValue, newValue) { }
+  attributeChangedCallback(name, oldValue, newValue) {
+    // console.log(name, oldValue, newValue)
+    if(name === 'hide-left') {
+      console.log('hide-left', newValue)
+      if(newValue === null) this.hideLeftContent()
+      else this.showLeftContent()
+    
+    }
+  }
 
   adoptedCallback() { }
 
