@@ -22,6 +22,11 @@ export default class AppLayoutComponent extends HTMLElement {
     this.shadowRoot.appendChild(template)
   }
 
+  hideLeftContent() { 
+    const leftContent = this.shadowRoot.querySelector('[data-left-content-hide]')
+    leftContent.style.display = 'none'
+    console.log('leftContent', leftContent)
+  }
 
   connectedCallback() {
     mapComponentEvents(this)
@@ -29,6 +34,11 @@ export default class AppLayoutComponent extends HTMLElement {
     registerTriggers(this, (event) => console.log(event))
 
     console.log(globalStyles)
+    const leftContent = this.querySelector('[slot="left-content"]')
+    console.log('leftContent', leftContent)
+    if(leftContent.hasAttribute('hidden')) {
+      this.hideLeftContent()
+    }
   }
 
   disconnectedCallback() { }

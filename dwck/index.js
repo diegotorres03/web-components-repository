@@ -71,4 +71,7 @@ command run to create a link to the selected file.
     })
   })
 
+// [ ] Add command to update components library
+ 
+
 program.parse(process.argv)

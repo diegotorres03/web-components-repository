@@ -75,6 +75,7 @@ async function cloneWebComponentsFolderFromRepo(tempFolderPath) {
     await gitSparseClone(REPO_URL, tempFolderPath, sparsePath);
     console.log('Sparse clone completed.');
   } catch (error) {
+    console.warn('Sparse clone failed.');
     console.error('An error occurred:', error);
   }
 }
