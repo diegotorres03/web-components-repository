@@ -31,6 +31,31 @@
     .hidden {
       display: none;
     }
+
+    .header__div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      /* padding: 4px 8px; */
+      /* border-radius: 4px; */
+
+      /* background-color: var(--bg-4); */
+
+    }
+
+    .header__div-toggle {
+      font-size: 12px;
+
+      width: fit-content;
+      background-color: var(--bg-0);
+      padding: 4px;
+    }
+
+    .header__div-title {
+      font-size: 16px;
+      padding: 2px;
+    }
   </style>
 
 
@@ -40,10 +65,10 @@
 
   <app-layout hide-left>
 
-    <div slot="header" class="flex-row">
+    <div slot="header" class="header__div">
 
-      <button id="hide-left">🍔</button>
-      <h1>United</h1>
+      <button class="header__div-toggle clickable" id="hide-left">🍔</button>
+      <h1 class="header__div-title">United</h1>
 
     </div>
 

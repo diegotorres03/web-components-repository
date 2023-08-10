@@ -32,7 +32,6 @@ button {
 }
 
 .clickable {
-  /* display: block; */
   transition: all 0.2s ease;
 }
 .clickable:hover {
