@@ -66,25 +66,34 @@
   <app-layout hide-left>
 
 
-    <h1 class="left-header" slot="left-header">Files</h1>
+    <img slot="left-title" src="./landing-assets/AWS-logo.png" alt="">
     <nav slot="left-content">
-      <a href="#">item-1</a>
-      <a href="#">item-2</a>
-      <a href="#">item-3</a>
-      <a href="#">item-4</a>
-      <a href="#">item-5</a>
+      <details>
+        <summary>Dashboards:</summary>
+        <a href="#">Area Development</a>
+        <a href="#">Caranti Toleda</a>
+        <a href="#">Report Redox</a>
+        <a href="#">Area Development</a>
+      </details>
+    </nav>
+    <nav slot="left-content">
+      <a href="#">Engagement Tracker</a>
+    </nav>
+    <nav slot="left-content">
+      <details>
+        <summary>Visualization Tools</summary>
+        <a href="#">Area Revision</a>
+        <a href="#">Larea Boreando</a>
+        <a href="#">Permuta Cambuati</a>
+        <a href="#">Leraneadoria</a>
+      </details>
     </nav>
 
     <div slot="header" class="header__div">
 
       <button class="header__div-toggle clickable" id="hide-left">🍔</button>
-      <h1 class="header__div-title">United</h1>
 
     </div>
-
-    <span slot="left-header"></span>
-
-    <div slot="left-content">left</div>
 
     <nav slot="top-menu" style="width: 100%;">
       <div class="flex-row space-around">

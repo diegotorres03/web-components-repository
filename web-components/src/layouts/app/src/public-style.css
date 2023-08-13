@@ -1,3 +1,71 @@
+/* App layout */
+
+img[slot='left-title'] {
+  width: auto;
+  height: 48px;
+
+  margin: 12px auto;
+}
+
+[slot='left-header'] {
+  font-size: 16px;
+  text-transform: lowercase;
+  font-weight: 400;
+  color: var(--tx-3) !important;
+}
+
+[slot='top-menu'] {
+  padding: 2px 8px !important;
+  border-radius: 4px;
+
+  font-size: 14px;
+  text-transform: lowercase;
+
+  color: var(--tx-3) !important;
+  background-color: var(--bg-3);
+}
+
+/* Enlaces contenidos por un elemento slotado en left-content */
 [slot='left-content'] a {
-  color: red;
+  /* padding-left: 18px; */
+}
+
+/* Los navs funcionaran como separadores */
+nav[slot='left-content'] {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding: 12px;
+
+  border-bottom: 0.5px solid var(--bg-2);
+}
+
+/* Details que sean contenidos por un elemento slotado en left-content */
+[slot='left-content'] details {
+  display: flex;
+  justify-content: center;
+}
+
+[slot='left-content'] details summary {
+  font-weight: 700;
+}
+
+/* Elementos que no sean summary que sean contenidos 
+por details que a su vez sean contenidos por un elemento 
+slotado en left-content*/
+[slot='left-content'] details *:not(summary) {
+  padding-left: 18px;
+}
+/*  */
+[slot='left-content'] details *:not(:last-of-type) {
+  margin-bottom: 4px;
+}
+[slot='left-content'] details *:first-of-type:not(summary) {
+  margin-top: 4px;
+}
+
+[slot='left-content'] a {
+  color: var(--tx-3);
+  font-weight: 400;
 }
