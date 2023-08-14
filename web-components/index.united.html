@@ -6,282 +6,602 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Stories</title>
-
+  <link href="https://dev.iconly.io/public/ShA4wc0jqRet/iconly.css" rel="stylesheet" />
 
   <style>
-    a {
-      color: azure;
-    }
-
-    .flex-column {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .flex-row {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-    }
-
-    .space-around {
-      justify-content: space-around;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .header__div {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-
-      /* padding: 4px 8px; */
-      /* border-radius: 4px; */
-
-      /* background-color: var(--bg-4); */
-
-    }
-
     .header__div-toggle {
-      font-size: 12px;
 
-      width: fit-content;
-      background-color: var(--bg-0);
-      padding: 4px;
-    }
+      padding: 2px 6px;
+      border-radius: 3px;
 
-    .header__div-title {
-      font-size: 16px;
-      padding: 2px;
-    }
-
-    .al-header {
-      background-color: var(--mc-2);
-      border: none;
-    }
-
-    .left__header {
-      color: var(--mc-4);
-      background-color: var(--bg-0);
-      border-color: var(--bg-2);
-      border-right: 0.5px solid var(--bg-2);
-    }
-
-    .left__menu {
-      background-color: var(--bg-0);
-    }
-
-    .top__menu {
+      border: .5px solid var(--tx-3);
+      color: var(--tx-i);
       background-color: var(--mc-1);
     }
 
-    .left__menu {
-      background-color: var(--bg-0);
-      border-color: var(--bg-2);
+    :root {
+      --background-color-1: hsl(0, 0%, 100%);
+      --background-color-2: hsl(0, 0%, 85%);
+      --background-color-3: hsl(0, 0%, 95%);
+      --border-color: hsl(0, 0%, 80%);
+
+      --green: hsl(100, 50%, 60%);
+      --green-2: hsl(100, 50%, 35%);
+
+      --red: hsl(5, 80%, 60%);
+      --red-2: hsl(5, 50%, 35%);
+
+      --yellow: hsl(40, 90%, 60%);
+      --yellow-2: hsl(40, 50%, 35%);
+
+      --text: #222222;
+      --text-low: #363636;
     }
 
-    .al-footer {
+
+    .engagement-tracker {
+      display: flex;
+      flex-direction: column;
+
+      width: 80%;
+      min-width: 300px;
+      max-width: 900px;
+
+      border-radius: 8px;
+      padding: 24px;
+
+      gap: 8px;
+
+      background-color: var(--bg-2);
+      border: .5px solid var(--bg-3);
+    }
+
+    /* ACCOUNT-FILTER */
+
+    .app__account-filter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      width: 100%;
+      height: auto;
+
+      padding: 12px;
+      border-radius: 8px;
+
+
+      background-color: var(--bg-0);
+      border: .5px solid var(--bg-3);
+    }
+
+    .account-filter__title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .account-filter__search {
+      width: 40%;
+      height: 100%;
+
+      padding: 4px;
+      border-radius: 4px;
+
+      border: 1px solid var(--mc-1);
+    }
+
+    /* COSTUMER */
+
+    .app__costumer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+
+      width: 100%;
+      height: auto;
+    }
+
+    .costumer__costumer-card {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      padding: 12px;
+      border-radius: 8px;
+
+      font-size: 14px;
+
+      background-color: var(--bg-0);
+      border: .5px solid var(--bg-3);
+    }
+
+    .costumer-card__item {
+      color: var(--tx-3);
+    }
+
+    .costumer-card__item-title {
+      font-weight: 900;
+      color: var(--mc-1);
+    }
+
+    /* TOGGLE-CARD */
+
+    .app__toggle-card {
+      display: flex;
+      flex-direction: column;
+
+      width: 100%;
+    }
+
+    .toggle-card__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 8px 12px;
+      border-radius: 8px;
+
       color: var(--tx-i);
       background-color: var(--mc-2);
+      /* border: 1px solid var(--border-color); */
+
+      cursor: pointer;
+    }
+
+    .rounded {
+      border-radius: 8px 8px 0 0;
+    }
+
+    .toggle-card__title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .toggle-card__menu-down {
+      font-size: 24px;
+      color: var(--tx-i);
+
+      transition: all 0.4s ease 0.1s;
+    }
+
+    .roll {
+      transform: rotate(180deg);
+
+      transition: all 0.4s ease 0.1s;
+    }
+
+    .toggle-card__task-container {
+      display: flex;
+      flex-direction: column;
+
+      border-radius: 0 0 8px 8px;
+
+      background-color: var(--bg-0);
+      border: 1px solid var(--bg-3);
+      border-width: 0 1px 1px 1px;
+    }
+
+    .toggle-card__task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      font-size: 14px;
+
+      padding: 12px;
+
+    }
+
+    .toggle-card__task-item:not(:last-of-type) {
+      border: 1px solid var(--bg-3);
+      border-width: 0 0 .5px 0;
+    }
+
+
+    .toggle-up {
+      height: 0px;
+      padding: 0;
+      overflow: hidden;
+      border: none;
+    }
+
+    .toggle-card__parameters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .parameters__btns {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .parameters__state-btn:hover,
+    .parameters__comment-btn:hover {
+      filter: brightness(0.8) contrast(120%);
+      cursor: pointer;
+    }
+
+    .parameters__state-btn:active,
+    .parameters__comment-btn:active {
+      transform: scale(0.95);
+    }
+
+    .parameters__state-btn {
+      display: grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+
+      font-size: 14px;
+      border-radius: 4px;
+      padding: 0;
+
+      color: var(--background-color);
+      background-color: var(--background-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .state-btn__icon {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .yes {
+      background-color: var(--mc-3);
+      border-color: var(--mc-2);
+      color: var(--mc-2);
+    }
+
+    .no {
+      background-color: hsl(5, 80%, 60%);
+      border-color: hsl(5, 50%, 35%);
+      color: hsl(5, 50%, 35%);
+    }
+
+    .ip {
+      background-color: var(--mc-4);
+      border-color: hsl(35, 50%, 35%);
+      color: hsl(35, 50%, 35%);
+    }
+
+    .disabled {
+      border: 1px solid var(--bg-3);
+      background-color: var(--bg-0);
+      color: var(--bg-3);
+
+      transition: all 0.4s ease;
+    }
+
+    .parameters__comment-input {
+      padding: 4px;
+
+      border-radius: 4px;
+      background-color: var(--bg-1);
+      border: 1px solid var(--mc-1);
+    }
+
+    .parameters__comment-btn {
+      display: inline;
+      width: 25px;
+      height: 25px;
+
+      font-size: 14px;
+      border-radius: 4px;
+      padding: 0;
+
+      border: 1px solid var(--bg-3);
+      background-color: var(--bg-1);
+      color: var(--bg-3);
     }
   </style>
-
-
 </head>
 
 <body>
 
   <app-layout hide-left>
 
+    <!-- Botón que hace toggle al left-menu -->
+    <div slot="header" class="header__div">
 
+      <button class="header__div-toggle clickable" id="hide-left">↔️</button>
+
+    </div>
+    <!-- Imagen provisional de aws que está en el left-title -->
     <img slot="left-title" src="./landing-assets/AWS-logo.png" alt="">
+    <!-- Los navs dentro del left-content funcionan como un folder -->
     <nav slot="left-content">
+
       <details>
-        <summary>Dashboards:</summary>
-        <a href="#">Area Development Area Development Area Development</a>
+        <!-- Summary es el título que aparecerá en el details -->
+        <summary>Dashboards</summary>
+        <!-- links de ruta -->
+        <a href="#">Area Development </a>
         <a href="#">Caranti Toleda</a>
         <a href="#">Report Redox</a>
         <a href="#">Area Development</a>
+
       </details>
+
     </nav>
     <nav slot="left-content">
+
       <a href="#">Engagement Tracker</a>
+
     </nav>
     <nav slot="left-content">
+
       <details>
+
         <summary>Visualization Tools</summary>
         <a href="#">Area Revision</a>
         <a href="#">Larea Boreando</a>
         <a href="#">Permuta Cambuati</a>
         <a href="#">Leraneadoria</a>
+
       </details>
-    </nav>
-
-    <div slot="header" class="header__div">
-
-      <button class="header__div-toggle clickable" id="hide-left">🍔</button>
-
-    </div>
-
-    <nav slot="top-menu" style="width: 100%;">
-      <div class="flex-row space-around">
-
-        <div>
-          <a id="home" href="#home">home</a>
-          <pop-over-menu for="home" on="click">
-            <button>dashboard</button>
-          </pop-over-menu>
-        </div>
-
-        <div>
-          <a id="delays" href="#delays">delays</a>
-          <pop-over-menu for="delays" on="click">
-            <button>current delays</button>
-            <button>risk of delay</button>
-            <button>other</button>
-          </pop-over-menu>
-        </div>
-      </div>
 
     </nav>
 
+    <!--  -->
 
-    <section slot="main" class="flex-column">
+    <article slot="main" class="engagement-tracker">
 
-      <div class="flex-row space-around">
-        <label for="">something</label>
-        <select name="" id="">
-          <option value="">option 1</option>
-          <option value="">option 2</option>
-          <option value="">option 3</option>
-        </select>
+      <section class="app__account-filter">
 
-        <label for="">other thing</label>
-        <input type="text" placeholder="🔍">
-        <button>submit</button>
+        <h1 class="account-filter__title">Accounts (?)</h1>
+        <input class="account-filter__search" type="search" placeholder="Filter Accounts">
+
+      </section>
+
+      <section class="app__costumer">
+
+        <div class="costumer__costumer-card">
+
+          <p class="costumer-card__item ">
+            <span class="costumer-card__item-title">Costumer Name:</span>
+            Papa tobias
+          </p>
+          <p class="costumer-card__item ">
+            <span class="costumer-card__item-title">Territory: </span>
+            ENT MiwestA05
+          </p>
+          <p class="costumer-card__item">
+            <span class="costumer-card__item-title">District: </span>
+            US Central ENT
+          </p>
+
+        </div>
+        <div class="costumer__costumer-card">
+
+          <p class="costumer-card__item">
+            <span class="costumer-card__item-title">Costumer Segment Score:</span>
+            45
+          </p>
+          <p class="costumer-card__item">
+            <span class="costumer-card__item-title">Average NMU:</span>
+            $2M
+          </p>
+          <p class="costumer-card__item">
+            <span class="costumer-card__item-title">YoY Growth:</span>
+            +34%
+          </p>
+
+        </div>
+
+      </section>
+      <div class="app__toggle-card">
+
+        <header class="toggle-card__header">
+
+          <h2 class="toggle-card__title">AWS Field Mechanism</h2>
+          <span class="toggle-card__menu-down icon-menu-down"></span>
+
+        </header>
+
+        <div class="toggle-card__task-container nueva-clase-altura toggle-up">
+
+          <div class="toggle-card__task-item">
+
+            <p class="toggle-card__task-name">Account map complete</p>
+            <div class="toggle-card__parameters">
+
+              <div class="parameters__btns">
+                <!-- Estos tienen que ser radio -->
+                <button class="parameters__state-btn yes disabled ">
+
+                  <span class="state-btn__icon icon-check"></span>
+
+                </button>
+                <button class="parameters__state-btn no disabled">
+
+                  <span class="state-btn__icon icon-uncheck"></span>
+
+                </button>
+                <button class="parameters__state-btn ip disabled">
+
+                  <span class="state-btn__icon icon-in-process"></span>
+
+                </button>
+
+              </div>
+              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+              <button class="parameters__comment-btn">
+
+                <span class="state-btn__icon icon-comment"></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="toggle-card__task-item">
+
+            <p class="toggle-card__task-name">Value Map Completed</p>
+            <div class="toggle-card__parameters">
+
+              <div class="parameters__btns">
+                <!-- Estos tienen que ser radio -->
+                <button class="parameters__state-btn yes disabled">
+
+                  <span class="state-btn__icon icon-check"></span>
+
+                </button>
+                <button class="parameters__state-btn no disabled">
+
+                  <span class="state-btn__icon icon-uncheck"></span>
+
+                </button>
+                <button class="parameters__state-btn ip disabled">
+
+                  <span class="state-btn__icon icon-in-process"></span>
+
+                </button>
+
+              </div>
+              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+              <button class="parameters__comment-btn">
+
+                <span class="state-btn__icon icon-comment"></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="toggle-card__task-item">
+
+            <p class="toggle-card__task-name">Executive Sponsor</p>
+            <div class="toggle-card__parameters">
+
+              <div class="parameters__btns">
+                <!-- Estos tienen que ser radio -->
+                <button class="parameters__state-btn yes disabled">
+
+                  <span class="state-btn__icon icon-check"></span>
+
+                </button>
+                <button class="parameters__state-btn no disabled">
+
+                  <span class="state-btn__icon icon-uncheck"></span>
+
+                </button>
+                <button class="parameters__state-btn ip disabled">
+
+                  <span class="state-btn__icon icon-in-process"></span>
+
+                </button>
+
+              </div>
+              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+              <button class="parameters__comment-btn">
+
+                <span class="state-btn__icon icon-comment"></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <table border="1">
-        <thead>
-          <tr>
-            <th>field 1</th>
-            <th>field 2</th>
-            <th>field 3</th>
-            <th>field 4</th>
-            <th>field 5</th>
-            <th>field 6</th>
-            <th>field 7</th>
-            <th>field 8</th>
-            <th>field 9</th>
-            <th>field 10</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>field 1</td>
-            <td>field 2</td>
-            <td>field 3</td>
-            <td>field 4</td>
-            <td>field 5</td>
-            <td>field 6</td>
-            <td>field 7</td>
-            <td>field 8</td>
-            <td>field 9</td>
-            <td>field 10</td>
-          </tr>
+      <div class="app__toggle-card">
 
-          <tr>
-            <td>field 1</td>
-            <td>field 2</td>
-            <td>field 3</td>
-            <td>field 4</td>
-            <td>field 5</td>
-            <td>field 6</td>
-            <td>field 7</td>
-            <td>field 8</td>
-            <td>field 9</td>
-            <td>field 10</td>
-          </tr>
+        <header class="toggle-card__header">
 
-          <tr>
-            <td>field 1</td>
-            <td>field 2</td>
-            <td>field 3</td>
-            <td>field 4</td>
-            <td>field 5</td>
-            <td>field 6</td>
-            <td>field 7</td>
-            <td>field 8</td>
-            <td>field 9</td>
-            <td>field 10</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+          <h2 class="toggle-card__title">Human Services</h2>
+          <span class="toggle-card__menu-down icon-menu-down"></span>
 
+        </header>
+
+        <div class="toggle-card__task-container toggle-up">
+
+          <div class="toggle-card__task-item">
+
+            <p class="toggle-card__task-name">Account map complete</p>
+            <div class="toggle-card__parameters">
+
+              <div class="parameters__btns">
+                <!-- Estos tienen que ser radio -->
+                <button class="parameters__state-btn yes disabled">
+
+                  <span class="state-btn__icon icon-check"></span>
+
+                </button>
+                <button class="parameters__state-btn no disabled">
+
+                  <span class="state-btn__icon icon-uncheck"></span>
+
+                </button>
+                <button class="parameters__state-btn ip disabled">
+
+                  <span class="state-btn__icon icon-in-process"></span>
+
+                </button>
+
+              </div>
+              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+              <button class="parameters__comment-btn">
+
+                <span class="state-btn__icon icon-comment"></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+          <div class="toggle-card__task-item">
+
+            <p class="toggle-card__task-name">Value Map Completed</p>
+            <div class="toggle-card__parameters">
+
+              <div class="parameters__btns">
+                <!-- Estos tienen que ser radio -->
+                <button class="parameters__state-btn yes disabled">
+
+                  <span class="state-btn__icon icon-check"></span>
+
+                </button>
+                <button class="parameters__state-btn no disabled">
+
+                  <span class="state-btn__icon icon-uncheck"></span>
+
+                </button>
+                <button class="parameters__state-btn ip disabled">
+
+                  <span class="state-btn__icon icon-in-process"></span>
+
+                </button>
+
+              </div>
+              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+              <button class="parameters__comment-btn">
+
+                <span class="state-btn__icon icon-comment"></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
 
   </app-layout>
 
-
-  <app-modal trigger="table" on="click">
-    <h3 slot="title">Customer Story</h3>
-    <section slot="main" class="flex-column">
-      <div class="flex-row space-around" style="width: 100%;">
-        <span>item 1</span>
-        <span>item 2</span>
-        <span>item 3</span>
-      </div>
-      <div class="flex-row space-around" style="width: 100%;">
-        <div>
-          <input type="checkbox" name="" id=" ">
-          <label for="">Template</label>
-        </div>
-        <div>
-          <b>IOM Partial Control Enabled</b>
-        </div>
-      </div>
-      <textarea name="" id="" cols="30"
-        rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
-      <small>233/400</small>
-      <div class="flex-row space-around" style="width: 100%;">
-        <label>ETA UPLINE</label>
-        <label>ETA DOWNLINE</label>
-        <label>ETD</label>
-        <label>UPLINE DEP</label>
-        <label>CURR DEP</label>
-        <label>CURR ARR</label>
-        <label>GATE NO</label>
-      </div>
-      <hr>
-      <div class="flex-row space-around" style="width: 100%;">
-        <div class="flex-column">
-          <div>
-            <input type="checkbox" name="" id="">
-            <label for="">Remind me in:</label>
-          </div>
-          <div>
-            <input type="checkbox" name="" id="">
-            <label for="">Remind me if ETD extended By:</label>
-          </div>
-        </div>
-
-        <div class="flex-column">
-          <input type="time" name="" id="">
-          <select name="" id="">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-          </select>
-        </div>
-
-      </div>
-
-    </section>
-  </app-modal>
-
+  <!-- Código para ocultar el left-menu con un botón -->
   <script>
     const btn = document.querySelector('#hide-left')
     const left = document.querySelector('app-layout')
@@ -293,6 +613,54 @@
       else left.setAttribute('hide-left', '')
       hidden = !hidden
     })
+  </script>
+
+  <script>
+
+    // Obtener todos los encabezados de tarjetas con la clase "toggle-card__header"
+    const headers = document.querySelectorAll(".toggle-card__header");
+
+    // Función para agregar la clase "toggle-up", "rounded" y "roll"
+    function toggleClass() {
+      // Obtener el contenedor de la tarea asociado al encabezado clickeado
+      const taskContainer = this.nextElementSibling;
+      // Agregar la clase "toggle-up" al contenedor de la tarea
+      taskContainer.classList.toggle("toggle-up");
+
+      // Agregar la clase "rounded" al encabezado clickeado
+      this.classList.toggle("rounded");
+
+      // Obtener el elemento "icon-menu-down" dentro del encabezado clickeado
+      const menuDown = this.querySelector(".icon-menu-down");
+      // Agregar o quitar la clase "roll" al elemento "icon-menu-down"
+      menuDown.classList.toggle("roll");
+    }
+
+    // Asignar el evento clic a cada encabezado de tarjeta
+    headers.forEach(function (header) {
+      header.addEventListener("click", toggleClass);
+    });
+
+    const items = document.querySelectorAll(".toggle-card__task-item");
+
+    items.forEach(function (item) {
+      const buttons = item.querySelectorAll(".parameters__state-btn");
+      let activeButton = null;
+
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          if (activeButton !== null) {
+            activeButton.classList.add("disabled");
+          }
+          this.classList.remove("disabled");
+          activeButton = this;
+        });
+      });
+    });
+
+
+
+
   </script>
 
 </body>

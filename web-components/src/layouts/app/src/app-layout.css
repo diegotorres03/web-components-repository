@@ -115,9 +115,9 @@
   align-items: center;
 
   height: 100%;
-  padding: 8px;
+  padding: 24px;
 
-  background-color: var(--bg-0);
+  background-color: var(--bg-1);
 }
 
 .al-footer {
