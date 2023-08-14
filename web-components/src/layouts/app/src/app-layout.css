@@ -40,10 +40,11 @@
   flex-direction: column;
 
   width: 25%;
+  min-width: 10%;
   height: 100%;
 
   resize: horizontal; /* Permite la redimensión en horizontal y vertical */
-  overflow: auto; /* Muestra las barras de desplazamiento si el contenido excede las dimensiones */
+  overflow-y: auto; /* Muestra las barras de desplazamiento si el contenido excede las dimensiones */
 }
 
 .left__header {

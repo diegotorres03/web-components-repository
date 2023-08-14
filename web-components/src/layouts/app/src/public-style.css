@@ -39,6 +39,8 @@ nav[slot='left-content'] {
   padding: 12px;
 
   border-bottom: 0.5px solid var(--bg-2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 /* Details que sean contenidos por un elemento slotado en left-content */
@@ -69,3 +71,5 @@ slotado en left-content*/
   color: var(--tx-3);
   font-weight: 400;
 }
+
+/*  */
