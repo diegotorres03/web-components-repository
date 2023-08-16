@@ -3,13 +3,14 @@
   <header class="al-header">
 
     <slot name="header">Header</slot>
+    <button id="hidder-btn">↔️</button>
 
   </header>
   <div class="al-split">
 
     <div data-left-content-hide class="al-split__left">
 
-      <section class="left__header">
+      <!-- <section class="left__header">
 
         <slot name="left-title">Left header</slot>
 
@@ -22,7 +23,22 @@
 
         </div>
 
-      </section>
+      </section> -->
+      <div class="left__menu">
+
+        <div class="left__menu-header">
+
+          <slot name="left-title">Left header</slot>
+
+        </div>
+        <div class="left__menu-content">
+
+          <slot name="left-content">Left menu</slot>
+
+        </div>
+
+      </div>
+      <div class="resizer"></div>
 
     </div>
     <div class="al-split__right">

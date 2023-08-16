@@ -296,21 +296,32 @@
       background-color: var(--bg-1);
       color: var(--bg-3);
     }
+
+
+    app-router {
+      width: 100%;
+    }
+
+    [hash='engagement-tracker'] {
+      background-color: red !important;
+      width: 100%;
+    }
   </style>
 </head>
 
 <body>
 
-  <app-layout hide-left>
+
+  <app-layout>
 
     <!-- Botón que hace toggle al left-menu -->
     <div slot="header" class="header__div">
 
-      <button class="header__div-toggle clickable" id="hide-left">↔️</button>
+      <!-- <button class="header__div-toggle clickable" id="hide-left">↔️</button> -->
 
     </div>
     <!-- Imagen provisional de aws que está en el left-title -->
-    <img slot="left-title" src="./landing-assets/AWS-logo.png" alt="">
+    <a slot="left-title" href="#"><img src="./landing-assets/AWS-logo.png" alt=""></a>
     <!-- Los navs dentro del left-content funcionan como un folder -->
     <nav slot="left-content">
 
@@ -328,7 +339,7 @@
     </nav>
     <nav slot="left-content">
 
-      <a href="#">Engagement Tracker</a>
+      <a href="#engagement-tracker">Engagement Tracker</a>
 
     </nav>
     <nav slot="left-content">
@@ -336,7 +347,7 @@
       <details>
 
         <summary>Visualization Tools</summary>
-        <a href="#">Area Revision</a>
+        <a href="#linksito">Area Revision</a>
         <a href="#">Larea Boreando</a>
         <a href="#">Permuta Cambuati</a>
         <a href="#">Leraneadoria</a>
@@ -345,264 +356,284 @@
 
     </nav>
 
-    <!--  -->
+    <!-- MAIN  -->
+    <app-router slot="main">
 
-    <article slot="main" class="engagement-tracker">
+      <app-route>
 
-      <section class="app__account-filter">
+        <h1>welcome</h1>
 
-        <h1 class="account-filter__title">Accounts (?)</h1>
-        <input class="account-filter__search" type="search" placeholder="Filter Accounts">
+      </app-route>
+      <app-route hash="engagement-tracker">
 
-      </section>
+        <article class="engagement-tracker">
 
-      <section class="app__costumer">
+          <section class="app__account-filter">
 
-        <div class="costumer__costumer-card">
+            <h1 class="account-filter__title">Accounts (?)</h1>
+            <input class="account-filter__search" type="search" placeholder="Filter Accounts">
 
-          <p class="costumer-card__item ">
-            <span class="costumer-card__item-title">Costumer Name:</span>
-            Papa tobias
-          </p>
-          <p class="costumer-card__item ">
-            <span class="costumer-card__item-title">Territory: </span>
-            ENT MiwestA05
-          </p>
-          <p class="costumer-card__item">
-            <span class="costumer-card__item-title">District: </span>
-            US Central ENT
-          </p>
+          </section>
 
-        </div>
-        <div class="costumer__costumer-card">
+          <section class="app__costumer">
 
-          <p class="costumer-card__item">
-            <span class="costumer-card__item-title">Costumer Segment Score:</span>
-            45
-          </p>
-          <p class="costumer-card__item">
-            <span class="costumer-card__item-title">Average NMU:</span>
-            $2M
-          </p>
-          <p class="costumer-card__item">
-            <span class="costumer-card__item-title">YoY Growth:</span>
-            +34%
-          </p>
+            <div class="costumer__costumer-card">
 
-        </div>
+              <p class="costumer-card__item ">
+                <span class="costumer-card__item-title">Costumer Name:</span>
+                Papa tobias
+              </p>
+              <p class="costumer-card__item ">
+                <span class="costumer-card__item-title">Territory: </span>
+                ENT MiwestA05
+              </p>
+              <p class="costumer-card__item">
+                <span class="costumer-card__item-title">District: </span>
+                US Central ENT
+              </p>
 
-      </section>
-      <div class="app__toggle-card">
+            </div>
+            <div class="costumer__costumer-card">
 
-        <header class="toggle-card__header">
+              <p class="costumer-card__item">
+                <span class="costumer-card__item-title">Costumer Segment Score:</span>
+                45
+              </p>
+              <p class="costumer-card__item">
+                <span class="costumer-card__item-title">Average NMU:</span>
+                $2M
+              </p>
+              <p class="costumer-card__item">
+                <span class="costumer-card__item-title">YoY Growth:</span>
+                +34%
+              </p>
 
-          <h2 class="toggle-card__title">AWS Field Mechanism</h2>
-          <span class="toggle-card__menu-down icon-menu-down"></span>
+            </div>
 
-        </header>
+          </section>
+          <div class="app__toggle-card">
 
-        <div class="toggle-card__task-container nueva-clase-altura toggle-up">
+            <header class="toggle-card__header">
 
-          <div class="toggle-card__task-item">
+              <h2 class="toggle-card__title">AWS Field Mechanism</h2>
+              <span class="toggle-card__menu-down icon-menu-down"></span>
 
-            <p class="toggle-card__task-name">Account map complete</p>
-            <div class="toggle-card__parameters">
+            </header>
 
-              <div class="parameters__btns">
-                <!-- Estos tienen que ser radio -->
-                <button class="parameters__state-btn yes disabled ">
+            <div class="toggle-card__task-container nueva-clase-altura toggle-up">
 
-                  <span class="state-btn__icon icon-check"></span>
+              <div class="toggle-card__task-item">
 
-                </button>
-                <button class="parameters__state-btn no disabled">
+                <p class="toggle-card__task-name">Account map complete</p>
+                <div class="toggle-card__parameters">
 
-                  <span class="state-btn__icon icon-uncheck"></span>
+                  <div class="parameters__btns">
+                    <!-- Estos tienen que ser radio -->
+                    <button class="parameters__state-btn yes disabled ">
 
-                </button>
-                <button class="parameters__state-btn ip disabled">
+                      <span class="state-btn__icon icon-check"></span>
 
-                  <span class="state-btn__icon icon-in-process"></span>
+                    </button>
+                    <button class="parameters__state-btn no disabled">
 
-                </button>
+                      <span class="state-btn__icon icon-uncheck"></span>
+
+                    </button>
+                    <button class="parameters__state-btn ip disabled">
+
+                      <span class="state-btn__icon icon-in-process"></span>
+
+                    </button>
+
+                  </div>
+                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+                  <button class="parameters__comment-btn">
+
+                    <span class="state-btn__icon icon-comment"></span>
+
+                  </button>
+
+                </div>
 
               </div>
-              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-              <button class="parameters__comment-btn">
 
-                <span class="state-btn__icon icon-comment"></span>
+              <div class="toggle-card__task-item">
 
-              </button>
+                <p class="toggle-card__task-name">Value Map Completed</p>
+                <div class="toggle-card__parameters">
+
+                  <div class="parameters__btns">
+                    <!-- Estos tienen que ser radio -->
+                    <button class="parameters__state-btn yes disabled">
+
+                      <span class="state-btn__icon icon-check"></span>
+
+                    </button>
+                    <button class="parameters__state-btn no disabled">
+
+                      <span class="state-btn__icon icon-uncheck"></span>
+
+                    </button>
+                    <button class="parameters__state-btn ip disabled">
+
+                      <span class="state-btn__icon icon-in-process"></span>
+
+                    </button>
+
+                  </div>
+                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+                  <button class="parameters__comment-btn">
+
+                    <span class="state-btn__icon icon-comment"></span>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+              <div class="toggle-card__task-item">
+
+                <p class="toggle-card__task-name">Executive Sponsor</p>
+                <div class="toggle-card__parameters">
+
+                  <div class="parameters__btns">
+                    <!-- Estos tienen que ser radio -->
+                    <button class="parameters__state-btn yes disabled">
+
+                      <span class="state-btn__icon icon-check"></span>
+
+                    </button>
+                    <button class="parameters__state-btn no disabled">
+
+                      <span class="state-btn__icon icon-uncheck"></span>
+
+                    </button>
+                    <button class="parameters__state-btn ip disabled">
+
+                      <span class="state-btn__icon icon-in-process"></span>
+
+                    </button>
+
+                  </div>
+                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+                  <button class="parameters__comment-btn">
+
+                    <span class="state-btn__icon icon-comment"></span>
+
+                  </button>
+
+                </div>
+
+              </div>
 
             </div>
 
           </div>
 
-          <div class="toggle-card__task-item">
+          <div class="app__toggle-card">
 
-            <p class="toggle-card__task-name">Value Map Completed</p>
-            <div class="toggle-card__parameters">
+            <header class="toggle-card__header">
 
-              <div class="parameters__btns">
-                <!-- Estos tienen que ser radio -->
-                <button class="parameters__state-btn yes disabled">
+              <h2 class="toggle-card__title">Human Services</h2>
+              <span class="toggle-card__menu-down icon-menu-down"></span>
 
-                  <span class="state-btn__icon icon-check"></span>
+            </header>
 
-                </button>
-                <button class="parameters__state-btn no disabled">
+            <div class="toggle-card__task-container toggle-up">
 
-                  <span class="state-btn__icon icon-uncheck"></span>
+              <div class="toggle-card__task-item">
 
-                </button>
-                <button class="parameters__state-btn ip disabled">
+                <p class="toggle-card__task-name">Account map complete</p>
+                <div class="toggle-card__parameters">
 
-                  <span class="state-btn__icon icon-in-process"></span>
+                  <div class="parameters__btns">
+                    <!-- Estos tienen que ser radio -->
+                    <button class="parameters__state-btn yes disabled">
 
-                </button>
+                      <span class="state-btn__icon icon-check"></span>
+
+                    </button>
+                    <button class="parameters__state-btn no disabled">
+
+                      <span class="state-btn__icon icon-uncheck"></span>
+
+                    </button>
+                    <button class="parameters__state-btn ip disabled">
+
+                      <span class="state-btn__icon icon-in-process"></span>
+
+                    </button>
+
+                  </div>
+                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+                  <button class="parameters__comment-btn">
+
+                    <span class="state-btn__icon icon-comment"></span>
+
+                  </button>
+
+                </div>
 
               </div>
-              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-              <button class="parameters__comment-btn">
 
-                <span class="state-btn__icon icon-comment"></span>
+              <div class="toggle-card__task-item">
 
-              </button>
+                <p class="toggle-card__task-name">Value Map Completed</p>
+                <div class="toggle-card__parameters">
+
+                  <div class="parameters__btns">
+                    <!-- Estos tienen que ser radio -->
+                    <button class="parameters__state-btn yes disabled">
+
+                      <span class="state-btn__icon icon-check"></span>
+
+                    </button>
+                    <button class="parameters__state-btn no disabled">
+
+                      <span class="state-btn__icon icon-uncheck"></span>
+
+                    </button>
+                    <button class="parameters__state-btn ip disabled">
+
+                      <span class="state-btn__icon icon-in-process"></span>
+
+                    </button>
+
+                  </div>
+                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
+                  <button class="parameters__comment-btn">
+
+                    <span class="state-btn__icon icon-comment"></span>
+
+                  </button>
+
+                </div>
+
+              </div>
 
             </div>
 
           </div>
 
-          <div class="toggle-card__task-item">
+        </article>
 
-            <p class="toggle-card__task-name">Executive Sponsor</p>
-            <div class="toggle-card__parameters">
+      </app-route>
+      <app-route hash="linksito">
 
-              <div class="parameters__btns">
-                <!-- Estos tienen que ser radio -->
-                <button class="parameters__state-btn yes disabled">
+        <h1>Parranda</h1>
 
-                  <span class="state-btn__icon icon-check"></span>
+      </app-route>
+      <app-route></app-route>
 
-                </button>
-                <button class="parameters__state-btn no disabled">
+    </app-router>
 
-                  <span class="state-btn__icon icon-uncheck"></span>
 
-                </button>
-                <button class="parameters__state-btn ip disabled">
-
-                  <span class="state-btn__icon icon-in-process"></span>
-
-                </button>
-
-              </div>
-              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-              <button class="parameters__comment-btn">
-
-                <span class="state-btn__icon icon-comment"></span>
-
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="app__toggle-card">
-
-        <header class="toggle-card__header">
-
-          <h2 class="toggle-card__title">Human Services</h2>
-          <span class="toggle-card__menu-down icon-menu-down"></span>
-
-        </header>
-
-        <div class="toggle-card__task-container toggle-up">
-
-          <div class="toggle-card__task-item">
-
-            <p class="toggle-card__task-name">Account map complete</p>
-            <div class="toggle-card__parameters">
-
-              <div class="parameters__btns">
-                <!-- Estos tienen que ser radio -->
-                <button class="parameters__state-btn yes disabled">
-
-                  <span class="state-btn__icon icon-check"></span>
-
-                </button>
-                <button class="parameters__state-btn no disabled">
-
-                  <span class="state-btn__icon icon-uncheck"></span>
-
-                </button>
-                <button class="parameters__state-btn ip disabled">
-
-                  <span class="state-btn__icon icon-in-process"></span>
-
-                </button>
-
-              </div>
-              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-              <button class="parameters__comment-btn">
-
-                <span class="state-btn__icon icon-comment"></span>
-
-              </button>
-
-            </div>
-
-          </div>
-
-          <div class="toggle-card__task-item">
-
-            <p class="toggle-card__task-name">Value Map Completed</p>
-            <div class="toggle-card__parameters">
-
-              <div class="parameters__btns">
-                <!-- Estos tienen que ser radio -->
-                <button class="parameters__state-btn yes disabled">
-
-                  <span class="state-btn__icon icon-check"></span>
-
-                </button>
-                <button class="parameters__state-btn no disabled">
-
-                  <span class="state-btn__icon icon-uncheck"></span>
-
-                </button>
-                <button class="parameters__state-btn ip disabled">
-
-                  <span class="state-btn__icon icon-in-process"></span>
-
-                </button>
-
-              </div>
-              <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-              <button class="parameters__comment-btn">
-
-                <span class="state-btn__icon icon-comment"></span>
-
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </article>
 
   </app-layout>
 
   <!-- Código para ocultar el left-menu con un botón -->
-  <script>
+  <!-- <script>
     const btn = document.querySelector('#hide-left')
     const left = document.querySelector('app-layout')
     let hidden = true
@@ -613,7 +644,7 @@
       else left.setAttribute('hide-left', '')
       hidden = !hidden
     })
-  </script>
+  </script> -->
 
   <script>
 

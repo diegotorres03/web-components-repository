@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ResizerSideBar</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+	<main class="container">
+
+		<div class="side-resizer">
+
+			<article class="side-bar">
+
+				<!-- <header class="side-bar__header">Side Bar</header> -->
+				<section class="side-bar__content">
+
+					<slot name="left-content">
+
+						<details class="content-details">
+
+							<summary>folder-1</summary>
+							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, ab?</p>
+							<p>item-2</p>
+							<p>item-3</p>
+							<p>item-4</p>
+
+						</details>
+						<details class="content-details">
+
+							<summary>folder-2</summary>
+							<p>item-1</p>
+							<p>item-2</p>
+							<p>item-3</p>
+							<p>item-4</p>
+
+						</details>
+						<details class="content-details">
+
+							<summary>folder-3</summary>
+							<p>item-1</p>
+							<p>item-2</p>
+							<p>item-3</p>
+							<p>item-4</p>
+
+						</details>
+
+					</slot>
+
+				</section>
+
+			</article>
+			<div class="resizer"></div>
+
+		</div>
+		<section class="main-section">
+
+			<h1>Resize SideBar</h1>
+			<small>MdbDev</small>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda recusandae ea doloribus quos ipsam
+				ipsa dolore non ad praesentium impedit alias sed sapiente neque cupiditate nemo, quibusdam fugiat.
+				Voluptates, quae.</p>
+
+			<button id="toggle">Toggle</button>
+		</section>
+
+	</main>
+
+
+	<script>
+		// Seleccionar los elementos del DOM
+		const resizerElement = document.querySelector('.resizer');
+		const sideBarElement = document.querySelector('.side-resizer');
+		const toggle = document.querySelector('#toggle')
+
+		// Función para inicializar el redimensionamiento
+		function initializeResizer(resizer, sidebar) {
+			let initialMouseX, initialWidth;
+
+			// Controlador de evento 'mousedown'
+			function handleMouseDown(e) {
+				// Almacenar la posición inicial del mouse en initialMouseX
+				initialMouseX = e.clientX;
+
+				// Obtener el ancho actual de la barra lateral
+				const sidebarWidth = window.getComputedStyle(sidebar).width;
+				initialWidth = parseInt(sidebarWidth, 10);
+
+				// Agregar listeners para los eventos 'mousemove' y 'mouseup'
+				document.addEventListener('mousemove', handleMouseMove);
+				document.addEventListener('mouseup', handleMouseUp);
+			}
+
+			// Controlador de evento 'mousemove'
+			function handleMouseMove(e) {
+				// Calcular el movimiento del mouse en el eje X
+				const mouseMovementX = e.clientX - initialMouseX;
+
+				// Calcular el nuevo ancho de la barra lateral
+				const newWidth = initialWidth + mouseMovementX;
+
+				// Limitar el ancho mínimo de la barra lateral a 700px
+				if (newWidth >= 50) {
+					sidebar.classList.remove('hidden')
+					sidebar.style.width = `${newWidth}px`;
+				} else {
+					sidebar.classList.add('hidden')
+				}
+			}
+
+			// Controlador de evento 'mouseup'
+			function handleMouseUp() {
+				// Eliminar los listeners de los eventos 'mousemove' y 'mouseup'
+				document.removeEventListener("mousemove", handleMouseMove);
+				document.removeEventListener("mouseup", handleMouseUp);
+			}
+
+			// Agregar el listener 'mousedown' al elemento resizer
+			resizer.addEventListener('mousedown', handleMouseDown);
+
+			toggle.addEventListener('click', function () {
+
+				sidebar.classList.toggle('hidden')
+
+			})
+		}
+
+		// Inicializar el redimensionamiento de la barra lateral
+		initializeResizer(resizerElement, sideBarElement);
+
+
+	</script>
+</body>
+
+</html>
