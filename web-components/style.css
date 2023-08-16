@@ -1,0 +1,338 @@
+/* 🐉 app-layout🐉 */
+
+/* Cuando hay una img en el left-title */
+a[slot='left-title'] img,
+img[slot='left-title'] {
+  width: auto;
+  height: 48px;
+}
+
+/* Enlaces contenidos por un elemento slotado en left-content */
+[slot='left-content'] a:hover {
+  color: var(--mc-3);
+}
+
+/* Los navs funcionaran como separadores */
+nav[slot='left-content'] {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding: 12px 20px;
+
+  border-bottom: 0.5px solid var(--bg-2);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Details que sean contenidos por un elemento slotado en left-content */
+[slot='left-content'] details {
+  display: flex;
+  justify-content: center;
+}
+
+[slot='left-content'] details summary {
+  font-weight: 700;
+}
+
+/* Elementos que no sean summary que sean contenidos 
+por details que a su vez sean contenidos por un elemento 
+slotado en left-content*/
+[slot='left-content'] details *:not(summary) {
+  padding-left: 18px;
+}
+/*  */
+[slot='left-content'] details *:not(:last-of-type) {
+  margin-bottom: 4px;
+}
+[slot='left-content'] details *:first-of-type:not(summary) {
+  margin-top: 4px;
+}
+
+[slot='left-content'] a {
+  color: var(--tx-3);
+  font-weight: 400;
+}
+
+/* 🐉 app-router 🐉 */
+
+app-router {
+  width: 100%;
+  height: 100%;
+}
+
+app-route {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+[hash='engagement-tracker'] {
+  width: 100%;
+}
+
+/* 🐉 engagement-tracker 🐉 */
+.engagement-tracker {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 520px;
+  max-width: 700px;
+
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0;
+
+  gap: 8px;
+
+  background-color: var(--bg-2);
+  border: 0.5px solid var(--bg-3);
+}
+
+/* 🐉 account-filer 🐉 */
+
+.app__account-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: auto;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  background-color: var(--bg-0);
+  border: 0.5px solid var(--bg-3);
+}
+
+.account-filter__title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.account-filter__search {
+  width: 40%;
+  height: 100%;
+
+  padding: 4px;
+  border-radius: 4px;
+
+  border: 1px solid var(--mc-1);
+}
+
+/* 🐉 costumer 🐉 */
+
+.app__costumer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  width: 100%;
+  height: auto;
+}
+
+.costumer__costumer-card {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  font-size: 14px;
+
+  background-color: var(--bg-0);
+  border: 0.5px solid var(--bg-3);
+}
+
+.costumer-card__item {
+  color: var(--tx-3);
+}
+
+.costumer-card__item-title {
+  font-weight: 900;
+  color: var(--mc-1);
+}
+
+/* 🐉 toggle-card 🐉*/
+
+.app__toggle-card {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.toggle-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 12px;
+  border-radius: 8px;
+
+  color: var(--tx-i);
+  background-color: var(--mc-2);
+
+  cursor: pointer;
+}
+
+/* .rounded se añade al toggle-card__header para acomodarlo visualmente 
+cuando la tarjeta esta cerrada */
+.rounded {
+  border-radius: 8px 8px 0 0;
+}
+
+.toggle-card__title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.toggle-card__menu-down {
+  font-size: 24px;
+  color: var(--tx-i);
+
+  transition: all 0.4s ease;
+}
+
+.roll {
+  transform: rotate(180deg);
+  transition: all 0.4s ease;
+}
+
+.toggle-card__task-container {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 0 0 8px 8px;
+
+  background-color: var(--bg-0);
+  border: 1px solid var(--bg-3);
+  border-width: 0 1px 1px 1px;
+}
+
+.toggle-card__task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 14px;
+
+  padding: 12px;
+}
+
+.toggle-card__task-item:not(:last-of-type) {
+  border: 1px solid var(--bg-3);
+  border-width: 0 0 0.5px 0;
+}
+
+/* toggle-up permite que el contenido del toggle-card se oculte */
+.toggle-up {
+  height: 0px;
+  padding: 0;
+  overflow: hidden;
+  border: none;
+}
+
+/* toggle-card__parameters contiene los botones del task-item */
+
+.toggle-card__parameters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.parameters__btns {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.parameters__state-btn:hover,
+.parameters__comment-btn:hover {
+  filter: brightness(0.8) contrast(120%);
+  cursor: pointer;
+}
+
+.parameters__state-btn:active,
+.parameters__comment-btn:active {
+  transform: scale(0.95);
+}
+
+.parameters__state-btn {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0;
+
+  color: var(--background-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+}
+
+.state-btn__icon {
+  width: 100%;
+  object-fit: cover;
+}
+
+.yes {
+  background-color: var(--mc-3);
+  border: 1px solid var(--mc-2);
+  color: var(--mc-2);
+}
+
+.no {
+  background-color: hsl(5, 80%, 60%);
+  border: 1px solid hsl(5, 50%, 35%);
+  color: hsl(5, 50%, 35%);
+}
+
+.ip {
+  background-color: var(--mc-4);
+  border: 1px solid hsl(35, 50%, 35%);
+  color: hsl(35, 50%, 35%);
+}
+
+/* Clase por defecto para los botones, si esta existe 
+en el elemento este se verá desactivado */
+.disabled {
+  border: 1px solid var(--bg-3);
+  background-color: var(--bg-0);
+  color: var(--bg-3);
+
+  transition: all 0.4s ease;
+}
+
+.parameters__comment-input {
+  padding: 4px;
+
+  border-radius: 4px;
+  background-color: var(--bg-1);
+  border: 1px solid var(--mc-1);
+}
+
+.parameters__comment-btn {
+  display: inline;
+  width: 25px;
+  height: 25px;
+
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0;
+
+  border: 1px solid var(--bg-3);
+  background-color: var(--bg-1);
+  color: var(--bg-3);
+}

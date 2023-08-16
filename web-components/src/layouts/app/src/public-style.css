@@ -1,11 +1,9 @@
 /* App layout */
 
-/* Cuando hay una img en el left-title */
-img[slot='left-title'] {
-  width: auto;
-  height: 48px;
-
-  margin: 12px auto;
+[slot='left-content'] * {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 [slot='left-header'] {
@@ -16,53 +14,6 @@ img[slot='left-title'] {
 }
 
 [slot='top-menu'] {
-}
-
-/* Enlaces contenidos por un elemento slotado en left-content */
-[slot='left-content'] a {
-  /* padding-left: 18px; */
-}
-
-/* Los navs funcionaran como separadores */
-nav[slot='left-content'] {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-
-  padding: 12px;
-
-  border-bottom: 0.5px solid var(--bg-2);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-/* Details que sean contenidos por un elemento slotado en left-content */
-[slot='left-content'] details {
-  display: flex;
-  justify-content: center;
-}
-
-[slot='left-content'] details summary {
-  font-weight: 700;
-}
-
-/* Elementos que no sean summary que sean contenidos 
-por details que a su vez sean contenidos por un elemento 
-slotado en left-content*/
-[slot='left-content'] details *:not(summary) {
-  padding-left: 18px;
-}
-/*  */
-[slot='left-content'] details *:not(:last-of-type) {
-  margin-bottom: 4px;
-}
-[slot='left-content'] details *:first-of-type:not(summary) {
-  margin-top: 4px;
-}
-
-[slot='left-content'] a {
-  color: var(--tx-3);
-  font-weight: 400;
 }
 
 /*  */
