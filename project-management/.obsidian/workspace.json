@@ -11,9 +11,11 @@
             "id": "350a76bb2b3e8919",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png"
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png"
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md"
               }
             }
           },
@@ -164,8 +166,10 @@
   },
   "active": "350a76bb2b3e8919",
   "lastOpenFiles": [
+    "dwck-cei-tool/Kanban.md",
+    "dwck-cei-tool/screenshots/new-engagement-tracker.png",
+    "dwck-cei-tool/screenshots/engagement-tracker.png",
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.23 PM.png",
-    "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png",
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.10.27 PM.png",
     "dwck-cei-tool/screenshots/area-dashboard.png",
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-13 at 6.13.02 PM.png",
@@ -173,11 +177,8 @@
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.35.09 PM.png",
     "dwck-cei-tool/screenshots/area-visualization.png",
     "dwck-cei-tool/screenshots/login.png",
-    "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.35.02 PM.png",
-    "dwck-cei-tool/screenshots/region-visualization.png",
     "dwck-cei-tool/task-notes/Area Dashboard.md",
     "dwck-cei-tool/screenshots",
-    "dwck-cei-tool/Kanban.md",
     "dwck-cei-tool/Untitled.md",
     "dwck-cei-tool/task-notes",
     "Untitled.md",
