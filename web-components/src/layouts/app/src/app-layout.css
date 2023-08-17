@@ -171,6 +171,8 @@
   padding: 24px;
 
   background-color: var(--bg-1);
+
+  overflow: hidden;
 }
 
 .al-footer {
