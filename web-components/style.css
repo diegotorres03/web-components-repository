@@ -68,6 +68,8 @@ app-route {
   justify-content: center;
   align-items: center;
 
+  padding: 24px;
+
   width: 100%;
 }
 
