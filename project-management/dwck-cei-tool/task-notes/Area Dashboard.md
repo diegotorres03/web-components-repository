@@ -1,1 +1,1 @@
-![Texto alternativo](ruta/de/la/imagen)
+![Texto alternativo](../screenshot)

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ruta/de/la/imagen.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ruta/de/la/imagen.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ruta/de/la/imagen.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ruta/de/la/imagen.md"
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md"
               }
             }
           },
@@ -166,8 +166,8 @@
   },
   "active": "350a76bb2b3e8919",
   "lastOpenFiles": [
-    "dwck-cei-tool/task-notes/Area Dashboard.md",
     "ruta/de/la/imagen.md",
+    "dwck-cei-tool/task-notes/Area Dashboard.md",
     "ruta/de/la",
     "ruta/de",
     "ruta",
