@@ -50,7 +50,7 @@
   display: flex;
 
   min-width: 100%;
-  height: 92%;
+  height: 90%;
 }
 
 .al-split__left {
@@ -172,7 +172,7 @@
 
   background-color: var(--bg-1);
 
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .al-footer {
