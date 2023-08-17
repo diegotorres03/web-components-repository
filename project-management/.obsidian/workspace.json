@@ -11,11 +11,9 @@
             "id": "350a76bb2b3e8919",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
-                "mode": "source",
-                "source": false
+                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.31.52 PM.png"
               }
             }
           }
@@ -85,7 +83,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
+                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.31.52 PM.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
+                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.31.52 PM.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +123,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md"
+                "file": "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.31.52 PM.png"
               }
             }
           },
@@ -146,11 +144,12 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -163,22 +162,22 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f4e7e3f66c814970",
+  "active": "350a76bb2b3e8919",
   "lastOpenFiles": [
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-14 at 6.10.27 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-14 at 6.04.23 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-13 at 6.13.02 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-13 at 6.12.56 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-11 at 4.35.09 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-11 at 4.35.02 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-11 at 4.33.50 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-11 at 4.33.08 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-11 at 4.32.47 PM.png",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-11 at 4.32.20 PM.png",
-    "dwck-cei-tool/Screenshots",
-    "dwck-cei-tool/Kanban.md",
+    "dwck-cei-tool/screenshots/district-charts.png",
+    "dwck-cei-tool/screenshots/area-dashboard.png",
     "dwck-cei-tool/task-notes/Area Dashboard.md",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.10.27 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.31 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.23 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-13 at 6.13.02 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-13 at 6.12.56 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.35.09 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.35.02 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.33.50 PM.png",
+    "dwck-cei-tool/screenshots/Screen Shot 2023-08-11 at 4.33.08 PM.png",
+    "dwck-cei-tool/screenshots",
+    "dwck-cei-tool/Kanban.md",
     "dwck-cei-tool/Untitled.md",
     "dwck-cei-tool/task-notes",
     "Untitled.md",
