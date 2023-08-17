@@ -12,8 +12,6 @@
   min-width: 100%;
   height: 100vh;
 
-  overflow: hidden;
-
   color: var(--tx-1);
 }
 
@@ -168,7 +166,7 @@
   justify-content: start;
   align-items: center;
 
-  height: 100%;
+  height: auto;
   padding: 24px;
 
   overflow-x: auto;
