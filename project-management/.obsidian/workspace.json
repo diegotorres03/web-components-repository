@@ -11,22 +11,15 @@
             "id": "ba3bdda98bd59d17",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
-            }
-          },
-          {
-            "id": "f12029ecd55d4829",
-            "type": "leaf",
-            "state": {
-              "type": "kanban",
+              "type": "markdown",
               "state": {
-                "file": "Untitled/Untitled Kanban.md"
+                "file": "Untitled/Untitled.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -92,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled/Untitled Kanban.md",
+                "file": "Untitled/Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled/Untitled Kanban.md",
+                "file": "Untitled/Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled/Untitled Kanban.md"
+                "file": "Untitled/Untitled.md"
               }
             }
           },
@@ -170,8 +163,9 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "d9e67a1860369579",
+  "active": "ba3bdda98bd59d17",
   "lastOpenFiles": [
+    "Untitled/Untitled.md",
     "Untitled.md",
     "Untitled/Untitled Kanban.md",
     "Untitled"
