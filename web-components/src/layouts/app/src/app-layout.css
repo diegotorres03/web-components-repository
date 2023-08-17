@@ -12,6 +12,8 @@
   min-width: 100%;
   height: 100vh;
 
+  overflow: hidden;
+
   color: var(--tx-1);
 }
 
@@ -168,6 +170,8 @@
 
   height: 100%;
   padding: 24px;
+
+  overflow-x: auto;
 
   background-color: var(--bg-1);
 }
