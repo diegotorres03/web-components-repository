@@ -11,9 +11,25 @@
             "id": "ba3bdda98bd59d17",
             "type": "leaf",
             "state": {
+              "type": "kanban",
+              "state": {
+                "file": "dwck-cei-tool/Kanban.md"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "b821d1c1da86c1e2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "350a76bb2b3e8919",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "Untitled/Untitled.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +85,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276.5
+    "width": 276.5,
+    "collapsed": true
   },
   "right": {
     "id": "e17257ce422cbf03",
@@ -85,7 +102,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled/Untitled.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +119,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled/Untitled.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled/Untitled.md"
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md"
               }
             }
           },
@@ -163,11 +180,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "ba3bdda98bd59d17",
+  "active": "f4e7e3f66c814970",
   "lastOpenFiles": [
-    "Untitled/Untitled.md",
+    "dwck-cei-tool/Kanban.md",
+    "dwck-cei-tool/task-notes/Area Dashboard.md",
+    "dwck-cei-tool/Untitled.md",
+    "dwck-cei-tool/task-notes",
     "Untitled.md",
-    "Untitled/Untitled Kanban.md",
-    "Untitled"
+    "dwck-cei-tool"
   ]
 }
