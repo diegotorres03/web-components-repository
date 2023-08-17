@@ -4,22 +4,6 @@
     "type": "split",
     "children": [
       {
-        "id": "37c5aae42d4a5bc6",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "ba3bdda98bd59d17",
-            "type": "leaf",
-            "state": {
-              "type": "kanban",
-              "state": {
-                "file": "dwck-cei-tool/Kanban.md"
-              }
-            }
-          }
-        ]
-      },
-      {
         "id": "b821d1c1da86c1e2",
         "type": "tabs",
         "children": [
@@ -85,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276.5,
-    "collapsed": true
+    "width": 276.5
   },
   "right": {
     "id": "e17257ce422cbf03",
@@ -180,7 +163,7 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "f4e7e3f66c814970",
+  "active": "350a76bb2b3e8919",
   "lastOpenFiles": [
     "dwck-cei-tool/Kanban.md",
     "dwck-cei-tool/task-notes/Area Dashboard.md",
