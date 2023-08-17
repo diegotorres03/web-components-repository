@@ -136,6 +136,8 @@
   min-width: 75%;
   height: 100%;
   flex: 1 1;
+
+  overflow-x: auto;
 }
 
 .top__menu {
@@ -168,8 +170,6 @@
 
   height: auto;
   padding: 24px;
-
-  overflow-x: auto;
 
   background-color: var(--bg-1);
 }
