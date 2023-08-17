@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "81361a28d718b641",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
+                "file": "Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
+                "file": "Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Area Dashboard.md"
+                "file": "Untitled.md"
               }
             }
           },
@@ -164,10 +177,11 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "350a76bb2b3e8919",
+  "active": "81361a28d718b641",
   "lastOpenFiles": [
-    "ruta/de/la/imagen.md",
     "dwck-cei-tool/task-notes/Area Dashboard.md",
+    "Untitled.md",
+    "ruta/de/la/imagen.md",
     "ruta/de/la",
     "ruta/de",
     "ruta",
@@ -185,7 +199,6 @@
     "dwck-cei-tool/screenshots",
     "dwck-cei-tool/Untitled.md",
     "dwck-cei-tool/task-notes",
-    "Untitled.md",
     "dwck-cei-tool"
   ]
 }
