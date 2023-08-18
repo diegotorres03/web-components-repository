@@ -1,0 +1,19 @@
+/* App layout */
+
+[slot='left-content'] * {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+[slot='left-header'] {
+  font-size: 16px;
+  text-transform: lowercase;
+  font-weight: 400;
+  color: var(--tx-3);
+}
+
+[slot='top-menu'] {
+}
+
+/*  */

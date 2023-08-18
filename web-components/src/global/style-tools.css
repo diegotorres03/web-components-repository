@@ -1,5 +1,6 @@
-@import url('./themes/dark-theme.css');
+@import url('./themes/aws-light-theme.css');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('../layouts/app/src/public-style.css');
 
 * {
   box-sizing: border-box;
@@ -32,7 +33,6 @@ button {
 }
 
 .clickable {
-  /* display: block; */
   transition: all 0.2s ease;
 }
 .clickable:hover {
@@ -41,4 +41,8 @@ button {
 .clickable:active {
   filter: brightness(0.95);
   transform: scale(0.95);
+}
+
+.hidden {
+  display: none;
 }

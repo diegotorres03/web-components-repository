@@ -1,0 +1,168 @@
+* {
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  display: flex;
+
+  width: 100%;
+  min-height: 100vh;
+
+  color: ghostwhite;
+  background-color: #232323;
+}
+
+.side-resizer {
+  position: relative;
+
+  display: flex;
+  width: 300px;
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 64px 20%;
+
+  width: 100%;
+  flex: 1 1;
+  height: 100vh;
+}
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100vh;
+  background-color: hsl(0, 0%, 20%);
+
+  user-select: none;
+}
+
+.side-bar__header {
+  text-align: center;
+  vertical-align: center;
+  width: 100%;
+  height: auto;
+
+  padding: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+
+  background-color: hsl(0, 0%, 25%);
+  border-bottom: 1px solid hsl(0, 0%, 30%);
+}
+
+.side-bar__content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+  height: auto;
+
+  padding: 12px;
+
+  border-bottom: 1px solid hsl(0, 0%, 30%);
+}
+
+.content-details * {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.side-bar__footer {
+  width: 100%;
+  height: auto;
+
+  padding: 12px;
+
+  margin-top: auto;
+
+  border-top: 1px solid hsl(0, 0%, 30%);
+}
+
+.resizer {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  min-width: 10px;
+  min-height: 100%;
+}
+
+.resizer:hover {
+  border-right: 2px solid hsl(45, 100%, 70%);
+  cursor: col-resize;
+}
+.resizer:active {
+  border-right: 2px solid hsl(300, 100%, 90%);
+  cursor: col-resize;
+}
+
+.hidden {
+  display: none;
+}
+/* 
+var resizer = document.querySelector(".resizer"),
+   sidebar = document.querySelector(".sidebar");
+
+
+function initResizerFn( resizer, sidebar ) {
+
+   // track current mouse position in x var
+   var x, w;
+
+   function rs_mousedownHandler( e ) {
+
+      x = e.clientX;
+
+      var sbWidth = window.getComputedStyle( sidebar ).width;
+      w = parseInt( sbWidth, 10 );
+
+      document.addEventListener("mousemove", rs_mousemoveHandler);
+      document.addEventListener("mouseup", rs_mouseupHandler);
+   }
+
+   function rs_mousemoveHandler( e ) {
+      var dx = e.clientX - x;
+
+      var cw = w + dx; // complete width
+
+      if ( cw < 700 ) {
+         sidebar.style.width = `${ cw }px`;
+      }
+   }
+
+   function rs_mouseupHandler() {
+      // remove event mousemove && mouseup
+      document.removeEventListener("mouseup", rs_mouseupHandler);
+      document.removeEventListener("mousemove", rs_mousemoveHandler);
+   }
+
+   resizer.addEventListener("mousedown", rs_mousedownHandler);
+}
+
+
+initResizerFn( resizer, sidebar );
+
+
+*/
