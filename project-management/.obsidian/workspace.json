@@ -13,8 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Engagement Tracker.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "mode": "source",
+                "backlinks": true,
                 "source": false
               }
             }
@@ -38,7 +39,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "byCreatedTimeReverse"
               }
             }
           },
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Engagement Tracker.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Engagement Tracker.md",
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "dwck-cei-tool/task-notes/Engagement Tracker.md"
+                "file": "dwck-cei-tool/task-notes/Area Dashboard.md"
               }
             }
           },
@@ -166,10 +167,17 @@
   },
   "active": "350a76bb2b3e8919",
   "lastOpenFiles": [
+    "Config/Assets/Screen Shot 2023-08-21 at 8.11.41 AM.png",
     "dwck-cei-tool/task-notes/Area Dashboard.md",
-    "dwck-cei-tool/Kanban.md",
-    "Screen Shot 2023-08-17 at 4.32.14 PM.png",
+    "Config/Assets.md",
+    "Untitled/Untitled.md",
+    "Config/Assets",
+    "Config",
+    "Config/Assets/Screen Shot 2023-08-21 at 6.29.03 PM.png",
+    "Screen Shot 2023-08-17 at 4.32.14 PM.png.md",
     "dwck-cei-tool/task-notes/Engagement Tracker.md",
+    "Screen Shot 2023-08-17 at 4.32.14 PM.png",
+    "dwck-cei-tool/Kanban.md",
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-17 at 4.18.23 PM.png",
     "dwck-cei-tool/screenshots/login.png",
     "dwck-cei-tool/screenshots/new-engagement-tracker.png",
@@ -181,8 +189,6 @@
     "ruta",
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.23 PM.png",
     "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.10.27 PM.png",
-    "dwck-cei-tool/screenshots/area-dashboard.png",
-    "dwck-cei-tool/screenshots/Screen Shot 2023-08-13 at 6.13.02 PM.png",
     "dwck-cei-tool/screenshots",
     "dwck-cei-tool/Untitled.md",
     "dwck-cei-tool/task-notes",

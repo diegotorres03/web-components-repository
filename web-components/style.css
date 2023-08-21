@@ -93,7 +93,7 @@ app-route {
   gap: 8px;
 
   background-color: var(--bg-2);
-  border: 0.5px solid var(--bg-3);
+  border: 0.5px solid var(--bg-4);
 }
 
 /* 🐉 account-filer 🐉 */
@@ -110,7 +110,7 @@ app-route {
   border-radius: 8px;
 
   background-color: var(--bg-0);
-  border: 0.5px solid var(--bg-3);
+  border: 0.5px solid var(--bg-4);
 }
 
 .account-filter__title {
@@ -152,7 +152,7 @@ app-route {
   font-size: 14px;
 
   background-color: var(--bg-0);
-  border: 0.5px solid var(--bg-3);
+  border: 0.5px solid var(--bg-4);
 }
 
 .costumer-card__item {
@@ -217,7 +217,7 @@ cuando la tarjeta esta cerrada */
   border-radius: 0 0 8px 8px;
 
   background-color: var(--bg-0);
-  border: 1px solid var(--bg-3);
+  border: 1px solid var(--bg-4);
   border-width: 0 1px 1px 1px;
 }
 
@@ -232,7 +232,7 @@ cuando la tarjeta esta cerrada */
 }
 
 .toggle-card__task-item:not(:last-of-type) {
-  border: 1px solid var(--bg-3);
+  border: 1px solid var(--bg-4);
   border-width: 0 0 0.5px 0;
 }
 
@@ -302,7 +302,7 @@ cuando la tarjeta esta cerrada */
 /* Clase por defecto para los botones, si esta existe 
 en el elemento este se verá desactivado */
 .disabled {
-  border: 1px solid var(--bg-3);
+  border: 1px solid var(--bg-4);
   background-color: var(--bg-0);
   color: var(--bg-3);
 
@@ -314,7 +314,7 @@ en el elemento este se verá desactivado */
 
   border-radius: 4px;
   background-color: var(--bg-1);
-  border: 1px solid var(--mc-1);
+  border: 1px solid var(--bg-4);
 }
 
 .parameters__comment-btn {
@@ -326,7 +326,7 @@ en el elemento este se verá desactivado */
   border-radius: 4px;
   padding: 0;
 
-  border: 1px solid var(--bg-3);
+  border: 1px solid var(--bg-4);
   background-color: var(--bg-1);
   color: var(--bg-3);
 }
@@ -348,7 +348,7 @@ en el elemento este se verá desactivado */
   gap: 8px;
 
   background-color: var(--bg-2);
-  border: 0.5px solid var(--bg-3);
+  border: 0.5px solid var(--bg-4);
 }
 
 .area-dashboard__header {
@@ -363,7 +363,7 @@ en el elemento este se verá desactivado */
   border-radius: 8px;
 
   background-color: var(--bg-0);
-  border: 0.5px solid var(--bg-3);
+  border: 0.5px solid var(--bg-4);
 }
 
 .area-dashboard__title {
@@ -390,8 +390,8 @@ en el elemento este se verá desactivado */
   padding: 12px;
   border-radius: 0 0 8px 8px;
 
-  background-color: var(--bg-0);
-  border: 1px solid var(--bg-3);
+  background-color: var(--bg-1);
+  border: 1px solid var(--bg-4);
   border-width: 0 1px 1px 1px;
 }
 
@@ -406,7 +406,7 @@ en el elemento este se verá desactivado */
   font-size: 14px;
 
   background-color: var(--bg-0);
-  border: 1px solid var(--bg-3);
+  border: 1px solid var(--bg-4);
 }
 
 .area-task-item__title {
@@ -414,12 +414,17 @@ en el elemento este se verá desactivado */
   font-size: 12px;
   grid-row: 1;
   grid-column: span 2;
+
+  color: var(--mc-1);
 }
 
 .area-task-item__input {
   grid-row: 2;
   /* Título ocupa dos columnas */
   width: 100%;
+
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .area-task-item__button {
@@ -434,9 +439,19 @@ en el elemento este se verá desactivado */
   border-radius: 4px;
   padding: 0;
 
-  border: 1px solid var(--bg-3);
+  border: 1px solid var(--bg-4);
   background-color: var(--bg-1);
   color: var(--bg-3);
+
+  transition: all 0.2s ease;
+}
+
+.area-task-item__button:hover {
+  background-color: var(--mc-3);
+  border: 1px solid var(--mc-2);
+  color: var(--mc-2);
+
+  transition: all 0.2s ease;
 }
 
 /* toggle-up permite que el contenido del toggle-card se oculte */
@@ -445,4 +460,18 @@ en el elemento este se verá desactivado */
   padding: 0;
   overflow: hidden;
   border: none;
+}
+
+input[type='text'],
+[type='number'] {
+  background-color: var(--bg-1);
+  border: 1px solid var(--bg-4);
+  outline: 1px solid transparent;
+}
+
+input[type='text']:focus,
+[type='number']:focus {
+  outline: 1px solid var(--mc-3);
+
+  transition: all 0.2s ease;
 }
