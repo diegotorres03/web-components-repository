@@ -106,7 +106,7 @@ app-route {
   width: 100%;
   height: auto;
 
-  padding: 12px;
+  padding: 8px 12px;
   border-radius: 8px;
 
   background-color: var(--bg-0);
@@ -236,14 +236,6 @@ cuando la tarjeta esta cerrada */
   border-width: 0 0 0.5px 0;
 }
 
-/* toggle-up permite que el contenido del toggle-card se oculte */
-.toggle-up {
-  height: 0px;
-  padding: 0;
-  overflow: hidden;
-  border: none;
-}
-
 /* toggle-card__parameters contiene los botones del task-item */
 
 .toggle-card__parameters {
@@ -337,4 +329,120 @@ en el elemento este se verá desactivado */
   border: 1px solid var(--bg-3);
   background-color: var(--bg-1);
   color: var(--bg-3);
+}
+
+/* 🐉 area-dashboard 🐉 */
+
+.area-dashboard {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 520px;
+  max-width: 700px;
+
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0;
+
+  gap: 8px;
+
+  background-color: var(--bg-2);
+  border: 0.5px solid var(--bg-3);
+}
+
+.area-dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: auto;
+
+  padding: 12px;
+  border-radius: 8px;
+
+  background-color: var(--bg-0);
+  border: 0.5px solid var(--bg-3);
+}
+
+.area-dashboard__title {
+  font-size: 14px;
+  font-weight: 500;
+
+  text-align: center;
+
+  color: var(--tx-1);
+}
+
+/* 🐉 toggle-card 🐉*/
+
+.area-dashboard__toggle-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.area-toggle-card__task-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Crear 4 columnas de igual tamaño */
+  gap: 10px; /* Espacio entre las celdas */
+
+  padding: 12px;
+  border-radius: 0 0 8px 8px;
+
+  background-color: var(--bg-0);
+  border: 1px solid var(--bg-3);
+  border-width: 0 1px 1px 1px;
+}
+
+.area-toggle-card__task-item {
+  display: grid;
+  grid-template-rows: auto 1fr; /* Primera fila automática, segunda fila 1fr */
+  gap: 5px;
+
+  padding: 8px;
+  border-radius: 4px;
+
+  font-size: 14px;
+
+  background-color: var(--bg-0);
+  border: 1px solid var(--bg-3);
+}
+
+.area-task-item__title {
+  width: 100%;
+  font-size: 12px;
+  grid-row: 1;
+  grid-column: span 2;
+}
+
+.area-task-item__input {
+  grid-row: 2;
+  /* Título ocupa dos columnas */
+  width: 100%;
+}
+
+.area-task-item__button {
+  grid-row: 2;
+  width: 20%;
+
+  display: inline;
+  width: 25px;
+  height: 25px;
+
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0;
+
+  border: 1px solid var(--bg-3);
+  background-color: var(--bg-1);
+  color: var(--bg-3);
+}
+
+/* toggle-up permite que el contenido del toggle-card se oculte */
+.toggle-up {
+  height: 0px;
+  padding: 0;
+  overflow: hidden;
+  border: none;
 }
