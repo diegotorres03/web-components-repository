@@ -548,8 +548,65 @@
 
   </app-layout>
 
-  <!-- Código para ocultar el left-menu con un botón -->
-  <!-- <script>
+
+  <app-modal trigger="table" on="click">
+    <h3 slot="title">Customer Story</h3>
+    <section slot="main" class="flex-column">
+      <div class="flex-row space-around" style="width: 100%;">
+        <span>item 1</span>
+        <span>item 2</span>
+        <span>item 3</span>
+      </div>
+      <div class="flex-row space-around" style="width: 100%;">
+        <div>
+          <input type="checkbox" name="" id=" ">
+          <label for="">Template</label>
+        </div>
+        <div>
+          <b>IOM Partial Control Enabled</b>
+        </div>
+      </div>
+
+
+      <textarea name="" id="" cols="30" rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+      <small>233/400</small>
+      <div class="flex-row space-around" style="width: 100%;">
+        <label>ETA UPLINE</label>
+        <label>ETA DOWNLINE</label>
+        <label>ETD</label>
+        <label>UPLINE DEP</label>
+        <label>CURR DEP</label>
+        <label>CURR ARR</label>
+        <label>GATE NO</label>
+      </div>
+      <hr>
+      <div class="flex-row space-around" style="width: 100%;">
+        <div class="flex-column">
+          <div>
+            <input type="checkbox" name="" id="">
+            <label for="">Remind me in:</label>
+          </div>
+          <div>
+            <input type="checkbox" name="" id="">
+            <label for="">Remind me if ETD extended By:</label>
+          </div>
+        </div>
+        
+        <div class="flex-column">
+          <input type="time" name="" id="">
+          <select name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+          </select>
+        </div>
+
+      </div>
+
+    </section>
+  </app-modal>
+
+  <script>
     const btn = document.querySelector('#hide-left')
     const left = document.querySelector('app-layout')
     let hidden = true

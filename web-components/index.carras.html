@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Carras</h1>
+
+    <button id="my-btn" ></button>
+
+    <app-modal id="modal1" trigger="#my-btn" on="click" data-source="este boton">
+        <section slot="main">
+            <label for="">email:</label>
+            <input name="email" type="email">
+            <br>
+            <label for="">password:</label>
+            <input name="password" type="password">
+        </section>
+    </app-modal>
+
+
+    <app-modal trigger="#modal1" on="accepted" >
+        <h1 slot="title">segundo</h1>
+    </app-modal>
+
+
+    <script>
+        document.querySelector('app-modal')
+            .addEventListener('accepted', event => {
+                console.log(event)
+                const { email, password } = event.detail
+            })
+    </script>
+
+</body>
+
+</html>
