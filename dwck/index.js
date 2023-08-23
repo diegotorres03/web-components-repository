@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-import { readFile, writeFile,rm } from 'fs/promises'
+import { readFile, writeFile, rm, } from 'fs/promises'
 import { Command } from 'commander'
 
 import * as CreateProjectFolder from './bin/projectTools.js'
 import { exec } from 'child_process'
 // import {version} from './package.json'
-import {readFileSync} from 'fs'
+import { readFileSync } from 'fs'
+
 
 
 const version = '1.1.3'
@@ -72,6 +73,6 @@ command run to create a link to the selected file.
   })
 
 // [ ] Add command to update components library
- 
+
 
 program.parse(process.argv)
