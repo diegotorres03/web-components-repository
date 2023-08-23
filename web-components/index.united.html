@@ -4,11 +4,155 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
   <title>Document</title>
+</head>
+=======
+  <title>United Stories</title>
+
+  <style>
+    a {
+      color: azure;
+    }
+
+>>>>>>> 30d8c0c343fd920c8f44338189d98f8bbfccc897
+
+    .flex-column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+<<<<<<< HEAD
+=======
+    .flex-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .space-around {
+      justify-content: space-around;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+
+
 </head>
 
 <body>
 
+
+  <app-layout>
+
+    <span slot="left-header"></span>
+
+    <div slot="left-content">left</div>
+
+    <nav slot="top-menu" style="width: 100%;">
+      <div class="flex-row space-around">
+
+        <div>
+          <a id="home" href="#home">home</a>
+          <pop-over-menu for="home" on="click">
+            <button>dashboard</button>
+          </pop-over-menu>
+        </div>
+
+        <div>
+          <a id="delays" href="#delays">delays</a>
+          <pop-over-menu for="delays" on="click">
+            <button>current delays</button>
+            <button>risk of delay</button>
+            <button>other</button>
+          </pop-over-menu>
+        </div>
+      </div>
+
+    </nav>
+
+
+    <section slot="main" class="flex-column">
+
+      <div class="flex-row space-around">
+        <label for="">something</label>
+        <select name="" id="">
+          <option value="">option 1</option>
+          <option value="">option 2</option>
+          <option value="">option 3</option>
+        </select>
+
+        <label for="">other thing</label>
+        <input type="text" placeholder="🔍">
+        <button>submit</button>
+      </div>
+
+      <table >
+        <thead>
+          <tr>
+            <th>field 1</th>
+            <th>field 2</th>
+            <th>field 3</th>
+            <th>field 4</th>
+            <th>field 5</th>
+            <th>field 6</th>
+            <th>field 7</th>
+            <th>field 8</th>
+            <th>field 9</th>
+            <th>field 10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>field 1</td>
+            <td>field 2</td>
+            <td>field 3</td>
+            <td>field 4</td>
+            <td>field 5</td>
+            <td>field 6</td>
+            <td>field 7</td>
+            <td>field 8</td>
+            <td>field 9</td>
+            <td>field 10</td>
+          </tr>
+
+          <tr>
+            <td>field 1</td>
+            <td>field 2</td>
+            <td>field 3</td>
+            <td>field 4</td>
+            <td>field 5</td>
+            <td>field 6</td>
+            <td>field 7</td>
+            <td>field 8</td>
+            <td>field 9</td>
+            <td>field 10</td>
+          </tr>
+
+          <tr>
+            <td>field 1</td>
+            <td>field 2</td>
+            <td>field 3</td>
+            <td>field 4</td>
+            <td>field 5</td>
+            <td>field 6</td>
+            <td>field 7</td>
+            <td>field 8</td>
+            <td>field 9</td>
+            <td>field 10</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+  </app-layout>
+
+
+>>>>>>> 30d8c0c343fd920c8f44338189d98f8bbfccc897
   <app-modal trigger="table" on="click">
     <h3 slot="title">Customer Story</h3>
     <section slot="main" class="flex-column">
@@ -28,8 +172,7 @@
       </div>
 
 
-      <textarea name="" id="" cols="30"
-        rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+      <textarea name="" id="" cols="30" rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
       <small>233/400</small>
       <div class="flex-row space-around" style="width: 100%;">
         <label>ETA UPLINE</label>
@@ -52,7 +195,7 @@
             <label for="">Remind me if ETD extended By:</label>
           </div>
         </div>
-
+        
         <div class="flex-column">
           <input type="time" name="" id="">
           <select name="" id="">
@@ -67,6 +210,21 @@
     </section>
   </app-modal>
 
+<<<<<<< HEAD
+=======
+  <script>
+    const btn = document.querySelector('#hide-left')
+    const left = document.querySelector('app-layout')
+    let hidden = true
+    console.log(left, btn)
+    btn.addEventListener('click', event => {
+      console.log(event, hidden)
+      if (hidden) left.removeAttribute('hide-left')
+      else left.setAttribute('hide-left', '')
+      hidden = !hidden
+    })
+  </script>
+>>>>>>> 30d8c0c343fd920c8f44338189d98f8bbfccc897
 
 </body>
 
