@@ -34,7 +34,7 @@
         <!-- Summary es el título que aparecerá en el details -->
         <summary>Dashboards</summary>
         <!-- links de ruta -->
-        <a href="#">Area Development </a>
+        <a href="#area-dashboard">Area Dashboard </a>
         <a href="#">Caranti Toleda</a>
         <a href="#">Report Redox</a>
         <a href="#">Area Development</a>
@@ -64,11 +64,150 @@
     <!-- MAIN  -->
     <app-router slot="main">
 
+      <!-- 🐉 Home 🐉 -->
       <app-route>
 
         <h1>welcome</h1>
 
       </app-route>
+
+      <!-- 🐉 Area-Dashboard 🐉 -->
+      <app-route hash="area-dashboard">
+
+        <article class="area-dashboard">
+
+          <section class="area-dashboard__header">
+
+            <h2 class="area-dashboard__title">
+              <strong>Area Name:</strong> US-CENTRAL
+            </h2>
+
+          </section>
+          <div class="area-dashboard__toggle-card">
+
+            <div class="toggle-card__header">
+
+              <h3 class="toggle-card__title">Strategic Engagement</h3>
+              <span class="toggle-card__menu-down icon-menu-down"></span>
+
+            </div>
+            <div class="area-toggle-card__task-container toggle-up">
+
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="area-dashboard__toggle-card">
+
+            <div class="toggle-card__header">
+
+              <h3 class="toggle-card__title">Execution Engagement</h3>
+              <span class="toggle-card__menu-down icon-menu-down"></span>
+
+            </div>
+            <div class="area-toggle-card__task-container toggle-up">
+
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+              <div class="area-toggle-card__task-item">
+
+                <h3 class="area-task-item__title">Account Plan Complement</h3>
+                <input class="area-task-item__input" type="number" name="" id="">
+                <button class="area-task-item__button clickable">+</button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </app-route>
+
+      <!-- 🐉 Engagement-Tracker 🐉 -->
       <app-route hash="engagement-tracker">
 
         <article class="engagement-tracker">
@@ -478,7 +617,8 @@
       </div>
 
 
-      <textarea name="" id="" cols="30" rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+      <textarea name="" id="" cols="30"
+        rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
       <small>233/400</small>
       <div class="flex-row space-around" style="width: 100%;">
         <label>ETA UPLINE</label>
@@ -501,7 +641,7 @@
             <label for="">Remind me if ETD extended By:</label>
           </div>
         </div>
-        
+
         <div class="flex-column">
           <input type="time" name="" id="">
           <select name="" id="">
@@ -527,7 +667,7 @@
       else left.setAttribute('hide-left', '')
       hidden = !hidden
     })
-  </script> -->
+  </script>
 
   <script>
 

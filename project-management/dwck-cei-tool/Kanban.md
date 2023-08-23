@@ -6,7 +6,7 @@ kanban-plugin: basic
 
 ## To do
 
-- [ ] [[Area Dashboard]]
+- [ ] Area Dashboard<br><span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>Aws App<span/><br>- [ ]
 - [ ] Region Dashboard
 - [ ] District Dashboard
 - [ ] Territory Dashboard
@@ -15,6 +15,7 @@ kanban-plugin: basic
 
 ## In process
 
+- [ ] [[Area Dashboard]]<br><span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>App Layout<span/><br>- [x] Wireframe<br>- [x] Prototipo<br>- [ ] Revisión de clases<br>- [ ] Adición de theme<br>- [ ] Perfeccionar task-item<br>	- [ ] Title<br>	- [ ] Input<br>	- [ ] Button
 
 
 ## Finished
