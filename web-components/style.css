@@ -73,15 +73,9 @@ app-route {
   width: 100%;
 }
 
-[hash='engagement-tracker'] {
-  width: 100%;
-}
-
 /* 🐉 engagement-tracker 🐉 */
-.engagement-tracker {
-  display: flex;
-  flex-direction: column;
 
+.dashboard {
   width: 100%;
   min-width: 520px;
   max-width: 700px;
@@ -89,19 +83,14 @@ app-route {
   border-radius: 8px;
   padding: 24px;
   margin: 0;
-
   gap: 8px;
 
   background-color: var(--bg-2);
   border: 0.5px solid var(--bg-4);
 }
 
-/* 🐉 account-filer 🐉 */
-
-.app__account-filter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.dashboard .header {
+  gap: 8px;
 
   width: 100%;
   height: auto;
@@ -113,39 +102,34 @@ app-route {
   border: 0.5px solid var(--bg-4);
 }
 
-.account-filter__title {
+.dashboard .header .title {
   font-size: 14px;
   font-weight: 500;
 }
 
-.account-filter__search {
+.dashboard .header .search {
   width: 40%;
   height: 100%;
 
   padding: 4px;
   border-radius: 4px;
-
-  border: 1px solid var(--mc-1);
 }
 
-/* 🐉 costumer 🐉 */
+/* 🐉 dashboard-section 🐉 */
 
-.app__costumer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-
+.dashboard .section {
   width: 100%;
   height: auto;
 }
 
-.costumer__costumer-card {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.dashboard .section.costumer {
+  gap: 8px;
+}
 
+.costumer .card {
+  width: 50%;
+
+  gap: 6px;
   padding: 12px;
   border-radius: 8px;
 
@@ -155,28 +139,27 @@ app-route {
   border: 0.5px solid var(--bg-4);
 }
 
-.costumer-card__item {
+.costumer-card .item {
   color: var(--tx-3);
 }
-
-.costumer-card__item-title {
+.costumer-card .item .title {
   font-weight: 900;
   color: var(--mc-1);
 }
 
 /* 🐉 toggle-card 🐉*/
 
-.app__toggle-card {
-  display: flex;
-  flex-direction: column;
+.dashboard-section.someclass {
+  gap: 8px;
+}
 
+.dropdown-card {
+  position: relative;
   width: 100%;
 }
 
-.toggle-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.dropdown-card .header {
+  z-index: 200;
 
   padding: 8px 12px;
   border-radius: 8px;
@@ -185,43 +168,70 @@ app-route {
   background-color: var(--mc-2);
 
   cursor: pointer;
+
+  transition: border-radius 0.2s ease 0.1s;
 }
 
 /* .rounded se añade al toggle-card__header para acomodarlo visualmente 
 cuando la tarjeta esta cerrada */
-.rounded {
+.dropdown-card .header.closed {
   border-radius: 8px 8px 0 0;
+  transition: border-radius 0.2s ease;
 }
 
-.toggle-card__title {
+.dropdown-card .header .title {
   font-size: 16px;
   font-weight: 500;
 }
 
-.toggle-card__menu-down {
+.dropdown-card .icon-menu-down {
   font-size: 24px;
   color: var(--tx-i);
 
+  transform: rotate(-90deg);
+
   transition: all 0.4s ease;
 }
 
-.roll {
-  transform: rotate(180deg);
+.icon-menu-down.rotate {
+  transform: rotate(0deg);
   transition: all 0.4s ease;
 }
 
-.toggle-card__task-container {
-  display: flex;
-  flex-direction: column;
+.item-container {
+  position: relative;
+  left: 0;
+  top: 100%;
+
+  width: 100%;
 
   border-radius: 0 0 8px 8px;
 
   background-color: var(--bg-0);
   border: 1px solid var(--bg-4);
   border-width: 0 1px 1px 1px;
+
+  opacity: 1;
+
+  transition: all 0.2s ease;
 }
 
-.toggle-card__task-item {
+/* toggle-up permite que el contenido del toggle-card se oculte */
+.dropdown-toggle {
+  display: none !important;
+
+  left: 0;
+  top: -25%;
+  z-index: 100;
+
+  width: 100%;
+
+  opacity: 0;
+
+  transition: all 0.2s ease;
+}
+
+.dropdown-card .item-container .item {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -231,52 +241,49 @@ cuando la tarjeta esta cerrada */
   padding: 12px;
 }
 
-.toggle-card__task-item:not(:last-of-type) {
+.item-container .item:not(:last-of-type) {
   border: 1px solid var(--bg-4);
   border-width: 0 0 0.5px 0;
 }
 
 /* toggle-card__parameters contiene los botones del task-item */
+.item .title {
+  font-size: 14px;
+  font-weight: 600;
+}
 
-.toggle-card__parameters {
-  display: flex;
-  align-items: center;
+.item .state-container {
   gap: 8px;
 }
 
-.parameters__btns {
-  display: flex;
-  align-items: center;
+.state-btn-box {
   gap: 4px;
 }
 
-.parameters__state-btn:hover,
-.parameters__comment-btn:hover {
-  filter: brightness(0.8) contrast(120%);
-  cursor: pointer;
-}
-
-.parameters__state-btn:active,
-.parameters__comment-btn:active {
-  transform: scale(0.95);
-}
-
-.parameters__state-btn {
-  display: grid;
-  place-items: center;
-  width: 23px;
-  height: 23px;
+.state-btn {
+  display: inline;
+  width: 25px;
+  height: 25px;
 
   font-size: 14px;
   border-radius: 4px;
   padding: 0;
 
-  color: var(--background-color);
-  background-color: var(--background-color);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--bg-4);
+  background-color: var(--bg-1);
+  color: var(--bg-3);
 }
 
-.state-btn__icon {
+.state-btn:hover {
+  filter: brightness(0.8) contrast(120%);
+  cursor: pointer;
+}
+
+.state-btn:active {
+  transform: scale(0.95);
+}
+
+.state-btn .icon {
   width: 100%;
   object-fit: cover;
 }
@@ -309,7 +316,7 @@ en el elemento este se verá desactivado */
   transition: all 0.4s ease;
 }
 
-.parameters__comment-input {
+.state-input {
   padding: 4px;
 
   border-radius: 4px;
@@ -317,75 +324,19 @@ en el elemento este se verá desactivado */
   border: 1px solid var(--bg-4);
 }
 
-.parameters__comment-btn {
-  display: inline;
-  width: 25px;
-  height: 25px;
-
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 0;
-
-  border: 1px solid var(--bg-4);
-  background-color: var(--bg-1);
-  color: var(--bg-3);
-}
-
 /* 🐉 area-dashboard 🐉 */
 
-.area-dashboard {
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  min-width: 520px;
-  max-width: 700px;
-
-  border-radius: 8px;
-  padding: 24px;
-  margin: 0;
-
-  gap: 8px;
-
-  background-color: var(--bg-2);
-  border: 0.5px solid var(--bg-4);
-}
-
-.area-dashboard__header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: auto;
-
-  padding: 12px;
-  border-radius: 8px;
-
-  background-color: var(--bg-0);
-  border: 0.5px solid var(--bg-4);
-}
-
-.area-dashboard__title {
-  font-size: 14px;
-  font-weight: 500;
-
-  text-align: center;
-
-  color: var(--tx-1);
+.area-dashboard .header {
 }
 
 /* 🐉 toggle-card 🐉*/
 
 .area-dashboard__toggle-card {
-  display: flex;
-  flex-direction: column;
 }
 
-.area-toggle-card__task-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Crear 4 columnas de igual tamaño */
-  gap: 10px; /* Espacio entre las celdas */
+.area-dashboard .dropdown-card .item-container {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
 
   padding: 12px;
   border-radius: 0 0 8px 8px;
@@ -395,83 +346,42 @@ en el elemento este se verá desactivado */
   border-width: 0 1px 1px 1px;
 }
 
-.area-toggle-card__task-item {
-  display: grid;
-  grid-template-rows: auto 1fr; /* Primera fila automática, segunda fila 1fr */
-  gap: 5px;
-
+.area-dashboard .dropdown-card .item {
   padding: 8px;
   border-radius: 4px;
 
-  font-size: 14px;
-
+  color: var(--tx-2);
   background-color: var(--bg-0);
   border: 1px solid var(--bg-4);
 }
 
-.area-task-item__title {
-  width: 100%;
-  font-size: 12px;
-  grid-row: 1;
-  grid-column: span 2;
-
-  color: var(--mc-1);
+.area-dashboard .item .state-container {
+  gap: 8px;
 }
 
-.area-task-item__input {
-  grid-row: 2;
-  /* Título ocupa dos columnas */
-  width: 100%;
-
-  padding: 4px;
-  border-radius: 4px;
+.area-dashboard .dropdown-card .item .title {
 }
 
-.area-task-item__button {
-  grid-row: 2;
-  width: 20%;
+.area-dashboard .dropdown-card .item .state-input {
+  width: 10%;
+}
 
-  display: inline;
-  width: 25px;
-  height: 25px;
+.area-dashboard .dropdown-card .item .state-btn {
+}
 
-  font-size: 14px;
-  border-radius: 4px;
-  padding: 0;
-
-  border: 1px solid var(--bg-4);
+[type='text'],
+[type='number'],
+[type='search'] {
   background-color: var(--bg-1);
-  color: var(--bg-3);
-
-  transition: all 0.2s ease;
-}
-
-.area-task-item__button:hover {
-  background-color: var(--mc-3);
-  border: 1px solid var(--mc-2);
-  color: var(--mc-2);
-
-  transition: all 0.2s ease;
-}
-
-/* toggle-up permite que el contenido del toggle-card se oculte */
-.toggle-up {
-  height: 0px;
-  padding: 0;
-  overflow: hidden;
-  border: none;
-}
-
-input[type='text'],
-[type='number'] {
-  background-color: var(--bg-1);
-  border: 1px solid var(--bg-4);
-  outline: 1px solid transparent;
+  border: 0.5px solid var(--bg-4);
 }
 
 input[type='text']:focus,
-[type='number']:focus {
-  outline: 1px solid var(--mc-3);
-
+[type='number']:focus,
+[type='search']:focus {
+  border-color: var(--mc-3);
+  outline: none;
   transition: all 0.2s ease;
 }
+
+@import url('./src/global/style-tools.css');
