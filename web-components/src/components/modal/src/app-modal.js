@@ -46,7 +46,7 @@ export default class ModalComponent extends HTMLElement {
     // [ ] add hability to use data-key and also get text content
     const datasetFields = [... this.querySelectorAll('[data-key]')]
 
-    console.log(inputFields)
+    // console.log(inputFields)
 
     const inputData = {}
     inputFields.forEach(field => {
@@ -58,7 +58,7 @@ export default class ModalComponent extends HTMLElement {
       detail: { ...inputData, ...this.dataset }
     })
 
-    console.log(newEvent)
+    // console.log(newEvent)
 
     this.shadowRoot.dispatchEvent(newEvent)
 
@@ -74,7 +74,7 @@ export default class ModalComponent extends HTMLElement {
   }
 
   show(event = {}) {
-    console.log('on modal show', event)
+    // console.log('on modal show', event)
     this.setAttribute('open', '')
     if(!event.detail) return
     Object.keys(event.detail).forEach(key =>

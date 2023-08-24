@@ -26,6 +26,91 @@
 
 <body>
 
+
+  <event-stream>
+    <event-group id="manual-event-btns">
+      <event-source trigger="button[data-machine-event-name]" on="click"></event-source>
+    </event-group>
+  </event-stream>
+
+  <!-- <nav class="flex-row">
+    <button data-machine-event-name="load">load</button>
+    <button data-machine-event-name="sessionActive">sessionActive</button>
+    <button data-machine-event-name="login-sent">login-sent</button>
+    <button data-machine-event-name="authenticated">authenticated</button>
+  </nav> -->
+  <!-- <state-machine id="toggle" initial-state="inactive" trigger="#state-toggle" on="click">
+    <machine-context></machine-context>
+
+    <machine-state id="inactive" on="TOGGLE" target="active"></machine-state>
+    <machine-state id="active" on="TOGGLE" target="inactive"></machine-state>
+
+  </state-machine> -->
+
+  <state-machine id="ui-state-machine" initial-state="start" trigger="event-stream" on="data">
+    <machine-context></machine-context>
+
+    <machine-state id="start">
+      <machine-transition on="load" target="checkSession"></machine-transition>
+    </machine-state>
+
+    <machine-state id="checkSession">
+      <machine-transition on="sessionActive" target="idle"></machine-transition>
+      <machine-transition target="loginForm" on="noSession"></machine-transition>
+    </machine-state>
+
+    <!-- here the login modal opens and ask for email password convination -->
+    <machine-state id="loginForm">
+      <machine-transition on="submit" target="idle"></machine-transition>
+    </machine-state>
+
+    <machine-state id="idle" type="final"></machine-state>
+
+    <!-- <machine-state id="" on="" target=""></machine-state> -->
+
+  </state-machine>
+
+  <app-modal id="login-form" trigger="state-machine" on="loginForm">
+    <h1 slot="title">Login</h1>
+    <section slot="main" class="flex-row space-around">
+      <div>
+        <label for="login-email">email:</label>
+        <input type="email" name="email" id="login-email">
+        <br>
+        <label for="login-password">password:</label>
+        <input type="password" name="password" id="login-password">
+      </div>
+    </section>
+  </app-modal>
+
+  <script>
+
+    const machine = document.querySelector('state-machine')
+
+    machine.addEventListener('checkSession', event => {
+      console.log('checking session')
+      const token = window.localStorage.getItem('token')
+      if (!token) machine.send({ type: 'noSession' })
+      else machine.send({ type: 'sessionActive' })
+      // console.log(event)
+    })
+
+    machine.addEventListener('loginForm', event => {
+      console.log('ACTIVE')
+      // console.log(event)
+    })
+    document.querySelector('#login-form')
+      .addEventListener('accepted', event => {
+        console.log('login info', event)
+        const { email } = event.detail
+        window.localStorage.setItem('token', email)
+      })
+
+    // machine.addEventListener('')
+
+  </script>
+
+
   <app-layout>
 
     <!-- Botón que hace toggle al left-menu -->

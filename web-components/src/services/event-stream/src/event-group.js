@@ -41,7 +41,7 @@ export default class EventGroupComponent extends HTMLElement {
 
     const transformedData = runTransforms(event, this.getAttribute('transform'))
 
-    console.info(`${this.id} emiting ${this.DEFAULT_EVENT_NAME}`, event)
+    // console.info(`${this.id} emiting ${this.DEFAULT_EVENT_NAME}`, event)
     this.dispatchEvent(new CustomEvent(this.DEFAULT_EVENT_NAME, {
       bubbles: false, composed: true,
       detail: transformedData,
