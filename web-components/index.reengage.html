@@ -8,6 +8,7 @@
   <title>Customer Engagement Index</title>
   <link href="https://dev.iconly.io/public/ShA4wc0jqRet/iconly.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-tools.css">
 
   <!-- 
     [ ] header: generar div-user-info
@@ -16,6 +17,10 @@
     [ ] top menu debe esconderse según la vista
     [ ] top menu: Auto hide when is empty
   -->
+
+  <style>
+
+  </style>
 
 </head>
 
@@ -164,134 +169,40 @@
       <!-- 🐉 Area-Dashboard 🐉 -->
       <app-route hash="area-dashboard">
 
-        <article class="area-dashboard">
+        <article class="area-dashboard dashboard flex-column">
 
-          <section class="area-dashboard__header">
+          <section class="header flex-row align-items-center justify-content-center">
 
-            <h2 class="area-dashboard__title">
-              <strong>Area Name:</strong> US-CENTRAL
-            </h2>
+            <h2 class="title"><strong>Area Name:</strong> US-CENTRAL</h2>
 
           </section>
-          <div class="area-dashboard__toggle-card">
+          <section class="dashboard-section someclass flex-column ">
 
-            <div class="toggle-card__header">
+            <div class="dropdown-card">
 
-              <h3 class="toggle-card__title">Strategic Engagement</h3>
-              <span class="toggle-card__menu-down icon-menu-down"></span>
+              <div data-dropdown-header class="header flex-row align-items-center">
 
-            </div>
-            <div class="area-toggle-card__task-container toggle-up">
-
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
+                <span class="icon-menu-down"></span>
+                <h3 class="title">Strategic Engagement</h3>
 
               </div>
-              <div class="area-toggle-card__task-item">
+              <div class="item-container grid dropdown-toggle">
 
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
+                <div class="item flex-column align-items-center">
 
-              </div>
-              <div class="area-toggle-card__task-item">
+                  <h3 class="title">Account Plan Complement</h3>
+                  <div class="state-container ">
+                    <input class="state-input" type="number" name="" id="">
+                    <button class="state-btn clickable">+</button>
+                  </div>
 
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
+                </div>
 
               </div>
 
             </div>
 
-          </div>
-          <div class="area-dashboard__toggle-card">
-
-            <div class="toggle-card__header">
-
-              <h3 class="toggle-card__title">Execution Engagement</h3>
-              <span class="toggle-card__menu-down icon-menu-down"></span>
-
-            </div>
-            <div class="area-toggle-card__task-container toggle-up">
-
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-              <div class="area-toggle-card__task-item">
-
-                <h3 class="area-task-item__title">Account Plan Complement</h3>
-                <input class="area-task-item__input" type="number" name="" id="">
-                <button class="area-task-item__button clickable">+</button>
-
-              </div>
-
-            </div>
-
-          </div>
+          </section>
 
         </article>
 
@@ -300,45 +211,45 @@
       <!-- 🐉 Engagement-Tracker 🐉 -->
       <app-route hash="engagement-tracker">
 
-        <article class="engagement-tracker">
+        <article class="engagement-tracker dashboard flex-column ">
 
-          <section class="app__account-filter">
+          <section class="header flex-row align-items-center justify-content-between">
 
-            <h1 class="account-filter__title">Accounts (?)</h1>
-            <input class="account-filter__search" type="search" placeholder="Filter Accounts">
+            <h1 class="title">Accounts (?)</h1>
+            <input class="search" type="search" placeholder="Filter Accounts">
 
           </section>
 
-          <section class="app__costumer">
+          <section class="section costumer flex-row-between">
 
-            <div class="costumer__costumer-card">
+            <div class="card flex-column">
 
-              <p class="costumer-card__item ">
-                <span class="costumer-card__item-title">Costumer Name:</span>
+              <p class="item ">
+                <span class="title">Costumer Name:</span>
                 Papa tobias
               </p>
-              <p class="costumer-card__item ">
-                <span class="costumer-card__item-title">Territory: </span>
+              <p class="item ">
+                <span class="title">Territory: </span>
                 ENT MiwestA05
               </p>
-              <p class="costumer-card__item">
-                <span class="costumer-card__item-title">District: </span>
+              <p class="item">
+                <span class="title">District: </span>
                 US Central ENT
               </p>
 
             </div>
-            <div class="costumer__costumer-card">
+            <div class="card flex-column">
 
-              <p class="costumer-card__item">
-                <span class="costumer-card__item-title">Costumer Segment Score:</span>
+              <p class="item">
+                <span class="title">Costumer Segment Score:</span>
                 45
               </p>
-              <p class="costumer-card__item">
-                <span class="costumer-card__item-title">Average NMU:</span>
+              <p class="item">
+                <span class="title">Average NMU:</span>
                 $2M
               </p>
-              <p class="costumer-card__item">
-                <span class="costumer-card__item-title">YoY Growth:</span>
+              <p class="item">
+                <span class="title">YoY Growth:</span>
                 +34%
               </p>
 
@@ -346,334 +257,62 @@
 
           </section>
 
-          <div class="app__toggle-card">
+          <section class="dashboard-section someclass flex-column ">
 
-            <header class="toggle-card__header">
+            <!-- Maybe tratar los dropdown como secciones en vez de cards -->
+            <div class="dropdown-card flex-column">
 
-              <h2 class="toggle-card__title">AWS Field Mechanism</h2>
-              <span class="toggle-card__menu-down icon-menu-down"></span>
+              <div data-dropdown-header class="header flex-row align-items-center">
 
-            </header>
-
-            <div class="toggle-card__task-container nueva-clase-altura toggle-up">
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Account map complete</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled ">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
+                <span class="icon-menu-down"></span>
+                <h2 class="title">AWS Field Mechanism</h2>
 
               </div>
 
-              <div class="toggle-card__task-item">
+              <div class="item-container dropdown-toggle flex-column">
 
-                <p class="toggle-card__task-name">Value Map Completed</p>
-                <div class="toggle-card__parameters">
+                <div class="item flex-row-between align-items-center">
 
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled">
+                  <p class="title">Account map complete</p>
+                  <div data-state-container class="state-container flex-row align-items-center">
 
-                      <span class="state-btn__icon icon-check"></span>
+                    <div class="state-btn-box flex-row align-items-center">
 
-                    </button>
-                    <button class="parameters__state-btn no disabled">
+                      <button data-state-btn class="state-btn yes disabled ">
 
-                      <span class="state-btn__icon icon-uncheck"></span>
+                        <span class="icon icon-check"></span>
 
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
+                      </button>
+                      <button data-state-btn class="state-btn no disabled">
 
-                      <span class="state-btn__icon icon-in-process"></span>
+                        <span class="icon icon-uncheck"></span>
 
-                    </button>
+                      </button>
+                      <button data-state-btn class="state-btn ip disabled">
+
+                        <span class="icon icon-in-process"></span>
+
+                      </button>
+
+                    </div>
+                    <input class="state-input comment" name="comments" type="text" placeholder="Add Comment">
+                    <button class="state-btn"><span class="icon icon-comment"></span></button>
 
                   </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
 
                 </div>
 
-              </div>
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Executive Sponsor</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
 
               </div>
 
             </div>
 
-          </div>
-
-          <div class="app__toggle-card">
-
-            <header class="toggle-card__header">
-
-              <h2 class="toggle-card__title">Human Services</h2>
-              <span class="toggle-card__menu-down icon-menu-down"></span>
-
-            </header>
-
-            <div class="toggle-card__task-container toggle-up">
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Account map complete</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
-
-              </div>
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Value Map Completed</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="app__toggle-card">
-
-            <header class="toggle-card__header">
-
-              <h2 class="toggle-card__title">AWS Field Mechanism</h2>
-              <span class="toggle-card__menu-down icon-menu-down"></span>
-
-            </header>
-
-            <div class="toggle-card__task-container nueva-clase-altura toggle-up">
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Account map complete</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled ">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
-
-              </div>
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Value Map Completed</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
-
-              </div>
-
-              <div class="toggle-card__task-item">
-
-                <p class="toggle-card__task-name">Executive Sponsor</p>
-                <div class="toggle-card__parameters">
-
-                  <div class="parameters__btns">
-                    <!-- Estos tienen que ser radio -->
-                    <button class="parameters__state-btn yes disabled">
-
-                      <span class="state-btn__icon icon-check"></span>
-
-                    </button>
-                    <button class="parameters__state-btn no disabled">
-
-                      <span class="state-btn__icon icon-uncheck"></span>
-
-                    </button>
-                    <button class="parameters__state-btn ip disabled">
-
-                      <span class="state-btn__icon icon-in-process"></span>
-
-                    </button>
-
-                  </div>
-                  <input class="parameters__comment-input" name="comments" type="text" placeholder="Add Comment">
-                  <button class="parameters__comment-btn">
-
-                    <span class="state-btn__icon icon-comment"></span>
-
-                  </button>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
+          </section>
 
         </article>
 
       </app-route>
+
       <app-route hash="linksito">
 
         <h1>Parranda</h1>
@@ -702,22 +341,22 @@
   <script>
 
     // Obtener todos los encabezados de tarjetas con la clase "toggle-card__header"
-    const headers = document.querySelectorAll(".toggle-card__header");
+    const headers = document.querySelectorAll("[data-dropdown-header]");
 
     // Función para agregar la clase "toggle-up", "rounded" y "roll"
     function toggleClass() {
       // Obtener el contenedor de la tarea asociado al encabezado clickeado
       const taskContainer = this.nextElementSibling;
       // Agregar la clase "toggle-up" al contenedor de la tarea
-      taskContainer.classList.toggle("toggle-up");
+      taskContainer.classList.toggle("dropdown-toggle");
 
       // Agregar la clase "rounded" al encabezado clickeado
-      this.classList.toggle("rounded");
+      this.classList.toggle("closed");
 
       // Obtener el elemento "icon-menu-down" dentro del encabezado clickeado
       const menuDown = this.querySelector(".icon-menu-down");
       // Agregar o quitar la clase "roll" al elemento "icon-menu-down"
-      menuDown.classList.toggle("roll");
+      menuDown.classList.toggle("rotate");
     }
 
     // Asignar el evento clic a cada encabezado de tarjeta
@@ -725,10 +364,10 @@
       header.addEventListener("click", toggleClass);
     });
 
-    const items = document.querySelectorAll(".toggle-card__task-item");
+    const items = document.querySelectorAll("[data-state-container]");
 
     items.forEach(function (item) {
-      const buttons = item.querySelectorAll(".parameters__state-btn");
+      const buttons = item.querySelectorAll("[data-state-btn]");
       let activeButton = null;
 
       buttons.forEach(function (button) {
