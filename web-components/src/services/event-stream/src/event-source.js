@@ -45,7 +45,6 @@ export default class EventSourceComponent extends HTMLElement {
     // const fnName = this.getAttribute('filter')
 
     // acomodating window load
-    // console.log('attr transfrom', this.#transformNames, this.#fitlerNames)
     registerTriggers(this, (event) => this.emit(event))
 
 
@@ -74,9 +73,7 @@ export default class EventSourceComponent extends HTMLElement {
       .map(filterName => runFilters(event, filterName))
       .forEach(res => {
         shouldPass = shouldPass && res
-        // console.log('dataPoints shouldPass: ', shouldPass, res)
       })
-    // console.log('dataPoints shouldPass', shouldPass)
 
     if(!shouldPass) return
 
@@ -84,7 +81,6 @@ export default class EventSourceComponent extends HTMLElement {
     // if (!filterResult || filterResult.length === 0) return
 
 
-    // console.log('attr transfrom', this.getAttribute('transform'))
     const transformedData = runTransforms(event, this.getAttribute('transform'), this.#eventSource)
 
     const newEvent = new CustomEvent(this.DEFAULT_EVENT_NAME, {
