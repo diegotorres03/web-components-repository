@@ -1,0 +1,104 @@
+.popover a {
+  padding: 4px 8px;
+  border-radius: 2px;
+
+  background-color: var(--bg-4);
+  color: var(--tx-1);
+}
+
+.top-nav-container {
+  width: 100%;
+}
+
+.top-nav-container button {
+  display: inline;
+
+  padding: 4px 8px;
+  border-radius: 2px;
+  border: none;
+  background-color: var(--bg-4);
+  color: var(--tx-1);
+}
+
+/* modal */
+
+.main-section {
+  gap: 8px;
+}
+
+.modal-header {
+  width: 100%;
+  gap: 4px;
+}
+
+.modal-header span {
+  width: 100%;
+
+  padding: 4px 8px;
+  border-radius: 4px;
+
+  text-align: center;
+
+  color: var(--tx-i);
+  background-color: var(--mc-1);
+}
+
+textarea {
+  padding: 8px;
+}
+/*  */
+
+table {
+  width: 100%;
+  max-width: 100vw;
+  height: 100%;
+
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  overflow: hidden;
+}
+
+thead {
+  background-color: var(--mc-1);
+}
+
+th {
+  padding: 8px 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 14px;
+
+  text-align: center; /* Centrar horizontalmente */
+  vertical-align: middle; /* Centrar verticalmente */
+
+  color: var(--tx-i);
+}
+
+td {
+  padding: 8px 12px;
+
+  text-align: center; /* Centrar horizontalmente */
+  vertical-align: middle; /* Centrar verticalmente */
+
+  color: var(--tx-2);
+  cursor: pointer;
+}
+td:hover {
+  filter: brightness(1.2);
+}
+
+tbody tr {
+  background-color: var(--bg-3);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--bg-2);
+}
+tbody tr:hover {
+  background-color: var(--mc-5);
+}
+
+[slot='top-menu'] * {
+  color: var(--tx-i);
+}
