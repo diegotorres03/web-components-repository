@@ -5,193 +5,657 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Stories</title>
-
-  <style>
-    a {
-      color: azure;
-    }
-
-    .flex-column {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .flex-row {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-    }
-
-    .space-around {
-      justify-content: space-around;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
-
+  <link rel="stylesheet" href="./style-tools.css">
+  <link rel="stylesheet" href="./united.css">
 
 </head>
 
 <body>
-
-
+  <!-- Componente Principal -->
   <app-layout>
 
-    <span slot="left-header"></span>
+    <span slot="left-header" hidden>Hidden</span>
 
     <div slot="left-content">left</div>
 
-    <nav slot="top-menu" style="width: 100%;">
-      <div class="flex-row space-around">
+    <nav class="top-nav-container flex-row justify-content-between" slot="top-menu">
 
-        <div>
-          <a id="home" href="#home">home</a>
+      <div class="flex-row align-items-center" style="gap:2px;">
+
+        <div class="popover">
+
+          <a id="home" href="#home">Home</a>
           <pop-over-menu for="home" on="click">
-            <button>dashboard</button>
+            <button>Item 1</button>
+            <button>Item 2</button>
+            <button>Item 3</button>
           </pop-over-menu>
-        </div>
 
-        <div>
+        </div>
+        <div class="popover">
+
           <a id="delays" href="#delays">delays</a>
           <pop-over-menu for="delays" on="click">
             <button>current delays</button>
             <button>risk of delay</button>
             <button>other</button>
           </pop-over-menu>
+
         </div>
+
+      </div>
+      <div slot="top-menu" class="flex-row align-items-center" style="gap:8px;">
+
+        <label for="">something</label>
+        <select name="" id="">
+
+          <option value="">option 1</option>
+          <option value="">option 2</option>
+          <option value="">option 3</option>
+
+        </select>
+        <label for="">other thing</label>
+        <input type="text" placeholder="🔍">
+        <button>submit</button>
+
       </div>
 
     </nav>
 
-    <section slot="main" class="flex-column">
-
-      <div class="flex-row space-around">
-        <label for="">something</label>
-        <select name="" id="">
-          <option value="">option 1</option>
-          <option value="">option 2</option>
-          <option value="">option 3</option>
-        </select>
-
-        <label for="">other thing</label>
-        <input type="text" placeholder="🔍">
-        <button>submit</button>
-      </div>
+    <section slot="main" class="main-table flex-column">
 
       <table>
+
         <thead>
+
           <tr>
-            <th>field 1</th>
-            <th>field 2</th>
-            <th>field 3</th>
-            <th>field 4</th>
-            <th>field 5</th>
-            <th>field 6</th>
-            <th>field 7</th>
-            <th>field 8</th>
-            <th>field 9</th>
-            <th>field 10</th>
+
+            <th>✔️</th>
+            <th>th-1</th>
+            <th>th-2</th>
+            <th>th-3</th>
+            <th>th-4</th>
+            <th>th-5</th>
+            <th>th-6</th>
+            <th>th-7</th>
+            <th>th-8</th>
+            <th>th-9</th>
+            <th>th-10</th>
+            <th>th-11</th>
+            <th>th-12</th>
+            <th>th-13</th>
+            <th>th-14</th>
+            <th>th-15</th>
+            <th>th-16</th>
+            <th>th-17</th>
+            <th>th-18</th>
+            <th>th-19</th>
+            <th>th-20</th>
+            <th>th-21</th>
+
           </tr>
+
         </thead>
         <tbody>
-          <tr>
-            <td>field 1</td>
-            <td>field 2</td>
-            <td>field 3</td>
-            <td>field 4</td>
-            <td>field 5</td>
-            <td>field 6</td>
-            <td>field 7</td>
-            <td>field 8</td>
-            <td>field 9</td>
-            <td>field 10</td>
-          </tr>
 
           <tr>
-            <td>field 1</td>
-            <td>field 2</td>
-            <td>field 3</td>
-            <td>field 4</td>
-            <td>field 5</td>
-            <td>field 6</td>
-            <td>field 7</td>
-            <td>field 8</td>
-            <td>field 9</td>
-            <td>field 10</td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>✈️</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
           </tr>
-
           <tr>
-            <td>field 1</td>
-            <td>field 2</td>
-            <td>field 3</td>
-            <td>field 4</td>
-            <td>field 5</td>
-            <td>field 6</td>
-            <td>field 7</td>
-            <td>field 8</td>
-            <td>field 9</td>
-            <td>field 10</td>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>🛩️</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>🧑‍🦽🛩️</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" name="" id=""></td>
+            <td>td-1</td>
+            <td>td-2</td>
+            <td>td-3</td>
+            <td>td-4</td>
+            <td>td-5</td>
+            <td>td-6</td>
+            <td>td-7</td>
+            <td>td-8</td>
+            <td>td-9</td>
+            <td>td-10</td>
+            <td>td-11</td>
+            <td>td-12</td>
+            <td>td-13</td>
+            <td>td-14</td>
+            <td>td-15</td>
+            <td>td-16</td>
+            <td>td-17</td>
+            <td>td-18</td>
+            <td>td-19</td>
+            <td>td-20</td>
+            <td>td-21</td>
           </tr>
         </tbody>
+
       </table>
+
     </section>
+
   </app-layout>
 
   <app-modal trigger="table" on="click">
 
-    <h3 slot="title">Customer Story</h3>
-    <section slot="main" class="flex-column">
-      <div class="flex-row space-around" style="width: 100%;">
-        <span>item 1</span>
-        <span>item 2</span>
-        <span>item 3</span>
+    <span slot="title">Customer Story</span>
+    <section slot="main" class="main-section flex-column">
+
+      <div class="modal-header flex-row align-items-center justify-content-between">
+
+        <span>4231-30</span>
+        <span>IaG-H3S</span>
+        <span>GATE:B32</span>
+        <span>DELAY:01:40</span>
+
       </div>
-      <div class="flex-row space-around" style="width: 100%;">
+      <div class="modal-template flex-row align-items-center justify-content-between" style="width: 100%;">
+
         <div>
+
           <input type="checkbox" name="" id=" ">
           <label for="">Template</label>
+
         </div>
         <div>
+
           <b>IOM Partial Control Enabled</b>
+
         </div>
+
       </div>
 
-      <textarea name="" id="" cols="30"
-        rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.</textarea>
+      <span>Message</span>
+      <textarea name="" id="" cols="30" rows="5">UA 4313: Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      </textarea>
       <small>233/400</small>
-      <div class="flex-row space-around" style="width: 100%;">
-        <label>ETA UPLINE</label>
-        <label>ETA DOWNLINE</label>
-        <label>ETD</label>
-        <label>UPLINE DEP</label>
-        <label>CURR DEP</label>
-        <label>CURR ARR</label>
-        <label>GATE NO</label>
-      </div>
-      <hr>
-      <div class="flex-row space-around" style="width: 100%;">
-        <div class="flex-column">
-          <div>
-            <input type="checkbox" name="" id="">
-            <label for="">Remind me in:</label>
-          </div>
-          <div>
-            <input type="checkbox" name="" id="">
-            <label for="">Remind me if ETD extended By:</label>
-          </div>
-        </div>
+      <div class="modal-header flex-row align-items-center justify-content-between">
 
-        <div class="flex-column">
-          <input type="time" name="" id="">
-          <select name="" id="">
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-          </select>
+        <span>ETA UPLINE</span>
+        <span>ETA DOWNLINE</span>
+        <span>ETD</span>
+
+      </div>
+      <div class="flex-row align-items-center justify-content-between">
+
+        <div class="flex-row align-items-center">
+
+          <input type="checkbox" name="" id="">
+          <label for=""> Remind me in:</label>
+
         </div>
+        <input type="time" name="" id="">
+
+      </div>
+      <div class="flex-row align-items-center justify-content-between">
+
+        <div class="flex-row align-items-center">
+
+          <input type="checkbox" name="" id="">
+          <label for=""> Remind me if ETD extended By:</label>
+
+        </div>
+        <select name="" id="">
+          <option value="">1</option>
+          <option value="">2</option>
+          <option value="">3</option>
+        </select>
+
+      </div>
+
+      <div class="flex-column">
+
+      </div>
 
       </div>
 
