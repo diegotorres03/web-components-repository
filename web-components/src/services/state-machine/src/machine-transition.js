@@ -6,9 +6,20 @@ import {
 } from '../../../global/web-tools'
 
 
-//import componentHtml from './flip-card.html'
-//import componentStyle from './flip-card.css'
-
+/**
+ * 
+ * This Element represent a transition between states.
+ * Transitions are the way the machine progress.
+ * 
+ * A transition can use a trigger, when that trigger fires an event,
+ * this transition can react by sending an event to the machine
+ *
+ * @fires event - used for inter machine communicaton 
+ * 
+ * @export
+ * @class MachineTransitionComponent
+ * @extends {HTMLElement}
+ */
 export default class MachineTransitionComponent extends HTMLElement {
 
   constructor() {
@@ -28,9 +39,9 @@ export default class MachineTransitionComponent extends HTMLElement {
       type: eventName,
     }
 
-    console.log('emiting event from transition to machine', detail)
+    // console.log('emiting event from transition to machine', detail)
     this.dispatchEvent(new CustomEvent('event', {
-      bubbles: false, composed: true,
+      bubbles: true, composed: true,
       detail,
     }))
 
@@ -57,34 +68,15 @@ export default class MachineTransitionComponent extends HTMLElement {
     registerTriggers(this, async (event) => {
       const action = this.getAttribute('action')
       try {
-        const eventDetail = { ...event.detail, ...event.target.dataset, ...this.dataset }
-        console.log('action', action)
-
-        if (action) {
-          event['action'] = action
-        }
-
 
         // If I dont emit this individual event, the flow will be stopped,
         // this is not idea for actions
+        if (action) event['action'] = action
+        
         // but is perfect for filter, filter is to prevent this event from propagating
-        this.emitEvent(event)
-        if (!action) return // this.emitEvent(event)
-        const handler = actions[action]
-        if(!handler) return console.warn('no handler was found')
-        const res = await handler({}, eventDetail)
-        if(!res) return
+        // [ ] add filters
 
-        // console.info('res', res)
-        const detail = {
-          type: res.emit,
-          data: { ...res.data }
-        }
-        // console.log(detail)
-        this.dispatchEvent(new CustomEvent('event', {
-          bubbles: true, composed: true,
-          detail,
-        }))
+        this.emitEvent(event)
       } catch (err) {
         this.emitError(err)
       }

@@ -54,7 +54,7 @@ export default class EventSourceComponent extends HTMLElement {
     ) {
       window.addEventListener('load', event => {
         // alert('here')
-        console.info(`${this.id} emiting load`, event)
+        // console.info(`${this.id} emiting load`, event)
         this.dispatchEvent(new CustomEvent('data', {
           bubbles: false, composed: true,
           detail: { ...event.detail, ...this.dataset },
