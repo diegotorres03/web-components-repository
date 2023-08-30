@@ -34,6 +34,8 @@ export default class StateMachineComponent extends HTMLElement {
 
   #context = {}
 
+  #state
+
   /**
    * get all the <machine-state> children 
    *
@@ -59,7 +61,7 @@ export default class StateMachineComponent extends HTMLElement {
     this.shadowRoot.appendChild(template)
 
     const triggers = [...this.shadowRoot.querySelectorAll('[trigger]')]
-    console.log('triggers',triggers)
+    console.log('triggers', triggers)
 
   }
 
@@ -89,9 +91,7 @@ export default class StateMachineComponent extends HTMLElement {
    * @memberof StateMachineComponent
    */
   async send(event) {
-
     this.#instance.send(event)
-
   }
 
   /**
@@ -123,7 +123,11 @@ export default class StateMachineComponent extends HTMLElement {
   // this is experimental
   // the goal is to keep al the machine-state and machine-transition elements in sync
   #updateCurrentContext(state, context) {
-    Array.from(this.querySelectorAll('machine-state')).forEach(stateItem => stateItem.removeAttribute('selected'))
+    this.#state = state
+    this.#context = context
+
+    Array.from(this.querySelectorAll('machine-state'))
+      .forEach(stateItem => stateItem.removeAttribute('selected'))
     const currentState = this.querySelector(`#${state}`)
     currentState.setAttribute('selected', '')
     currentState.eventData = { test: true, ombe: 'carajo' }
@@ -173,6 +177,7 @@ export default class StateMachineComponent extends HTMLElement {
     this.#startMachine(machineDef)
     this.#instance.subscribe(state => {
 
+
       this.#updateCurrentContext(state.value, state.context)
       this.setAttribute('data-state', state.value)
       const nav = this.shadowRoot.querySelector('nav')
@@ -214,8 +219,10 @@ export default class StateMachineComponent extends HTMLElement {
         const { type } = event.detail
         // [ ] find a way to let all children know og the updated event
         // console.log('sending from child state', type)
+
+
         const transition = this.querySelector(`[emit="${type}"]`)
-        // console.log(transition)
+        console.log(transition)
 
         this.send({ type, data: { ...event.detail, ...event.target.dataset } })
 
@@ -226,7 +233,9 @@ export default class StateMachineComponent extends HTMLElement {
 
         const handler = actions[action]
         if (!handler) return console.warn('no handler was found')
+        const currentState = this.#state
         const res = await handler(JSON.parse(JSON.stringify(this.#context)), event)
+        console.log('res', res, currentState, this.#state)
         if (!res) return
 
         if (res.context) {
@@ -243,6 +252,23 @@ export default class StateMachineComponent extends HTMLElement {
           data: { ...res.data }
         }
 
+        const targetTransition = this.querySelector(`[emit="${res.emit}"]`)
+        // console.log('sourceTransition',sourceTransition, `[emit="${res.emit}"]`)
+
+        
+
+        const transitionAction = targetTransition.getAttribute('action')
+        if(transitionAction) return targetTransition.dispatchEvent(new CustomEvent('event',{
+          composed: true, bubbles: true,
+          detail: {
+            type: res.emit,
+            data: {
+              ...detail,
+              ...targetTransition.dataset,
+            }
+          }
+        }))
+
         this.send(detail)
       })
     })
@@ -252,6 +278,7 @@ export default class StateMachineComponent extends HTMLElement {
     childrenTransition.forEach(child => {
       child.addEventListener('event', event => {
         const { type } = event.detail
+
         const machineEvent = { type, data: { ...event.detail, ...event.target.dataset } }
         this.send(machineEvent)
         this.#updateStateEvent(machineEvent)

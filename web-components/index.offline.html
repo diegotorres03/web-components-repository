@@ -24,20 +24,18 @@
         },
   
         authenticate: async (ctx, event) => {
-          console.log('## on authenticate')
           const authRes = { token: 'valid_token' }
           console.table(authRes)
 
           return new Promise(resolve => {
             setTimeout(() => {
               resolve({ emit: 'authenticated', data: authRes })
-            }, 500)
+            }, 5000)
           })
           // return { emit: 'authenticated', data: authRes }
         },
 
         saveSession: async (ctx, event) => {
-          // alert('saving session')
           console.group('saveSession')
           console.log('event', event)
           console.log('context', ctx)
@@ -56,10 +54,12 @@
       })
     </script>
 
+    <button id="save-btn">save</button>
+
     <event-source id="on-load" trigger="window" on="load"></event-source>
 
 
-    <state-machine id="ui-state-machine" initial-state="start" trigger="event-stream" on="data">
+    <state-machine visible id="ui-state-machine" initial-state="start" trigger="event-stream" on="data">
 
       <machine-state id="start" action="checkToken">
         <machine-transition emit="sessionActive" target="idle"></machine-transition>
@@ -74,7 +74,7 @@
       </machine-state>
 
       <machine-state id="authenticating">
-        <machine-transition emit="authenticated" target="idle" action="saveSession"></machine-transition>
+        <machine-transition trigger="#save-btn" on="click" emit="authenticated" target="idle" action="saveSession"></machine-transition>
         <machine-transition emit="authenticationFailed" target="start" action="log"></machine-transition>
       </machine-state>
 
@@ -112,6 +112,9 @@
       })
 
     </script>
+
+
+    <!-- <state-machine id="ui"></state-machine> -->
 
 
   </div>

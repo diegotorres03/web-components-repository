@@ -71,7 +71,9 @@ export default class MachineTransitionComponent extends HTMLElement {
 
         // If I dont emit this individual event, the flow will be stopped,
         // this is not idea for actions
-        if (action) event['action'] = action
+        if (action) {
+          event['action'] = action
+        }
         
         // but is perfect for filter, filter is to prevent this event from propagating
         // [ ] add filters
