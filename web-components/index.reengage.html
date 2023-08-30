@@ -85,7 +85,7 @@
         console.log('event', event)
         console.log('context', ctx)
         console.groupEnd()
-        const token  = event.detail.data.token
+        const token = event.detail.data.token
         window.localStorage.setItem('token', token)
       },
 
@@ -124,8 +124,9 @@
     </machine-state>
 
     <machine-state id="idle" action="log">
-      
-      <machine-transition trigger="#logout-btn" on="click" emit="logout" target="loginForm" action="removeSessionToken"></machine-transition>
+
+      <machine-transition trigger="#logout-btn" on="click" emit="logout" target="loginForm"
+        action="removeSessionToken"></machine-transition>
       <machine-transition emit="exit" target="end"></machine-transition>
     </machine-state>
     <machine-state id="end" type="final" action="log"></machine-state>
@@ -156,7 +157,6 @@
       console.log('stateChanged', event.detail.state)
       // console.log('state', state.value)
     })
-
 
     // machine.addEventListener('checkSession', event => {
     //   console.log('checking session')
