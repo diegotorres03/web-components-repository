@@ -1,3 +1,49 @@
+/* @import url('./src/global/themes/united-light-theme.css'); */
+
+:root {
+  /* DARK-THEME */
+  --bg-0: hsl(230, 0%, 68%);
+  --bg-1: hsl(230, 0%, 76%);
+  --bg-2: hsl(230, 0%, 84%);
+  --bg-3: hsl(230, 0%, 92%);
+  --bg-4: hsl(0, 0%, 100%);
+
+  --mc-1: hsl(229, 60%, 8%);
+  --mc-2: hsl(230, 60%, 16%);
+  --mc-3: hsl(230, 60%, 32%);
+  --mc-4: hsl(230, 50%, 48%);
+  --mc-5: hsl(230, 50%, 60%);
+
+  --tx-1: hsl(230, 100%, 10%);
+  --tx-2: hsl(230, 0%, 10%);
+  --tx-3: hsl(230, 0%, 30%);
+
+  /* Text invertido */
+  --tx-i: hsl(230, 0%, 90%);
+
+  --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
+}
+
+:root {
+  /* DARK-THEME */
+  --bg-0: hsl(250, 0%, 10%);
+  --bg-1: hsl(250, 0%, 14%);
+  --bg-2: hsl(250, 0%, 18%);
+  --bg-3: hsl(250, 0%, 22%);
+  --bg-4: hsl(250, 0%, 26%);
+
+  --mc-1: hsl(150, 40%, 52%);
+  --mc-2: hsl(150, 40%, 64%);
+  --mc-3: hsl(150, 40%, 84%);
+  --mc-4: hsl(150, 40%, 90%);
+
+  --tx-1: hsl(250, 0%, 90%);
+  --tx-2: hsl(250, 0%, 80%);
+  --tx-2: hsl(250, 0%, 70%);
+
+  --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
+}
+
 .popover a {
   padding: 4px 8px;
   border-radius: 2px;
