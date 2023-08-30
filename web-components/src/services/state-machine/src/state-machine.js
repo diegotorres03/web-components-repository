@@ -6,10 +6,23 @@ import {
 } from '../../../global/web-tools'
 
 import { createMachine, interpret } from 'xstate'
+import MachineStateComponent from './machine-state'
 
 //import componentHtml from './flip-card.html'
 //import componentStyle from './flip-card.css'
 
+/**
+ * Web Component that represent a state machine
+ * it helps control the flow of the application and ensure
+ * only allowed transitions can happen given a state
+ * 
+ * @fires stateChanged this event is fired on every state transition
+ * @fires [string:eventName] the name corresponds to the state name, is triggered when that state is activated 
+ *
+ * @export
+ * @class StateMachineComponent
+ * @extends {HTMLElement}
+ */
 export default class StateMachineComponent extends HTMLElement {
 
   get DEFAULT_EVENT_NAME() {
@@ -19,7 +32,14 @@ export default class StateMachineComponent extends HTMLElement {
 
   #instance
 
+  #context = {}
 
+  /**
+   * get all the <machine-state> children 
+   *
+   * @memberof StateMachineComponent
+   * @returns {MachineStateComponent}
+   */
   get #childStates() {
     const childStates = [...this.querySelectorAll('machine-state')]
     return childStates || []
@@ -30,15 +50,25 @@ export default class StateMachineComponent extends HTMLElement {
     super()
     const template = html`
       ${this.hasAttribute('visible') ? `<nav></nav>` : ''}
+      <button id="open-modal-btn">open</button>
+      <app-modal trigger="#open-modal-btn" on="click">
+        <h1 slot="title">siii</h1>
+      </app-modal>
     `
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
 
+    const triggers = [...this.shadowRoot.querySelectorAll('[trigger]')]
+    console.log('triggers',triggers)
 
   }
 
 
 
+  /**
+   * start the xstate intance
+   * @param {Object} machineDef 
+   */
   #startMachine(machineDef) {
     const machine = createMachine(machineDef)
 
@@ -49,11 +79,16 @@ export default class StateMachineComponent extends HTMLElement {
   }
 
 
+
+  /**
+   * Send an event to xstate instance
+   *
+   * @param {Object} event
+   * @param {string} event.type the type of event being fired, this should match with emit attribute on state transitions
+   * @param {Object} event.data additional data passed to xstate instance
+   * @memberof StateMachineComponent
+   */
   async send(event) {
-    // console.log('event', event)
-    // console.log('sending', event.type)
-    // console.log('action', event.action)
-    // console.log('#instance', this.#instance.state)
 
     this.#instance.send(event)
 
@@ -85,6 +120,8 @@ export default class StateMachineComponent extends HTMLElement {
     this.shadowRoot.dispatchEvent(stateChangeEvent)
   }
 
+  // this is experimental
+  // the goal is to keep al the machine-state and machine-transition elements in sync
   #updateCurrentContext(state, context) {
     Array.from(this.querySelectorAll('machine-state')).forEach(stateItem => stateItem.removeAttribute('selected'))
     const currentState = this.querySelector(`#${state}`)
@@ -113,14 +150,7 @@ export default class StateMachineComponent extends HTMLElement {
         ...stateElement.querySelectorAll('machine-transition')
       ]
 
-      const state = {
-        id: stateElement.id,
-        on: {
-          // [stateElement.getAttribute('emit')]: {
-          //   target: stateElement.getAttribute('target')
-          // }
-        }
-      }
+      const state = { id: stateElement.id, on: {} }
 
       const type = stateElement.getAttribute('type')
       if (type) state['type'] = type
@@ -149,14 +179,6 @@ export default class StateMachineComponent extends HTMLElement {
       if (nav) {
 
         nav.innerHTML = ''
-        // state.nextEvents.forEach(next => {
-        //   // const btn = `<button data-machine-event-name="${next}" >${next}</button>`
-        //   const btn = document.createElement('button')
-        //   btn.setAttribute('data-machine-event-name', next)
-        //   btn.textContent = next
-
-        //   nav.appendChild(btn)
-        // })
         const navContent = html`
           <b>${state.value}</b>
           ${state.nextEvents.map(next => `<button data-machine-event-name="${next}" >${next}</button>`)}
@@ -186,6 +208,8 @@ export default class StateMachineComponent extends HTMLElement {
 
     this.#childStates.forEach(child => {
       child.addEventListener('event', async event => {
+        console.log(event)
+        console.log(event.target)
         // console.log('on state machine event', event)
         const { type } = event.detail
         // [ ] find a way to let all children know og the updated event
@@ -197,12 +221,23 @@ export default class StateMachineComponent extends HTMLElement {
 
         if (!transition || !transition.hasAttribute('action')) return
         const action = transition.getAttribute('action')
+        console.log('action', action)
+
 
         const handler = actions[action]
         if (!handler) return console.warn('no handler was found')
-        const res = await handler({}, event)
-        if(!res) return
-        // console.info('res', res)
+        const res = await handler(JSON.parse(JSON.stringify(this.#context)), event)
+        if (!res) return
+
+        if (res.context) {
+          Object.keys(res.context).forEach(key => {
+            this.#context[key] = { ...res.context }
+          })
+          console.table(this.#context)
+        }
+
+        if (!res.emit) return
+
         const detail = {
           type: res.emit,
           data: { ...res.data }

@@ -126,9 +126,8 @@ function registerTriggers(element, callback) {
   let triggerEvent = element.getAttribute('on') || element.getAttribute('event')
 
   triggers.map((trigger) => {
-    // if()
     if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
-    console.log('triggerEvent', triggerEvent, trigger.DEFAULT_EVENT_NAME )
+    // console.log('triggerEvent', triggerEvent, trigger.DEFAULT_EVENT_NAME )
     trigger.addEventListener(triggerEvent, callback)
     // trigger.removeEventListener()
   })

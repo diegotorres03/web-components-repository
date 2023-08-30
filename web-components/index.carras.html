@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoC</title>
+</head>
+
+<body>
+
+  <script id="machine-methods">
+    const actions = Object.freeze({
+      checkToken: async () => {
+        console.log('checking token')
+        const token = window.localStorage.getItem('token')
+        if (!token) return { emit: 'noToken' }
+        return { emit: 'validToken' }
+      }
+    })
+  </script>
+
+  <button id="load-btn">load</button>
+
+  <app-modal trigger="" on="click" data-otracosa="carras">
+    <h1 slot="title">Login</h1>
+    <section slot="main">
+      <label for="">Email</label>
+      <input type="email" name="username">
+      <br>
+      <label for="">password:</label>
+      <input type="password" name="pass" id="">
+    </section>
+  </app-modal>
+
+  <state-machine id="auth-machine" initial-state="start">
+
+    <machine-state id="start">
+      <machine-transition trigger="#load-btn" on="click" emit="load" target="checkToken"></machine-transition>
+    </machine-state>
+
+    <machine-state id="checkToken" action="checkToken">
+      <machine-transition id="noToken" target="end" emit="toToken"></machine-transition>
+      <machine-transition id="validToken" target="end" emit="validToken"></machine-transition>
+    </machine-state>
+
+    <machine-state id="end" type="final"></machine-state>
+
+
+
+  </state-machine>
+
+
+
+  <script>
+    const machine = document.querySelector('state-machine')
+    machine.addEventListener('stateChanged', event => {
+      console.log(event.detail.state)
+    })
+
+
+    // const modal = document.querySelector('app-modal')
+    // modal.addEventListener('accepted', event => {
+    //   console.log('accepted', event)
+    //   fetch('https://auth-server.com', {
+    //     method: 'POST'
+    //   })
+    //   .then(res => console.log(''))
+    //   .catch(err => {throw new Error('asd')})
+    // })
+  </script>
+
+</body>
+
+</html>
