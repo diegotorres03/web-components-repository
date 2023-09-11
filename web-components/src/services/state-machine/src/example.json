@@ -1,0 +1,36 @@
+{
+  "id": "traffic-lights-machine",
+  "initial": "green",
+  "context": {},
+  "states": {
+    "green": {
+      "id": "green",
+      "on": {
+        "delay4": {
+          "target": "yellow",
+          "actions": [
+            "log"
+          ]
+        }
+      }
+    },
+    "yellow": {
+      "id": "yellow",
+      "on": {
+        "delay5": {
+          "target": "red",
+          "actions": []
+        }
+      }
+    },
+    "red": {
+      "id": "red",
+      "on": {
+        "delay6": {
+          "target": "green",
+          "actions": []
+        }
+      }
+    }
+  }
+}

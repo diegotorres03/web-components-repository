@@ -22,7 +22,7 @@
           if (!token) return { emit: 'noSession' }
           return { emit: 'sessionActive', data: { token } }
         },
-  
+
         authenticate: async (ctx, event) => {
           const authRes = { token: 'valid_token' }
           console.table(authRes)
@@ -74,7 +74,8 @@
       </machine-state>
 
       <machine-state id="authenticating">
-        <machine-transition trigger="#save-btn" on="click" emit="authenticated" target="idle" action="saveSession"></machine-transition>
+        <machine-transition trigger="#save-btn" on="click" emit="authenticated" target="idle"
+          action="saveSession"></machine-transition>
         <machine-transition emit="authenticationFailed" target="start" action="log"></machine-transition>
       </machine-state>
 
@@ -113,6 +114,20 @@
 
     </script>
 
+    <hr>
+
+    <button id="add-item" data-key="key" data-value="value">add item</button>
+
+    <data-set trigger="#add-item" append visible></data-set>
+
+    <ui-data-repeat trigger="#add-item" >
+      <template>
+        <flip-card>
+          <h1 slot="front" data-key="key"></h1>
+          <p slot="back" data-key="value"></p>
+        </flip-card>
+      </template>
+    </ui-data-repeat>
 
     <!-- <state-machine id="ui"></state-machine> -->
 

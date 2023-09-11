@@ -63,6 +63,69 @@ export default class StateMachineComponent extends HTMLElement {
     const triggers = [...this.shadowRoot.querySelectorAll('[trigger]')]
     console.log('triggers', triggers)
 
+
+    this.#childStates.forEach(child => {
+      child.addEventListener('event', async event => {
+        console.log(new Date().getSeconds(), event.detail)
+        // console.log(event.target)
+        // console.log('on state machine event', event)
+        const { type } = event.detail
+        // [ ] find a way to let all children know og the updated event
+        // console.log('sending from child state', type)
+
+
+        const transition = this.querySelector(`[emit="${type}"]`)
+        // console.log(transition)
+
+        this.send({ type, data: { ...event.detail, ...event.target.dataset } })
+
+        if (!transition || !transition.hasAttribute('action')) return
+        const action = transition.getAttribute('action')
+        console.log('action', action)
+
+
+        const handler = actions[action]
+        if (!handler) return console.warn('no handler was found')
+        const currentState = this.#state
+        const res = await handler(JSON.parse(JSON.stringify(this.#context)), event)
+        console.log('res', res, currentState, this.#state)
+        if (!res) return
+
+        if (res.context) {
+          Object.keys(res.context).forEach(key => {
+            this.#context[key] = { ...res.context }
+          })
+          console.table(this.#context)
+        }
+
+        if (!res.emit) return
+
+        const detail = {
+          type: res.emit,
+          data: { ...res.data }
+        }
+
+        const targetTransition = this.querySelector(`[emit="${res.emit}"]`)
+        // console.log('sourceTransition',sourceTransition, `[emit="${res.emit}"]`)
+
+
+
+        const transitionAction = targetTransition.getAttribute('action')
+        if (transitionAction) return targetTransition.dispatchEvent(new CustomEvent('event', {
+          composed: true, bubbles: true,
+          detail: {
+            type: res.emit,
+            data: {
+              ...detail,
+              ...targetTransition.dataset,
+            }
+          }
+        }))
+
+        this.send(detail)
+      })
+    })
+
   }
 
 
@@ -161,8 +224,10 @@ export default class StateMachineComponent extends HTMLElement {
 
 
       transitionElements.forEach(element => {
+        const actionAttr = element.getAttribute('action')
         const transition = {
-          target: element.getAttribute('target')
+          target: element.getAttribute('target'),
+          actions: actionAttr && actionAttr.split(/[,]/g) || [],
         }
 
         state.on[element.getAttribute('emit')] = transition
@@ -211,67 +276,6 @@ export default class StateMachineComponent extends HTMLElement {
 
     // const childrenStates = [...this.querySelectorAll('machine-state')]
 
-    this.#childStates.forEach(child => {
-      child.addEventListener('event', async event => {
-        console.log(event)
-        console.log(event.target)
-        // console.log('on state machine event', event)
-        const { type } = event.detail
-        // [ ] find a way to let all children know og the updated event
-        // console.log('sending from child state', type)
-
-
-        const transition = this.querySelector(`[emit="${type}"]`)
-        console.log(transition)
-
-        this.send({ type, data: { ...event.detail, ...event.target.dataset } })
-
-        if (!transition || !transition.hasAttribute('action')) return
-        const action = transition.getAttribute('action')
-        console.log('action', action)
-
-
-        const handler = actions[action]
-        if (!handler) return console.warn('no handler was found')
-        const currentState = this.#state
-        const res = await handler(JSON.parse(JSON.stringify(this.#context)), event)
-        console.log('res', res, currentState, this.#state)
-        if (!res) return
-
-        if (res.context) {
-          Object.keys(res.context).forEach(key => {
-            this.#context[key] = { ...res.context }
-          })
-          console.table(this.#context)
-        }
-
-        if (!res.emit) return
-
-        const detail = {
-          type: res.emit,
-          data: { ...res.data }
-        }
-
-        const targetTransition = this.querySelector(`[emit="${res.emit}"]`)
-        // console.log('sourceTransition',sourceTransition, `[emit="${res.emit}"]`)
-
-        
-
-        const transitionAction = targetTransition.getAttribute('action')
-        if(transitionAction) return targetTransition.dispatchEvent(new CustomEvent('event',{
-          composed: true, bubbles: true,
-          detail: {
-            type: res.emit,
-            data: {
-              ...detail,
-              ...targetTransition.dataset,
-            }
-          }
-        }))
-
-        this.send(detail)
-      })
-    })
 
     const childrenTransition = [...this.querySelectorAll('machine-transition')]
 

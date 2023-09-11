@@ -28,10 +28,10 @@ function html(templates, ...values) {
     const regexRes = Array.from(str.matchAll(/[^{\}]+(?=})/g))
     regexRes.forEach(
       (key) =>
-        (str = str.replace(
-          `({${key}})`,
-          `<span class="variable ${key}-var" data-key="${key}">${key}</span>`,
-        )),
+      (str = str.replace(
+        `({${key}})`,
+        `<span class="variable ${key}-var" data-key="${key}">${key}</span>`,
+      )),
     )
   }
   // str = str.replace(/[^{}]*(?=\})/g, 'fuck yeah')
@@ -120,7 +120,10 @@ function gql(templates, ...values) {
 function registerTriggers(element, callback) {
   if (!element.hasAttribute('trigger')) return
   const selector = element.getAttribute('trigger')
+  console.log('selector', selector)
+  if (!selector || selector === '#' || selector === '.') return
   const triggers = Array.from(document.querySelectorAll(selector))
+  console.log('triggers', triggers)
 
   if (!triggers) return
   let triggerEvent = element.getAttribute('on') || element.getAttribute('event')

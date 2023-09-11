@@ -85,11 +85,6 @@ export default class MachineTransitionComponent extends HTMLElement {
     })
   }
 
-  disconnectedCallback() { }
-
-  attributeChangedCallback(name, oldValue, newValue) { }
-
-  adoptedCallback() { }
 
 }
 
