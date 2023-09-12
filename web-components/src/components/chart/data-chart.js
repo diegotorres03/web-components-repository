@@ -8,6 +8,8 @@ import {
   sleep,
 } from '../../global/web-tools'
 
+import componentHtml from './data-chart.html'
+
 export default class DataChartComponent extends HTMLElement {
 
   static get observedAttributes(){
@@ -16,8 +18,7 @@ export default class DataChartComponent extends HTMLElement {
 
   constructor() {
     super()
-    const template = html`
-    <div><canvas id="chart"></canvas></div>`
+    const template = html`${componentHtml}`
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
 
