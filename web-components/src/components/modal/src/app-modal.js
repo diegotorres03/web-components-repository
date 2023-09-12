@@ -36,7 +36,9 @@ export default class ModalComponent extends HTMLElement {
   connectedCallback() {
     mapComponentEvents(this);
     updateVars(this);
-    registerTriggers(this, (event) => this.show(event))
+    const unregisterTriggers = registerTriggers(this, (event) => this.show(event))
+    // setTimeout(unregisterTriggers, 10_000) 
+
   }
 
   accept() {
@@ -79,6 +81,7 @@ export default class ModalComponent extends HTMLElement {
     if(!event.detail) return
     Object.keys(event.detail).forEach(key =>
       this.setAttribute(`data-${key}`, event.detail[key]))
+
   }
 
   hide() {

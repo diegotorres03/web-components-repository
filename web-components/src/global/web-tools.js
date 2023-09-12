@@ -122,7 +122,7 @@ function registerTriggers(element, callback) {
   const selector = element.getAttribute('trigger')
   console.log('selector', selector)
   if (!selector || selector === '#' || selector === '.') return
-  
+
   const documentTriggers = Array.from(document.querySelectorAll(selector))
   const internalTriggers = Array.from(element.parentNode.querySelectorAll(selector))
 
@@ -143,7 +143,13 @@ function registerTriggers(element, callback) {
     // trigger.removeEventListener()
   })
 
-  return triggers
+  return function unregister() {
+    triggers.map((trigger) => {
+      if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
+      console.log('triggerEvent', triggerEvent, trigger)
+      trigger.removeEventListener(triggerEvent, callback)
+    })
+  }
 }
 
 function select(selector, scope = document) {
