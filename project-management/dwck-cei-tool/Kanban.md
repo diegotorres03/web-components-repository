@@ -15,7 +15,16 @@ kanban-plugin: basic
 
 ## In process
 
-- [ ] [[Area Dashboard]]<br><span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>App Layout<span/><br>- [x] Wireframe<br>- [x] Prototipo<br>- [ ] Revisión de clases<br>- [ ] Adición de theme<br>- [ ] Perfeccionar task-item<br>	- [ ] Title<br>	- [ ] Input<br>	- [ ] Button
+- [ ] [[Area Dashboard]]
+- [ ] <span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>App Layout<span/>
+- [ ] - [x] Wireframe
+- [ ] - [x] Prototipo
+- [ ] - [ ] Revisión de clases
+- [ ] - [ ] Adición de theme
+- [ ] - [ ] Perfeccionar task-item
+- [ ] - [ ] Title
+- [ ] - [ ] Input
+- [ ] - [ ] Button
 
 
 ## Finished
