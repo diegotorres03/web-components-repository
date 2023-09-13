@@ -28,10 +28,10 @@ function html(templates, ...values) {
     const regexRes = Array.from(str.matchAll(/[^{\}]+(?=})/g))
     regexRes.forEach(
       (key) =>
-        (str = str.replace(
-          `({${key}})`,
-          `<span class="variable ${key}-var" data-key="${key}">${key}</span>`,
-        )),
+      (str = str.replace(
+        `({${key}})`,
+        `<span class="variable ${key}-var" data-key="${key}">${key}</span>`,
+      )),
     )
   }
   // str = str.replace(/[^{}]*(?=\})/g, 'fuck yeah')
@@ -120,19 +120,36 @@ function gql(templates, ...values) {
 function registerTriggers(element, callback) {
   if (!element.hasAttribute('trigger')) return
   const selector = element.getAttribute('trigger')
-  const triggers = Array.from(document.querySelectorAll(selector))
+  console.log('selector', selector)
+  if (!selector || selector === '#' || selector === '.') return
+
+  const documentTriggers = Array.from(document.querySelectorAll(selector))
+  const internalTriggers = Array.from(element.parentNode.querySelectorAll(selector))
+
+  console.log('element: ', element)
+  console.log('element: ', element.parentNode.querySelectorAll(selector))
+
+  const triggers = [...documentTriggers, ...internalTriggers]
+  console.log('triggers', triggers)
+  console.log('internalTriggers', internalTriggers)
 
   if (!triggers) return
   let triggerEvent = element.getAttribute('on') || element.getAttribute('event')
 
   triggers.map((trigger) => {
     if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
-    // console.log('triggerEvent', triggerEvent, trigger.DEFAULT_EVENT_NAME )
+    console.log('triggerEvent', triggerEvent, trigger)
     trigger.addEventListener(triggerEvent, callback)
     // trigger.removeEventListener()
   })
 
-  return triggers
+  return function unregister() {
+    triggers.map((trigger) => {
+      if (!triggerEvent) triggerEvent = trigger.DEFAULT_EVENT_NAME || 'click'
+      console.log('triggerEvent', triggerEvent, trigger)
+      trigger.removeEventListener(triggerEvent, callback)
+    })
+  }
 }
 
 function select(selector, scope = document) {

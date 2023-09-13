@@ -8,12 +8,17 @@ import {
   sleep,
 } from '../../global/web-tools'
 
+import componentHtml from './data-chart.html'
+
 export default class DataChartComponent extends HTMLElement {
+
+  static get observedAttributes(){
+    return ['width', 'height']
+  }
 
   constructor() {
     super()
-    const template = html`
-    <div style="width: 800px;"><canvas id="chart"></canvas></div>`
+    const template = html`${componentHtml}`
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
 
@@ -81,12 +86,19 @@ export default class DataChartComponent extends HTMLElement {
       console.log(JSON.stringify(chartData, undefined, 2))
 
 
+      const displayLegend = this.hasAttribute('legend')
+
       this.chart = new Chart(
           this.shadowRoot.getElementById('chart'),
           {
               // type:  'line',
               type: this.getAttribute('type') || 'line',
               data: chartData,
+              options: {
+                plugins: {
+                  legend: { display: displayLegend }
+                }
+              }
               // options
           }
       );
@@ -115,6 +127,13 @@ export default class DataChartComponent extends HTMLElement {
         this.chart.update()
         console.log(newValue)
     }
+
+    // if(name === 'wigth') {
+    //   this.shadowRoot.querySelector('#chart').style.width = newValue
+    // }
+    // if (name === 'height') {
+    //   this.shadowRoot.querySelector('#chart').style.height = newValue
+    // }
   }
 
 }

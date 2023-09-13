@@ -73,6 +73,7 @@ export default class UIDataRepeatComponent extends HTMLElement {
   }
 
   #appendItem(event) {
+    if(!this.id) this.setAttribute('id',``+ Date.now())
     console.log('adding', event)
     const dataSync = document.createElement('ui-data-sync')
     const dataSyncId = `${this.id}_${event.detail.__id}` || Date.now() + ''

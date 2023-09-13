@@ -1,0 +1,145 @@
+{
+	// Place your snippets for javascript here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"express-server": {
+		"prefix": "express-server",
+		"body": [
+			"const express = require('express')",
+			"const app = express()",
+			"const port = 3000",
+			"", 
+			"app.get('/', (req, res) => {",
+			"  res.send('Hello World!')",
+			"})",
+			"",
+			"app.listen(port, () => {",
+			"  console.log(`Example app listening on port`, port)",
+			"})",
+			""
+		]
+	},
+    "web-component-tools": {
+		"prefix": "web-component-tools",
+		"body": [
+			"const html = function (templates, ...values) {",
+			"    const template = document.createElement('template')",
+			"    let str = ''",
+			"    templates.forEach((template, index) => {",
+			"        str += template",
+			"        str = values[index] ? str + values[index] : str",
+			"    })",
+			"    template.innerHTML = str.trim()",
+			"    return template.content",
+			"}",
+			"",
+			"html.import = async (htmlUrl) => {",
+			"    const res = await (await fetch(htmlUrl, { headers: { 'Content-Type': 'text/html' } })).text()",
+			"    return html`${res}`",
+			"}",
+			"",
+			"const mapComponentEvents = (component, eventNames) => {",
+			"    eventNames.map(eventName => {",
+			"        toArray(component.shadowRoot.querySelectorAll(`[${eventName}]`))",
+			"            .forEach(handled => {",
+			"                const handlerName = handled.getAttribute(eventName)",
+			"                handled.addEventListener(eventName.replace('on', ''), event => {",
+			"                    component[handlerName](event)",
+			"                    updateVars(component)",
+			"                })",
+			"                handled.removeAttribute(eventName)",
+			"            })",
+			"    })",
+			"}",
+			"",
+			"function updateVars(component) {",
+			"    const variables = toArray(component.shadowRoot.querySelectorAll('.variable'))",
+			"    variables.forEach(variable =>",
+			"        toArray(variable.classList)",
+			"            .filter(item => item !== 'variable')",
+			"            .forEach(varName => {",
+			"                const property = varName.replace('-var', '')",
+			"                console.log(property, varName, component[property])",
+			"                variable.textContent = component[property]",
+			"                log('component[' + property + ']', component[property])",
+			"            }))",
+			"}",
+			"",
+			"",
+		]
+	},
+	"web-component": {
+		"prefix": "web-component",
+		"body": [
+			"import {",
+			"  html,",
+			"  mapComponentEvents,",
+			"  updateVars,",
+			"  registerTriggers,",
+			"} from '../../../global/web-tools'",
+			"",
+			"",
+			"//import componentHtml from './flip-card.html'",
+			"//import componentStyle from './flip-card.css'",
+			"",
+			"export default class $1 extends HTMLElement {",
+			"",
+			"  constructor() {",
+			"    super()",
+			"    const template = html``",
+			"     this.attachShadow({ mode: 'open' })",
+			"     this.shadowRoot.appendChild(template)",
+			"  }",
+			"",
+			"",
+			"  connectedCallback() {",
+			"    mapComponentEvents(this)",
+			"    updateVars(this)",
+			"    registerTriggers(this, (event) => console.log(event))",
+			"  }",
+			"",
+			"  disconnectedCallback() { }",
+			"",
+			"  attributeChangedCallback(name, oldValue, newValue) { }",
+			"",
+			"  adoptedCallback() { }",
+			"",
+			"}",
+			"",
+			"window.customElements.define('$2', $1)",
+			""
+		]
+	},
+	"fn-lambda": {
+		"prefix": "fn-lambda",
+		"body": [
+			"function () {",
+			"  const { log, error } = console",
+			"  // @ts-ignore,",
+			"  exports.handler = async function (event, context) {",
+			"    log(JSON.stringify(event, undefined, 2))",
+			"    return {",
+			"      statusCode: 200,",
+			"      body: JSON.stringify(event.body),",
+			"      headers: {",
+			"        'content-type': 'application/json',",
+			"        'Access-Controll-Allowed-Origins': '*',",
+			"        'Access-Controll-Allowed-Headers': 'Content-Type',",
+			"        'Access-Controll-Allowed-Methods': 'OPTIONS,GET,POST,PUT,PATCH,DELETE,HEAD'",
+			"      }",
+			"    }",
+			"  }",
+			"}"
+		]
+	}
+}

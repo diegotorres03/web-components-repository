@@ -9,68 +9,95 @@
 </head>
 
 <body>
-
-  <script id="machine-methods">
+  <script>
+    const counter = {
+      green: 0,
+      yellow: 0,
+      red: 0,
+    }
     const actions = Object.freeze({
-      checkToken: async () => {
-        console.log('checking token')
-        const token = window.localStorage.getItem('token')
-        if (!token) return { emit: 'noToken' }
-        return { emit: 'validToken' }
-      }
+      delay1: () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            console.log('delay1')
+            resolve({ emit: 'delay4' })
+          }, 2000)
+        })
+      },
+      delay2: () => {
+        return new Promise(resolve => {
+
+          setTimeout(() => {
+            console.log('delay2')
+            resolve({ emit: 'delay5' })
+          }, 2000)
+        })
+      },
+      delay3: () => {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            console.log('delay3')
+            resolve({ emit: 'delay6' })
+          }, 2000)
+        })
+      },
     })
   </script>
 
-  <button id="load-btn">load</button>
-
-  <app-modal trigger="" on="click" data-otracosa="carras">
-    <h1 slot="title">Login</h1>
-    <section slot="main">
-      <label for="">Email</label>
-      <input type="email" name="username">
-      <br>
-      <label for="">password:</label>
-      <input type="password" name="pass" id="">
-    </section>
-  </app-modal>
-
-  <state-machine id="auth-machine" initial-state="start">
-
-    <machine-state id="start">
-      <machine-transition trigger="#load-btn" on="click" emit="load" target="checkToken"></machine-transition>
+  <state-machine visible id="traffic-lights-machine" initial-state="green">
+    <machine-state id="green" >
+      <machine-transition trigger="#green-btn" on="click" emit="delay4" target="yellow" action="log"></machine-transition>
     </machine-state>
-
-    <machine-state id="checkToken" action="checkToken">
-      <machine-transition id="noToken" target="end" emit="toToken"></machine-transition>
-      <machine-transition id="validToken" target="end" emit="validToken"></machine-transition>
+    <machine-state id="yellow" action="delay2">
+      <machine-transition trigger="#yellow-btn" on="click" emit="delay5" target="red"></machine-transition>
     </machine-state>
-
-    <machine-state id="end" type="final"></machine-state>
-
-
+    <machine-state id="red" action="delay3">
+      <machine-transition trigger="#red-btn" on="click" emit="delay6" target="green"></machine-transition>
+    </machine-state>
 
   </state-machine>
 
+  <button id="green-btn">green</button>
+  <button id="yellow-btn">yellow</button>
+  <button id="red-btn">red</button>
 
+  <flip-card disabled trigger="#traffic-lights-machine" on="green">
+    <section slot="front">
+      idle
+    </section>
+    <section slot="back">
+      green
+    </section>
+
+  </flip-card>
+  <flip-card disabled trigger="#traffic-lights-machine" on="yellow">
+    <section slot="front">
+      idle
+    </section>
+    <section slot="back">
+      yellow
+    </section>
+  </flip-card>
+  <flip-card disabled trigger="#traffic-lights-machine" on="red">
+    <section slot="front">
+      idle
+    </section>
+    <section slot="back">
+      red
+    </section>
+  </flip-card>
 
   <script>
+
     const machine = document.querySelector('state-machine')
+
     machine.addEventListener('stateChanged', event => {
-      console.log(event.detail.state)
+      console.log('stateChanged', event.detail.state)
+      // console.log('state', state.value)
     })
 
 
-    // const modal = document.querySelector('app-modal')
-    // modal.addEventListener('accepted', event => {
-    //   console.log('accepted', event)
-    //   fetch('https://auth-server.com', {
-    //     method: 'POST'
-    //   })
-    //   .then(res => console.log(''))
-    //   .catch(err => {throw new Error('asd')})
-    // })
   </script>
-
 </body>
 
 </html>
