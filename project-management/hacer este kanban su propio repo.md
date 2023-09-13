@@ -1,1 +1,0 @@
-Para sincronzar facil las tareas y hacerlas independientes

@@ -10,6 +10,13 @@ import ModalHtml from './app-modal.html'
 import ModalCss from './app-modal.css'
 
 
+/**
+ * Modal Component
+ *
+ * @export
+ * @class ModalComponent
+ * @extends {HTMLElement}
+ */
 export default class ModalComponent extends HTMLElement {
 
   static get observedAttributes() {
