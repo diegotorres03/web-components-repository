@@ -31,25 +31,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "74fac181ac83f8ed",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "5cfdf605de49702a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Componentes de UI encajen perfecto sin agregar css extra.md",
-                "mode": "source",
-                "backlinks": false,
-                "source": false
-              }
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
