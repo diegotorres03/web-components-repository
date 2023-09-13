@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "b821d1c1da86c1e2",
+        "id": "daa25ae8b9bfcbe5",
         "type": "tabs",
         "children": [
           {
-            "id": "350a76bb2b3e8919",
+            "id": "0d2de217c9a45c9b",
             "type": "leaf",
             "state": {
               "type": "kanban",
               "state": {
-                "file": "dwck-cei-tool/Kanban.md"
+                "file": "dwck-cei-tool/md-kanban.md"
               }
             }
           }
@@ -67,7 +67,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276.5
+    "width": 276.5,
+    "collapsed": true
   },
   "right": {
     "id": "e17257ce422cbf03",
@@ -83,7 +84,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "dwck-cei-tool/Kanban.md",
+                "file": "dwck-cei-tool/md-kanban.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +101,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "dwck-cei-tool/Kanban.md",
+                "file": "dwck-cei-tool/md-kanban.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +124,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "dwck-cei-tool/Kanban.md"
+                "file": "dwck-cei-tool/md-kanban.md"
               }
             }
           },
@@ -162,11 +163,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "350a76bb2b3e8919",
+  "active": "0d2de217c9a45c9b",
   "lastOpenFiles": [
+    "dwck-cei-tool/md-kanban.md",
+    "dwck-cei-tool/Kanban.md",
     "listar componentes functionales.md",
     "hacer este kanban su propio repo.md",
-    "dwck-cei-tool/md-kanban.md",
     "Global Stylesheets (and the publick one).md",
     "Global Stylesheets (and the publick one)  @marco.md",
     "Config/Assets/Pasted image 20230913101337.png",
@@ -179,7 +181,6 @@
     "dwck-cei-tool/Screenshots/area-dashboard.png",
     "dwck-cei-tool/task-notes/Engagement Tracker.md",
     "dwck-cei-tool/task-notes/Area Dashboard.md",
-    "dwck-cei-tool/Kanban.md",
     "dwck-cei-tool/screenshots/login.png",
     "dwck-cei-tool/screenshots/new-engagement-tracker.png",
     "dwck-cei-tool/screenshots/new-engagement-tracker.png",

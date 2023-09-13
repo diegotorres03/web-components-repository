@@ -9,7 +9,11 @@ kanban-plugin: basic
 
 ## In process
 
-- [ ] [[Area Dashboard]]<br> App Layout<br> \- \[x\] Wireframe<br> \- \[x\] Prototipo<br> \- \[ \] Revisión de clases<br> \- \[ \] Adición de theme<br> \- \[ \] Perfeccionar task\-item<br> - [ ] Title<br> - [ ] Input<br> - [ ] Button
+- [ ] [[Pulo Dashboard]]
+      <small>App Layout</small>
+      <br> - [ ] Title
+      <br> - [ ] Input
+      <br> - [ ] Button
 - [ ] Territory Dashboard
 
 ## Finished

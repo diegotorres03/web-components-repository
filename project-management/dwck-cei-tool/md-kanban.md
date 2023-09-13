@@ -1,7 +1,5 @@
 ---
-
 kanban-plugin: basic
-
 ---
 
 ## Backlog
@@ -11,34 +9,30 @@ kanban-plugin: basic
 - [ ] [[Componentes de UI encajen perfecto sin agregar css extra]] @marco @diego
 - [ ] Documentacion de como usar los componentes
 - [ ] [[hacer este kanban su propio repo]] @diego
-- [ ] [[Global Stylesheets (and the publick one)]] @marco
-
+- [ ] [[Global Stylesheets (and the publick one)]]<br/><small>Dwck Library (@marco)</small><br> - [x] Themes<br> - [x] Slots<br> - [ ] Page
 
 ## Todo
 
-
-
 ## In Progress
 
-
-
 ## Test
-
-
 
 ## Done
 
 **Complete**
 
-
-***
+---
 
 ## Archive
 
+- [x] adsasada
 - [x] list current components [Marco](mailto:marco@devarchy.io)
+- [x] CardTemplate<br/><small>Area (@person)</small><br> - [ ] Task<br> - [ ] Task<br> - [ ] Task
 
 %% kanban:settings
+
 ```
 {"kanban-plugin":"basic"}
 ```
+
 %%
