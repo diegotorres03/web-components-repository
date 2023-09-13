@@ -1,6 +1,6 @@
 {
   "name": "dwck-lib",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "description": "",
   "main": "index.js",
   "scripts": {

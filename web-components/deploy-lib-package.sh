@@ -8,5 +8,5 @@ cp package.json dist/package.json
 
 cp src/global/web-tools.js dist/web-tools.js
 
-
+cd dist; npm publish; cd ..
 

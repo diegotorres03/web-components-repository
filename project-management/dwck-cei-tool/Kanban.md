@@ -6,16 +6,14 @@ kanban-plugin: basic
 
 ## To do
 
-- [ ] Area Dashboard<br><span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>Aws App<span/><br>- [ ]
+- [ ] Area Dashboard<br>    Aws App<br>    \- \[ \]
 - [ ] Region Dashboard
-- [ ] District Dashboard
-- [ ] Territory Dashboard
-- [ ] Card Template<br><span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>Area<span/><br>- [ ] task 1<br>- [ ] task 2<br>	- [ ] task 2.1<br>	- [ ] task 2.2<br>- [ ] task 3
 
 
 ## In process
 
-- [ ] [[Area Dashboard]]<br><span style='font-size:10px; color: hsl(195, 50%, 70%, .8)'>App Layout<span/><br>- [x] Wireframe<br>- [x] Prototipo<br>- [ ] Revisión de clases<br>- [ ] Adición de theme<br>- [ ] Perfeccionar task-item<br>	- [ ] Title<br>	- [ ] Input<br>	- [ ] Button
+- [ ] [[Area Dashboard]]<br>    App Layout<br>    \- \[x\] Wireframe<br>    \- \[x\] Prototipo<br>    \- \[ \] Revisión de clases<br>    \- \[ \] Adición de theme<br>    \- \[ \] Perfeccionar task\-item<br>    	- [ ] Title<br>    	- [ ] Input<br>    	- [ ] Button
+- [ ] Territory Dashboard
 
 
 ## Finished
@@ -23,7 +21,17 @@ kanban-plugin: basic
 **Complete**
 
 
+## Q&A
 
+- [ ] Card Template<br>    Area<br>    \- \[ \] task 1<br>    \- \[ \] task 2<br>    	- [ ] task 2.1<br>    	- [ ] task 2.2<br>    \- \[ \] task 3
+- [ ] District Dashboard
+
+
+***
+
+## Archive
+
+- [x] test todo
 
 %% kanban:settings
 ```
