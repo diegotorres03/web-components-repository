@@ -1,14 +1,14 @@
 {
   "main": {
-    "id": "a2d0b77f5952c549",
+    "id": "cffe5ea21639b663",
     "type": "split",
     "children": [
       {
-        "id": "daa25ae8b9bfcbe5",
+        "id": "9a7e98606ba2bbda",
         "type": "tabs",
         "children": [
           {
-            "id": "0d2de217c9a45c9b",
+            "id": "f8fd4153350ece0a",
             "type": "leaf",
             "state": {
               "type": "kanban",
@@ -23,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "bf7cca621bc9fed9",
+    "id": "06d45dd32f169b25",
     "type": "split",
     "children": [
       {
-        "id": "9cb69fcdd0af9258",
+        "id": "83b1057175d79088",
         "type": "tabs",
         "children": [
           {
-            "id": "f4e7e3f66c814970",
+            "id": "87e56974cc71fb75",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -41,7 +41,7 @@
             }
           },
           {
-            "id": "271ff31530370fb7",
+            "id": "26511f5036e1f521",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -56,7 +56,7 @@
             }
           },
           {
-            "id": "490cee6d40927287",
+            "id": "a3a7fa100cdb4f0f",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -67,19 +67,26 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276.5,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "e17257ce422cbf03",
+    "id": "0c10ea5d536267cb",
     "type": "split",
     "children": [
       {
-        "id": "72343c6492e81c74",
+        "id": "9c857e07c703fa67",
         "type": "tabs",
         "children": [
           {
-            "id": "7d4556d77f7f9f4e",
+            "id": "bd68dad41abf284e",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "d3ddf86eed6e14e5",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -96,7 +103,7 @@
             }
           },
           {
-            "id": "750418fdf0b5ca3b",
+            "id": "62392b0bb5ef80ef",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -108,7 +115,7 @@
             }
           },
           {
-            "id": "2d328217ffa659ca",
+            "id": "608f3fb95f7ceadf",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -119,7 +126,7 @@
             }
           },
           {
-            "id": "04cf4f5bded2cd19",
+            "id": "1f0fe8d8447e85ac",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -127,25 +134,8 @@
                 "file": "dwck-cei-tool/md-kanban.md"
               }
             }
-          },
-          {
-            "id": "c1b0e3ebc2d98f5c",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
-            }
-          },
-          {
-            "id": "d9e67a1860369579",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
-            }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
@@ -154,45 +144,17 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": false
+      "command-palette:Open command palette": false
     }
   },
-  "active": "0d2de217c9a45c9b",
+  "active": "f8fd4153350ece0a",
   "lastOpenFiles": [
-    "dwck-cei-tool/md-kanban.md",
-    "dwck-cei-tool/Kanban.md",
-    "listar componentes functionales.md",
-    "hacer este kanban su propio repo.md",
-    "Global Stylesheets (and the publick one).md",
-    "Global Stylesheets (and the publick one)  @marco.md",
-    "Config/Assets/Pasted image 20230913101337.png",
-    "Componentes de UI encajen perfecto sin agregar css extra.md",
-    "dwck-cei-tool/Screenshots/Screen Shot 2023-08-17 at 4.18.23 PM.png",
-    "Config/Assets/Screen Shot 2023-08-21 at 6.29.03 PM.png",
-    "Config/Assets",
-    "Config",
-    "dwck-cei-tool/Screenshots/area-visualization.png",
-    "dwck-cei-tool/Screenshots/area-dashboard.png",
-    "dwck-cei-tool/task-notes/Engagement Tracker.md",
-    "dwck-cei-tool/task-notes/Area Dashboard.md",
-    "dwck-cei-tool/screenshots/login.png",
-    "dwck-cei-tool/screenshots/new-engagement-tracker.png",
-    "dwck-cei-tool/screenshots/new-engagement-tracker.png",
-    "dwck-cei-tool/screenshots/engagement-tracker.png",
-    "ruta/de/la/imagen.md",
-    "ruta/de/la",
-    "ruta/de",
-    "ruta",
-    "dwck-cei-tool/screenshots/Screen Shot 2023-08-14 at 6.04.23 PM.png",
-    "dwck-cei-tool/screenshots",
-    "dwck-cei-tool/Untitled.md",
-    "dwck-cei-tool/task-notes",
-    "dwck-cei-tool"
+    "dwck-cei-tool/Kanban.md"
   ]
 }
