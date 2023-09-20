@@ -32,6 +32,12 @@ export default class DataStore extends HTMLElement {
 
   #dataSets
 
+  #dbInstance
+
+  get db() {
+
+  }
+
   constructor() {
     super()
     const template = html`<slot></slot>`
@@ -42,10 +48,34 @@ export default class DataStore extends HTMLElement {
   }
 
 
+  openDB(name, version = 1) {
+    const db = indexedDB.open(name, version)
+    db.onerror = (err) => {
+      console.log('error', err)
+      this.dispatchEvent(new CustomEvent('dbError', {
+        composed: true, bubbles: true,
+        detail: { name, err }
+      }))
+    }
+    db.onsuccess = (event) => {
+      console.log('success', event)
+      this.#dbInstance = event.target.result
+      // console.log('this.#dbInstance', this.#dbInstance)
+      this.dispatchEvent(new CustomEvent('dbOpened', {
+        composed: true, bubbles: true,
+        detail: { name, }
+      }))
+
+    }
+  }
+
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
+    // mapComponentEvents(this)
+    // updateVars(this)
     registerTriggers(this, (event) => this.#processEvent(event))
+
+    const version = Number(this.getAttribute('version'))
+    this.openDB(this.getAttribute('id'), version)
 
     this.addEventListener('sync', async event => {
       const key = event.detail.key
@@ -136,6 +166,12 @@ export default class DataStore extends HTMLElement {
    */
   removeItem(key) {
     return localforage.removeItem(`${this.id}_${key}`)
+  }
+
+  disconnectedCallback() {
+    // [ ] disconnect indexedDB
+    if(!this.#dbInstance) return
+    this.#dbInstance.close()
   }
 
 }

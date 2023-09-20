@@ -21,6 +21,7 @@ export default class DataChartComponent extends HTMLElement {
     const template = html`${componentHtml}`
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
+    console.log(ModalComponent)
 
   }
 

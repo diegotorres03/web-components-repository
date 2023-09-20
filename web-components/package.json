@@ -8,7 +8,8 @@
     "build:dev": "webpack --mode development --node-env development",
     "serve": "webpack serve --mode development --node-env development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "webpack --mode development --watch"
+    "watch": "webpack --mode development --watch", 
+    "docs": "jsdoc -c jsdoc.json"
   },
   "author": "Diego Torres",
   "license": "ISC",
@@ -32,6 +33,7 @@
     "css-loader": "^6.7.3",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.0",
+    "jsdoc": "^4.0.2",
     "prettier": "^2.8.4",
     "raw-loader": "^4.0.2",
     "style-loader": "^3.3.2",

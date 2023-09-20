@@ -11,10 +11,19 @@
   --mc-2: hsl(370, 70%, 60%);
   --mc-3: hsl(370, 60%, 70%);
   --mc-4: hsl(370, 60%, 80%);
+  
 
   --tx-1: hsl(370, 0%, 90%);
   --tx-2: hsl(370, 0%, 80%);
   --tx-3: hsl(370, 0%, 70%);
 
   --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
+}
+
+a {
+  color: var(--mc-2);
+}
+
+a:visited {
+  color: var(--mc-3);
 }
