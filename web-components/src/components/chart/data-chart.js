@@ -21,7 +21,6 @@ export default class DataChartComponent extends HTMLElement {
     const template = html`${componentHtml}`
     this.attachShadow({ mode: 'open' })
     this.shadowRoot.appendChild(template)
-    console.log(ModalComponent)
 
   }
 
@@ -38,13 +37,11 @@ export default class DataChartComponent extends HTMLElement {
       await sleep(10)
 
       const dataSets = Array.from(this.querySelectorAll('data-set'))
-      console.log(dataSets)
 
       // const dataPoints = Array.from(this.querySelectorAll('data-point'))
 
       function getDataPoints(dataSet) {
           const dataPoints = Array.from(dataSet.querySelectorAll('data-point'))
-          console.log(dataPoints)
 
           const entries = dataPoints.map(point => {
               const attributes = [...point.attributes]
@@ -53,7 +50,6 @@ export default class DataChartComponent extends HTMLElement {
               })
               return keyValuePairs
           })
-          console.log('entries', entries)
 
           const data = entries.map(entry => {
               let record = {}
@@ -63,7 +59,6 @@ export default class DataChartComponent extends HTMLElement {
               return record
           })
 
-          console.log(data)
           return {
               label: dataSet.getAttribute('label') || 'no-label',
               data: data.map(item => Number(item.count)),
@@ -72,7 +67,6 @@ export default class DataChartComponent extends HTMLElement {
       }
 
       const datasets = dataSets.map(getDataPoints)
-      // console.log(JSON.stringify(datasets, undefined, 2))
 
       const chartData = {
           labels: datasets[0].rawData.map(row => row.year),
@@ -84,7 +78,6 @@ export default class DataChartComponent extends HTMLElement {
           //     }
           // ]
       }
-      console.log(JSON.stringify(chartData, undefined, 2))
 
 
       const displayLegend = this.hasAttribute('legend')
@@ -123,10 +116,8 @@ export default class DataChartComponent extends HTMLElement {
   
   attributeChangedCallback(name, oldValue, newValue) { 
     if(name === 'type') {
-        console.dir(this.chart, null, 2)
         this.chart.config.type = this.getAttribute('type')
         this.chart.update()
-        console.log(newValue)
     }
 
     // if(name === 'wigth') {

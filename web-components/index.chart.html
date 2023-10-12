@@ -10,6 +10,29 @@
 
 <body>
 
+  <button id="new-item-btn" data-name="diego-list" data-age="35">new item</button>
+  <button id="list-lots-btn">list logs</button>
+
+  <data-store id="usersDatabase" version="2">
+
+    <data-set id="userProfile" trigger="#new-item-btn" on="click">
+      <data-index key="id" autoincrement unique></data-index>
+      <data-index key="name"></data-index>
+      <data-index key="age"></data-index>
+    </data-set>
+
+    <data-set id="userLog" append>
+      <data-index key="userId"></data-index>
+      <data-query id="list-user-log" trigger="#list-lots-btn" on="click" 
+        type="list" 
+        limit="10" 
+        page="1" 
+        order="desc" 
+      ></data-query>
+    </data-set>
+
+  </data-store>
+
   <app-layout>
 
     <section slot="left-content">
