@@ -1,0 +1,160 @@
+{
+  "main": {
+    "id": "cffe5ea21639b663",
+    "type": "split",
+    "children": [
+      {
+        "id": "9a7e98606ba2bbda",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f8fd4153350ece0a",
+            "type": "leaf",
+            "state": {
+              "type": "kanban",
+              "state": {
+                "file": "dwck-cei-tool/md-kanban.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "06d45dd32f169b25",
+    "type": "split",
+    "children": [
+      {
+        "id": "83b1057175d79088",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "87e56974cc71fb75",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "26511f5036e1f521",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a3a7fa100cdb4f0f",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0c10ea5d536267cb",
+    "type": "split",
+    "children": [
+      {
+        "id": "9c857e07c703fa67",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bd68dad41abf284e",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "d3ddf86eed6e14e5",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "dwck-cei-tool/md-kanban.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "62392b0bb5ef80ef",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "dwck-cei-tool/md-kanban.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "608f3fb95f7ceadf",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "1f0fe8d8447e85ac",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "dwck-cei-tool/md-kanban.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "f8fd4153350ece0a",
+  "lastOpenFiles": [
+    "dwck-cei-tool/Kanban.md"
+  ]
+}
