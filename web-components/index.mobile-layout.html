@@ -5,43 +5,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mobile-layout</title>
+    <link href="https://dev.iconly.io/public/oOrA4bMDl63h/iconly.css" rel="stylesheet" />
 
     <style>
+        html {
+            background-color: var(--bg-1);
+            color: var(--tx-2);
+        }
+
+        /* header */
+        div[slot="header"] {
+            width: 100%;
+            height: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        div[slot="header"] a {
+            padding: 8px;
+            border-radius: 8px;
+
+            font-size: 28px;
+            text-align: center;
+            color: var(--tx-2);
+
+            transition: all .4s ease;
+        }
+
+
+        /* Menú inferior que navega entre pantallas  */
         div[slot="nav-menu"] {
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: space-between;
             gap: 8px;
+
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 0px;
 
             width: 100%;
             height: 100%;
         }
 
-        div[slot="nav-menu"] button {
+        /* Botones (links) que dirigen hacia las pantallas */
+        div[slot="nav-menu"] a {
+            display: grid;
+            place-items: center;
+
             flex: 1 1;
             height: 100%;
+
             padding: 8px;
-            font-size: 18px;
+            border-radius: 8px;
+
+            font-size: 28px;
+            text-align: center;
+            color: var(--tx-2);
+
+            scroll-snap-align: start;
+
+            background-color: var(--bg-2) !important;
+
+            transition: all .4s ease;
         }
 
-        [slot="main"].section-card {
+        /* Clase que se aplica cuando un botón del navmenu es activado */
+        div[slot="nav-menu"] a.active {
+            background-color: var(--mc-3) !important;
+            color: var(--bg-0);
+        }
+
+        /* Tarjeta de contenido general */
+        [slot="main"].section-card,
+        [slot="main"] .section-card {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 1rem;
 
             width: 100%;
             height: auto;
 
             padding: 12px 16px;
-            border-radius: 4px;
+            border-radius: 12px;
 
             background-color: var(--bg-2);
         }
 
-        [slot="main"].cta {
-
-            background-color: var(--mc-3);
+        /* Clase que aplica un color mas llamativo a cualquier elemento */
+        .cta {
+            background-color: var(--mc-3) !important;
             color: var(--bg-1);
+        }
+
+        app-route {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+            padding: 0 1rem 1rem;
         }
     </style>
 
@@ -49,28 +113,92 @@
 
 <body>
 
-
     <mobile-layout>
 
+        <div slot="header">
+            <a href="#back-hash" class="icon-arrow-back"></a>
+
+            <div class="header-mid">
+                <h3>Menú</h3>
+            </div>
+
+            <a href="#user" class="icon-user"></a>
+        </div>
+
         <!-- Menú inferior donde se coloca un div con los botones a utilizar -->
-        <!-- [] Colocar un overflow auto x para aumentar numero maximo de botones -->
+        <!-- [x] Colocar un overflow auto x para aumentar numero maximo de botones -->
         <div slot="nav-menu">
 
-            <button>😀</button>
-            <button>😂</button>
+            <a href="#home" class="icon-home"></a>
+            <a href="#forum" class="icon-forum"></a>
+            <a href="#wallet" class="icon-wallet"></a>
 
         </div>
 
+        <app-router slot="main">
+
+            <app-route hash="home" trigger="[id=route-modal]" on="declined">
+
+                <div class="section-card">
+
+                    <h2>Home</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur iste dolore doloremque!</p>
+
+                </div>
+
+            </app-route>
+            <app-route hash="forum">
+
+                <div class="section-card">
+
+                    <h2>Forum</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur iste dolore doloremque!</p>
+
+                </div>
+
+            </app-route>
+            <app-route hash="user">
+                <div class="section-card">
+
+                    <h2>User</h2>
+                    <p><strong>Name: </strong>Marco <br>
+                        <strong>Surname: </strong>Del Boccio
+                    </p>
+
+                </div>
+            </app-route>
+
+            <app-modal id="route-modal" trigger="[hash='wallet']" on="activated">
+
+                <h3 slot="title">Aviso</h3>
+                <p slot="main">Seguro que deseas abrir tu wallet?</p>
+
+            </app-modal>
+
+            <app-route hash="wallet">
+            </app-route>
+
+            <!-- Trigger apunta al elemento que escuchará, on especifica el evento a escuchar -->
+            <app-route hash="wallet-allowed" trigger="[id=route-modal]" on="accepted">
+                <div class="section-card">
+
+                    <h2>Wallet</h2>
+                    <p><strong>LTC: </strong>123912312383 <br>
+                        <strong>Estado financiero: </strong>🤑
+                    </p>
+
+                </div>
+            </app-route>
+            <app-route>
+
+                <h1>Default :D</h1>
+            </app-route>
+
+        </app-router>
         <!-- Slot=main + class=section-card obtiene un estilo especial -->
-        <div slot="main" class="section-card">
 
-            <h2>Main content</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi maiores repellat aliquam veniam
-                temporibus eos mollitia ipsa vel!</p>
 
-        </div>
-
-        <!-- cta coloca un color llamativo el elemento -->
+        <!-- cta coloca un color llamativo el elemento
         <div slot="main" class="section-card cta">
 
             <h3>Important content</h3>
@@ -83,7 +211,7 @@
             <h3>Other content</h3>
             <p>Lorem ipsum dolor sit, amet consectetur</p>
 
-        </div>
+        </div> -->
 
     </mobile-layout>
 

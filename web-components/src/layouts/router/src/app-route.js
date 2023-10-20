@@ -3,73 +3,76 @@ import {
   mapComponentEvents,
   updateVars,
   registerTriggers,
-} from '../../../global/web-tools'
-
+} from '../../../global/web-tools';
 
 export default class RouteComponent extends HTMLElement {
   get DEFAULT_EVENT_NAME() {
-    return 'activated'
+    return 'activated';
   }
 
-
   static get observedAttributes() {
-    return ['guard']
+    return ['guard'];
   }
 
   constructor() {
-    super()
-    const template = html`
-      <slot></slot>`
-    this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(template)
+    super();
+    const template = html` <slot></slot>`;
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template);
   }
-
 
   async connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
-    registerTriggers(this, () => this.activate())
-    if (!this.getAttribute('src')) return
+    mapComponentEvents(this);
+    updateVars(this);
+    registerTriggers(this, () => this.activate());
+    if (!this.getAttribute('src')) return;
 
-    const src = this.getAttribute('src')
+    const src = this.getAttribute('src');
     // console.log(src)
 
-    const rawHtml = await (await fetch(src)).text()
+    const rawHtml = await (await fetch(src)).text();
     // console.log(rawHtml)
-    this.appendChild(html`${rawHtml}`)
+    this.appendChild(html`${rawHtml}`);
   }
 
-  disconnectedCallback() { }
+  disconnectedCallback() {}
 
   attributeChangedCallback(name, oldValue, newValue) {
     // if (name === 'guard') {
     //   const shouldNavigate = guards[newValue]()
     //   console.log(shouldNavigate)
     //   if (!shouldNavigate) window.location.hash = 'login'
-
     // }
   }
 
-  adoptedCallback() { }
+  adoptedCallback() {}
 
   activate() {
-    window.location.hash = this.getAttribute('hash') || ''
+    window.location.hash = this.getAttribute('hash') || '';
   }
 
   activated() {
-    const componetHash = this.getAttribute('hash')
-    const currentHash = window.location.hash.replace('#', '')
-    if(currentHash !== componetHash) return
+    const componetHash = this.getAttribute('hash');
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash !== componetHash) return;
     const event = new CustomEvent(this.DEFAULT_EVENT_NAME, {
-      bubbles: true, composed: true,
+      bubbles: true,
+      composed: true,
       detail: {
-        route: currentHash
-      }
-    })
+        route: currentHash,
+      },
+    });
     // console.log(event)
-    this.dispatchEvent(event)
+    const srcSelector = `[href="#${componetHash}"]`;
+    // console.log(srcSelector);
+    const srcElement = document.querySelector(srcSelector);
+    // console.log(srcElement);
+    this.dispatchEvent(event);
+    if (!srcElement) {
+      return;
+    }
+    srcElement.classList.add('active');
   }
-
 }
 
-window.customElements.define('app-route', RouteComponent)
+window.customElements.define('app-route', RouteComponent);
