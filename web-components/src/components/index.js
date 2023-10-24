@@ -9,3 +9,4 @@ export * from './chart';
 export * from './cards';
 export * from './drag-drop'
 export * from './pop-over-menu'
+export * from './geo-map'
