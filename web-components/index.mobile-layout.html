@@ -14,7 +14,7 @@
         }
 
         /* header */
-        div[slot="header"] {
+        [slot="header"] {
             width: 100%;
             height: auto;
 
@@ -115,25 +115,35 @@
 
     <mobile-layout>
 
-        <div slot="header">
-            <a href="#back-hash" class="icon-arrow-back"></a>
+        <app-router slot="header">
 
-            <div class="header-mid">
-                <h3>Menú</h3>
-            </div>
+            <app-route>
 
-            <a href="#user" class="icon-user"></a>
-        </div>
+            </app-route>
+            <app-route hash="home">
 
-        <!-- Menú inferior donde se coloca un div con los botones a utilizar -->
-        <!-- [x] Colocar un overflow auto x para aumentar numero maximo de botones -->
-        <div slot="nav-menu">
+                <a href="#back-hash" class="icon-arrow-back"></a>
 
-            <a href="#home" class="icon-home"></a>
-            <a href="#forum" class="icon-forum"></a>
-            <a href="#wallet" class="icon-wallet"></a>
+                <div class="header-mid">
+                    <h3>Menú</h3>
+                </div>
 
-        </div>
+                <a href="#user" class="icon-user"></a>
+
+            </app-route>
+
+            <app-route hash="forum">
+                <a href="#back-hash" class="icon-arrow-back"></a>
+
+                <div class="header-mid">
+                    <h3>Forum</h3>
+                </div>
+
+                <a href="#user" class="icon-forum"></a>
+            </app-route>
+
+        </app-router>
+
 
         <app-router slot="main">
 
@@ -195,6 +205,16 @@
             </app-route>
 
         </app-router>
+
+        <!-- Menú inferior donde se coloca un div con los botones a utilizar -->
+        <!-- [x] Colocar un overflow auto x para aumentar numero maximo de botones -->
+        <div slot="nav-menu">
+
+            <a href="#home" class="icon-home"></a>
+            <a href="#forum" class="icon-forum"></a>
+            <a href="#wallet" class="icon-wallet"></a>
+
+        </div>
         <!-- Slot=main + class=section-card obtiene un estilo especial -->
 
 
