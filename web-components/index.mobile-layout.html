@@ -9,11 +9,13 @@
 
     <style>
         html {
-            background-color: var(--bg-1);
-            color: var(--tx-2);
+            background-color: var(--background-color-1);
+            color: var(--text-color-mid-emphasis);
         }
 
         /* header */
+
+        /* Elemento que contenga todo lo que va en el header */
         [slot="header"] {
             width: 100%;
             height: auto;
@@ -23,17 +25,34 @@
             justify-content: space-between;
         }
 
-        div[slot="header"] a {
-            padding: 8px;
+        /*  a que este dentro de un div que sea slotado a header  */
+        /* a que este dentro de un approute que este en un app-router slotado a header */
+        div[slot="header"] a,
+        app-router[slot="header"] app-route a {
+            padding: .25rem .5rem;
             border-radius: 8px;
 
             font-size: 28px;
             text-align: center;
-            color: var(--tx-2);
+            color: var(--text-color-mid-emphasis) !important;
 
             transition: all .4s ease;
         }
 
+        /* App route dentro de app.router slotado a header */
+        app-router[slot="header"] app-route {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            /* --rojo: red;
+            --rojo-400: var(--rojo);
+            background-color: var(--rojo-400); */
+        }
+
+        /* app-router[slot="header"] app-route:hover {
+            --rojo-400: blue;
+        } */
 
         /* Menú inferior que navega entre pantallas  */
         div[slot="nav-menu"] {
@@ -63,19 +82,19 @@
 
             font-size: 28px;
             text-align: center;
-            color: var(--tx-2);
+            color: var(--text-color-mid-emphasis) !important;
 
             scroll-snap-align: start;
 
-            background-color: var(--bg-2) !important;
+            background-color: var(--background-color-3) !important;
 
             transition: all .4s ease;
         }
 
         /* Clase que se aplica cuando un botón del navmenu es activado */
         div[slot="nav-menu"] a.active {
-            background-color: var(--mc-3) !important;
-            color: var(--bg-0);
+            background-color: var(--main-color-3) !important;
+            color: var(--background-color-1) !important;
         }
 
         /* Tarjeta de contenido general */
@@ -91,21 +110,21 @@
             padding: 12px 16px;
             border-radius: 12px;
 
-            background-color: var(--bg-2);
+            background-color: var(--background-color-3);
+        }
+
+        /* App route que este dentro un elemento que sea slotado a main, este
+        funciona como contenedor para una de las secciones de la pagina */
+        [slot="main"] app-route {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         /* Clase que aplica un color mas llamativo a cualquier elemento */
         .cta {
-            background-color: var(--mc-3) !important;
-            color: var(--bg-1);
-        }
-
-        app-route {
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-
-            padding: 0 1rem 1rem;
+            background-color: var(--main-color-3) !important;
+            color: var(--background-color-1) !important;
         }
     </style>
 
@@ -115,23 +134,30 @@
 
     <mobile-layout>
 
+        <!-- ROUTER-HEADER -->
         <app-router slot="header">
 
+            <!-- ROUTE-DEFAULT -->
             <app-route>
-
-            </app-route>
-            <app-route hash="home">
-
                 <a href="#back-hash" class="icon-arrow-back"></a>
-
                 <div class="header-mid">
                     <h3>Menú</h3>
                 </div>
+                <a href="#user" class="icon-user"></a>
+            </app-route>
 
+            <!-- ROUTE-HOME -->
+            <app-route hash="home">
+
+                <a href="#back-hash" class="icon-arrow-back"></a>
+                <div class="header-mid">
+                    <h3>Menú</h3>
+                </div>
                 <a href="#user" class="icon-user"></a>
 
             </app-route>
 
+            <!-- ROUTE-FORUM-->
             <app-route hash="forum">
                 <a href="#back-hash" class="icon-arrow-back"></a>
 
@@ -144,19 +170,21 @@
 
         </app-router>
 
-
+        <!-- ROUTER MAIN -->
         <app-router slot="main">
 
+            <!-- ROUTE HOME -->
             <app-route hash="home" trigger="[id=route-modal]" on="declined">
-
-                <div class="section-card">
-
+                <div class="section-card cta">
                     <h2>Home</h2>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur iste dolore doloremque!</p>
-
                 </div>
-
+                <div class="section-card">
+                    <h3>How do it?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur iste dolore doloremque!</p>
+                </div>
             </app-route>
+            <!-- ROUTE FORUM -->
             <app-route hash="forum">
 
                 <div class="section-card">
@@ -167,6 +195,7 @@
                 </div>
 
             </app-route>
+            <!-- ROUTE USER -->
             <app-route hash="user">
                 <div class="section-card">
 
@@ -178,6 +207,11 @@
                 </div>
             </app-route>
 
+            <!-- ROUTE-WALLET -->
+            <app-route hash="wallet">
+            </app-route>
+
+            <!-- MODAL -->
             <app-modal id="route-modal" trigger="[hash='wallet']" on="activated">
 
                 <h3 slot="title">Aviso</h3>
@@ -185,9 +219,7 @@
 
             </app-modal>
 
-            <app-route hash="wallet">
-            </app-route>
-
+            <!-- ROUTE-WALLET-ALLOWED -->
             <!-- Trigger apunta al elemento que escuchará, on especifica el evento a escuchar -->
             <app-route hash="wallet-allowed" trigger="[id=route-modal]" on="accepted">
                 <div class="section-card">
@@ -199,15 +231,10 @@
 
                 </div>
             </app-route>
-            <app-route>
-
-                <h1>Default :D</h1>
-            </app-route>
 
         </app-router>
 
         <!-- Menú inferior donde se coloca un div con los botones a utilizar -->
-        <!-- [x] Colocar un overflow auto x para aumentar numero maximo de botones -->
         <div slot="nav-menu">
 
             <a href="#home" class="icon-home"></a>
@@ -215,25 +242,70 @@
             <a href="#wallet" class="icon-wallet"></a>
 
         </div>
-        <!-- Slot=main + class=section-card obtiene un estilo especial -->
-
-
-        <!-- cta coloca un color llamativo el elemento
-        <div slot="main" class="section-card cta">
-
-            <h3>Important content</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur</p>
-
-        </div>
-
-        <div slot="main" class="section-card">
-
-            <h3>Other content</h3>
-            <p>Lorem ipsum dolor sit, amet consectetur</p>
-
-        </div> -->
 
     </mobile-layout>
+
+    <!-- Temas -->
+    <style>
+        .dark-theme {
+            /* Background Colors */
+            --background-color-1: hsl(var(--theme-tone), 8%, 12%);
+            --background-color-2: hsl(var(--theme-tone), 8%, 17%);
+            --background-color-3: hsl(var(--theme-tone), 12%, 23%);
+            --background-color-4: hsl(var(--theme-tone), 12%, 31%);
+
+            /* Main Colors */
+            /* Color principal neutro */
+            --main-color: hsl(var(--theme-tone), 50%, 50%);
+
+            --main-color-1: hsl(var(--theme-tone), 50%, 20%);
+            --main-color-2: hsl(var(--theme-tone), 50%, 40%);
+            --main-color-3: hsl(var(--theme-tone), 40%, 60%);
+            --main-color-4: hsl(var(--theme-tone), 40%, 80%);
+
+            /* Text Colors */
+            --text-color-emphasis-high: hsla(0, 0%, 100%, 0.85);
+            --text-color-emphasis-mid: hsla(0, 0%, 100%, 0.65);
+            --text-color-emphasis-low: hsla(0, 0%, 100%, 0.35);
+
+            /* Gradients */
+            --gradient-1: linear-gradient(0deg, var(--bg-4) 0%, var(--bg-5) 100%);
+
+            /* Border Colors (Example) */
+            --border-color-1: hsl(220, 5%, 25%);
+            --border-color-2: hsl(220, 5%, 45%);
+            --border-color-3: hsl(220, 5%, 65%);
+        }
+
+        .light-theme {
+            /* Background Colors */
+            --background-color-1: hsl(var(--theme-tone), 8%, 82%);
+            --background-color-2: hsl(var(--theme-tone), 8%, 77%);
+            --background-color-3: hsl(var(--theme-tone), 12%, 63%);
+            --background-color-4: hsl(var(--theme-tone), 12%, 61%);
+
+            /* Main Colors */
+            --main-color-1: hsl(var(--theme-tone), 50%, 20%);
+            --main-color-2: hsl(var(--theme-tone), 50%, 40%);
+            --main-color: hsl(var(--theme-tone), 50%, 50%);
+            /*$ Color principal neutro */
+            --main-color-3: hsl(var(--theme-tone), 40%, 60%);
+            --main-color-4: hsl(var(--theme-tone), 40%, 80%);
+
+            /* Text Colors */
+            --text-color-emphasis-high: hsla(0, 0%, 0%, 0.85);
+            --text-color-emphasis-mid: hsla(0, 0%, 0%, 0.65);
+            --text-color-emphasis-low: hsla(0, 0%, 0%, 0.35);
+
+            /* Gradients */
+            --gradient-1: linear-gradient(0deg, var(--bg-4) 0%, var(--bg-5) 100%);
+
+            /* Border Colors (Example) */
+            --border-color-1: hsl(220, 5%, 25%);
+            --border-color-2: hsl(220, 5%, 45%);
+            --border-color-3: hsl(220, 5%, 65%);
+        }
+    </style>
 
 </body>
 

@@ -1,4 +1,35 @@
 :root {
+  /*$ DARK THEME COLORS */
+  --theme-tone: 30;
+
+  /* Background Colors */
+  --background-color-1: hsl(var(--theme-tone), 8%, 12%);
+  --background-color-2: hsl(var(--theme-tone), 8%, 17%);
+  --background-color-3: hsl(var(--theme-tone), 12%, 23%);
+  --background-color-4: hsl(var(--theme-tone), 12%, 31%);
+
+  /* Main Colors */
+  --main-color-1: hsl(var(--theme-tone), 50%, 20%);
+  --main-color-2: hsl(var(--theme-tone), 50%, 40%);
+  --main-color: hsl(var(--theme-tone), 50%, 50%); /*$ Color principal neutro */
+  --main-color-3: hsl(var(--theme-tone), 40%, 60%);
+  --main-color-4: hsl(var(--theme-tone), 40%, 80%);
+
+  /* Text Colors */
+  --text-color-emphasis-high: hsla(0, 0%, 100%, 0.85);
+  --text-color-emphasis-mid: hsla(0, 0%, 100%, 0.65);
+  --text-color-emphasis-low: hsla(0, 0%, 100%, 0.35);
+
+  /* Gradients */
+  --gradient-1: linear-gradient(0deg, var(--bg-4) 0%, var(--bg-5) 100%);
+
+  /* Border Colors (Example) */
+  --border-color-1: hsl(220, 5%, 25%);
+  --border-color-2: hsl(220, 5%, 45%);
+  --border-color-3: hsl(220, 5%, 65%);
+
+  /** Antiguos tokens (Temporal) */
+
   /* DARK-THEME */
 
   --bg-0: hsl(220, 5%, 12%);
@@ -18,4 +49,11 @@
   --tx-3: hsl(0, 0%, 70%);
 
   --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
+}
+a {
+  color: var(--mc-2);
+}
+
+a:visited {
+  color: var(--mc-3);
 }
