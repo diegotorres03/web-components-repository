@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoC</title>
+</head>
+
+<body>
+
+
+  <app-layout>
+
+    <style>
+      [flex-row] {
+        display: flex;
+        flex-direction: row;
+      }
+
+      [flex-column] {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+
+    <nav slot="left-content" flex-column>
+      <a router-status href="#link1">link1</a>
+      <a router-status href="#link2">link2</a>
+      <a router-status href="#link3">link3</a>
+      <a router-status href="#link4">link4</a>
+      <a router-status href="#link5">link5</a>
+    </nav>
+
+    <app-router slot="main">
+      <app-route></app-route>
+      <app-route hash="link1">link1</app-route>
+      <app-route hash="link2">link2</app-route>
+      <app-route hash="link3">link3</app-route>
+      <app-route hash="link4">link4</app-route>
+      <app-route hash="link5">link5</app-route>
+    </app-router>
+
+  </app-layout>
+
+  <script>
+      const router = document.querySelector('app-router')
+      const sources = Array.from(document.querySelectorAll('[router-status]'))
+      console.log('router', router)
+      router.addEventListener('navigated', event => {
+        console.log('navigated', event)
+        const { hash } = event.detail
+        sources.forEach(source => source.setAttribute('router-status', ''))
+        Array.from(document.querySelectorAll(`[href="${hash}"]`))
+          .forEach(link => link.setAttribute('router-status', 'active'))
+      })
+  </script>
+
+</body>
+
+</html>

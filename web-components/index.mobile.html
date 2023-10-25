@@ -1,0 +1,205 @@
+<web-formation>
+
+  <web-app domain="demo.diegotrs.com" region="us-east-2">
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mobile</title>
+
+      <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@3.4.1/dist/maplibre-gl.css' />
+      <!-- <script src='https://unpkg.com/maplibre-gl@3.4.1/dist/maplibre-gl.js'></script> -->
+      <style>
+        body {
+          margin: 0;
+          padding: 0;
+        }
+
+        html,
+        body,
+        #map {
+          height: 100%;
+        }
+      </style>
+    </head>
+
+    <body>
+      <mobile-layout>
+
+        <h1 slot="header" style="color: whitesmoke;">my first mobile layout</h1>
+
+        <!-- Menú inferior donde se coloca un div con los botones a utilizar -->
+        <div slot="nav-menu" width="300px" flex="column">
+          <a href="#home">Home</a>
+          <a href="#rides">Rides</a>
+        </div>
+
+        <app-router slot="main">
+
+          <app-route>Welcome</app-route>
+          <app-route hash="home">
+            <h1>home stuff</h1>
+          </app-route>
+          <app-route hash="rides">
+            <h1>Rides and more stuff</h1>
+
+
+            <!-- <geo-map></geo-map> -->
+
+
+
+          </app-route>
+
+        </app-router>
+
+      </mobile-layout>
+    </body>
+
+    </html>
+
+  </web-app>
+
+  <rest-api region="us-east-2">
+    <rest-endpoint path="/users" method="GET">
+      <script>
+        async function handler(event, context) {
+          return {
+            status: 200,
+            etc: '...'
+          }
+        }
+      </script>
+    </rest-endpoint>
+  </rest-api>
+</web-formation>
+
+
+<!-- <div id="map"></div> -->
+<!-- 
+<script>
+  const map = new maplibregl.Map({
+    container: 'map',
+    style:
+      'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL'
+  });
+
+  const size = 200;
+
+  // implementation of StyleImageInterface to draw a pulsing dot icon on the map
+  // Search for StyleImageInterface in https://maplibre.org/maplibre-gl-js/docs/API/
+  const pulsingDot = {
+    width: size,
+    height: size,
+    data: new Uint8Array(size * size * 4),
+
+    // get rendering context for the map canvas when layer is added to the map
+    onAdd() {
+      const canvas = document.createElement('canvas');
+      canvas.width = this.width;
+      canvas.height = this.height;
+      this.context = canvas.getContext('2d');
+    },
+
+    // called once before every frame where the icon will be used
+    render() {
+      const duration = 1000;
+      const t = (performance.now() % duration) / duration;
+
+      const radius = (size / 2) * 0.3;
+      const outerRadius = (size / 2) * 0.7 * t + radius;
+      const context = this.context;
+
+      // draw outer circle
+      context.clearRect(0, 0, this.width, this.height);
+      context.beginPath();
+      context.arc(
+        this.width / 2,
+        this.height / 2,
+        outerRadius,
+        0,
+        Math.PI * 2
+      );
+      context.fillStyle = `rgba(255, 200, 200,${1 - t})`;
+      context.fill();
+
+      // draw inner circle
+      context.beginPath();
+      context.arc(
+        this.width / 2,
+        this.height / 2,
+        radius,
+        0,
+        Math.PI * 2
+      );
+      context.fillStyle = 'rgba(255, 100, 100, 1)';
+      context.strokeStyle = 'white';
+      context.lineWidth = 2 + 4 * (1 - t);
+      context.fill();
+      context.stroke();
+
+      // update this image's data with data from the canvas
+      this.data = context.getImageData(
+        0,
+        0,
+        this.width,
+        this.height
+      ).data;
+
+      // continuously repaint the map, resulting in the smooth animation of the dot
+      map.triggerRepaint();
+
+      // return `true` to let the map know that the image was updated
+      return true;
+    }
+  };
+
+  map.on('load', () => {
+    map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+
+    map.addSource('points', {
+      'type': 'geojson',
+      'data': {
+        'type': 'FeatureCollection',
+        'features': [
+          {
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [0, 0]
+            }
+          }
+        ]
+      }
+    });
+  
+    map.addLayer({
+      'id': 'points',
+      'type': 'symbol',
+      'source': 'points',
+      'layout': {
+        'icon-image': 'pulsing-dot'
+      }
+    });
+  });
+
+</script> -->
+
+<script>
+  const webFormation = document.querySelector('web-formation')
+
+  const template = {
+    // Transforms: ['web-formation'],
+
+    Parameters: {},
+
+    Resources: {
+
+    },
+  }
+
+
+
+</script>
