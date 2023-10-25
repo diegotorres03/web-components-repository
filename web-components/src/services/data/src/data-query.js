@@ -36,8 +36,8 @@ export default class DataQueryComponent extends HTMLElement {
 
 
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
+    // mapComponentEvents(this)
+    // updateVars(this)
     registerTriggers(this, (event) => this.#processRequest(event))
   }
 
@@ -46,47 +46,50 @@ export default class DataQueryComponent extends HTMLElement {
     const key = this.getAttribute('key') || this.parentElement.id
     const size = this.getAttribute('size') || 100
     const page = this.getAttribute('page') || 1
+    const order = this.getAttribute('order') || 'desc'
 
-    console.log(type, key, size, page)
+    this.emit({type, key, size, page, order})
 
-    if (type === 'list') {
-      const items = await this.getItem(key)
 
-      if(!items) return
+    // if (type === 'list') {
+    //   const items = await this.getItem(key)
+
+    //   if(!items) return
   
-      items.forEach((item, index) => {
-        if (index < size * (page - 1)) return
-        if (index >= size * page) return
+    //   items.forEach((item, index) => {
+    //     if (index < size * (page - 1)) return
+    //     if (index >= size * page) return
 
-        console.log(item)
-        this.emit(item, type)
-      })
+    //     console.log(item)
+    //     this.emit(item, type)
+    //   })
 
-    } else if(type === 'get') {
-      const item = await this.getItem(key)
-      console.log('item', item)
-      this.emit(item, type)
+    // } else if(type === 'get') {
+    //   const item = await this.getItem(key)
+    //   console.log('item', item)
+    //   this.emit(item, type)
 
-    } else if(type === 'put') {
-      if(!event.detail.__id) return console.warn('__id is not present')
-      this.putItem(key, event.detail)
-      this.emit({...event.detail, type})
+    // } else if(type === 'put') {
+    //   if(!event.detail.__id) return console.warn('__id is not present')
+    //   this.putItem(key, event.detail)
+    //   this.emit({...event.detail, type})
 
 
-    } else if(type === 'delete') {
-      if(!event.detail.__id) return console.warn('__id is not present')
-      this.deleteItem(key, event.detail.__id)
-      this.emit({__id: event.detail.__id}, type)
+    // } else if(type === 'delete') {
+    //   if(!event.detail.__id) return console.warn('__id is not present')
+    //   this.deleteItem(key, event.detail.__id)
+    //   this.emit({__id: event.detail.__id}, type)
 
-    } else if(type === 'clear') {
-      this.clearStore(key)
-      this.emit({}, type)
-    }
+    // } else if(type === 'clear') {
+    //   this.clearStore(key)
+    //   this.emit({}, type)
+    // }
 
 
   }
 
-  emit(data, queryType) {
+  emit(data) {
+    const queryType = data.type || 'list'
     console.info(`on ${this.id} emiting ${queryType}`)
     this.dispatchEvent(new CustomEvent(queryType, {
       bubbles: true, composed: true,

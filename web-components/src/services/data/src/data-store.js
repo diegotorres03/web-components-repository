@@ -6,6 +6,8 @@ import {
 } from '../../../global/web-tools'
 
 // import { setItem, getItem, removeItem } from 'localforage'
+import { Dexie } from 'dexie'
+
 import localforage from 'localforage'
 import DataSetComponent from './data-set'
 import DataQueryComponent from './data-query'
@@ -15,7 +17,22 @@ import DataQueryComponent from './data-query'
 //import componentStyle from './flip-card.css'
 
 /**
- * This component help to interact with IndexedDB, allowing you to persis information on the browser
+ * This component help to interact with IndexedDB, 
+ * allowing you to persis information on the browser
+ * 
+ * @example
+ * <data-store id="usersDatabase" version="1">
+ *   <data-set id="userProfile" visible trigger="#new-item-btn" on="click">
+ *     <data-index key="id" autoincrement unique></data-index>
+ *     <data-index key="name"></data-index>
+ *     <data-index key="age"></data-index>
+ *   </data-set>
+ * 
+ *   <data-set id="userPreferences">
+ *     <data-index key="userId"></data-index>
+ *   </data-set>
+ * </data-store>
+ * 
  * 
  * 
  * @export
@@ -32,6 +49,15 @@ export default class DataStore extends HTMLElement {
 
   #dataSets
 
+  /** @property {Dexie} db - db instance reference */
+  db
+
+  get dataSets() {
+    const datasets = [...this.querySelectorAll('data-set')]
+    return datasets
+  }
+
+
   constructor() {
     super()
     const template = html`<slot></slot>`
@@ -42,10 +68,44 @@ export default class DataStore extends HTMLElement {
   }
 
 
+  #dbInit() {
+    const version = Number(this.getAttribute('version'))
+    const dbName = this.id || 'default'
+    console.log('dbName', dbName)
+    const db = new Dexie(dbName)
+    const stores = {}
+    Array.from(this.querySelectorAll('data-set')).forEach(dataset => {
+      const indexes = [...dataset.querySelectorAll('data-index')]
+      const indexDefinitions = indexes.map(index =>
+        `${index.hasAttribute('autoincrement') ? '++' : ''}${index.getAttribute('key')}`)
+      console.log('indexDefinitions', indexes, indexDefinitions)
+      stores[dataset.id] = indexDefinitions.length > 0 ?
+        indexDefinitions.join(', ') :
+        '++id'
+    })
+
+    console.log('stores', stores, version)
+    console.table(stores)
+    const versionDeployment = db.version(version).stores(stores)
+    console.log('versionDeployment', versionDeployment)
+    this.db = db
+
+    db.tables.forEach(table => {
+      console.log('table', table)
+    })
+
+
+
+
+  }
+
   connectedCallback() {
-    mapComponentEvents(this)
-    updateVars(this)
+    // mapComponentEvents(this)
+    // updateVars(this)
     registerTriggers(this, (event) => this.#processEvent(event))
+
+    const version = Number(this.getAttribute('version'))
+    this.#dbInit()
 
     this.addEventListener('sync', async event => {
       const key = event.detail.key
@@ -88,21 +148,32 @@ export default class DataStore extends HTMLElement {
     console.log(event)
     const isBtn = event.target.tagName.toLowerCase() === 'button'
     let data = isBtn ? { ...event.target.dataset } : event.detail
-    const key = event.target.id
+    const tableName = event.target.id
 
-    if (this.hasAttribute('append') || event.target.hasAttribute('append')) {
-      const item = await this.getItem(key)
-      const items = Array.isArray(item) ? item : [item]
-      items.unshift(data)
-      data = items
+
+    const userData = {
+      id: data.id,
+      name: data.name,
+      age: data.age,
     }
 
-    this.setItem(key, data)
-      // .then(res => console.log(res))
-      .catch(err => console.error(err))
+    console.table(userData)
+    const table = this.db.table(tableName)
+
+    if (this.hasAttribute('append') || event.target.hasAttribute('append')) {
+      const res = await table.where('id').between(1, 10).toArray()
+      console.log(res)
+      userData.id = res.length + 1
+      return table.add(userData)
+    }
+
+    if(!userData.id) userData.id = userData.name
+    return table.put(userData,userData.id)
+
   }
 
   async #processCrudEvent(event) {
+    console.table(event)
 
   }
 
@@ -113,8 +184,16 @@ export default class DataStore extends HTMLElement {
    * @returns {*} 
    */
   setItem(key, value) {
-    return localforage.setItem(`${this.id}_${key}`, value)
+    // return localforage.setItem(`${this.id}_${key}`, value)
+    // if(!this.db) return console.warn('db not initialized')
+    // this.db.table(tableName).add({
+    //   id: 'diego',
+    //   name: 'Diego Torres',
+    //   age: 30,
+    // })
+
   }
+
 
   /**
    * Get an item from IndexedDB by a given key (this key will be prefixed with the store name)
@@ -122,11 +201,11 @@ export default class DataStore extends HTMLElement {
    * @returns {*}
    */
   getItem(key) {
-    return localforage.getItem(`${this.id}_${key}`)
+    // return localforage.getItem(`${this.id}_${key}`)
   }
 
   hasItem(key) {
-    return !!this.getItem(`${this.id}_${key}`)
+    // return !!this.getItem(`${this.id}_${key}`)
   }
 
   /**
@@ -135,7 +214,13 @@ export default class DataStore extends HTMLElement {
    * @returns {*}
    */
   removeItem(key) {
-    return localforage.removeItem(`${this.id}_${key}`)
+    // return localforage.removeItem(`${this.id}_${key}`)
+  }
+
+  disconnectedCallback() {
+    // [ ] disconnect indexedDB
+    if (!this.db) return
+    this.db.close()
   }
 
 }
