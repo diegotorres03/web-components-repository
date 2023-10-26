@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New component tester</title>
+    <style>
+        html,
+        body {
+            background-color: var(--background-color-1);
+        }
+
+        simple-card [slot="content"] {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        [flex="column"] {
+            display: flex;
+            flex-direction: column;
+        }
+
+        [flex="row"] {
+            display: flex;
+            flex-direction: row;
+        }
+
+        [gap] {
+            gap: 1rem;
+        }
+
+        [space="between"] {
+            justify-content: space-between;
+        }
+
+        button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <!-- Simple Card -->
+    <simple-card slot="main">
+
+        <div slot="content">
+
+            <h1>Simple card</h1>
+            <p>A versatile card component designed to make your content presentation
+                effortless.</p>
+
+            <!-- flex="row" (display:flex; flex-direction:row;)
+                 space="between" (justify-content: space-between;)
+                 gap (gap:1rem;) -->
+            <div flex="row" space="between" gap>
+                <button>Press me</button>
+                <!-- cancel (background-color:red;) -->
+                <button cancel>Cancel</button>
+            </div>
+
+        </div>
+
+    </simple-card>
+
+
+
+
+</body>
+
+</html>

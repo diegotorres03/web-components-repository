@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+
+  /* Super Container */
+  --super-container-background-color: var(--background-color-3);
+  --super-container-font-color: var(--text-color-emphasis-mid);
+  --super-container-border-color: var(--border-color-2);
+}
+
+.super-container {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  padding: 1rem;
+  border-radius: 0.4rem;
+
+  color: var(--super-container-font-color);
+  background-color: var(--super-container-background-color);
+  border: 0.2px solid var(--super-container-border-color);
+}
