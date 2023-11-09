@@ -1,15 +1,47 @@
-.tab-group {
-  min-width: 100px;
-  width: 100%;
-  border-radius: 4px;
-  overflow: hidden;
+* {
+  margin: 0;
 
-  margin-bottom: 8px;
+  /* TabGroup */
+  --tab-group-border-radius-value: var(--border-radius-value);
+  --tab-group-border-value: var(--border-value) solid
+  var(--border-color-2);
+
+  /* Tab */
+  --tab-background-color: var(--background-color-4);
+  --tab-border-value: var(--border-value) solid
+  var(--border-color-2);
+
+  /* Label */
+  --label-background-color: var(--background-color-4);
+  --label-text-color-checked: var(--main-color-4);
+  --label-text-color:var(--text-color-emphasis-mid);
+  --label-padding-value: var(--padding-value);
+
+  /* TabContent */
+
+  --tab-content-background-color:var(--background-color-3);
+  --tab-content-text-color:var(--text-color-emphasis-mid);
+  --tab-content-padding-value: var(--padding-value);
+}
+
+.tab-group {
+  display: inline-flex;
+  flex-direction: column;
+
+  border: var(--tab-group-border-value);
+  border-radius: var(--tab-group-border-radius-value);
+  
+  overflow: hidden;
 }
 
 .tab {
+  display: inline-flex;
+  flex-direction: column;
+
   position: relative;
   width: 100%;
+
+  background-color: var(--tab-background-color);
 }
 
 .tab .input {
@@ -20,44 +52,48 @@
 }
 
 .tab .label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  background-color: var(--back-tone);
-  color: var(--third-tone);
+  background-color: var(--label-background-color);
+  color: var(--label-text-color);
 
-  padding: 8px;
-
-  font-size: 12px;
+  padding: var(--label-padding-value);
 }
-.label:not(:last-of-type) {
-  border-bottom: 1px solid var(--third-tone);
+.tab:not(:last-of-type) {
+  border-bottom:var(--tab-border-value);
 }
 
 .tab input:focus + label,
 .tab label:hover {
-  filter: brightness(1.15) contrast(80%);
+  filter: brightness(1.25) contrast(90%);
   cursor: pointer;
 }
 
 .tab-content {
+  display: inline-block;
+
   max-height: 0;
 
   overflow: hidden;
-  transition: all 0.35s;
-  background-color: var(--text-tone);
-  color: var(--back-tone);
 
+  padding: 0 var(--tab-content-padding-value);
+  
   overflow-y: scroll;
   scrollbar-width: none;
+  
+  color: var(--tab-content-text-color);
+  background-color: var(--tab-content-background-color);
+
+  transition: all 0.2s ease;
 }
 
 .tab .input:checked ~ .tab-content {
-  max-height: 400px;
-  padding: 8px;
-  color: var(--back-tone);
+  max-height: 200px;
+  padding: var(--tab-content-padding-value);
+  transition: all 0.2s .30s ease-in;
 }
 .tab .input:checked ~ .label {
-  color: var(--main-tone);
+  color: var(--label-text-color-checked);
   filter: brightness(1.25) contrast(90%);
 }
 

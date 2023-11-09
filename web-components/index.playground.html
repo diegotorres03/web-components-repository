@@ -8,14 +8,24 @@
     <style>
         html,
         body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+
+            gap: 1rem;
             background-color: var(--background-color-1);
         }
 
-        simple-card [slot="content"] {
+        simple-card [slot="main"] {
             width: 300px;
             display: flex;
             flex-direction: column;
             gap: 1rem;
+        }
+
+        header-card [slot="main"] {
+            width: 300px;
         }
 
         [flex="column"] {
@@ -39,34 +49,158 @@
         button {
             width: 100%;
         }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 500;
+            line-height: 1rem;
+        }
+
+        /*  */
+
+        .app-accordion {
+            display: flex;
+            flex-direction: column;
+
+            width: 400px;
+
+            background-color: ghostwhite;
+        }
+
+        .accordion-tab {}
+
+        .tab-title {
+            display: block;
+            text-decoration: none;
+
+            padding: 8px;
+
+            background-color: #232323;
+            color: ghostwhite;
+        }
+
+        .tab-title:hover {
+            filter: brightness(1.5);
+        }
+
+        .tab-content {
+            max-height: 0;
+
+            background-color: ghostwhite;
+            overflow: hidden;
+
+            transition: all .2s ease;
+        }
+
+        .tab-content:target {
+            max-height: 200px;
+            padding: 8px;
+
+            transition: all .2s ease;
+        }
     </style>
 </head>
 
 <body>
 
 
+    <!-- 
 
-    <!-- Simple Card -->
-    <simple-card slot="main">
+    <div class="app-accordion">
 
-        <div slot="content">
+        <section class="accordion-tab">
+            <a class="tab-title" href="#item-1">item-1</a>
+            <div id="item-1" class="tab-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eaque.</p>
+            </div>
+        </section>
+        <section class="accordion-tab">
+            <a class="tab-title" href="#item-2">item-2</a>
+            <div id="item-2" class="tab-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eaque.</p>
+            </div>
+        </section>
+        <section class="accordion-tab">
+            <a class="tab-title" href="#item-3">item-3</a>
+            <div id="item-3" class="tab-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, eaque.</p>
+            </div>
+        </section>
+
+    </div>
+
+
+ -->
+
+    <simple-card>
+
+        <div slot="main">
 
             <h1>Simple card</h1>
             <p>A versatile card component designed to make your content presentation
                 effortless.</p>
-
-            <!-- flex="row" (display:flex; flex-direction:row;)
-                 space="between" (justify-content: space-between;)
-                 gap (gap:1rem;) -->
-            <div flex="row" space="between" gap>
-                <button>Press me</button>
-                <!-- cancel (background-color:red;) -->
-                <button cancel>Cancel</button>
-            </div>
+        </div>
 
         </div>
 
     </simple-card>
+
+    <header-card>
+
+        <h1 slot="header">Header card</h1>
+
+        <div slot="main" flex="column" gap>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quasi nulla laborerum sed omnis
+                incidunt
+                tempora sapiente. Non ipsa dolor nihil, quod illo modi soluta pariatur! Iure, ipsa.
+                Vero atque aspernat</p>
+
+            <div flex="row" space="between" gap>
+                <button cta>Press me</button>
+                <button cancel>Cancel</button>
+            </div>
+        </div>
+
+    </header-card>
+
+
+    <app-accordion style="width: 330px;">
+        <section>
+            <h3>item-1</h3>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quasi nulla laborerum sed omnis
+                    incidunt
+                    tempora sapiente. Non ipsa dolor nihil, quod illo modi soluta pariatur! Iure, ipsa.
+                    Vero atque aspernat</p>
+            </div>
+        </section>
+        <section>
+            <h3>item-2</h3>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quasi nulla laborerum sed omnis
+                    incidunt
+                    tempora sapiente. Non ipsa dolor nihil, quod illo modi soluta pariatur! Iure, ipsa.
+                    Vero atque aspernat</p>
+            </div>
+        </section>
+        <section>
+            <h3>item-3</h3>
+            <div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quasi nulla laborerum sed omnis
+                    incidunt
+                    tempora sapiente. Non ipsa dolor nihil, quod illo modi soluta pariatur! Iure, ipsa.
+                    Vero atque aspernat</p>
+            </div>
+        </section>
+    </app-accordion>
+
+    <button cta style="width:330px;" id="btn">Open</button>
+
+    <app-modal trigger="#btn" on="click">
+        <h2 slot="title">Title</h2>
+        <section slot="main">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente, eveniet autem?
+            Recusandae!</section>
+    </app-modal>
 
 
 

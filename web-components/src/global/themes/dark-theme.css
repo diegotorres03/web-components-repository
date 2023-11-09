@@ -1,19 +1,25 @@
 :root {
   /*$ DARK THEME COLORS */
-  --theme-tone: 300;
+  /* Tone of the theme */
+  --theme-tone: 400;
 
   /* Background Colors */
   --background-color-1: hsl(var(--theme-tone), 5%, 12%);
-  --background-color-2: hsl(var(--theme-tone), 5%, 17%);
-  --background-color-3: hsl(var(--theme-tone), 5%, 23%);
-  --background-color-4: hsl(var(--theme-tone), 5%, 31%);
+  --background-color-2: hsl(var(--theme-tone), 5%, 16%);
+  --background-color-3: hsl(var(--theme-tone), 5%, 22%);
+  --background-color-4: hsl(var(--theme-tone), 5%, 30%);
+  --background-color-5: hsl(var(--theme-tone), 5%, 38%);
 
   /* Main Colors */
+  --main-color: hsl(var(--theme-tone), 50%, 50%); /*$ Color principal neutro */
+
   --main-color-1: hsl(var(--theme-tone), 50%, 20%);
   --main-color-2: hsl(var(--theme-tone), 50%, 40%);
-  --main-color: hsl(var(--theme-tone), 50%, 50%); /*$ Color principal neutro */
-  --main-color-3: hsl(var(--theme-tone), 40%, 60%);
-  --main-color-4: hsl(var(--theme-tone), 40%, 80%);
+  --main-color-3: hsl(var(--theme-tone), 40%, 50%);
+  --main-color-4: hsl(var(--theme-tone), 40%, 60%);
+  --main-color-5: hsl(var(--theme-tone), 40%, 70%);
+  --main-color-6: hsl(var(--theme-tone), 50%, 80%);
+
   /* [] Discutir un buen nombre para el color invertido */
   --main-color-inverted: hsl(calc(var(--theme-tone) + 180), 50%, 60%);
 
@@ -31,6 +37,14 @@
   --border-color-1: hsl(var(--theme-tone), 5%, 30%);
   --border-color-2: hsl(var(--theme-tone), 5%, 45%);
   --border-color-3: hsl(var(--theme-tone), 5%, 60%);
+
+  /* $ Valores en medidas */
+  --root-font-size: 16px;
+  --border-value: 1px;
+  --padding-value: 0.8rem;
+  --margin-value: 0.4rem;
+  --gap-value: 0.4rem;
+  --border-radius-value: 0.6rem;
 
   /** Antiguos tokens (Temporal) */
 

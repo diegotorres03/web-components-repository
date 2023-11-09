@@ -29,7 +29,6 @@ export default class AccordionComponent extends HTMLElement {
 
         const items = Array.from(this.querySelectorAll('section'))
 
-
             items.forEach((item, index) => {
                 const titleElement = item.querySelector('h1') ||
                     item.querySelector('h2') ||

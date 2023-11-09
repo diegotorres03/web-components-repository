@@ -11,7 +11,7 @@
   --button-background-color: var(--background-color-4);
   --button-font-color: var(--text-color-emphasis-mid);
 
-  --button-background-color-cta: var(--main-color-3);
+  --button-background-color-cta: var(--main-color-4);
   --button-font-color-cta: var(--text-color-inverted);
 }
 
@@ -50,7 +50,7 @@ button:hover {
 }
 
 button:active {
-  transform: scale(0.98);
+  transform: scale(0.96);
 }
 
 /* BUTTON CTA */
@@ -71,7 +71,7 @@ button[inverted] {
 
 button[cancel] {
   font-weight: 600;
-  background-color: hsl(0, 50%, 60%);
+  background-color: hsl(0, 40%, 60%);
   color: var(--button-font-color);
 }
 
