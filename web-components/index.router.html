@@ -14,29 +14,135 @@
   <app-layout>
 
     <style>
-      [flex-row] {
+      [row] {
         display: flex;
         flex-direction: row;
+        width: 100%;
       }
 
-      [flex-column] {
+      [column] {
         display: flex;
         flex-direction: column;
+        width: 100%;
       }
+
+      [around] {
+        justify-content: space-around;
+      }
+
+      [between] {
+        justify-content: space-between;
+      }
+
+      app-router {
+        width: 100%;
+      }
+
+      [data-tooltip] {
+        
+      }
+      [data-tooltip]::after,
+      [data-tooltip]::before {
+        --scale: 0;
+        position: absolute;
+        top: .25rem;
+        left: 50%;
+        transform: translateX(-50%) translateY(100%) scale(var(--scale));
+        transition: 150ms transform;
+        transform-origin: bottom center;
+      }
+/* https://www.youtube.com/watch?v=ujlpzTyJp-M */
+
+      [data-tooltip]::before {
+        content: attr(data-tooltip);
+        /* position: absolute; */
+        background-color: #444;
+        color: ddd;
+        border: 1px solid #666;
+        border-radius: .3rem;
+        padding: 10px;
+      }
+
+      [data-tooltip]:hover::before {
+        --scale: 1rem;
+      }
+
+      [test^='ha'] {
+        background-color: red;
+      }
+      
+      [router-status] {
+        background-color: blue;
+      }
+      [router-status='active'] {
+        background-color: red;
+
+      }
+
     </style>
 
-    <nav slot="left-content" flex-column>
-      <a router-status href="#link1">link1</a>
+    <header slot="header">
+
+      <ui-data-sync trigger="app-modal" on="accepted">
+        <h1>hi <span name="username"></span></h1>
+      </ui-data-sync>
+
+    </header>
+
+    <nav slot="left-content" column between>
+      <a router-status data-tooltip="this is a custom username"  href="#link1">link1</a>
       <a router-status href="#link2">link2</a>
       <a router-status href="#link3">link3</a>
       <a router-status href="#link4">link4</a>
-      <a router-status href="#link5">link5</a>
+      <a router-status  data-tooltip="oelo parce"  href="#link5">link5</a>
+      <details open test="hasdh------aasdasdas    ha">
+        <summary>this is the summary</summary>
+        and this is the rest of the text
+      </details>
     </nav>
 
     <app-router slot="main">
       <app-route></app-route>
-      <app-route hash="link1">link1</app-route>
-      <app-route hash="link2">link2</app-route>
+      <app-route hash="link1">link1
+        <button>open modal</button>
+        <flip-card disabled trigger="app-modal" on="accepted">
+          <p slot="front">the abbr tag works for abbreviations, like <abbr title="Diego Web Components Kit">DWCK</abbr></p>
+
+        </flip-card>
+        <app-modal trigger="button" on="click">
+          <h4 slot="title">adasd</h4>
+          <section slot="main">
+            <input type="text" name="username">
+          </section>
+        </app-modal>
+
+      </app-route>
+      <app-route hash="link2">
+        <h2>link2</h2>
+        <article column between>
+
+          <section id="chat-room-2" >
+            <!-- <data-store id="messages-room-2"> -->
+              <data-set id="messages" name="messages" visible append trigger="form" on="submitted"></data-set>
+            <!-- </data-store> -->
+              <!-- <app-modal trigger="form" on="submitted"></app-modal> -->
+            <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia alias sunt consequatur ab molestias culpa assumenda beatae reiciendis. Non, sed temporibus error animi consequuntur magni amet rem ea deleniti blanditiis.</p> -->
+          </section>
+          <footer row around>
+            <!-- <textarea name="message" data-groupid="123" width="100px" cols="30" rows="10"></textarea>
+            <ui-dataset-sync trigger="textarea[name='message']" on="keyup">
+              <button id="send-msg-btn" >send</button>
+            </ui-dataset-sync> -->
+            <form column>
+              <button type="reset">clear</button>
+              <input type="text" name="username" required oninvalid="this.setCustomValidity('test error')">
+              <textarea name="message"cols="30" rows="10"></textarea>
+              <button>send</button>
+            </form>
+          </footer>
+        </article>
+      </app-route>
+
       <app-route hash="link3">link3</app-route>
       <app-route hash="link4">link4</app-route>
       <app-route hash="link5">link5</app-route>
@@ -45,16 +151,34 @@
   </app-layout>
 
   <script>
-      const router = document.querySelector('app-router')
-      const sources = Array.from(document.querySelectorAll('[router-status]'))
-      console.log('router', router)
-      router.addEventListener('navigated', event => {
-        console.log('navigated', event)
-        const { hash } = event.detail
-        sources.forEach(source => source.setAttribute('router-status', ''))
-        Array.from(document.querySelectorAll(`[href="${hash}"]`))
-          .forEach(link => link.setAttribute('router-status', 'active'))
-      })
+    Array.from(document.querySelectorAll('form'))
+      .forEach(form => form.addEventListener('submit', event => {
+        event.preventDefault()
+        const data = new FormData(form)
+        const detail = {}
+        Array.from(data.entries())
+          .forEach(keyPair => detail[keyPair[0]] = keyPair[1])
+
+        form.dispatchEvent(new CustomEvent('submitted', {
+          composed: true, bubbles: true,
+          detail
+        }))
+        form.reset()
+      }))
+
+  </script>
+
+  <script id="router-status-code">
+    const router = document.querySelector('app-router')
+    const sources = Array.from(document.querySelectorAll('[router-status]'))
+    console.log('router', router)
+    router.addEventListener('navigated', event => {
+      console.log('navigated', event)
+      const { hash } = event.detail
+      sources.forEach(source => source.setAttribute('router-status', ''))
+      Array.from(document.querySelectorAll(`[href="${hash}"]`))
+        .forEach(link => link.setAttribute('router-status', 'active'))
+    })
   </script>
 
 </body>

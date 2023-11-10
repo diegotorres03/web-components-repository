@@ -34,14 +34,23 @@ export default class UIDatasetSyncComponent extends HTMLElement {
 
     #syncData(event) {
         const children = Array.from(this.children)
-        const data = event.detail
+        const data = {
+            ...event.detail, 
+            ...event.target.dataset, 
+            value: event.target.value
+        }
+        
         console.log(event)
         console.log(data)
-        console.log(children)
+        console.log('children', children)
         if(!children) return 
-        children.forEach(child => 
-            Object.keys(data).forEach(key => 
-                child.setAttribute(`data-${key}`, data[key])))
+        children.forEach(child => {
+            console.log('child', child, data)
+            Object.keys(data).forEach(key => {
+                console.log('updating dataset', data, child, `data-${key}`, data[key])
+                child.setAttribute(`data-${key}`, data[key])
+            })
+        })
     }
 
     disconnectedCallback() { }
