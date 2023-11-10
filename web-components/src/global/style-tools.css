@@ -6,6 +6,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+
+  /* Button */
+  --button-background-color: var(--background-color-4);
+  --button-font-color: var(--text-color-emphasis-mid);
+
+  --button-background-color-cta: var(--main-color-4);
+  --button-font-color-cta: var(--text-color-inverted);
 }
 
 html,
@@ -21,28 +28,64 @@ a {
   text-decoration: none;
 }
 
+/* BUTTON */
+
 button {
+  display: inline-block;
+
   padding: 8px 24px;
   border: none;
   border-radius: 0.4em;
 
-  color: var(--tx-1);
-  background-color: var(--bg-2);
+  font-family: inherit;
+
+  color: var(--button-font-color);
+  background-color: var(--button-background-color);
 
   cursor: pointer;
 }
 
-.clickable {
+button:hover {
+  filter: brightness(1.2);
+}
+
+button:active {
+  transform: scale(0.96);
+}
+
+/* BUTTON CTA */
+
+button[cta] {
+  font-weight: 600;
+  background-color: var(--button-background-color-cta);
+  color: var(--button-font-color-cta);
+}
+
+/* BUTTON WARNING */
+
+button[inverted] {
+  font-weight: 600;
+  background-color: var(--main-color-inverted);
+  color: var(--button-font-color-cta);
+}
+
+button[cancel] {
+  font-weight: 600;
+  background-color: hsl(0, 40%, 60%);
+  color: var(--button-font-color);
+}
+
+[clickable] {
   transition: all 0.2s ease;
 }
-.clickable:hover {
+[clickable]:hover {
   filter: brightness(1.25) contrast(90%);
 }
-.clickable:active {
+[clickable]:active {
   filter: brightness(0.95);
   transform: scale(0.95);
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }

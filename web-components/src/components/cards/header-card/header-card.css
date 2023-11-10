@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+
+  /* Super Container */
+  --super-container-background-color: var(--background-color-3);
+  --super-container-font-color: var(--text-color-emphasis-mid);
+  --super-container-border-value: var(--border-value) solid
+    var(--border-color-2);
+  --super-container-border-radius: var(--border-radius-value);
+
+  /* Card Header */
+  --card-header-border-value: var(--border-value) solid var(--border-color-2);
+  --card-header-background-color: var(--background-color-4);
+  --card-header-padding-value: var(--padding-value);
+
+  /* Card Main */
+  --card-main-border-value: var(--border-value) solid var(--border-color-2);
+  --card-main-background-color: var(--background-color-3);
+  --card-main-padding-value: var(--padding-value);
+  --card-main-border-value: none;
+}
+
+.super-container {
+  /* [ ] El cambio del display se puede manejar desde variables css */
+  display: inline-flex;
+  flex-direction: column;
+
+  border-radius: var(--super-container-border-radius);
+
+  color: var(--super-container-font-color);
+  border: var(--super-container-border-value);
+
+  overflow: hidden;
+}
+
+.card-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between; /* $ experimental */
+
+  padding: var(--card-header-padding-value);
+  border-bottom: var(--card-header-border-value);
+
+  background-color: var(--card-header-background-color);
+}
+
+.card-main {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--gap-value);
+
+  padding: var(--card-main-padding-value);
+  background-color: var(--card-main-background-color);
+  border: var(--card-main-border-value);
+}
