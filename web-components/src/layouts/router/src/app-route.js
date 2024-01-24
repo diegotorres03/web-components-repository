@@ -11,7 +11,6 @@ export default class RouteComponent extends HTMLElement {
     return 'activated'
   }
 
-
   static get observedAttributes() {
     return ['guard']
   }
