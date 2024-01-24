@@ -1,16 +1,31 @@
-:host {
+* {
+  box-sizing: border-box;
   --scale: 1;
+
+  /* General */
+
+  --flip-card-padding-value: var(--padding-value);
+  --flip-card-border-radius-value: var(--border-radius-value);
+  --flip-card-border-value:solid var(--border-value) var(--border-color-2);
+
+  /* Front */
+
+  --front-background-color: var(--background-color-4);
+  --front-text-color: var(--text-color-emphasis-mid);
+
+  /* Back */
+
+  --back-background-color: var(--background-color-3);
+  --back-text-color: var(--main-color-4);
 }
 
 .flip-card-box {
   width: 100%;
   height: 100%;
-  perspective: 1000px;
+  min-width: 10rem;
+  min-height: 6rem;
+  perspective: 60rem;
 }
-
-/* .flip-card-box:hover .flip-card {
-  transform: rotateY(180deg);
-} */
 
 .active {
   transform: rotateY(180deg) scale(var(--scale));
@@ -19,8 +34,6 @@
 .flip-card {
   width: 100%;
   height: 100%;
-  min-width: 100px;
-  min-height: 100px;
 
   transition: all 1s ease-in-out;
 
@@ -41,16 +54,18 @@
   backface-visibility: hidden;
   overflow: hidden;
 
-  border-radius: 4px;
+  padding: var(--flip-card-padding-value);
+  border-radius: var(--flip-card-border-radius-value);
 
-  background-color: var(--back-tone);
-  color: var(--main-tone);
+  border: var(--flip-card-border-value);
+  background-color: var(--front-background-color);
+  color: var(--front-text-color);
 }
 
 .back {
   transform: rotateY(180deg);
-  background-color: var(--second-tone);
-  color: var(--main-tone);
+  background-color: var(--back-background-color);
+  color: var(--back-text-color);
 }
 
 .back-content,
