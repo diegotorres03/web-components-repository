@@ -90,3 +90,17 @@ button[cancel] {
 .hidden {
   display: none !important;
 }
+
+/* Links */
+
+a[cta] {
+  padding: 4px 16px;
+  border-radius: 0.4em;
+
+  color: var(--background-color-2);
+  background-color: var(--main-color-3);
+}
+
+a[cta]:hover {
+  color: var(--text-color-emphasis-high);
+}
