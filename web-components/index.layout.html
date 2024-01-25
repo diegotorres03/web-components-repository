@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.16.0/src-min-noconflict/ace.min.js "></script>
+    <link rel="stylesheet" href="./src/layouts/landing/src/landing-header/landing-header.css">
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        li {
+            width: auto;
+            height: 100%;
+        }
+
+        li>a {
+            height: 100%;
+            color: var(--text-color-emphasis-mid);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <landing-page>
+
+        <landing-header data-title="Atomic" 
+            data-subtitle="Lorem  ipsum "
+            data-logo="https://cdn-icons-png.flaticon.com/512/660/660502.png">
+
+            <li><a clickable href="#home">Home</a></li>
+            <li><a clickable href="#aboutus">About Us</a></li>
+            <li><a clickable href="#laravel">Laravel</a></li>
+
+        </landing-header>
+
+        <landing-hero>
+
+
+        </landing-hero>
+
+    </landing-page>
+
+</body>
+
+</html>
