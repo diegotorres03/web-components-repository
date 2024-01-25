@@ -1,0 +1,63 @@
+.landing-header * {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  display: inline-block;
+}
+
+.landing-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0.8rem 4rem;
+
+  background-color: grey;
+}
+
+.landing-header__visual {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.landing-header__logo {
+  max-width: 40px;
+}
+
+.landing-header__title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.landing-header__title {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.landing-header__subtitle {
+  font-size: 0.8rem;
+}
+
+.landing-header__nav {
+
+
+}
+
+.landing-header__nav-list{
+
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+}
+
+::slotted(li) {
+  list-style: none;
+}
