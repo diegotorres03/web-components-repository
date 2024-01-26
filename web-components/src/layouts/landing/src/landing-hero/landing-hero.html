@@ -1,15 +1,22 @@
-<section>
+<section class="landing-hero">
 
     <div class="landing-hero__info">
 
-        <h2 id="title">Title</h2>
-        <p id="subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, quae!</p>
+        <h2 class="landing-hero__title" id="title">Title</h2>
+
+        <!--  
+        Como el contenido de este campo suele ser largo, se opta
+        por mandarlo por el slot 
+        
+        <p id="subtitle">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium, quae!</p> 
+        -->
+
         <slot></slot>
 
     </div>
     <div class="landing-hero__visual">
 
-        <img id="hero-image" src="#" alt="HERO IMAGE">
+        <img class="landing-hero__image" id="hero-image" src="#" alt="HERO IMAGE">
 
     </div>
 

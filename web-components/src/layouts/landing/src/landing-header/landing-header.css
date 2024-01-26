@@ -1,13 +1,12 @@
-*{
-
+* {
   --landing-header-background-color: var(--background-color-1);
 
   --title-font-color: var(--text-color-emphasis-high);
   --subtitle-font-color: var(--text-color-emphasis-mid);
-
 }
 
-.landing-header, .landing-header * {
+.landing-header,
+.landing-header * {
   margin: 0;
   padding: 0;
 
@@ -23,6 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 4rem;
 
   height: 4rem;
 
@@ -64,16 +64,12 @@
 }
 
 .landing-header__nav {
-
-
 }
 
-.landing-header__nav-list{
-
+.landing-header__nav-list {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-
 }
 
 ::slotted(li) {

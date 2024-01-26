@@ -42,7 +42,9 @@ export default class LandingHeroComponent extends HTMLElement {
       this.shadowRoot.querySelector('#subtitle').textContent = newValue;
     } else if (name === 'data-image' && newValue) {
       console.log(name, oldValue, newValue);
-      this.shadowRoot.querySelector('#image').setAttribute('src', newValue);
+      this.shadowRoot
+        .querySelector('#hero-image')
+        .setAttribute('src', newValue);
     }
   }
 

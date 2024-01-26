@@ -11,8 +11,8 @@
   --button-background-color: var(--background-color-4);
   --button-font-color: var(--text-color-emphasis-mid);
 
-  --button-background-color-cta: var(--main-color-4);
-  --button-font-color-cta: var(--text-color-inverted);
+  --button-background-color-cta: var(--main-color-3);
+  --button-font-color-cta: var(--text-color-emphasis-high);
 }
 
 html,
@@ -32,7 +32,7 @@ a {
 
 button {
   display: inline-block;
-
+  /* width: 100%; */
   padding: 8px 24px;
   border: none;
   border-radius: 0.4em;
@@ -56,7 +56,8 @@ button:active {
 /* BUTTON CTA */
 
 button[cta] {
-  font-weight: 600;
+  font-weight: 400;
+
   background-color: var(--button-background-color-cta);
   color: var(--button-font-color-cta);
 }
@@ -79,7 +80,7 @@ button[cancel] {
   transition: all 0.2s ease;
 }
 [clickable]:hover {
-  filter: brightness(1.25) contrast(90%);
+  filter: brightness(1.35) contrast(90%);
   color: var(--main-color-4);
 }
 [clickable]:active {
