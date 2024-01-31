@@ -1,0 +1,43 @@
+* {
+  --landing-features-background: var(--text-color-emphasis-high);
+}
+
+.landing-features *,
+.landing-features {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  display: block;
+}
+
+/*  */
+
+.landing-features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  padding: 4rem;
+
+  background-color: var(--landing-features-background);
+}
+
+.landing-features__title {
+  font-size: 2rem;
+}
+
+/*  */
+
+::slotted(div) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+
+  width: 100%;
+}
