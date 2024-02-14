@@ -10,7 +10,7 @@ import componentStyle from './landing-features.css';
 
 export default class LandingFeaturesComponent extends HTMLElement {
   static get observedAttributes() {
-    return ['data-title'];
+    return ['data-title', 'data-subtitle'];
   }
 
   constructor() {
@@ -40,6 +40,10 @@ export default class LandingFeaturesComponent extends HTMLElement {
       // Asignar el nuevo valor al html
       console.log(name, oldValue, newValue);
       this.shadowRoot.querySelector('#title').textContent = newValue;
+    } else if (name === 'data-subtitle' && newValue) {
+      // Asignar el nuevo valor al html
+      console.log(name, oldValue, newValue);
+      this.shadowRoot.querySelector('#subtitle').textContent = newValue;
     }
   }
 
