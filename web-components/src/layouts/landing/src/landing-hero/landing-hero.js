@@ -11,7 +11,7 @@ import componentStyle from './landing-hero.css';
 export default class LandingHeroComponent extends HTMLElement {
   // Retornar atributos que serán observados (propensos a cambiar)
   static get observedAttributes() {
-    return ['data-title', 'data-subtitle', 'data-image'];
+    return ['data-title', 'data-subtitle', 'data-image', 'data-background'];
   }
 
   constructor() {
@@ -45,6 +45,13 @@ export default class LandingHeroComponent extends HTMLElement {
       this.shadowRoot
         .querySelector('#hero-image')
         .setAttribute('src', newValue);
+    } else if (name === 'data-background' && newValue) {
+      console.log(name, oldValue, newValue);
+      // El enlace de la imagen proviene del atributo 'data-background'.
+      // Luego, se asigna este enlace al elemento 'this' como una variable CSS mediante la propiedad 'style'.
+      // Es crucial utilizar la variable 'var(--hero-background-image)' en el elemento que exhibirá dicha imagen.
+
+      this.style.setProperty('--hero-background-image', `url('${newValue}')`);
     }
   }
 

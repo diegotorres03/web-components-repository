@@ -13,12 +13,12 @@
   /* Main Colors */
   --main-color: hsl(var(--theme-tone), 50%, 50%); /*$ Color principal neutro */
 
-  --main-color-1: hsl(var(--theme-tone), 50%, 20%);
-  --main-color-2: hsl(var(--theme-tone), 50%, 40%);
-  --main-color-3: hsl(var(--theme-tone), 40%, 50%);
-  --main-color-4: hsl(var(--theme-tone), 40%, 60%);
-  --main-color-5: hsl(var(--theme-tone), 40%, 70%);
-  --main-color-6: hsl(var(--theme-tone), 50%, 80%);
+  --main-color-1: hsl(var(--theme-tone), 45%, 20%);
+  --main-color-2: hsl(var(--theme-tone), 45%, 40%);
+  --main-color-3: hsl(var(--theme-tone), 45%, 50%);
+  --main-color-4: hsl(var(--theme-tone), 55%, 60%);
+  --main-color-5: hsl(var(--theme-tone), 55%, 70%);
+  --main-color-6: hsl(var(--theme-tone), 70%, 80%);
 
   /* [] Discutir un buen nombre para el color invertido */
   --main-color-inverted: hsl(calc(var(--theme-tone) + 180), 50%, 60%);
@@ -71,4 +71,3 @@
 a {
   color: var(--bg-0);
 }
-
