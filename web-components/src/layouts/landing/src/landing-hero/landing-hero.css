@@ -40,8 +40,8 @@
 
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: space-around;
+  /* gap: 4rem; */
 
   height: calc(100vh - 64px);
 
@@ -73,7 +73,7 @@
 .landing-hero__info {
   display: flex;
   flex-direction: column;
-  gap: 0rem;
+  gap: 1rem;
 
   width: 50%;
 
@@ -81,7 +81,7 @@
 }
 
 .landing-hero__title {
-  font-size: 4rem;
+  font-size: 4.4rem;
   line-height: 1;
   font-weight: 700;
 
