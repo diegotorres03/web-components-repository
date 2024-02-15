@@ -44,6 +44,10 @@
   max-height: 90%;
 }
 
+::slotted(svg) {
+  fill: var(--main-color-4);
+}
+
 .landing-header__title-box {
   display: flex;
   flex-direction: column;

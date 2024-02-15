@@ -2,7 +2,9 @@
 
     <div class="landing-header__visual">
 
-        <img id="logo" class="landing-header__logo" src="#" alt="🐲" />
+        <slot name="logo">
+            <img id="logo" class="landing-header__logo" src="#" alt="🐲" />
+        </slot>
         <div class="landing-header__title-box">
 
             <h1 class="landing-header__title" id="title">Title</h1>
@@ -16,7 +18,7 @@
         <ul class="landing-header__nav-list">
 
             <slot></slot>
-            
+
         </ul>
 
     </nav>
