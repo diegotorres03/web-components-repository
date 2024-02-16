@@ -1,7 +1,7 @@
 :root {
   /*$ DARK THEME COLORS */
   /* Tone of the theme */
-  --theme-tone: 215;
+  --theme-tone: 0;
 
   /* Background Colors */
   --background-color-1: hsl(var(--theme-tone), 5%, 12%);
@@ -13,12 +13,38 @@
   /* Main Colors */
   --main-color: hsl(var(--theme-tone), 50%, 50%); /*$ Color principal neutro */
 
-  --main-color-1: hsl(var(--theme-tone), 45%, 20%);
-  --main-color-2: hsl(var(--theme-tone), 45%, 40%);
+  --main-color-1: hsl(var(--theme-tone), 30%, 20%);
+  --main-color-2: hsl(var(--theme-tone), 35%, 40%);
   --main-color-3: hsl(var(--theme-tone), 50%, 50%);
   --main-color-4: hsl(var(--theme-tone), 60%, 60%);
-  --main-color-5: hsl(var(--theme-tone), 60%, 80%);
-  --main-color-6: hsl(var(--theme-tone), 70%, 90%);
+  --main-color-5: hsl(var(--theme-tone), 65%, 80%);
+  --main-color-6: hsl(var(--theme-tone), 85%, 90%);
+  --main-color-7: hsl(var(--theme-tone), 100%, 85%, 0.5);
+
+  /* Color gradients */
+
+  --main-gradient-1: linear-gradient(
+    0deg,
+    var(--main-color-1) 0%,
+    var(--main-color-3) 100%
+  );
+  --main-gradient-2: linear-gradient(
+    0deg,
+    var(--main-color-2) 0%,
+    var(--main-color-4) 100%
+  );
+
+  --main-gradient-3: linear-gradient(
+    0deg,
+    var(--main-color-3) 0%,
+    var(--main-color-5) 100%
+  );
+
+  --main-gradient-4: linear-gradient(
+    45deg,
+    var(--main-color-5) 0%,
+    var(--main-color-7) 100%
+  );
 
   /* [] Discutir un buen nombre para el color invertido */
   --main-color-inverted: hsl(calc(var(--theme-tone) + 180), 50%, 60%);
@@ -29,9 +55,6 @@
   --text-color-emphasis-low: hsla(0, 0%, 100%, 0.4);
   /* [] Discutir un buen nombre para el color invertido */
   --text-color-inverted: hsla(0, 0%, 23%, 1);
-
-  /* Gradients */
-  --gradient-1: linear-gradient(0deg, var(--bg-4) 0%, var(--bg-5) 100%);
 
   /* Border Colors (Example) */
   --border-color-1: hsl(var(--theme-tone), 5%, 30%);
@@ -68,6 +91,8 @@
 
   --gr-1: linear-gradient(0deg, var(--bg-3) 0%, var(--bg-4) 100%);
 }
-a {
-  color: var(--bg-0);
+
+*::selection {
+  background-color: var(--main-color-3);
+  color: var(--text-color-emphasis-mid);
 }

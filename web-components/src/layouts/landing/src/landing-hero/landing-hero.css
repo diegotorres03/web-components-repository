@@ -9,6 +9,11 @@
   --hero-button-font-color: var(--text-color-emphasis-high);
 }
 
+*::selection {
+  background-color: var(--main-color-3);
+  color: var(--text-color-emphasis-mid);
+}
+
 .landing-hero *,
 .landing-hero {
   margin: 0;
@@ -32,7 +37,8 @@
 
   z-index: 90;
 
-  background-color: var(--main-color-6);
+  background: var(--main-color-5);
+  /* mix-blend-mode: soft-light; */
 }
 
 .landing-hero {
@@ -49,7 +55,7 @@
 
   z-index: 100;
 
-  background-color: var(--main-color-6);
+  /* background: var(--main-color-2); */
 }
 
 .landing-hero::after {

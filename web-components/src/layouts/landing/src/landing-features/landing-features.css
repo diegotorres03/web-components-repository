@@ -1,5 +1,5 @@
 * {
-  --feature-background-color: var(--text-color-emphasis-high);
+  --feature-background-color: hsl(var(--theme-tone), 100%, 97.5%);
   --feature-title-font-color: var(--background-color-1);
   --feature-subtitle-font-color: var(--background-color-4);
 }
@@ -37,7 +37,7 @@
 
   width: 40%;
 
-  gap: 0.8rem;
+  gap: 1rem;
 
   text-align: center;
 }
@@ -50,11 +50,12 @@
 
 .landing-feature__subtitle {
   color: var(--feature-subtitle-font-color);
+  line-height: 1.5;
 }
 
 /*  */
 
-::slotted(div) {
+::slotted(div[feature-card-container]) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.8rem;

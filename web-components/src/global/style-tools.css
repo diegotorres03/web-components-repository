@@ -80,7 +80,7 @@ button[cancel] {
   transition: all 0.2s ease;
 }
 [clickable]:hover {
-  filter: brightness(1.35) contrast(90%);
+  filter: brightness(1.15) contrast(90%);
   color: var(--main-color-4);
 }
 [clickable]:active {
