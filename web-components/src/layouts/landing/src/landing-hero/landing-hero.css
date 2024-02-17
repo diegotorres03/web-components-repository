@@ -38,7 +38,6 @@
   z-index: 90;
 
   background: var(--main-color-5);
-  /* mix-blend-mode: soft-light; */
 }
 
 .landing-hero {
@@ -47,15 +46,12 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  /* gap: 4rem; */
 
   height: calc(100vh - 64px);
 
   padding: 1rem 8rem;
 
   z-index: 100;
-
-  /* background: var(--main-color-2); */
 }
 
 .landing-hero::after {

@@ -57,6 +57,7 @@
 
 ::slotted(div[testimonial-card-container]) {
   display: flex;
+  justify-content: center;
   gap: 2rem;
 
   width: 100%;

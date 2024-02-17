@@ -1,0 +1,59 @@
+* {
+}
+
+.landing-cta *,
+.landing-cta {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  display: block;
+}
+
+/*  */
+
+.landing-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+
+  padding: 4rem 8rem 5rem;
+
+  background: var(--main-color-3);
+}
+
+.landing-cta__title-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 50%;
+
+  gap: 1rem;
+
+  text-align: center;
+}
+
+.landing-cta__title {
+  font-size: 2rem;
+  color: var(--text-color-emphasis-high);
+  line-height: 1;
+}
+
+.landing-cta__subtitle {
+  color: var(--text-color-emphasis-mid);
+  line-height: 1.5;
+}
+
+.landing-cta__input-box {
+  display: flex;
+  align-items: center;
+}
+
+.landing-cta__subscribe-btn {
+}

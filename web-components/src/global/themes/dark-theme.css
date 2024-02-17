@@ -24,18 +24,18 @@
   /* Color gradients */
 
   --main-gradient-1: linear-gradient(
-    0deg,
+    45deg,
     var(--main-color-1) 0%,
     var(--main-color-3) 100%
   );
   --main-gradient-2: linear-gradient(
-    0deg,
+    45deg,
     var(--main-color-2) 0%,
     var(--main-color-4) 100%
   );
 
   --main-gradient-3: linear-gradient(
-    0deg,
+    25deg,
     var(--main-color-3) 0%,
     var(--main-color-5) 100%
   );

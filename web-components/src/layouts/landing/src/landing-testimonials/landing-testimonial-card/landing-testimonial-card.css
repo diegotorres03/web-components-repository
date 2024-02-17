@@ -6,11 +6,6 @@
   box-sizing: border-box;
 }
 
-:host {
-  width: 100%;
-  display: block;
-}
-
 /*  */
 
 .testimonial-card {
@@ -18,15 +13,15 @@
   flex-direction: column;
 
   height: 100%;
+  max-width: 500px;
 
   border: 1px solid transparent;
   border-radius: 0.7rem;
 
   overflow: hidden;
+  transition: all 0.4s ease;
 
   background-color: ghostwhite;
-
-  transition: all 0.4s ease;
 }
 
 .testimonial-card:hover {
