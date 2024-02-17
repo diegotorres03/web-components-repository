@@ -27,7 +27,8 @@
 
   padding: 4rem 8rem;
 
-  background-color: var(--testimonial-background-color);
+  /* background-color: var(--testimonial-background-color); */
+  background-color: hsl(var(--theme-tone), 40%, 96%);
 }
 
 .landing-testimonials__title-box {
@@ -54,10 +55,9 @@
 }
 /*  */
 
-::slotted(div) {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.8rem;
+::slotted(div[testimonial-card-container]) {
+  display: flex;
+  gap: 2rem;
 
   width: 100%;
 }

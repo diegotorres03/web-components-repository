@@ -14,6 +14,13 @@
   gap: 0.8rem;
 }
 
+.feature-card:hover .feature-card__icon {
+  transform: translateY(-0.8rem);
+  filter: saturate(1.4);
+
+  transition: all 0.4s ease;
+}
+
 .feature-card__icon {
   display: flex;
   align-items: center;
@@ -26,6 +33,8 @@
   padding: 1.2rem;
 
   background: var(--main-gradient-4);
+
+  transition: all 0.2s ease;
 }
 
 .feature-card__icon .img,
