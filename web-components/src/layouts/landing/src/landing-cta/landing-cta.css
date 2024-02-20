@@ -1,0 +1,173 @@
+* {
+}
+
+.landing-cta *,
+.landing-cta {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  display: block;
+}
+
+/*  */
+
+.landing-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+
+  width: 100%;
+  height: 100%;
+
+  background-image: var(--cta-background-image);
+  background-size: cover;
+  background-position: 50% 50%;
+
+  filter: grayscale(100%) contrast(100%);
+  mix-blend-mode: soft-light;
+}
+
+.landing-cta {
+  position: relative;
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.4rem;
+
+  padding: 6rem 8rem 6rem;
+
+  background: var(--main-color-2);
+}
+
+.landing-cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 90;
+
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    45deg,
+    var(--main-color-3) 20%,
+    hsla(0, 0%, 0%, 0) 100%
+  );
+}
+
+.landing-cta__title-box {
+  z-index: 100;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 50%;
+
+  gap: 1rem;
+
+  text-align: center;
+}
+
+.landing-cta__title {
+  font-size: 2rem;
+  color: var(--text-color-emphasis-high);
+  line-height: 1;
+}
+
+.landing-cta__subtitle {
+  color: var(--text-color-emphasis-mid);
+  line-height: 1.5;
+}
+
+.landing-cta__input-box {
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+}
+
+.landing-cta__subscribe-btn {
+  padding: 0.9rem 1.6rem 0.8rem;
+  border-radius: 0.4rem;
+  border: none;
+
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+
+  cursor: pointer;
+
+  background-color: hsl(150, 100%, 98%);
+  color: var(--main-color-2);
+
+  transition: all 0.6s ease;
+}
+
+.landing-cta:hover .landing-cta__subscribe-btn {
+  transform: scale(1.1);
+  filter: brightness(1)
+    drop-shadow(0px 0px 1.6rem var(--text-color-emphasis-mid));
+
+  transition: all 0.4s ease;
+}
+
+.landing-cta .landing-cta__subscribe-btn:active {
+  transform: scale(1);
+
+  transition: all 0.05s linear;
+}
+
+@media only screen and (max-width: 992px) {
+  .landing-cta {
+    padding: 6rem 2rem;
+  }
+
+  .landing-cta__title-box {
+    width: 70%;
+
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .landing-cta {
+    padding: 2.4rem 2rem;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .landing-cta__title-box {
+    width: 100%;
+
+    gap: 1rem;
+  }
+
+  .landing-cta__title {
+    font-size: 1.2rem;
+  }
+
+  .landing-cta__subtitle {
+    font-size: 0.7rem;
+  }
+
+  .landing-cta__subscribe-btn {
+    padding: 0.7rem 1.6rem 0.6rem;
+    border-radius: 0.4rem;
+    border: none;
+
+    font-size: 0.8rem;
+  }
+}

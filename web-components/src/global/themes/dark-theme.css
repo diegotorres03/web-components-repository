@@ -1,7 +1,7 @@
 :root {
   /*$ DARK THEME COLORS */
   /* Tone of the theme */
-  --theme-tone: 215;
+  --theme-tone: 245;
 
   /* Background Colors */
   --background-color-1: hsl(var(--theme-tone), 5%, 12%);
@@ -14,7 +14,7 @@
   --main-color: hsl(var(--theme-tone), 50%, 50%); /*$ Color principal neutro */
 
   --main-color-1: hsl(var(--theme-tone), 30%, 20%);
-  --main-color-2: hsl(var(--theme-tone), 35%, 40%);
+  --main-color-2: hsl(var(--theme-tone), 35%, 30%);
   --main-color-3: hsl(var(--theme-tone), 50%, 50%);
   --main-color-4: hsl(var(--theme-tone), 60%, 60%);
   --main-color-5: hsl(var(--theme-tone), 65%, 80%);
@@ -51,8 +51,8 @@
 
   /* Text Colors */
   --text-color-emphasis-high: hsla(0, 0%, 100%, 1);
-  --text-color-emphasis-mid: hsla(0, 0%, 100%, 0.7);
-  --text-color-emphasis-low: hsla(0, 0%, 100%, 0.4);
+  --text-color-emphasis-mid: hsla(0, 0%, 100%, 0.5);
+  --text-color-emphasis-low: hsla(0, 0%, 100%, 0.3);
   /* [] Discutir un buen nombre para el color invertido */
   --text-color-inverted: hsla(0, 0%, 23%, 1);
 

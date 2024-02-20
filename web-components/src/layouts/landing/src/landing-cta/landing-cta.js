@@ -5,12 +5,17 @@ import {
   registerTriggers,
 } from '../../../../global/web-tools';
 
-import componentHtml from './landing-cta-section.html';
-import componentStyle from './landing-cta-section.css';
+import componentHtml from './landing-cta.html';
+import componentStyle from './landing-cta.css';
 
-export default class LandingCtaSection extends HTMLElement {
+export default class LandingCta extends HTMLElement {
   static get observedAttributes() {
-    return ['data-title', 'data-subtitle'];
+    return [
+      'data-title',
+      'data-subtitle',
+      'data-btn-content',
+      'data-background',
+    ];
   }
 
   constructor() {
@@ -42,9 +47,19 @@ export default class LandingCtaSection extends HTMLElement {
       // Asignar el nuevo valor al html
       console.log(name, oldValue, newValue);
       this.shadowRoot.querySelector('#subtitle').textContent = newValue;
+    } else if (name === 'data-btn-content' && newValue) {
+      console.log(name, oldValue, newValue);
+      this.shadowRoot.querySelector('#cta-btn').textContent = newValue;
+    } else if (name === 'data-background' && newValue) {
+      console.log(name, oldValue, newValue);
+      // El enlace de la imagen proviene del atributo 'data-background'.
+      // Luego, se asigna este enlace al elemento 'this' como una variable CSS mediante la propiedad 'style'.
+      // Es crucial utilizar la variable 'var(--hero-background-image)' en el elemento que exhibirá dicha imagen.
+
+      this.style.setProperty('--cta-background-image', `url('${newValue}')`);
     }
   }
   adoptedCallback() {}
 }
 
-window.customElements.define('landing-cta-section', LandingCtaSection);
+window.customElements.define('landing-cta', LandingCta);
