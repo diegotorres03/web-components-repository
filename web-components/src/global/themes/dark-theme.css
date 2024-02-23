@@ -1,7 +1,7 @@
 :root {
   /*$ DARK THEME COLORS */
   /* Tone of the theme */
-  --theme-tone: 245;
+  --theme-tone: 100;
 
   /* Background Colors */
   --background-color-1: hsl(var(--theme-tone), 5%, 12%);

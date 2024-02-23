@@ -29,6 +29,21 @@ export default class LandingFooterColumn extends HTMLElement {
     mapComponentEvents(this);
     updateVars(this);
     registerTriggers(this, (event) => console.log(event));
+
+    const elements = Array.from(this.querySelectorAll('p'));
+    console.log(':D', elements);
+
+    const listItems = elements.map((element) => {
+      const li = document.createElement('li');
+      li.appendChild(element);
+      console.log(element.textContent);
+
+      return li;
+    });
+
+    listItems.forEach((element) => {
+      this.appendChild(element);
+    });
   }
 
   disconnectedCallback() {}
