@@ -42,6 +42,21 @@
         landing-feature-card svg path {
             fill: var(--main-color-3);
         }
+
+        /*  */
+
+        landing-footer-column *{
+            transition: all .2s ease;
+        }
+
+        landing-footer-column *:hover{
+            color: var(--main-color-5);
+
+            transform: translateX(2px);
+            transition: all .4s ease;
+
+            cursor: pointer;
+        }
     </style>
 
 </head>
@@ -166,6 +181,7 @@
             </svg>
 
         </landing-hero>
+
         <landing-features data-title="" data-subtitle="">
 
             <div feature-card-container>
@@ -209,6 +225,7 @@
             </div>
 
         </landing-features>
+        
         <landing-testimonials 
             data-title="Nuestros clientes dicen" 
             data-subtitle="">
@@ -235,43 +252,54 @@
 
         </landing-testimonials>
         <landing-cta
-            data-title="Este es mi titulo" 
-            data-subtitle="Compra mi producto, estas a tan solo un click de lo que deseas"
-            data-btn-content="Buy me!"
+            data-title="Potencia tu Negocio con Nuestros Servicios"
+            data-subtitle="Descubre cómo nuestros productos pueden impulsar tu éxito empresarial"
+            data-btn-content="¡Descubre más!"        
             data-background="https://images.unsplash.com/photo-1708201354289-63be47c13eb3?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-
-            <!-- <button slot="cta-input"></button> -->
         </landing-cta>
         <landing-footer>
 
             <landing-footer-column data-title="Services">
 
-                <p>Default item-1</p>
-                <p>Default item-2</p>
-                <p>Default item-3</p>
-                
+                <p>Desarrollo de Software a Medida</p>
+                <p>Diseño y Desarrollo Web</p>
+                <p>Consultoría Tecnológica</p>
+                <p>Desarrollo de Aplicaciones Móviles</p>
+                <p>Integración de Sistemas</p>
+                <p>Optimización de Procesos Empresariales</p>
+
             </landing-footer-column>
+            
             <landing-footer-column data-title="Balance">
 
-                <li>Default item-1</li>
-                <li>Default item-2</li>
-                <li>Default item-3</li>
-     
+                <p>Innovación</p>
+                <p>Calidad</p>
+                <p>Colaboración</p>
+                <p>Integridad</p>
+                <p>Excelencia</p>
+
             </landing-footer-column>
+            
             <landing-footer-column data-title="Web">
 
-                <li>Default item-1</li>
-                <li>Default item-2</li>
-                <li>Default item-3</li>
-                <li>Default item-4</li>
-                
+                <p>Calle TechSoluciones, 123</p>
+                <p>Ciudad Tecnológica</p>
+                <p>+123 456 7890</p>
+                <p>info@techsoluciones.com</p>
+                <p>www.techsoluciones.com</p>
+
             </landing-footer-column>
+            
             <landing-footer-column data-title="Socials">
 
-                <li>Default item-1</li>
-                <li>Default item-2</li>
-                
+                <p>Facebook: @techsoluciones</p>
+                <p>Twitter: @techsoluciones</p>
+                <p>LinkedIn: TechSoluciones</p>
+                <p>Instagram: @techsoluciones</p>
+
             </landing-footer-column>
+            
+
             <p slot="copyright">&copy; 2024 DevArchy. Todos los derechos reservados.</p>
 
         </landing-footer>

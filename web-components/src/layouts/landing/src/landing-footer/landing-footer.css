@@ -21,7 +21,9 @@
 .landing-footer__content {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  gap: 2rem;
 
   padding: 4rem 8rem;
   background-color: var(--background-color-1);
@@ -44,4 +46,37 @@
 
 h1 {
   color: var(--text-color-emphasis-mid);
+}
+
+/*  */
+
+@media only screen and (max-width: 992px) {
+  .landing-footer__content {
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    padding: 4rem 6rem;
+  }
+
+  ::slotted(landing-footer-column) {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .landing-footer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+
+    padding: 4rem 3rem;
+  }
+
+  ::slotted(landing-footer-column) {
+    width: 100%;
+  }
 }
