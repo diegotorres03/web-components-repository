@@ -119,3 +119,13 @@
   width: 100%;
   height: auto;
 }
+
+@media screen and (max-width: 978px) {
+  .landing-hero__title {
+    font-size: 3.4rem;
+    line-height: 1;
+    font-weight: 700;
+
+    color: var(--hero-title-font-color);
+  }
+}

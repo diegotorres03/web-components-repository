@@ -29,7 +29,28 @@ export default class LandingHeaderComponent extends HTMLElement {
     updateVars(this);
     registerTriggers(this, (event) => console.log(event));
 
-    const title = this.getAttribute('title');
+    // const title = this.getAttribute('title');
+
+    const elements = Array.from(this.querySelectorAll('a'));
+
+    const listItems = elements.map((element) => {
+      const li = document.createElement('li');
+      li.classList.add('landing-header__nav-list-item');
+      li.appendChild(element);
+
+      return li;
+    });
+
+    listItems.forEach((element) => {
+      this.appendChild(element);
+    });
+
+    const navMenu = this.shadowRoot.querySelector('#nav-list');
+    const dropdownBtn = this.shadowRoot.querySelector('#dropdown-btn');
+
+    dropdownBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('hidden');
+    });
   }
 
   disconnectedCallback() {}

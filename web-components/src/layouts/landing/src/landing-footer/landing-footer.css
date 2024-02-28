@@ -60,10 +60,6 @@ h1 {
 
     padding: 4rem 6rem;
   }
-
-  ::slotted(landing-footer-column) {
-    width: 45%;
-  }
 }
 
 @media only screen and (max-width: 768px) {

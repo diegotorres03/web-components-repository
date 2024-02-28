@@ -107,3 +107,7 @@ a[cta] {
 a[cta]:hover {
   color: var(--text-color-emphasis-high);
 }
+
+/* CSS DE LANDING-HEADER-COMPONENT  */
+
+@import url('../layouts/landing/src/landing-header/landing-header.css');
