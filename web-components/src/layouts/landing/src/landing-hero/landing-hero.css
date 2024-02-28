@@ -14,17 +14,19 @@
   color: var(--text-color-emphasis-mid);
 }
 
+:host {
+  width: 100%;
+  display: block;
+}
+
+/* Contenedor principal */
+
 .landing-hero *,
 .landing-hero {
   margin: 0;
   padding: 0;
 
   box-sizing: border-box;
-}
-
-:host {
-  width: 100%;
-  display: block;
 }
 
 .landing-hero::before {
@@ -46,7 +48,7 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   height: calc(100vh - 64px);
 
@@ -109,7 +111,10 @@
 }
 
 .landing-hero__visual {
-  max-width: 50%;
+  display: grid;
+  place-items: center;
+
+  width: 50%;
   height: auto;
 
   z-index: 100;
@@ -120,12 +125,84 @@
   height: auto;
 }
 
-@media screen and (max-width: 978px) {
-  .landing-hero__title {
-    font-size: 3.4rem;
-    line-height: 1;
-    font-weight: 700;
+::slotted(svg) {
+  width: 80%;
+  height: auto;
+}
 
-    color: var(--hero-title-font-color);
+@media only screen and (max-width: 1200px) {
+  .landing-hero {
+    padding: 1rem 4rem;
+  }
+
+  .landing-hero__info {
+    gap: 1rem;
+    width: 55%;
+  }
+
+  .landing-hero__title {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .landing-hero {
+    padding: 1rem 8rem;
+  }
+
+  .landing-hero__info {
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .landing-hero__title {
+    font-size: 4.4rem;
+    text-align: center;
+  }
+
+  ::slotted(p) {
+    text-align: center;
+    margin-top: calc(1rem - 8px) !important;
+  }
+
+  .landing-hero__visual {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .landing-hero {
+    padding: 1rem 4rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .landing-hero {
+    padding: 1rem 2rem;
+  }
+
+  .landing-hero__title {
+    font-size: 3rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 317px) {
+  .landing-hero {
+    padding: 1rem;
+
+    height: auto;
+  }
+
+  .landing-hero__title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  ::slotted(p) {
+    text-align: center;
+    margin-top: calc(1rem - 8px) !important;
+
+    font-size: 0.8rem;
   }
 }
