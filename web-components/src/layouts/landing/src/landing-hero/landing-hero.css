@@ -1,3 +1,8 @@
+/* TO DO:
+- [ ] Actualizar variables CSS 
+*/
+
+/* Definición de variables*/
 * {
   --hero-background-color: var(--main-color-6);
   --hero-before-background: ;
@@ -9,10 +14,7 @@
   --hero-button-font-color: var(--text-color-emphasis-high);
 }
 
-*::selection {
-  background-color: var(--main-color-3);
-  color: var(--text-color-emphasis-mid);
-}
+/* Estilos para la etiqueta personalizada (host) */
 
 :host {
   width: 100%;
@@ -29,6 +31,20 @@
   box-sizing: border-box;
 }
 
+.landing-hero {
+  position: relative;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: calc(100vh - 64px);
+
+  padding: 1rem 8rem;
+}
+
+/* Estilos para la sub capa del contenedor principal (bg-dinamico) */
 .landing-hero::before {
   content: '';
   position: absolute;
@@ -42,18 +58,7 @@
   background: var(--main-color-5);
 }
 
-.landing-hero {
-  position: relative;
-  z-index: 100;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  height: calc(100vh - 64px);
-
-  padding: 1rem 8rem;
-}
+/* Estilos para la sub capa del contenedor principal (bg-dinamico) */
 
 .landing-hero::after {
   content: '';
@@ -73,6 +78,8 @@
   mix-blend-mode: soft-light;
 }
 
+/* Estilos para el contenedor de información (left) */
+
 .landing-hero__info {
   display: flex;
   flex-direction: column;
@@ -83,13 +90,17 @@
   z-index: 100;
 }
 
-.landing-hero__title {
+/* Estilos para el titulo del contenedor de información */
+
+.landing-hero__info-title {
   font-size: 4.4rem;
   line-height: 1;
   font-weight: 700;
 
   color: var(--hero-title-font-color);
 }
+
+/* Estilos para los elementos pasados por slot (dentro de info) */
 
 ::slotted(p) {
   line-height: 1.5;
@@ -110,6 +121,8 @@
   transition: all 0.2s ease;
 }
 
+/* Estilos para le contendor visual (Right) */
+
 .landing-hero__visual {
   display: grid;
   place-items: center;
@@ -120,15 +133,20 @@
   z-index: 100;
 }
 
+/* Estilos para la imagen del contendor visual */
+
 .landing-hero__image {
   width: 100%;
   height: auto;
 }
 
+/* Estilo para svgs que se pasen por slot del contendor visual */
 ::slotted(svg) {
   width: 80%;
   height: auto;
 }
+
+/* Responsive para pantallas grandes */
 
 @media only screen and (max-width: 1200px) {
   .landing-hero {
@@ -145,6 +163,8 @@
   }
 }
 
+/* Responsive para pantallas medianas (desaparece el contenedor visual) */
+
 @media only screen and (max-width: 992px) {
   .landing-hero {
     padding: 1rem 8rem;
@@ -155,7 +175,7 @@
     width: 100%;
   }
 
-  .landing-hero__title {
+  .landing-hero__info-title {
     font-size: 4.4rem;
     text-align: center;
   }
@@ -170,31 +190,36 @@
   }
 }
 
+/* Responsive para pantallas pequeñas */
+
 @media screen and (max-width: 768px) {
   .landing-hero {
     padding: 1rem 4rem;
   }
 }
 
+/* Responsive para pantallas pequeñas */
+
 @media screen and (max-width: 576px) {
   .landing-hero {
-    padding: 1rem 2rem;
+    padding: 1rem 1.6rem;
   }
 
-  .landing-hero__title {
-    font-size: 3rem;
-    text-align: center;
+  .landing-hero__info-title {
+    font-size: 2.8rem;
   }
 }
 
+/* Responsive para pantallas muy pequeñas o casos especiales */
+
 @media screen and (max-width: 317px) {
   .landing-hero {
-    padding: 1rem;
+    padding: 4rem 1rem;
 
     height: auto;
   }
 
-  .landing-hero__title {
+  .landing-hero__info-title {
     font-size: 2rem;
     text-align: center;
   }
