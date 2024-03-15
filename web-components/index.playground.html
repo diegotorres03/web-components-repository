@@ -104,7 +104,6 @@
 <body>
 
 
-    <!-- 
 
     <div class="app-accordion">
 
@@ -128,9 +127,6 @@
         </section>
 
     </div>
-
-
- -->
 
     <simple-card>
 
@@ -163,8 +159,8 @@
 
     </header-card>
 
-
-    <app-accordion style="width: 330px;">
+    <div style="min-height: 300px;width: 330px;">
+        <app-accordion style="width: 330px;">
         <section>
             <h3>item-1</h3>
             <div>
@@ -192,9 +188,13 @@
                     Vero atque aspernat</p>
             </div>
         </section>
-    </app-accordion>
-
+        </app-accordion>
+    </div>
     <button cta style="width:330px;" id="btn">Open</button>
+
+    <flip-card style="width: 330px;">
+
+    </flip-card>
 
     <app-modal trigger="#btn" on="click">
         <h2 slot="title">Title</h2>
@@ -202,9 +202,7 @@
             Recusandae!</section>
     </app-modal>
 
-
-
-
 </body>
+
 
 </html>

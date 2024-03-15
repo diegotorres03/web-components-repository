@@ -1,16 +1,20 @@
-import { html, registerTriggers } from '../../global/web-tools';
+import {
+  html,
+  mapComponentEvents,
+  updateVars,
+  registerTriggers,
+} from '../../../../global/web-tools';
 
-import componentHtml from './landing-layout.html';
-import componentStyle from './landing-layout.css';
+import componentHtml from './landing-footer.html';
+import componentStyle from './landing-footer.css';
 
-export default class LandingLayoutComponent extends HTMLElement {
+export default class LandingFooterComponent extends HTMLElement {
   constructor() {
     super();
     const template = html`
       <style>
         ${componentStyle}
       </style>
-
       ${componentHtml}
     `;
     this.attachShadow({ mode: 'open' });
@@ -18,6 +22,8 @@ export default class LandingLayoutComponent extends HTMLElement {
   }
 
   connectedCallback() {
+    mapComponentEvents(this);
+    updateVars(this);
     registerTriggers(this, (event) => console.log(event));
   }
 
@@ -28,4 +34,4 @@ export default class LandingLayoutComponent extends HTMLElement {
   adoptedCallback() {}
 }
 
-window.customElements.define('landing-layout', LandingLayoutComponent);
+window.customElements.define('landing-footer', LandingFooterComponent);

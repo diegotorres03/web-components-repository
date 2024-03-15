@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import url('../layouts/app/src/public-style.css');
 @import url('./themes/dark-theme.css');
 
@@ -12,14 +12,14 @@
   --button-font-color: var(--text-color-emphasis-mid);
 
   --button-background-color-cta: var(--main-color-4);
-  --button-font-color-cta: var(--text-color-inverted);
+  --button-font-color-cta: var(--text-color-emphasis-high);
 }
 
 html,
 body {
   width: 100%;
   height: 100%;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Presets */
@@ -32,7 +32,7 @@ a {
 
 button {
   display: inline-block;
-
+  /* width: 100%; */
   padding: 8px 24px;
   border: none;
   border-radius: 0.4em;
@@ -56,7 +56,8 @@ button:active {
 /* BUTTON CTA */
 
 button[cta] {
-  font-weight: 600;
+  font-weight: 400;
+
   background-color: var(--button-background-color-cta);
   color: var(--button-font-color-cta);
 }
@@ -79,7 +80,8 @@ button[cancel] {
   transition: all 0.2s ease;
 }
 [clickable]:hover {
-  filter: brightness(1.25) contrast(90%);
+  filter: brightness(1.15) contrast(90%);
+  color: var(--main-color-4);
 }
 [clickable]:active {
   filter: brightness(0.95);
@@ -89,3 +91,23 @@ button[cancel] {
 .hidden {
   display: none !important;
 }
+
+/* Links */
+
+a[cta] {
+  padding: 0.6rem 1rem;
+  border-radius: 0.4em;
+
+  font-weight: 500;
+
+  color: var(--background-color-1);
+  background-color: var(--main-color-4);
+}
+
+a[cta]:hover {
+  color: var(--text-color-emphasis-high);
+}
+
+/* CSS DE LANDING-HEADER-COMPONENT  */
+
+@import url('../layouts/landing/src/landing-header/landing-header.css');

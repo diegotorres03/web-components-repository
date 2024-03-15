@@ -1,0 +1,265 @@
+* {
+  --landing-header-background-color: var(--background-color-1);
+
+  --title-font-color: var(--text-color-emphasis-high);
+  --subtitle-font-color: var(--text-color-emphasis-mid);
+}
+
+.landing-header,
+.landing-header * {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  display: block;
+}
+
+/* Contenedor principal */
+
+.landing-header {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 4rem;
+
+  padding: 0.8rem 4rem;
+
+  background-color: var(--landing-header-background-color);
+}
+
+/* Visual */
+
+.landing-header__visual {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  height: 100%;
+}
+
+.landing-header__logo {
+  max-width: 100%;
+  height: auto;
+}
+
+::slotted(svg) {
+  max-width: 100%;
+  height: auto;
+
+  fill: var(--main-color-4);
+}
+
+.landing-header__title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.landing-header__title {
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+
+  color: var(--title-font-color);
+}
+
+.landing-header__subtitle {
+  font-size: 0.8rem;
+
+  color: var(--subtitle-font-color);
+}
+
+.landing-header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+/* Elemento del public css */
+
+.landing-header__nav-list-item {
+  list-style: none;
+
+  width: max-content;
+}
+
+.landing-header__nav-list-item [cta] {
+  background-color: var(--main-color-4);
+}
+
+/* Botón que desplega el menú cuando se usa desde el celular */
+
+#dropdown-btn {
+  display: none;
+}
+
+#dropdown-btn svg {
+  max-width: 90%;
+  height: auto;
+
+  fill: var(--text-color-emphasis-high);
+
+  transition: all 0.3s ease;
+}
+
+#dropdown-btn:hover svg {
+  fill: var(--main-color-4);
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
+  /* Clase para ocultar el nav-list */
+  .hidden {
+    display: none;
+  }
+
+  #dropdown-btn {
+    display: grid;
+    place-items: center;
+
+    width: 2rem;
+
+    border: none;
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+
+    cursor: pointer;
+
+    background: transparent;
+    color: var(--text-color-emphasis-high);
+  }
+
+  /*  */
+
+  .landing-header {
+    position: relative;
+    z-index: 200;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 0;
+  }
+
+  /* Visual */
+
+  .landing-header__visual {
+    gap: 0.8rem;
+  }
+
+  ::slotted(svg) {
+    fill: var(--main-color-4);
+  }
+
+  .landing-header__title-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  /* Nav */
+
+  .landing-header__nav {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+
+    width: 100%;
+    padding: 0.4rem 4rem 0.8rem;
+
+    background-color: var(--background-color-1);
+  }
+
+  .landing-header__nav-list {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0;
+
+    list-style: none;
+    width: 100%;
+  }
+
+  .landing-header__nav-list-item {
+    display: block;
+    width: 100%;
+  }
+
+  .landing-header__nav-list-item a {
+    display: block;
+    width: 100%;
+
+    text-align: center;
+
+    padding: 0.8rem 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .landing-header {
+    padding: 0.8rem 2rem;
+  }
+
+  /* Visual */
+
+  .landing-header__visual {
+    gap: 0.4rem;
+  }
+
+  /* Nav */
+
+  .landing-header__nav {
+    padding: 0rem 2rem 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 357px) {
+  .landing-header {
+    padding: 0.8rem 1rem;
+
+    height: 4rem;
+  }
+
+  /* Visual */
+
+  .landing-header__visual {
+    gap: 0.4rem;
+  }
+  .landing-header__logo {
+    width: 2.2rem;
+    height: auto;
+  }
+
+  ::slotted(svg) {
+    fill: var(--main-color-4);
+    width: 2.2rem;
+    height: auto;
+  }
+
+  .landing-header__title {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  .landing-header__subtitle {
+    font-size: 0.8rem;
+
+    color: var(--subtitle-font-color);
+  }
+
+  /* Nav List */
+
+  .landing-header__nav {
+    padding: 0rem 1rem 0.8rem;
+  }
+
+  .landing-header__nav-list-item a {
+    font-size: 0.8rem;
+  }
+}

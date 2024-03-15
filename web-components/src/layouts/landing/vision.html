@@ -3,36 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>landing-layout-template</title>
+    <title>Landing Web Component</title>
 </head>
 
 <body>
 
-    <landing-layout>
+    <landing-page>
 
-        <section slot="header">
+        <style>
+            :root {
+                --var1: #333;
+            }
+        </style>
 
-        </section>
+        <landing-header>
 
-        <section slot="hero">
+        </landing-header>
+        <landing-hero>
 
-        </section>
+        </landing-hero>
+        <landing-features>
 
-        <section slot="benefits">
+        </landing-features>
+        <landing-testimonials>
 
-        </section>
+        </landing-testimonials>
+        <landing-cta>
 
-        <section slot="testimonials">
+        </landing-cta>
+        <landing-footer>
 
-        </section>
+        </landing-footer>
 
-        <section slot="cta">
-
-        </section>
-
-    </landing-layout>
+    </landing-page>
 
 </body>
 

@@ -1,0 +1,35 @@
+.landing-footer-column *,
+.landing-footer-column {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+/*  */
+
+.landing-footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.landing-footer-column__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  color: var(--text-color-emphasis-high);
+}
+
+.landing-footer-column__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  list-style: none;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  color: var(--text-color-emphasis-mid);
+}
